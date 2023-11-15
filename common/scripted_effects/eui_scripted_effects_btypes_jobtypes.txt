@@ -1,0 +1,414 @@
+﻿building_add_employment_building_food_industry = {
+	building_add_employment_pmg_base_building_food_industry = yes
+	building_add_employment_pmg_canning = yes
+	building_add_employment_pmg_distillery = yes
+	building_add_employment_pmg_automation_building_food_industry = yes
+	building_add_employment_pmg_ownership_capital_building_food_industry = yes
+}
+building_add_employment_building_textile_mills = {
+	building_add_employment_pmg_base_building_textile_mills = yes
+	building_add_employment_pmg_luxury_building_textile_mills = yes
+	building_add_employment_pmg_automation_building_textile_mills = yes
+	building_add_employment_pmg_ownership_capital_building_textile_mills = yes
+}
+building_add_employment_building_furniture_manufacturies = {
+	building_add_employment_pmg_base_building_furniture_manufacturies = yes
+	building_add_employment_pmg_luxury_building_furniture_manufacturies = yes
+	building_add_employment_pmg_automation_building_furniture_manufacturies = yes
+	building_add_employment_pmg_ownership_capital_building_furniture_manufacturies = yes
+}
+building_add_employment_building_glassworks = {
+	building_add_employment_pmg_base_building_glassworks = yes
+	building_add_employment_pmg_luxury_building_glassworks = yes
+	building_add_employment_pmg_glassblowing = yes
+	building_add_employment_pmg_ownership_capital_building_glassworks = yes
+}
+building_add_employment_building_tooling_workshops = {
+	building_add_employment_pmg_base_building_tooling_workshops = yes
+	building_add_employment_pmg_automation_building_tooling_workshops = yes
+	building_add_employment_pmg_ownership_capital_building_tooling_workshops = yes
+}
+building_add_employment_building_paper_mills = {
+	building_add_employment_pmg_base_building_paper_mills = yes
+	building_add_employment_pmg_automation_building_paper_mills = yes
+	building_add_employment_pmg_ownership_capital_building_paper_mills = yes
+}
+building_add_employment_building_chemical_plants = {
+	building_add_employment_pmg_fertilizer_production = yes
+	building_add_employment_pmg_explosives_building_chemical_plants = yes
+	building_add_employment_pmg_ownership_capital_building_chemical_plants = yes
+}
+building_add_employment_building_synthetics_plants = {
+	building_add_employment_pmg_synthetic_dyes = yes
+	building_add_employment_pmg_synthetic_silk = yes
+	building_add_employment_pmg_ownership_capital_building_synthetics_plants = yes
+}
+building_add_employment_building_steel_mills = {
+	building_add_employment_pmg_steelmaking_process = yes
+	building_add_employment_pmg_automation_building_steel_mills = yes
+	building_add_employment_pmg_ownership_capital_building_steel_mills = yes
+}
+building_add_employment_building_motor_industry = {
+	building_add_employment_pmg_base_building_motor_industry = yes
+	building_add_employment_pmg_automobile_production = yes
+	building_add_employment_pmg_automation_building_motor_industry = yes
+	building_add_employment_pmg_ownership_capital_building_motor_industry = yes
+}
+building_add_employment_building_shipyards = {
+	building_add_employment_pmg_base_building_shipyards = yes
+	building_add_employment_pmg_military_base = yes
+	building_add_employment_pmg_ownership_capital_building_shipyards = yes
+}
+building_add_employment_building_war_machine_industry = {
+	building_add_employment_pmg_aeroplanes = yes
+	building_add_employment_pmg_tanks = yes
+	building_add_employment_pmg_ownership_capital_building_war_machine_industry = yes
+}
+building_add_employment_building_electrics_industry = {
+	building_add_employment_pmg_telephones_category = yes
+	building_add_employment_pmg_radios_category = yes
+	building_add_employment_pmg_ownership_capital_building_electrics_industry = yes
+}
+building_add_employment_building_arms_industry = {
+	building_add_employment_pmg_firearms_manufacturing = yes
+	building_add_employment_pmg_foundries = yes
+	building_add_employment_pmg_automation_building_arms_industry = yes
+	building_add_employment_pmg_ownership_capital_building_arms_industry = yes
+}
+building_add_employment_building_munition_plants = {
+	building_add_employment_pmg_base_building_munition_plants = yes
+	building_add_employment_pmg_automation_building_munition_plants = yes
+	building_add_employment_pmg_ownership_capital_building_munition_plants = yes
+}
+
+building_add_employment_building_rye_farm = {
+	building_add_employment_pmg_base_building_rye_farm = yes
+	building_add_employment_pmg_secondary_building_rye_farm = yes
+	building_add_employment_pmg_harvesting_process_building_rye_farm = yes
+	building_add_employment_pmg_ownership_land_building_rye_farm = yes
+}
+building_add_employment_building_wheat_farm = {
+	building_add_employment_pmg_base_building_wheat_farm = yes
+	building_add_employment_pmg_secondary_building_wheat_farm = yes
+	building_add_employment_pmg_harvesting_process_building_wheat_farm = yes
+	building_add_employment_pmg_ownership_land_building_wheat_farm = yes
+}
+building_add_employment_building_rice_farm = {
+	building_add_employment_pmg_base_building_rice_farm = yes
+	building_add_employment_pmg_secondary_building_rice_farm = yes
+	building_add_employment_pmg_harvesting_process_building_rice_farm = yes
+	building_add_employment_pmg_ownership_land_building_rice_farm = yes
+}
+building_add_employment_building_maize_farm = {
+	building_add_employment_pmg_base_building_maize_farm = yes
+	building_add_employment_pmg_secondary_building_maize_farm = yes
+	building_add_employment_pmg_harvesting_process_building_maize_farm = yes
+	building_add_employment_pmg_ownership_land_building_maize_farm = yes
+}
+building_add_employment_building_millet_farm = {
+	building_add_employment_pmg_base_building_millet_farm = yes
+	building_add_employment_pmg_secondary_building_millet_farm = yes
+	building_add_employment_pmg_harvesting_process_building_millet_farm = yes
+	building_add_employment_pmg_ownership_land_building_millet_farm = yes
+}
+building_add_employment_building_livestock_ranch = {
+	building_add_employment_pmg_base_building_livestock_ranch = yes
+	building_add_employment_pmg_slaughtering = yes
+	building_add_employment_pmg_fencing = yes
+	building_add_employment_pmg_refrigeration_building_livestock_ranch = yes
+	building_add_employment_pmg_ownership_land_building_livestock_ranch = yes
+}
+
+building_add_employment_building_coal_mine = {
+	building_add_employment_pmg_mining_equipment_building_coal_mine = yes
+	building_add_employment_pmg_explosives_building_coal_mine = yes
+	building_add_employment_pmg_steam_automation_building_coal_mine = yes
+	building_add_employment_pmg_train_automation_building_coal_mine = yes
+	building_add_employment_pmg_ownership_capital_building_coal_mine = yes
+}
+building_add_employment_building_iron_mine = {
+	building_add_employment_pmg_mining_equipment_building_iron_mine = yes
+	building_add_employment_pmg_explosives_building_iron_mine = yes
+	building_add_employment_pmg_steam_automation_building_iron_mine = yes
+	building_add_employment_pmg_train_automation_building_iron_mine = yes
+	building_add_employment_pmg_ownership_capital_building_iron_mine = yes
+}
+building_add_employment_building_lead_mine = {
+	building_add_employment_pmg_mining_equipment_building_lead_mine = yes
+	building_add_employment_pmg_explosives_building_lead_mine = yes
+	building_add_employment_pmg_steam_automation_building_lead_mine = yes
+	building_add_employment_pmg_train_automation_building_lead_mine = yes
+	building_add_employment_pmg_ownership_capital_building_lead_mine = yes
+}
+building_add_employment_building_sulfur_mine = {
+	building_add_employment_pmg_mining_equipment_building_sulfur_mine = yes
+	building_add_employment_pmg_explosives_building_sulfur_mine = yes
+	building_add_employment_pmg_steam_automation_building_sulfur_mine = yes
+	building_add_employment_pmg_train_automation_building_sulfur_mine = yes
+	building_add_employment_pmg_ownership_capital_building_sulfur_mine = yes
+}
+building_add_employment_building_gold_mine = {
+	building_add_employment_pmg_mining_equipment_building_gold_mine = yes
+	building_add_employment_pmg_explosives_building_gold_mine = yes
+	building_add_employment_pmg_steam_automation_building_gold_mine = yes
+	building_add_employment_pmg_train_automation_building_gold_mine = yes
+	building_add_employment_pmg_ownership_capital_building_gold_mine = yes
+}
+building_add_employment_building_gold_fields = {
+	building_add_employment_pmg_base_building_gold_fields = yes
+}
+
+building_add_employment_building_coffee_plantation = {
+	building_add_employment_pmg_base_building_coffee_plantation = yes
+	building_add_employment_pmg_train_automation_building_coffee_plantation = yes
+	building_add_employment_pmg_ownership_land_building_coffee_plantation = yes
+}
+building_add_employment_building_cotton_plantation = {
+	building_add_employment_pmg_base_building_cotton_plantation = yes
+	building_add_employment_pmg_train_automation_building_cotton_plantation = yes
+	building_add_employment_pmg_ownership_land_building_cotton_plantation = yes
+}
+building_add_employment_building_dye_plantation = {
+	building_add_employment_pmg_base_building_dye_plantation = yes
+	building_add_employment_pmg_train_automation_building_dye_plantation = yes
+	building_add_employment_pmg_ownership_land_building_dye_plantation = yes
+}
+building_add_employment_building_opium_plantation = {
+	building_add_employment_pmg_base_building_opium_plantation = yes
+	building_add_employment_pmg_train_automation_building_opium_plantation = yes
+	building_add_employment_pmg_ownership_land_building_opium_plantation = yes
+}
+building_add_employment_building_tea_plantation = {
+	building_add_employment_pmg_base_building_tea_plantation = yes
+	building_add_employment_pmg_train_automation_building_tea_plantation = yes
+	building_add_employment_pmg_ownership_land_building_tea_plantation = yes
+}
+building_add_employment_building_tobacco_plantation = {
+	building_add_employment_pmg_base_building_tobacco_plantation = yes
+	building_add_employment_pmg_train_automation_building_tobacco_plantation = yes
+	building_add_employment_pmg_ownership_land_building_tobacco_plantation = yes
+}
+building_add_employment_building_sugar_plantation = {
+	building_add_employment_pmg_base_building_sugar_plantation = yes
+	building_add_employment_pmg_train_automation_building_sugar_plantation = yes
+	building_add_employment_pmg_ownership_land_building_sugar_plantation = yes
+}
+building_add_employment_building_banana_plantation = {
+	building_add_employment_pmg_base_building_banana_plantation = yes
+	building_add_employment_pmg_train_automation_building_banana_plantation = yes
+	building_add_employment_pmg_ownership_land_building_banana_plantation = yes
+}
+building_add_employment_building_silk_plantation = {
+	building_add_employment_pmg_base_building_silk_plantation = yes
+	building_add_employment_pmg_train_automation_building_silk_plantation = yes
+	building_add_employment_pmg_ownership_land_building_silk_plantation = yes
+}
+
+building_add_employment_building_barracks = {
+	building_add_employment_pmg_organization = yes
+	building_add_employment_pmg_artillery = yes
+	building_add_employment_pmg_reconaissance = yes
+	building_add_employment_pmg_specialist_companies = yes
+	building_add_employment_pmg_medical_aid = yes
+}
+building_add_employment_building_conscription_center = {
+	building_add_employment_pmg_organization_conscription = yes
+	building_add_employment_pmg_artillery_conscription = yes
+	building_add_employment_pmg_reconaissance_conscription = yes
+	building_add_employment_pmg_specialist_companies_conscription = yes
+	building_add_employment_pmg_medical_aid = yes
+}
+building_add_employment_building_naval_base = {
+	building_add_employment_pmg_ship_class = yes
+	building_add_employment_pmg_escorts = yes
+	building_add_employment_pmg_raiders = yes
+	building_add_employment_pmg_naval_theory = yes
+}
+
+building_add_employment_building_urban_center = {
+	building_add_employment_pmg_amenities = yes
+	building_add_employment_pmg_street_lighting = yes
+	building_add_employment_pmg_public_transport = yes
+	building_add_employment_pmg_urban_clergy = yes
+}
+building_add_employment_building_arts_academy = {
+	building_add_employment_pmg_base_building_arts_academy = yes
+	building_add_employment_pmg_ownership_building_arts_academy = yes
+}
+building_add_employment_building_power_plant = {
+	building_add_employment_pmg_base_building_power_plant = yes
+	building_add_employment_pmg_ownership_capital_building_power_plant = yes
+}
+
+building_add_employment_building_port = {
+	building_add_employment_pmg_base_building_port = yes
+}
+building_add_employment_building_government_administration = {
+	building_add_employment_pmg_base_building_government_administration = yes
+	building_add_employment_pmg_government_administration_bureaucrat_professionalism = yes
+	building_add_employment_pmg_government_administration_religious_administration = yes
+}
+building_add_employment_building_university = {
+	building_add_employment_pmg_base_building_university = yes
+	building_add_employment_pmg_university_academia = yes
+}
+building_add_employment_building_skyscraper = {
+	building_add_employment_pmg_base_building_skyscraper = yes
+	building_add_employment_pmg_airship_mooring_post = yes
+}
+
+building_add_employment_building_eiffel_tower = {
+	building_add_employment_pmg_base_building_eiffel_tower = yes
+}
+building_add_employment_building_angkor_wat = {
+	building_add_employment_pmg_base_building_angkor_wat = yes
+}
+building_add_employment_building_big_ben = {
+	building_add_employment_pmg_base_building_big_ben = yes
+}
+building_add_employment_building_forbidden_city = {
+	building_add_employment_pmg_base_building_forbidden_city = yes
+}
+building_add_employment_building_hagia_sophia = {
+	building_add_employment_pmg_base_building_hagia_sophia = yes
+}
+building_add_employment_building_mosque_of_djenne = {
+	building_add_employment_pmg_base_building_mosque_of_djenne = yes
+}
+building_add_employment_building_saint_basils_cathedral = {
+	building_add_employment_pmg_base_building_saint_basils_cathedral = yes
+}
+building_add_employment_building_statue_of_liberty = {
+	building_add_employment_pmg_base_building_statue_of_liberty = yes
+}
+building_add_employment_building_taj_mahal = {
+	building_add_employment_pmg_base_building_taj_mahal = yes
+}
+building_add_employment_building_vatican_city = {
+	building_add_employment_pmg_base_building_vatican_city = yes
+}
+building_add_employment_building_white_house = {
+	building_add_employment_pmg_base_building_white_house = yes
+}
+building_add_employment_building_machu_picchu = {
+	building_add_employment_pmg_dummy = yes
+}
+building_add_employment_building_argebam = {
+	building_add_employment_pmg_dummy = yes
+}
+building_add_employment_building_chichen_itza = {
+	building_add_employment_pmg_dummy = yes
+}
+building_add_employment_building_easter_island_heads = {
+	building_add_employment_pmg_dummy = yes
+}
+building_add_employment_building_eye_of_sahara = {
+	building_add_employment_pmg_dummy = yes
+}
+building_add_employment_building_giza_necropolis = {
+	building_add_employment_pmg_dummy = yes
+}
+building_add_employment_building_khaju_bridge = {
+	building_add_employment_pmg_dummy = yes
+}
+building_add_employment_building_petra = {
+	building_add_employment_pmg_dummy = yes
+}
+building_add_employment_building_capitol_hill = {
+	building_add_employment_pmg_dummy = yes
+}
+building_add_employment_building_central_park = {
+	building_add_employment_pmg_dummy = yes
+}
+building_add_employment_building_martandsuntemple = {
+	building_add_employment_pmg_dummy = yes
+}
+building_add_employment_building_observatorygreenwich = {
+	building_add_employment_pmg_dummy = yes
+}
+building_add_employment_building_temple_of_poseidon = {
+	building_add_employment_pmg_dummy = yes
+}
+building_add_employment_building_wat_arun = {
+	building_add_employment_pmg_dummy = yes
+}
+
+building_add_employment_building_logging_camp = {
+	building_add_employment_pmg_base_building_logging_camp = yes
+	building_add_employment_pmg_hardwood = yes
+	building_add_employment_pmg_equipment = yes
+	building_add_employment_pmg_transportation_building_logging_camp = yes
+	building_add_employment_pmg_ownership_capital_building_logging_camp = yes
+}
+building_add_employment_building_rubber_plantation = {
+	building_add_employment_pmg_base_building_rubber_plantation = yes
+	building_add_employment_pmg_train_automation_building_rubber_plantation = yes
+	building_add_employment_pmg_ownership_land_building_rubber_plantation = yes
+}
+building_add_employment_building_fishing_wharf = {
+	building_add_employment_pmg_base_building_fishing_wharf = yes
+	building_add_employment_pmg_refrigeration_building_fishing_wharf = yes
+	building_add_employment_pmg_ownership_capital_building_fishing_wharf = yes
+}
+building_add_employment_building_whaling_station = {
+	building_add_employment_pmg_base_building_whaling_station = yes
+	building_add_employment_pmg_refrigeration_building_whaling_station = yes
+	building_add_employment_pmg_ownership_capital_building_whaling_station = yes
+}
+building_add_employment_building_oil_rig = {
+	building_add_employment_pmg_base_building_oil_rig = yes
+	building_add_employment_pmg_transportation_building_oil_rig = yes
+	building_add_employment_pmg_ownership_capital_building_oil_rig = yes
+}
+
+building_add_employment_building_suez_canal = {
+	building_add_employment_pmg_canal = yes
+}
+building_add_employment_building_panama_canal = {
+	building_add_employment_pmg_canal = yes
+}
+
+building_add_employment_building_railway = {
+	building_add_employment_pmg_base_building_railway = yes
+	building_add_employment_pmg_passenger_trains = yes
+	building_add_employment_pmg_ownership_capital_building_railway = yes
+}
+building_add_employment_building_trade_center = {
+	building_add_employment_pmg_base_building_trade_center = yes
+	building_add_employment_pmg_ownership_building_trade_center = yes
+}
+
+building_add_employment_building_subsistence_farms = {
+	building_add_employment_pmg_base_building_subsistence_farms = yes
+	building_add_employment_pmg_home_workshops_building_subsistence_farms = yes
+	building_add_employment_pmg_serfdom_building_subsistence_farms = yes
+	building_add_employment_pmg_ownership_building_subsistence = yes
+}
+building_add_employment_building_subsistence_orchards = {
+	building_add_employment_pmg_base_building_subsistence_orchards = yes
+	building_add_employment_pmg_home_workshops_building_subsistence_orchards = yes
+	building_add_employment_pmg_serfdom_building_subsistence_orchards = yes
+	building_add_employment_pmg_ownership_building_subsistence = yes
+}
+building_add_employment_building_subsistence_pastures = {
+	building_add_employment_pmg_base_building_subsistence_pastures = yes
+	building_add_employment_pmg_home_workshops_building_subsistence_pastures = yes
+	building_add_employment_pmg_serfdom_building_subsistence_pastures = yes
+	building_add_employment_pmg_ownership_building_subsistence = yes
+}
+building_add_employment_building_subsistence_fishing_villages = {
+	building_add_employment_pmg_base_building_subsistence_fishing_villages = yes
+	building_add_employment_pmg_home_workshops_building_subsistence_fishing_villages = yes
+	building_add_employment_pmg_serfdom_building_subsistence_fishing_villages = yes
+	building_add_employment_pmg_ownership_building_subsistence = yes
+}
+building_add_employment_building_subsistence_rice_paddies = {
+	building_add_employment_pmg_base_building_subsistence_rice_paddies = yes
+	building_add_employment_pmg_home_workshops_building_subsistence_rice_paddies = yes
+	building_add_employment_pmg_serfdom_building_subsistence_rice_paddies = yes
+	building_add_employment_pmg_ownership_building_subsistence = yes
+}
+
+building_add_employment_building_construction_sector = {
+	building_add_employment_pmg_base_building_construction_sector = yes
+}

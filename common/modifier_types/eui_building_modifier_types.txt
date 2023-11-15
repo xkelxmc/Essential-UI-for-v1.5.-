@@ -1,0 +1,55 @@
+﻿#dummy modifiers to suppress fake errors
+building_input_tobacco_add = {
+	good = no
+	percent = no
+}
+
+building_input_furniture_add = {
+	good = no
+	percent = no
+}
+
+building_input_services_add = {
+	good = no
+	percent = no
+}
+
+building_input_porcelain_add = {
+	good = no
+	percent = no
+}
+
+building_input_wine_add = {
+	good = no
+	percent = no
+}
+
+building_input_tea_add = {
+	good = no
+	percent = no
+}
+
+building_input_coffee_add = {
+	good = no
+	percent = no
+}
+
+building_input_luxury_clothes_add = {
+	good = no
+	percent = no
+}
+
+building_input_luxury_furniture_add = {
+	good = no
+	percent = no
+}
+
+building_input_gold_add = {
+	good = no
+	percent = no
+}
+
+building_input_fine_art_add = {
+	good = no
+	percent = no
+}

@@ -1,0 +1,1692 @@
+﻿add_goods_pm_dummy = {
+}
+
+add_goods_pm_bakery = {
+	change_variable = { name = curr_building_buy_grain add = 40 }
+	change_variable = { name = curr_building_sell_groceries add = 45 }
+}		
+add_goods_pm_sweeteners = {
+	change_variable = { name = curr_building_buy_grain add = 40 }
+	change_variable = { name = curr_building_buy_sugar add = 15 }
+	change_variable = { name = curr_building_sell_groceries add = 65 }
+}
+add_goods_pm_baking_powder = {
+	change_variable = { name = curr_building_buy_grain add = 80 }
+	change_variable = { name = curr_building_buy_sugar add = 30 }
+	change_variable = { name = curr_building_sell_groceries add = 120 }
+}
+add_goods_pm_disabled_canning = {
+}
+add_goods_pm_cannery = {
+	change_variable = { name = curr_building_buy_grain add = -20 }
+	change_variable = { name = curr_building_buy_fish add = 30 }
+	change_variable = { name = curr_building_buy_iron add = 10 }
+	change_variable = { name = curr_building_sell_groceries add = 30 }
+}
+add_goods_pm_vacuum_canning = {
+	change_variable = { name = curr_building_buy_grain add = -30 }
+	change_variable = { name = curr_building_buy_fish add = 60 }
+	change_variable = { name = curr_building_buy_iron add = 10 }
+	change_variable = { name = curr_building_buy_oil add = 5  }
+	change_variable = { name = curr_building_sell_groceries add = 60 }
+}
+add_goods_pm_disabled_distillery = {
+}
+add_goods_pm_pot_stills = {
+	change_variable = { name = curr_building_buy_sugar add = 25 }
+	change_variable = { name = curr_building_sell_liquor add = 60 }
+	change_variable = { name = curr_building_sell_groceries add = -30  }
+}
+add_goods_pm_patent_stills = {
+	change_variable = { name = curr_building_buy_sugar add = 25 }
+	change_variable = { name = curr_building_buy_glass add = 10 }
+	change_variable = { name = curr_building_sell_liquor add = 100 }
+	change_variable = { name = curr_building_sell_groceries add = -40 }
+}
+add_goods_pm_manual_dough_processing = {
+}
+add_goods_pm_automated_bakery = {
+	change_variable = { name = curr_building_buy_tools add = 10 }
+}
+add_goods_pm_merchant_guilds_building_food_industry = {
+}
+add_goods_pm_privately_owned_building_food_industry = {
+}
+add_goods_pm_publicly_traded_building_food_industry = {
+}
+add_goods_pm_government_run_building_food_industry = {
+}
+add_goods_pm_worker_cooperative_building_food_industry = {
+}
+add_goods_pm_handsewn_clothes = {
+	change_variable = { name = curr_building_buy_fabric add = 40 }
+	change_variable = { name = curr_building_sell_clothes add = 45 }
+}
+add_goods_pm_dye_workshops = {
+	change_variable = { name = curr_building_buy_fabric add = 40 }
+	change_variable = { name = curr_building_buy_dye add = 5 }
+	change_variable = { name = curr_building_sell_clothes add = 60 }
+}			
+add_goods_pm_sewing_machines = {
+	change_variable = { name = curr_building_buy_fabric add = 60 }
+	change_variable = { name = curr_building_buy_dye add = 10 }
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_sell_clothes add = 100 }
+}
+add_goods_pm_electric_sewing_machines = {
+	change_variable = { name = curr_building_buy_fabric add = 60 }
+	change_variable = { name = curr_building_buy_dye add = 20 }
+	change_variable = { name = curr_building_buy_tools add = 10 }
+	change_variable = { name = curr_building_buy_electricity add = 10 }
+	change_variable = { name = curr_building_sell_clothes add = 140 }
+}
+add_goods_pm_no_luxury_clothes = {
+}
+add_goods_pm_craftsman_sewing = {
+	change_variable = { name = curr_building_buy_silk add = 10 }
+	change_variable = { name = curr_building_buy_fabric add = -10 }
+	change_variable = { name = curr_building_sell_clothes add = -20 }
+	change_variable = { name = curr_building_sell_luxury_clothes add = 20 }
+}
+add_goods_pm_elastics = {
+	change_variable = { name = curr_building_buy_rubber add = 10 }
+	change_variable = { name = curr_building_buy_silk add = 10 }
+	change_variable = { name = curr_building_buy_fabric add = -10 }
+	change_variable = { name = curr_building_sell_clothes add = -20 }
+	change_variable = { name = curr_building_sell_luxury_clothes add = 35 }
+}
+add_goods_pm_traditional_looms = {
+}
+add_goods_pm_mechanized_looms = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+}
+add_goods_pm_automatic_power_looms = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_buy_electricity add = 10 }
+}
+add_goods_pm_merchant_guilds_building_textile_mills = {
+}
+add_goods_pm_privately_owned_building_textile_mills = {
+}
+add_goods_pm_publicly_traded_building_textile_mills = {
+}
+add_goods_pm_government_run_building_textile_mills = {
+}
+add_goods_pm_worker_cooperative_building_textile_mills = {
+}
+add_goods_pm_handcrafted_furniture = {
+	change_variable = { name = curr_building_buy_wood add = 30 }
+	change_variable = { name = curr_building_buy_fabric add = 10 }
+	change_variable = { name = curr_building_sell_furniture add = 45 }
+}		
+add_goods_pm_lathe = {
+	change_variable = { name = curr_building_buy_wood add = 30 }
+	change_variable = { name = curr_building_buy_fabric add = 10 }
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_sell_furniture add = 65 }
+}
+add_goods_pm_mechanized_workshops = {
+	change_variable = { name = curr_building_buy_wood add = 50 }
+	change_variable = { name = curr_building_buy_fabric add = 10 }
+	change_variable = { name = curr_building_buy_tools add = 10 }
+	change_variable = { name = curr_building_sell_furniture add = 110 }
+}
+add_goods_pm_no_luxuries = {
+}
+add_goods_pm_luxury_furniture = {
+	change_variable = { name = curr_building_buy_hardwood add = 10 }
+	change_variable = { name = curr_building_buy_wood add = -10 }
+	change_variable = { name = curr_building_sell_furniture add = -20 }
+	change_variable = { name = curr_building_sell_luxury_furniture add = 20 }
+}
+add_goods_pm_precision_tools = {
+	change_variable = { name = curr_building_buy_hardwood add = 20 }
+	change_variable = { name = curr_building_buy_tools add = 10 }
+	change_variable = { name = curr_building_buy_wood add = -20 }
+	change_variable = { name = curr_building_sell_furniture add = -20 }
+	change_variable = { name = curr_building_sell_luxury_furniture add = 40 }
+}
+add_goods_pm_automation_disabled = {
+}
+add_goods_pm_watertube_boiler_building_furniture_manufacturies = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_buy_coal add = 5 }
+}
+add_goods_pm_rotary_valve_engine_building_furniture_manufacturies = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_buy_coal add = 10 }
+}
+add_goods_pm_assembly_lines_building_furniture_manufacturies = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_buy_oil add = 5 }
+	change_variable = { name = curr_building_buy_electricity add = 5 }
+}
+add_goods_pm_merchant_guilds_building_furniture_manufacturies = {
+}
+add_goods_pm_privately_owned_building_furniture_manufacturies = {
+}
+add_goods_pm_publicly_traded_building_furniture_manufacturies = {
+}
+add_goods_pm_government_run_building_furniture_manufacturies = {
+}
+add_goods_pm_worker_cooperative_building_furniture_manufacturies = {
+}
+add_goods_pm_forest_glass = {
+	change_variable = { name = curr_building_buy_wood add = 30 }
+	change_variable = { name = curr_building_sell_glass add = 30 }
+}		
+add_goods_pm_leaded_glass = {
+	change_variable = { name = curr_building_buy_wood add = 20 }
+	change_variable = { name = curr_building_buy_lead add = 10 }
+	change_variable = { name = curr_building_sell_glass add = 40 }
+}
+add_goods_pm_crystal_glass = {
+	change_variable = { name = curr_building_buy_lead add = 35 }
+	change_variable = { name = curr_building_sell_glass add = 70 }
+}
+add_goods_pm_houseware_plastics = {
+	change_variable = { name = curr_building_buy_oil add = 25 }
+	change_variable = { name = curr_building_buy_lead add = 35 }
+	change_variable = { name = curr_building_sell_glass add = 110 }
+}
+add_goods_pm_disabled_ceramics = {
+}
+add_goods_pm_ceramics = {
+	change_variable = { name = curr_building_buy_dye add = 15 }
+	change_variable = { name = curr_building_sell_glass add = -20 }
+	change_variable = { name = curr_building_sell_porcelain add = 25 }
+}
+add_goods_pm_bone_china = {
+	change_variable = { name = curr_building_buy_dye add = 30 }
+	change_variable = { name = curr_building_sell_glass add = -20 }
+	change_variable = { name = curr_building_sell_porcelain add = 40 }
+}
+add_goods_pm_manual_glassblowing = {
+}
+add_goods_pm_automatic_bottle_blowers = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_buy_oil add = 10 }
+}
+add_goods_pm_merchant_guilds_building_glassworks = {
+}
+add_goods_pm_privately_owned_building_glassworks = {
+}
+add_goods_pm_publicly_traded_building_glassworks = {
+}
+add_goods_pm_government_run_building_glassworks = {
+}
+add_goods_pm_worker_cooperative_building_glassworks = {
+}
+add_goods_pm_crude_tools = {
+	change_variable = { name = curr_building_buy_wood add = 30 }
+	change_variable = { name = curr_building_sell_tools add = 30 }
+}
+add_goods_pm_pig_iron = {
+	change_variable = { name = curr_building_buy_wood add = 30 }
+	change_variable = { name = curr_building_buy_iron add = 20 }
+	change_variable = { name = curr_building_sell_tools add = 60 }
+}
+add_goods_pm_steel = {
+	change_variable = { name = curr_building_buy_wood add = 30 }
+	change_variable = { name = curr_building_buy_steel add = 20 }
+	change_variable = { name = curr_building_sell_tools add = 80 }
+}
+add_goods_pm_watertube_boiler_building_tooling_workshops = {
+	change_variable = { name = curr_building_buy_coal add = 10 }
+}
+add_goods_pm_rotary_valve_engine_building_tooling_workshops = {
+	change_variable = { name = curr_building_buy_coal add = 15 }
+}
+add_goods_pm_assembly_lines_building_tooling_workshops = {
+	change_variable = { name = curr_building_buy_oil add = 10 }
+	change_variable = { name = curr_building_buy_electricity add = 5 }
+}
+add_goods_pm_merchant_guilds_building_tooling_workshops = {
+}
+add_goods_pm_privately_owned_building_tooling_workshops = {
+}
+add_goods_pm_publicly_traded_building_tooling_workshops = {
+}
+add_goods_pm_government_run_building_tooling_workshops = {
+}
+add_goods_pm_worker_cooperative_building_tooling_workshops = {
+}
+add_goods_pm_pulp_pressing = {
+	change_variable = { name = curr_building_buy_wood add = 30 }
+	change_variable = { name = curr_building_sell_paper add = 40 }
+}
+add_goods_pm_sulfite_pulping = {
+	change_variable = { name = curr_building_buy_wood add = 30 }
+	change_variable = { name = curr_building_buy_sulfur add = 10 }
+	change_variable = { name = curr_building_sell_paper add = 70 }
+}
+add_goods_pm_bleached_paper = {
+	change_variable = { name = curr_building_buy_wood add = 30 }
+	change_variable = { name = curr_building_buy_sulfur add = 10 }
+	change_variable = { name = curr_building_buy_dye add = 10 }
+	change_variable = { name = curr_building_sell_paper add = 100 }
+}
+add_goods_pm_watertube_boiler_building_paper_mills = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_buy_coal add = 5 }
+}
+add_goods_pm_rotary_valve_engine_building_paper_mills = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_buy_coal add = 10 }
+}
+add_goods_pm_merchant_guilds_building_paper_mills = {
+}
+add_goods_pm_privately_owned_building_paper_mills = {
+}
+add_goods_pm_publicly_traded_building_paper_mills = {
+}
+add_goods_pm_government_run_building_paper_mills = {
+}
+add_goods_pm_worker_cooperative_building_paper_mills = {
+}
+add_goods_pm_artificial_fertilizers = {
+	change_variable = { name = curr_building_buy_sulfur add = 30 }
+	change_variable = { name = curr_building_buy_iron add = 10 }
+	change_variable = { name = curr_building_sell_fertilizer add = 90 }
+}
+add_goods_pm_improved_fertilizer = {
+	change_variable = { name = curr_building_buy_sulfur add = 30 }
+	change_variable = { name = curr_building_buy_iron add = 30 }
+	change_variable = { name = curr_building_sell_fertilizer add = 140 }
+}
+add_goods_pm_nitrogen_fixation = {
+	change_variable = { name = curr_building_buy_sulfur add = 40 }
+	change_variable = { name = curr_building_buy_oil add = 20 }
+	change_variable = { name = curr_building_buy_iron add = 30 }
+	change_variable = { name = curr_building_sell_fertilizer add = 200 }
+}
+add_goods_pm_no_explosives_production = {
+}
+add_goods_pm_leblanc_process = {
+	change_variable = { name = curr_building_buy_coal add = 15 }
+	change_variable = { name = curr_building_sell_fertilizer add = -15 }
+	change_variable = { name = curr_building_sell_explosives add = 20 }
+}
+add_goods_pm_ammonia-soda_process = {
+	change_variable = { name = curr_building_buy_sulfur add = 15 }
+	change_variable = { name = curr_building_buy_coal add = 15  }
+	change_variable = { name = curr_building_sell_fertilizer add = -15  }
+	change_variable = { name = curr_building_sell_explosives add = 40 }
+}
+add_goods_pm_vacuum_evaporation = {
+	change_variable = { name = curr_building_buy_sulfur add = 30  }
+	change_variable = { name = curr_building_buy_coal add = 15 }
+	change_variable = { name = curr_building_sell_fertilizer add = -30 }
+	change_variable = { name = curr_building_sell_explosives add = 70 }
+}
+add_goods_pm_brine_electrolysis = {
+	change_variable = { name = curr_building_buy_sulfur add = 30 }
+	change_variable = { name = curr_building_buy_electricity add = 15 }
+	change_variable = { name = curr_building_buy_coal add = 15 }
+	change_variable = { name = curr_building_sell_fertilizer add = -50 }
+	change_variable = { name = curr_building_sell_explosives add = 100 }
+}
+add_goods_pm_privately_owned_industry = {
+}
+add_goods_pm_government_run_industry = {
+}
+add_goods_pm_worker_cooperative_industry = {
+}
+add_goods_pm_dye_production = {
+	change_variable = { name = curr_building_buy_sulfur add = 20 }
+	change_variable = { name = curr_building_buy_fertilizer add = 30 }
+	change_variable = { name = curr_building_sell_dye add = 80 }
+}
+add_goods_pm_no_artificial_fibers = {
+}
+add_goods_pm_rayon = {
+	change_variable = { name = curr_building_buy_wood add = 40 }
+	change_variable = { name = curr_building_sell_dye add = -40 }
+	change_variable = { name = curr_building_sell_silk add = 40 }
+}
+add_goods_pm_blister_steel_process = {
+	change_variable = { name = curr_building_buy_iron add = 40 }
+	change_variable = { name = curr_building_buy_coal add = 30 }
+	change_variable = { name = curr_building_sell_steel add = 65 }
+}
+add_goods_pm_bessemer_process = {
+	change_variable = { name = curr_building_buy_iron add = 60 }
+	change_variable = { name = curr_building_buy_coal add = 30 }
+	change_variable = { name = curr_building_sell_steel add = 90 }
+}
+add_goods_pm_open_hearth_process = {
+	change_variable = { name = curr_building_buy_iron add = 90 }
+	change_variable = { name = curr_building_buy_coal add = 30 }
+	change_variable = { name = curr_building_sell_steel add = 120 }
+}
+add_goods_pm_electric_arc_process = {
+	change_variable = { name = curr_building_buy_iron add = 100 }
+	change_variable = { name = curr_building_buy_coal add = 30  }
+	change_variable = { name = curr_building_buy_electricity add = 30 }
+	change_variable = { name = curr_building_sell_steel add = 150 }
+}
+add_goods_pm_watertube_boiler_building_steel_mills = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_buy_coal add = 5 }
+}
+add_goods_pm_rotary_valve_engine_building_steel_mills = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_buy_coal add = 10 }
+}
+add_goods_pm_steam_engines = {
+	change_variable = { name = curr_building_buy_steel add = 30 }
+	change_variable = { name = curr_building_sell_engines add = 40 }
+}
+add_goods_pm_electric_engines = {
+	change_variable = { name = curr_building_buy_steel add = 40 }
+	change_variable = { name = curr_building_buy_electricity add = 30 }
+	change_variable = { name = curr_building_sell_engines add = 80 }
+}
+add_goods_pm_diesel_engines = {
+	change_variable = { name = curr_building_buy_steel add = 50 }
+	change_variable = { name = curr_building_buy_oil add = 50 }
+	change_variable = { name = curr_building_sell_engines add = 120 }
+}
+add_goods_pm_automobiles_disabled = {
+}
+add_goods_pm_automobile_production = {
+	change_variable = { name = curr_building_sell_engines add = -20 }
+	change_variable = { name = curr_building_buy_rubber add = 10 }
+	change_variable = { name = curr_building_buy_oil add = 20 }
+	change_variable = { name = curr_building_sell_automobiles add = 25 }
+}
+add_goods_pm_watertube_boiler_building_motor_industry = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_buy_coal add = 5 }
+}
+add_goods_pm_rotary_valve_engine_building_motor_industry = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_buy_coal add = 10 }
+}
+add_goods_pm_assembly_lines_building_motor_industry = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_buy_oil add = 5 }
+	change_variable = { name = curr_building_buy_electricity add = 5 }
+}
+add_goods_pm_basic_shipbuilding = {
+	change_variable = { name = curr_building_buy_wood add = 40 }
+	change_variable = { name = curr_building_buy_fabric add = 20 }
+	change_variable = { name = curr_building_sell_clippers add = 35  }
+}
+add_goods_pm_complex_shipbuilding = {
+	change_variable = { name = curr_building_buy_wood add = 40 }
+	change_variable = { name = curr_building_buy_hardwood add = 20 }
+	change_variable = { name = curr_building_buy_fabric add = 20 }
+	change_variable = { name = curr_building_buy_engines add = 10 }
+	change_variable = { name = curr_building_sell_clippers add = 70 }
+}
+add_goods_pm_metal_shipbuilding = {
+	change_variable = { name = curr_building_buy_steel add = 30 }
+	change_variable = { name = curr_building_buy_coal add = 10 }
+	change_variable = { name = curr_building_buy_engines add = 10 }
+	change_variable = { name = curr_building_sell_steamers add = 60 }
+}
+add_goods_pm_arc_welding_shipbuilding = {
+	change_variable = { name = curr_building_buy_steel add = 30 }
+	change_variable = { name = curr_building_buy_electricity add = 30 }
+	change_variable = { name = curr_building_buy_engines add = 10 }
+	change_variable = { name = curr_building_sell_steamers add = 80 }
+}
+add_goods_pm_no_military_shipbuilding = {
+}
+add_goods_pm_military_shipbuilding_wooden = {
+	change_variable = { name = curr_building_sell_clippers add = -15 }
+	change_variable = { name = curr_building_sell_manowars add = 15 }
+}
+add_goods_pm_military_shipbuilding_wooden_2 = {
+	change_variable = { name = curr_building_sell_clippers add = -25 }
+	change_variable = { name = curr_building_sell_manowars add = 25 }
+}			
+add_goods_pm_military_shipbuilding_steam = {
+	change_variable = { name = curr_building_sell_steamers add = -20 }
+	change_variable = { name = curr_building_sell_ironclads add = 20 }
+}
+add_goods_pm_military_shipbuilding_steam_2 = {
+	change_variable = { name = curr_building_sell_steamers add = -25 }
+	change_variable = { name = curr_building_sell_ironclads add = 25 }
+}			
+add_goods_pm_merchant_guilds_building_shipyards = {
+}		
+add_goods_pm_privately_owned_building_shipyards = {
+}
+add_goods_pm_publicly_traded_building_shipyards = {
+}
+add_goods_pm_government_run_building_shipyards = {
+}
+add_goods_pm_worker_cooperative_building_shipyards = {
+}
+add_goods_pm_aeroplane_production = {
+	change_variable = { name = curr_building_buy_engines add = 10 }
+	change_variable = { name = curr_building_buy_hardwood add = 20 }
+	change_variable = { name = curr_building_buy_fabric add = 20 }
+	change_variable = { name = curr_building_buy_oil add = 20 }
+	change_variable = { name = curr_building_sell_aeroplanes add = 50 }
+}
+add_goods_pm_no_tank_production = {
+}
+add_goods_pm_tank_production = {
+	change_variable = { name = curr_building_buy_engines add = 10 }
+	change_variable = { name = curr_building_buy_steel add = 20 }
+	change_variable = { name = curr_building_buy_oil add = 10 }
+	change_variable = { name = curr_building_sell_aeroplanes add = -10 }
+	change_variable = { name = curr_building_sell_tanks add = 40 }
+}
+add_goods_pm_telephones = {
+	change_variable = { name = curr_building_buy_iron add = 20 }
+	change_variable = { name = curr_building_buy_rubber add = 20 }
+	change_variable = { name = curr_building_buy_lead add = 20 }
+	change_variable = { name = curr_building_buy_tools add = 10 }
+	change_variable = { name = curr_building_sell_telephones add = 60 }
+}
+add_goods_pm_no_radios = {
+}
+add_goods_pm_radios = {
+	change_variable = { name = curr_building_buy_electricity add = 50 }
+	change_variable = { name = curr_building_sell_telephones add = -20 }
+	change_variable = { name = curr_building_sell_radios add = 40 }
+}
+add_goods_pm_muskets = {
+	change_variable = { name = curr_building_buy_iron add = 10 }
+	change_variable = { name = curr_building_buy_hardwood add = 10 }
+	change_variable = { name = curr_building_sell_small_arms add = 25 }
+}
+add_goods_pm_rifles = {
+	change_variable = { name = curr_building_buy_steel add = 10 }
+	change_variable = { name = curr_building_buy_hardwood add = 10 }
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_sell_small_arms add = 35 }
+}
+add_goods_pm_repeaters = {
+	change_variable = { name = curr_building_buy_steel add = 20 }
+	change_variable = { name = curr_building_buy_hardwood add = 10 }
+	change_variable = { name = curr_building_buy_tools add = 10 }
+	change_variable = { name = curr_building_sell_small_arms add = 50 }
+}
+add_goods_pm_bolt_action_rifles = {
+	change_variable = { name = curr_building_buy_steel add = 20 }
+	change_variable = { name = curr_building_buy_hardwood add = 10 }
+	change_variable = { name = curr_building_buy_tools add = 20 }
+	change_variable = { name = curr_building_buy_oil add = 10 }
+	change_variable = { name = curr_building_sell_small_arms add = 75 }
+}
+add_goods_pm_no_artillery_production = {
+}
+add_goods_pm_cannons = {
+	change_variable = { name = curr_building_sell_small_arms add = -10 }
+	change_variable = { name = curr_building_buy_iron add = 10 }
+	change_variable = { name = curr_building_sell_artillery add = 15 }
+}
+add_goods_pm_smoothbores = {
+	change_variable = { name = curr_building_sell_small_arms add = -15 }
+	change_variable = { name = curr_building_buy_steel add = 15 }
+	change_variable = { name = curr_building_sell_artillery add = 25 }
+}
+add_goods_pm_breech_loaders = {
+	change_variable = { name = curr_building_sell_small_arms add = -25 }
+	change_variable = { name = curr_building_buy_steel add = 25 }
+	change_variable = { name = curr_building_sell_artillery add = 40 }
+}
+add_goods_pm_rotary_valve_engine_building_arms_industry = {
+	change_variable = { name = curr_building_buy_coal add = 15 }
+}
+add_goods_pm_assembly_lines_building_arms_industry = {
+	change_variable = { name = curr_building_buy_oil add = 10 }
+	change_variable = { name = curr_building_buy_electricity add = 5 }
+}
+add_goods_pm_merchant_guilds_building_arms_industry = {
+}		
+add_goods_pm_privately_owned_building_arms_industry = {
+}
+add_goods_pm_publicly_traded_building_arms_industry = {
+}
+add_goods_pm_government_run_building_arms_industry = {
+}
+add_goods_pm_worker_cooperative_building_arms_industry = {
+}
+add_goods_pm_percussion_caps = {
+	change_variable = { name = curr_building_buy_explosives add = 20 }
+	change_variable = { name = curr_building_buy_lead add = 20 }
+	change_variable = { name = curr_building_sell_ammunition add = 50 }
+}
+add_goods_pm_explosive_shells = {
+	change_variable = { name = curr_building_buy_explosives add = 40 }
+	change_variable = { name = curr_building_buy_lead add = 30 }
+	change_variable = { name = curr_building_sell_ammunition add = 90 }
+}
+add_goods_pm_rotary_valve_engine_building_munition_plants = {
+	change_variable = { name = curr_building_buy_coal add = 15 }
+}
+add_goods_pm_assembly_lines_building_munition_plants = {
+	change_variable = { name = curr_building_buy_oil add = 10 }
+	change_variable = { name = curr_building_buy_electricity add = 5 }
+}
+add_goods_pm_publicly_traded_building_chemical_plants = {
+}
+add_goods_pm_publicly_traded_building_synthetic_plants = {
+}
+add_goods_pm_publicly_traded_building_steel_mills = {
+}
+add_goods_pm_publicly_traded_building_motor_industries = {
+}
+add_goods_pm_publicly_traded_building_war_machines_induestries = {
+}
+add_goods_pm_publicly_traded_building_electrics_industries = {
+}
+add_goods_pm_publicly_traded_building_munition_plants = {
+}
+
+add_goods_pm_simple_farming = {
+	change_variable = { name = curr_building_sell_grain add = 30 }
+}
+add_goods_pm_soil_enriching_farming = {
+	change_variable = { name = curr_building_buy_fertilizer add = 5 }
+	change_variable = { name = curr_building_sell_grain add = 50 }
+}
+add_goods_pm_fertilization = {
+	change_variable = { name = curr_building_buy_fertilizer add = 15 }
+	change_variable = { name = curr_building_sell_grain add = 90 }
+}
+add_goods_pm_chemical_fertilizer = {
+	change_variable = { name = curr_building_buy_fertilizer add = 40 }
+	change_variable = { name = curr_building_sell_grain add = 140 }
+}			
+add_goods_pm_no_secondary = {
+}
+add_goods_pm_potatoes = {
+	change_variable = { name = curr_building_sell_grain add = -20 }
+	change_variable = { name = curr_building_sell_liquor add = 15 }
+}
+add_goods_pm_apple_orchards = {
+	change_variable = { name = curr_building_sell_grain add = -20 }
+	change_variable = { name = curr_building_sell_fruit add = 10 }
+	change_variable = { name = curr_building_sell_sugar add = 5 }
+}
+add_goods_pm_tools_disabled = {
+}
+add_goods_pm_tools = {
+	change_variable = { name = curr_building_buy_tools add = 1 }
+}
+add_goods_pm_steam_threshers = {
+	change_variable = { name = curr_building_buy_tools add = 2 }
+	change_variable = { name = curr_building_buy_coal add = 4 }
+}
+add_goods_pm_tractors = {
+	change_variable = { name = curr_building_buy_coal add = 5  }
+	change_variable = { name = curr_building_buy_engines add = 2 }
+}
+add_goods_pm_compression_ignition_tractors = {
+	change_variable = { name = curr_building_buy_oil add = 3 }
+	change_variable = { name = curr_building_buy_engines add = 2 }
+}
+add_goods_pm_privately_owned = {
+}
+add_goods_pm_publicly_traded = {
+}
+add_goods_pm_homesteading = {
+}
+add_goods_pm_government_run = {
+}
+add_goods_pm_worker_cooperative_farm = {
+}
+add_goods_pm_citrus_orchards = {
+	change_variable = { name = curr_building_sell_grain add = -20 }
+	change_variable = { name = curr_building_sell_fruit add = 9 }
+	change_variable = { name = curr_building_sell_sugar add = 6 }
+}
+add_goods_pm_vineyards = {
+	change_variable = { name = curr_building_sell_grain add = -15 }
+	change_variable = { name = curr_building_sell_wine add = 8 }
+}
+add_goods_pm_simple_farming_building_rice_farm = {
+	change_variable = { name = curr_building_sell_grain add = 35 }
+}
+add_goods_pm_soil_enriching_farming_building_rice_farm = {
+	change_variable = { name = curr_building_buy_fertilizer add = 10 }
+	change_variable = { name = curr_building_sell_grain add = 65 }
+}
+add_goods_pm_fertilization_building_rice_farm = {
+	change_variable = { name = curr_building_buy_fertilizer add = 20 }
+	change_variable = { name = curr_building_sell_grain add = 100 }
+}
+add_goods_pm_chemical_fertilizer_building_rice_farm = {
+	change_variable = { name = curr_building_buy_fertilizer add = 40 }
+	change_variable = { name = curr_building_sell_grain add = 150 }
+}
+add_goods_pm_fig_orchards = {
+	change_variable = { name = curr_building_sell_grain add = -15 }
+	change_variable = { name = curr_building_sell_fruit add = 6 }
+	change_variable = { name = curr_building_sell_sugar add = 9 }
+}						
+add_goods_pm_vineyards_building_maize_farm = {
+	change_variable = { name = curr_building_sell_grain add = -12 }
+	change_variable = { name = curr_building_sell_wine add = 6 }
+}
+add_goods_pm_simple_ranch = {
+	change_variable = { name = curr_building_sell_fabric add = 30 }
+}
+add_goods_pm_intensive_grazing_ranch = {
+	change_variable = { name = curr_building_buy_grain add = 10 }
+	change_variable = { name = curr_building_sell_fabric add = 40 }
+	change_variable = { name = curr_building_sell_fertilizer add = 5 }
+}
+add_goods_pm_open_air_stockyards = {
+	change_variable = { name = curr_building_sell_meat add = 5 }
+}		
+add_goods_pm_butchering_tools = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_sell_meat add = 15 }
+}
+add_goods_pm_slaughterhouses = {
+	change_variable = { name = curr_building_buy_tools add = 10 }
+	change_variable = { name = curr_building_sell_meat add = 25 }
+}
+add_goods_pm_mechanized_slaughtering = {
+	change_variable = { name = curr_building_buy_tools add = 10 }
+	change_variable = { name = curr_building_buy_coal add = 5 }
+	change_variable = { name = curr_building_sell_meat add = 35 }
+}
+add_goods_pm_standard_fences = {
+}
+add_goods_pm_barbed_wire_fences = {
+	change_variable = { name = curr_building_buy_iron add = 3 }
+}		
+add_goods_pm_electric_fencing = {
+	change_variable = { name = curr_building_buy_iron add = 3 }
+	change_variable = { name = curr_building_buy_electricity add = 3 }
+}
+add_goods_pm_unrefrigerated = {
+}
+add_goods_pm_refrigerated_storage_building_livestock_ranch = {
+	change_variable = { name = curr_building_buy_electricity add = 4 }
+}
+add_goods_pm_refrigerated_rail_cars_building_livestock_ranch = {
+	change_variable = { name = curr_building_buy_electricity add = 4 }
+	change_variable = { name = curr_building_buy_transportation add = 3 }
+}
+
+add_goods_pm_picks_and_shovels_building_coal_mine = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_sell_coal add = 25 }
+}
+add_goods_pm_atmospheric_engine_pump_building_coal_mine = {
+	change_variable = { name = curr_building_buy_tools add = 10 }
+	change_variable = { name = curr_building_sell_coal add = 40 }
+}
+add_goods_pm_condensing_engine_pump_building_coal_mine = {
+	change_variable = { name = curr_building_buy_tools add = 15 }
+	change_variable = { name = curr_building_sell_coal add = 60 }
+}
+add_goods_pm_diesel_pump_building_coal_mine = {
+	change_variable = { name = curr_building_buy_tools add = 15 }
+	change_variable = { name = curr_building_buy_oil add = 5 }
+	change_variable = { name = curr_building_sell_coal add = 90 }
+}
+add_goods_pm_no_explosives = {
+}
+add_goods_pm_nitroglycerin_building_coal_mine = {
+	change_variable = { name = curr_building_buy_explosives add = 5 }
+	change_variable = { name = curr_building_sell_coal add = 15 }
+}
+add_goods_pm_dynamite_building_coal_mine = {
+	change_variable = { name = curr_building_buy_explosives add = 10 }
+	change_variable = { name = curr_building_sell_coal add = 25 }
+}	
+add_goods_pm_no_steam_automation = {
+}
+add_goods_pm_steam_donkey_building_coal_mine = {
+	change_variable = { name = curr_building_buy_engines add = 1 }
+	change_variable = { name = curr_building_sell_coal add = -3 }
+}
+add_goods_pm_road_carts = {
+}
+add_goods_pm_merchant_guilds_building_coal_mine = {
+}
+add_goods_pm_merchant_guilds_building_iron_mine = {
+}
+add_goods_pm_merchant_guilds_building_lead_mine = {
+}
+add_goods_pm_merchant_guilds_building_sulfur_mine = {
+}
+add_goods_pm_merchant_guilds_building_gold_mine = {
+}
+add_goods_pm_privately_owned_building_coal_mine = {
+}
+add_goods_pm_privately_owned_building_iron_mine = {
+}
+add_goods_pm_privately_owned_building_lead_mine = {
+}
+add_goods_pm_privately_owned_building_sulfur_mine = {
+}
+add_goods_pm_privately_owned_building_gold_mine = {
+}
+add_goods_pm_publicly_traded_building_coal_mine = {
+}
+add_goods_pm_publicly_traded_building_iron_mine = {
+}
+add_goods_pm_publicly_traded_building_lead_mine = {
+}
+add_goods_pm_publicly_traded_building_sulfur_mine = {
+}
+add_goods_pm_publicly_traded_building_gold_mine = {
+}
+add_goods_pm_government_run_building_coal_mine = {
+}
+add_goods_pm_government_run_building_iron_mine = {
+}
+add_goods_pm_government_run_building_lead_mine = {
+}
+add_goods_pm_government_run_building_sulfur_mine = {
+}
+add_goods_pm_government_run_building_gold_mine = {
+}
+add_goods_pm_worker_cooperative_building_coal_mine = {
+}
+add_goods_pm_worker_cooperative_building_iron_mine = {
+}
+add_goods_pm_worker_cooperative_building_lead_mine = {
+}
+add_goods_pm_worker_cooperative_building_sulfur_mine = {
+}
+add_goods_pm_worker_cooperative_building_gold_mine = {
+}
+add_goods_pm_picks_and_shovels_building_iron_mine = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_sell_iron add = 20 }
+}
+add_goods_pm_atmospheric_engine_pump_building_iron_mine = {
+	change_variable = { name = curr_building_buy_tools add = 10 }
+	change_variable = { name = curr_building_buy_coal add = 10 }
+	change_variable = { name = curr_building_sell_iron add = 40 }
+}
+add_goods_pm_condensing_engine_pump_building_iron_mine = {
+	change_variable = { name = curr_building_buy_tools add = 15 }
+	change_variable = { name = curr_building_buy_coal add = 15 }
+	change_variable = { name = curr_building_sell_iron add = 60 }
+}
+add_goods_pm_diesel_pump_building_iron_mine = {
+	change_variable = { name = curr_building_buy_tools add = 15 }
+	change_variable = { name = curr_building_buy_oil add = 5 }
+	change_variable = { name = curr_building_sell_iron add = 70 }
+}
+add_goods_pm_nitroglycerin_building_iron_mine = {
+	change_variable = { name = curr_building_buy_explosives add = 5 }
+	change_variable = { name = curr_building_sell_iron add = 12 }
+}
+add_goods_pm_dynamite_building_iron_mine = {
+	change_variable = { name = curr_building_buy_explosives add = 10 }
+	change_variable = { name = curr_building_sell_iron add = 20 }
+}	
+add_goods_pm_steam_donkey_mine = {
+	change_variable = { name = curr_building_buy_engines add = 1 }
+	change_variable = { name = curr_building_buy_coal add = 4 }
+}
+add_goods_pm_rail_transport_mine = {
+	change_variable = { name = curr_building_buy_transportation add = 5 }
+}
+add_goods_pm_picks_and_shovels_building_lead_mine = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_sell_lead add = 20 }
+}
+add_goods_pm_atmospheric_engine_pump_building_lead_mine = {
+	change_variable = { name = curr_building_buy_tools add = 10 }
+	change_variable = { name = curr_building_buy_coal add = 10 }
+	change_variable = { name = curr_building_sell_lead add = 40 }
+}
+add_goods_pm_condensing_engine_pump_building_lead_mine = {
+	change_variable = { name = curr_building_buy_tools add = 15 }
+	change_variable = { name = curr_building_buy_coal add = 15 }
+	change_variable = { name = curr_building_sell_lead add = 60 }
+}
+add_goods_pm_diesel_pump_building_lead_mine = {
+	change_variable = { name = curr_building_buy_tools add = 15 }
+	change_variable = { name = curr_building_buy_oil add = 5 }
+	change_variable = { name = curr_building_sell_lead add = 70 }
+}
+add_goods_pm_nitroglycerin_building_lead_mine = {
+	change_variable = { name = curr_building_buy_explosives add = 5 }
+	change_variable = { name = curr_building_sell_lead add = 12 }
+}
+add_goods_pm_dynamite_building_lead_mine = {
+	change_variable = { name = curr_building_buy_explosives add = 10 }
+	change_variable = { name = curr_building_sell_lead add = 20 }
+}	
+add_goods_pm_picks_and_shovels_building_sulfur_mine = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_sell_sulfur add = 20 }
+}
+add_goods_pm_atmospheric_engine_pump_building_sulfur_mine = {
+	change_variable = { name = curr_building_buy_tools add = 10 }
+	change_variable = { name = curr_building_buy_coal add = 10 }
+	change_variable = { name = curr_building_sell_sulfur add = 40 }
+}
+add_goods_pm_condensing_engine_pump_building_sulfur_mine = {
+	change_variable = { name = curr_building_buy_tools add = 15 }
+	change_variable = { name = curr_building_buy_coal add = 15 }
+	change_variable = { name = curr_building_sell_sulfur add = 60 }
+}
+add_goods_pm_diesel_pump_building_sulfur_mine = {
+	change_variable = { name = curr_building_buy_tools add = 15 }
+	change_variable = { name = curr_building_buy_oil add = 5 }
+	change_variable = { name = curr_building_sell_sulfur add = 80 }
+}
+add_goods_pm_nitroglycerin_building_sulfur_mine = {
+	change_variable = { name = curr_building_buy_explosives add = 5 }
+	change_variable = { name = curr_building_sell_sulfur add = 10 }
+}
+add_goods_pm_dynamite_building_sulfur_mine = {
+	change_variable = { name = curr_building_buy_explosives add = 10 }
+	change_variable = { name = curr_building_sell_sulfur add = 20 }
+}
+add_goods_pm_picks_and_shovels_building_gold_mine = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_sell_gold add = 10 }
+}
+add_goods_pm_atmospheric_engine_pump_building_gold_mine = {
+	change_variable = { name = curr_building_buy_tools add = 10 }
+	change_variable = { name = curr_building_buy_coal add = 10 }
+	change_variable = { name = curr_building_sell_gold add = 20 }
+}
+add_goods_pm_condensing_engine_pump_building_gold_mine = {
+	change_variable = { name = curr_building_buy_tools add = 15 }
+	change_variable = { name = curr_building_buy_coal add = 15 }
+	change_variable = { name = curr_building_sell_gold add = 30 }
+}
+add_goods_pm_diesel_pump_building_gold_mine = {
+	change_variable = { name = curr_building_buy_tools add = 15 }
+	change_variable = { name = curr_building_buy_oil add = 5 }
+	change_variable = { name = curr_building_sell_gold add = 40 }
+}
+add_goods_pm_nitroglycerin_building_gold_mine = {
+	change_variable = { name = curr_building_buy_explosives add = 5 }
+	change_variable = { name = curr_building_sell_gold add = 5 }
+}
+add_goods_pm_dynamite_building_gold_mine = {
+	change_variable = { name = curr_building_buy_explosives add = 10 }
+	change_variable = { name = curr_building_sell_gold add = 10 }
+}
+add_goods_default_building_gold_fields = {
+	change_variable = { name = curr_building_sell_gold add = 20 }
+}
+
+add_goods_default_building_coffee_plantation = {
+	change_variable = { name = curr_building_sell_coffee add = 20 }
+}
+add_goods_automatic_irrigation_building_coffee_plantation = {
+	change_variable = { name = curr_building_buy_engines add = 5 }
+	change_variable = { name = curr_building_sell_coffee add = 40 }
+}
+add_goods_pm_steam_rail_transport = {
+	change_variable = { name = curr_building_buy_transportation add = 5 }
+}
+add_goods_pm_privately_owned_plantation = {
+}
+add_goods_pm_publicly_traded_plantation = {
+}
+add_goods_pm_government_run_plantation = {
+}
+add_goods_pm_worker_cooperative_plantation = {
+}
+add_goods_default_building_cotton_plantation = {
+	change_variable = { name = curr_building_sell_fabric add = 40 }
+}
+add_goods_automatic_irrigation_building_cotton_plantation = {
+	change_variable = { name = curr_building_buy_engines add = 5 }
+	change_variable = { name = curr_building_sell_fabric add = 100 }
+}
+add_goods_default_building_dye_plantation = {
+	change_variable = { name = curr_building_sell_dye add = 25 }
+}
+add_goods_automatic_irrigation_building_dye_plantation = {
+	change_variable = { name = curr_building_buy_engines add = 5 }
+	change_variable = { name = curr_building_sell_dye add = 50 }
+}
+add_goods_default_building_opium_plantation = {
+	change_variable = { name = curr_building_sell_opium add = 20 }
+}
+add_goods_automatic_irrigation_building_opium_plantation = {
+	change_variable = { name = curr_building_buy_engines add = 5 }
+	change_variable = { name = curr_building_sell_opium add = 50 }
+}
+add_goods_default_building_tea_plantation = {
+	change_variable = { name = curr_building_sell_tea add = 20 }
+}
+add_goods_automatic_irrigation_building_tea_plantation = {
+	change_variable = { name = curr_building_buy_engines add = 5 }
+	change_variable = { name = curr_building_sell_tea add = 40 }
+}
+add_goods_default_building_tobacco_plantation = {
+	change_variable = { name = curr_building_sell_tobacco add = 25 }
+}
+add_goods_automatic_irrigation_building_tobacco_plantation = {
+	change_variable = { name = curr_building_buy_engines add = 5 }
+	change_variable = { name = curr_building_sell_tobacco add = 50 }
+}
+add_goods_default_building_sugar_plantation = {
+	change_variable = { name = curr_building_sell_sugar add = 30 }
+}
+add_goods_automatic_irrigation_building_sugar_plantation = {
+	change_variable = { name = curr_building_buy_engines add = 5 }
+	change_variable = { name = curr_building_sell_sugar add = 60 }
+}
+add_goods_default_building_banana_plantation = {
+	change_variable = { name = curr_building_sell_fruit add = 30 }
+}
+add_goods_automatic_irrigation_building_banana_plantation = {
+	change_variable = { name = curr_building_buy_engines add = 5 }
+	change_variable = { name = curr_building_sell_fruit add = 60 }
+}
+add_goods_default_building_silk_plantation = {
+	change_variable = { name = curr_building_sell_silk add = 20 }
+}
+add_goods_automatic_irrigation_building_silk_plantation = {
+	change_variable = { name = curr_building_buy_engines add = 5 }
+	change_variable = { name = curr_building_sell_silk add = 40 }
+}
+
+add_goods_pm_irregular_infantry = {
+}
+add_goods_pm_line_infantry = {
+	change_variable = { name = curr_building_buy_small_arms add = 1 }
+}
+add_goods_pm_skirmish_infantry = {
+	change_variable = { name = curr_building_buy_ammunition add = 1 }
+	change_variable = { name = curr_building_buy_small_arms add = 1 }
+}
+add_goods_pm_trench_infantry = {
+	change_variable = { name = curr_building_buy_ammunition add = 2 }
+	change_variable = { name = curr_building_buy_small_arms add = 1 }
+}
+add_goods_pm_squad_infantry = {
+	change_variable = { name = curr_building_buy_ammunition add = 2 }
+	change_variable = { name = curr_building_buy_small_arms add = 1 }
+	change_variable = { name = curr_building_buy_radios add = 1 }
+}
+add_goods_pm_mechanized_infantry = {
+	change_variable = { name = curr_building_buy_small_arms add = 1 }
+	change_variable = { name = curr_building_buy_ammunition add = 3 }
+	change_variable = { name = curr_building_buy_tanks add = 1 }
+	change_variable = { name = curr_building_buy_oil add = 1 }
+	change_variable = { name = curr_building_buy_radios add = 1 }
+}
+add_goods_pm_no_artillery = {
+}
+add_goods_pm_cannon_artillery = {
+	change_variable = { name = curr_building_buy_artillery add = 0.5 }
+}
+add_goods_pm_mobile_artillery = {
+	change_variable = { name = curr_building_buy_artillery add = 1 }
+}
+add_goods_pm_shrapnel_artillery = {
+	change_variable = { name = curr_building_buy_artillery add = 1 }
+	change_variable = { name = curr_building_buy_ammunition add = 1 }
+}
+add_goods_pm_siege_artillery = {
+	change_variable = { name = curr_building_buy_artillery add = 2 }
+	change_variable = { name = curr_building_buy_ammunition add = 2 }
+}
+add_goods_pm_cavalry_scouts = {
+}
+add_goods_pm_bicycle_messengers = {
+	change_variable = { name = curr_building_buy_tools add = 1 }
+	change_variable = { name = curr_building_buy_rubber add = 1 }
+}
+add_goods_pm_motorized_recon = {
+	change_variable = { name = curr_building_buy_automobiles add = 1 }
+	change_variable = { name = curr_building_buy_oil add = 1 }
+}
+add_goods_pm_aerial_recon = {
+	change_variable = { name = curr_building_buy_aeroplanes add = 1 }
+	change_variable = { name = curr_building_buy_oil add = 1 }
+}
+add_goods_pm_no_specialists = {
+}
+add_goods_pm_machine_gunners = {
+	change_variable = { name = curr_building_buy_small_arms add = 1 }
+	change_variable = { name = curr_building_buy_ammunition add = 1 }
+}
+add_goods_pm_infiltrators = {
+	change_variable = { name = curr_building_buy_radios add = 1 }
+	change_variable = { name = curr_building_buy_explosives add = 1 }
+}
+add_goods_pm_flamethrower_company = {
+	change_variable = { name = curr_building_buy_small_arms add = 1 }
+	change_variable = { name = curr_building_buy_oil add = 1 }
+}
+add_goods_pm_chemical_weapons_specialists = {
+	change_variable = { name = curr_building_buy_artillery add = 1 }
+	change_variable = { name = curr_building_buy_oil add = 1 }
+}
+add_goods_pm_irregular_infantry_conscription = {
+}
+add_goods_pm_line_infantry_conscription = {
+	change_variable = { name = curr_building_buy_small_arms add = 1 }
+}
+add_goods_pm_skirmish_infantry_conscription = {
+	change_variable = { name = curr_building_buy_ammunition add = 1 }
+	change_variable = { name = curr_building_buy_small_arms add = 1 }
+}
+add_goods_pm_trench_infantry_conscription = {
+	change_variable = { name = curr_building_buy_ammunition add = 2 }
+	change_variable = { name = curr_building_buy_small_arms add = 1 }
+}
+add_goods_pm_squad_infantry_conscription = {
+	change_variable = { name = curr_building_buy_ammunition add = 2 }
+	change_variable = { name = curr_building_buy_small_arms add = 1 }
+	change_variable = { name = curr_building_buy_radios add = 1 }
+}
+add_goods_pm_mechanized_infantry_conscription = {
+	change_variable = { name = curr_building_buy_small_arms add = 1 }
+	change_variable = { name = curr_building_buy_ammunition add = 3 }
+	change_variable = { name = curr_building_buy_tanks add = 1 }
+	change_variable = { name = curr_building_buy_oil add = 1 }
+	change_variable = { name = curr_building_buy_radios add = 1 }
+}
+add_goods_pm_no_artillery_conscription = {
+}
+add_goods_pm_cannon_artillery_conscription = {
+	change_variable = { name = curr_building_buy_artillery add = 0.5 }
+}
+add_goods_pm_mobile_artillery_conscription = {
+	change_variable = { name = curr_building_buy_artillery add = 1 }
+}
+add_goods_pm_shrapnel_artillery_conscription = {
+	change_variable = { name = curr_building_buy_artillery add = 1 }
+	change_variable = { name = curr_building_buy_ammunition add = 1 }
+}
+add_goods_pm_siege_artillery_conscription = {
+	change_variable = { name = curr_building_buy_artillery add = 2 }
+	change_variable = { name = curr_building_buy_ammunition add = 2 }
+}
+add_goods_pm_cavalry_scouts_conscription = {
+}
+add_goods_pm_bicycle_messengers_conscription = {
+	change_variable = { name = curr_building_buy_tools add = 1 }
+	change_variable = { name = curr_building_buy_rubber add = 1 }
+}
+add_goods_pm_motorized_recon_conscription = {
+	change_variable = { name = curr_building_buy_automobiles add = 1 }
+	change_variable = { name = curr_building_buy_oil add = 1 }
+}
+add_goods_pm_aerial_recon_conscription = {
+	change_variable = { name = curr_building_buy_aeroplanes add = 1 }
+	change_variable = { name = curr_building_buy_oil add = 1 }
+}
+add_goods_pm_no_specialists_conscription = {
+}
+add_goods_pm_machine_gunners_conscription = {
+	change_variable = { name = curr_building_buy_small_arms add = 1 }
+	change_variable = { name = curr_building_buy_ammunition add = 1 }
+}
+add_goods_pm_infiltrators_conscription = {
+	change_variable = { name = curr_building_buy_radios add = 1 }
+	change_variable = { name = curr_building_buy_explosives add = 1 }
+}
+add_goods_pm_flamethrower_company_conscription = {
+	change_variable = { name = curr_building_buy_small_arms add = 1 }
+	change_variable = { name = curr_building_buy_oil add = 1 }
+}
+add_goods_pm_chemical_weapons_specialists_conscription = {
+	change_variable = { name = curr_building_buy_artillery add = 1 }
+	change_variable = { name = curr_building_buy_oil add = 1 }
+}
+add_goods_pm_wound_dressing = {
+}
+add_goods_pm_first_aid = {
+	change_variable = { name = curr_building_buy_liquor add = 2 }
+	change_variable = { name = curr_building_buy_fabric add = 1 }
+}
+add_goods_pm_field_hospitals = {
+	change_variable = { name = curr_building_buy_liquor add = 2 }
+	change_variable = { name = curr_building_buy_opium add = 2 }
+	change_variable = { name = curr_building_buy_fabric add = 1 }
+	change_variable = { name = curr_building_buy_tools add = 1 }
+}
+add_goods_pm_man_o_wars = {
+	change_variable = { name = curr_building_buy_manowars add = 2 }
+}
+add_goods_pm_ironclads = {
+	change_variable = { name = curr_building_buy_ironclads add = 2 }
+	change_variable = { name = curr_building_buy_ammunition add = 1 }
+}
+add_goods_pm_monitors = {
+	change_variable = { name = curr_building_buy_ironclads add = 3 }
+	change_variable = { name = curr_building_buy_ammunition add = 2 }
+}
+add_goods_pm_dreadnoughts = {
+	change_variable = { name = curr_building_buy_ironclads add = 4 }
+	change_variable = { name = curr_building_buy_ammunition add = 4 }
+	change_variable = { name = curr_building_buy_radios add = 1 }
+}
+add_goods_pm_battleships = {
+	change_variable = { name = curr_building_buy_ironclads add = 5 }
+	change_variable = { name = curr_building_buy_ammunition add = 6 }
+	change_variable = { name = curr_building_buy_radios add = 2 }
+}
+add_goods_pm_commerce_raider = {
+}
+add_goods_pm_torpedo_boat = {
+	change_variable = { name = curr_building_buy_ammunition add = 2 }
+}
+add_goods_pm_submarine = {
+	change_variable = { name = curr_building_buy_ironclads add = 1 }
+	change_variable = { name = curr_building_buy_ammunition add = 1 }
+}
+add_goods_pm_frigates = {
+}
+add_goods_pm_destroyers = {
+	change_variable = { name = curr_building_buy_ironclads add = 2 }
+	change_variable = { name = curr_building_buy_ammunition add = 2 }
+}
+add_goods_pm_carriers = {
+	change_variable = { name = curr_building_buy_ironclads add = 2 }
+	change_variable = { name = curr_building_buy_ammunition add = 2 }
+	change_variable = { name = curr_building_buy_aeroplanes add = 2 }
+	change_variable = { name = curr_building_buy_radios add = 2 }
+}
+add_goods_pm_no_naval_theory = {
+}
+add_goods_pm_power_of_the_purse = {
+}
+add_goods_pm_jeune_ecole = {
+}
+add_goods_pm_sea_lane_strategies = {
+}
+add_goods_pm_battlefleet_tactics = {
+}
+
+add_goods_pm_market_stalls = {
+	change_variable = { name = curr_building_buy_wood add = 5 }
+	change_variable = { name = curr_building_sell_services add = 25 }
+}		
+add_goods_pm_market_squares = {
+	change_variable = { name = curr_building_buy_wood add = 5 }
+	change_variable = { name = curr_building_buy_glass add = 5 }
+	change_variable = { name = curr_building_sell_services add = 40 }
+}
+add_goods_pm_covered_markets = {
+	change_variable = { name = curr_building_buy_glass add = 8 }
+	change_variable = { name = curr_building_buy_steel add = 8 }
+	change_variable = { name = curr_building_sell_services add = 60 }
+}
+add_goods_pm_arcades = {
+	change_variable = { name = curr_building_buy_glass add = 10 }
+	change_variable = { name = curr_building_buy_steel add = 10 }
+	change_variable = { name = curr_building_sell_services add = 80 }
+}
+add_goods_pm_no_street_lighting = {
+}	
+add_goods_pm_gas_streetlights = {
+	change_variable = { name = curr_building_buy_coal add = 10 }
+	change_variable = { name = curr_building_sell_services add = 30 }
+}		
+add_goods_pm_electric_streetlights = {
+	change_variable = { name = curr_building_buy_electricity add = 10 }
+	change_variable = { name = curr_building_sell_services add = 50 }
+}			
+add_goods_pm_no_public_transport = {
+}
+add_goods_pm_public_trams = {
+	change_variable = { name = curr_building_buy_transportation add = 5 }
+}
+add_goods_pm_public_motor_carriages = {
+	change_variable = { name = curr_building_buy_transportation add = 10 }
+}
+add_goods_pm_state_urban_clergy = {
+}	
+add_goods_pm_free_urban_clergy = {
+}
+add_goods_pm_no_urban_clergy = {
+}		
+add_goods_pm_traditional_art = {
+	change_variable = { name = curr_building_buy_paper add = 2.5  }
+	change_variable = { name = curr_building_sell_fine_art add = 1  }
+}
+add_goods_pm_realist_art = {
+	change_variable = { name = curr_building_buy_paper add = 5  }
+	change_variable = { name = curr_building_sell_fine_art add = 1.5  }
+}
+add_goods_pm_photographic_art = {
+	change_variable = { name = curr_building_buy_paper add = 5  }
+	change_variable = { name = curr_building_buy_tools add = 2  }
+	change_variable = { name = curr_building_sell_fine_art add = 2  }
+}
+add_goods_pm_film_art = {
+	change_variable = { name = curr_building_buy_tools add = 5  }
+	change_variable = { name = curr_building_buy_paper add = 5  }
+	change_variable = { name = curr_building_buy_electricity add = 2  }
+	change_variable = { name = curr_building_sell_fine_art add = 3  }
+}	
+add_goods_pm_traditional_patronage = {
+}
+add_goods_pm_bourgeoisie_patronage = {
+}
+add_goods_pm_independent_artists = {
+}
+add_goods_pm_hydroelectric_plant = {
+	change_variable = { name = curr_building_buy_engines add = 10 }
+	change_variable = { name = curr_building_sell_electricity add = 50 }
+}
+add_goods_pm_coal-fired_plant = {
+	change_variable = { name = curr_building_buy_engines add = 15 }
+	change_variable = { name = curr_building_buy_coal add = 30 }
+	change_variable = { name = curr_building_sell_electricity add = 100 }
+}
+add_goods_pm_oil-fired_plant = {
+	change_variable = { name = curr_building_buy_engines add = 20 }
+	change_variable = { name = curr_building_buy_oil add = 40 }
+	change_variable = { name = curr_building_sell_electricity add = 150 }
+}
+add_goods_pm_publicly_traded_building_power_plant = {
+}
+
+add_goods_pm_anchorage = {
+}			
+add_goods_pm_basic_port = {
+	change_variable = { name = curr_building_buy_clippers add = 5 }
+}		
+add_goods_pm_industrial_port = {
+	change_variable = { name = curr_building_buy_steamers add = 5 }
+	change_variable = { name = curr_building_buy_coal add = 5 }
+}
+add_goods_pm_modern_port = {
+	change_variable = { name = curr_building_buy_steamers add = 5 }
+	change_variable = { name = curr_building_buy_oil add = 5 }
+}				
+add_goods_pm_simple_organization = {
+}		
+add_goods_pm_horizontal_drawer_cabinets = {
+	change_variable = { name = curr_building_buy_paper add = 10 }
+}
+add_goods_pm_vertical_filing_cabinets = {
+	change_variable = { name = curr_building_buy_paper add = 20 }
+}
+add_goods_pm_switch_boards = {
+	change_variable = { name = curr_building_buy_paper add = 20 }
+	change_variable = { name = curr_building_buy_telephones add = 5 }
+}
+add_goods_pm_hereditary_bureaucrats = {
+}
+add_goods_pm_professional_bureaucrats = {
+}	
+add_goods_pm_secular_bureaucrats = {
+}
+add_goods_pm_religious_bureaucrats = {
+}					
+add_goods_pm_scholastic_education = {
+	change_variable = { name = curr_building_buy_paper add = 5 }
+}
+add_goods_pm_philosophy_department = {
+	change_variable = { name = curr_building_buy_paper add = 10 }
+}
+add_goods_pm_analytical_philosophy_department = {
+	change_variable = { name = curr_building_buy_paper add = 15 }
+}	
+add_goods_pm_secular_academia = {
+}
+add_goods_pm_religious_academia = {
+}			
+add_goods_pm_skyscraper_bureaucratic_nexus = {
+	change_variable = { name = curr_building_buy_paper add = 25 }
+}
+add_goods_pm_skyscraper_trade_nexus = {
+	change_variable = { name = curr_building_buy_paper add = 25 }
+}
+add_goods_pm_no_airships = {
+}
+add_goods_pm_airship_mooring_post = {
+}
+
+add_goods_pm_default_building_eiffel_tower = {
+}
+add_goods_pm_default_building_angkor_wat = {
+}
+add_goods_pm_default_building_big_ben = {
+}
+add_goods_pm_default_building_forbidden_city = {
+}
+add_goods_pm_default_building_hagia_sophia = {
+}
+add_goods_pm_default_building_mosque_of_djenne = {
+}
+add_goods_pm_default_building_saint_basils_cathedral = {
+}
+add_goods_pm_default_building_statue_of_liberty = {
+}
+add_goods_pm_default_building_taj_mahal = {
+}
+add_goods_pm_default_building_vatican_city = {
+}
+add_goods_pm_monument_prestige_only_vatican_city = {
+}
+add_goods_pm_default_building_white_house = {
+}
+add_goods_pm_monument_prestige_only = {
+}
+add_goods_pm_monument_no_effects = {
+}
+
+add_goods_pm_simple_forestry = {
+	change_variable = { name = curr_building_sell_wood add = 30 }
+}
+add_goods_pm_saw_mills = {
+	change_variable = { name = curr_building_buy_tools add = 5 }
+	change_variable = { name = curr_building_sell_wood add = 60 }
+}	
+add_goods_pm_electric_saw_mills = {
+	change_variable = { name = curr_building_buy_tools add = 10 }
+	change_variable = { name = curr_building_buy_electricity add = 5 }
+	change_variable = { name = curr_building_sell_wood add = 100  }
+}
+add_goods_pm_no_hardwood = {
+}
+add_goods_pm_hardwood = {
+	change_variable = { name = curr_building_sell_wood add = -20 }
+	change_variable = { name = curr_building_sell_hardwood add = 10 }
+}
+add_goods_pm_no_equipment = {
+}
+add_goods_pm_steam_donkey_building_logging_camp = {
+	change_variable = { name = curr_building_buy_engines add = 1 }
+	change_variable = { name = curr_building_buy_coal add = 4 }
+}
+add_goods_pm_chainsaws = {
+	change_variable = { name = curr_building_buy_tools add = 10 }
+	change_variable = { name = curr_building_buy_oil add = 5 }
+}
+add_goods_pm_rail_transport_building_logging_camp = {
+	change_variable = { name = curr_building_buy_transportation add = 5 }
+}
+add_goods_pm_log_carts = {
+	change_variable = { name = curr_building_buy_transportation add = 8 }
+}
+add_goods_pm_merchant_guilds_building_logging_camp = {
+}
+add_goods_pm_privately_owned_building_logging_camp = {
+}
+add_goods_pm_publicly_traded_building_logging_camp = {
+}
+add_goods_pm_government_run_building_logging_camp = {
+}
+add_goods_pm_worker_cooperative_building_logging_camp = {
+}
+add_goods_default_building_rubber_plantation = {
+	change_variable = { name = curr_building_sell_rubber add = 30 }
+}
+add_goods_automatic_irrigation_building_rubber_plantation = {
+	change_variable = { name = curr_building_buy_engines add = 5 }
+	change_variable = { name = curr_building_sell_rubber add = 60 }
+}
+add_goods_pm_simple_fishing = {
+	change_variable = { name = curr_building_sell_fish add = 25 }
+}
+add_goods_pm_fishing_trawlers = {
+	change_variable = { name = curr_building_buy_clippers add = 5 }
+	change_variable = { name = curr_building_sell_fish add = 50 }
+}
+add_goods_pm_steam_trawlers = {
+	change_variable = { name = curr_building_buy_steamers add = 5 }
+	change_variable = { name = curr_building_buy_coal add = 15 }
+	change_variable = { name = curr_building_sell_fish add = 100 }
+}
+add_goods_pm_refrigerated_storage_building_fishing_wharf = {
+	change_variable = { name = curr_building_buy_electricity add = 5 }
+}
+add_goods_pm_refrigerated_rail_cars_building_fishing_wharf = {
+	change_variable = { name = curr_building_buy_electricity add = 5 }
+	change_variable = { name = curr_building_buy_transportation add = 5 }
+}
+add_goods_pm_flash_freezing_building_fishing_wharf = {
+	change_variable = { name = curr_building_buy_electricity add = 7 }
+	change_variable = { name = curr_building_buy_transportation add = 7 }
+}
+add_goods_pm_merchant_guilds_building_fishing_wharf = {
+}
+add_goods_pm_privately_owned_building_fishing_wharf = {
+}
+add_goods_pm_publicly_traded_building_fishing_wharf = {
+}
+add_goods_pm_government_run_building_fishing_wharf = {
+}
+add_goods_pm_worker_cooperative_building_fishing_wharf = {
+}
+add_goods_pm_simple_whaling = {
+	change_variable = { name = curr_building_sell_meat add = 5 }
+	change_variable = { name = curr_building_sell_oil add = 10 }
+}
+add_goods_pm_wooden_whaling_ships = {
+	change_variable = { name = curr_building_buy_clippers add = 5  }
+	change_variable = { name = curr_building_sell_meat add = 10 }
+	change_variable = { name = curr_building_sell_oil add = 20 }
+}
+add_goods_pm_steam_whaling_ships = {
+	change_variable = { name = curr_building_buy_steamers add = 5 }
+	change_variable = { name = curr_building_buy_coal add = 20 }
+	change_variable = { name = curr_building_sell_meat add = 20 }
+	change_variable = { name = curr_building_sell_oil add = 40 }
+}
+add_goods_pm_refrigerated_storage_building_whaling_station = {
+	change_variable = { name = curr_building_buy_electricity add = 5 }
+}
+add_goods_pm_refrigerated_rail_cars_building_whaling_station = {
+	change_variable = { name = curr_building_buy_electricity add = 5 }
+	change_variable = { name = curr_building_buy_transportation add = 5 }
+}
+add_goods_pm_flash_freezing_building_whaling_station = {
+	change_variable = { name = curr_building_buy_electricity add = 7 }
+	change_variable = { name = curr_building_buy_transportation add = 7 }
+}
+add_goods_pm_merchant_guilds_building_whaling_station = {
+}		
+add_goods_pm_privately_owned_building_whaling_station = {
+}
+add_goods_pm_publicly_traded_building_whaling_station = {
+}
+add_goods_pm_government_run_building_whaling_station = {
+}
+add_goods_pm_worker_cooperative_building_whaling_station = {
+}
+add_goods_pm_steam_derricks = {
+	change_variable = { name = curr_building_buy_engines add = 5 }
+	change_variable = { name = curr_building_buy_coal add = 10 }
+	change_variable = { name = curr_building_sell_oil add = 60 }
+}
+add_goods_pm_combustion_derricks = {
+	change_variable = { name = curr_building_buy_engines add = 10 }
+	change_variable = { name = curr_building_sell_oil add = 100 }
+}
+add_goods_pm_rail_transport_building_oil_rig = {
+	change_variable = { name = curr_building_buy_transportation add = 5 }
+}
+add_goods_pm_tanker_cars = {
+	change_variable = { name = curr_building_buy_transportation add = 10 }
+}
+add_goods_pm_publicly_traded_building_oil_rig = {
+}
+
+add_goods_pm_canal = {
+	change_variable = { name = curr_building_buy_tools add = 10 }
+	change_variable = { name = curr_building_buy_coal add = 15 }
+}
+
+add_goods_pm_steam_trains = {
+	change_variable = { name = curr_building_buy_engines add = 10 }
+	change_variable = { name = curr_building_buy_coal add = 10 }
+	change_variable = { name = curr_building_sell_transportation add = 50 }
+}
+add_goods_pm_electric_trains = {
+	change_variable = { name = curr_building_buy_engines add = 15 }
+	change_variable = { name = curr_building_buy_electricity add = 15 }
+	change_variable = { name = curr_building_sell_transportation add = 75 }
+}
+add_goods_pm_diesel_trains = {
+	change_variable = { name = curr_building_buy_engines add = 20 }
+	change_variable = { name = curr_building_buy_oil add = 20 }
+	change_variable = { name = curr_building_sell_transportation add = 100 }
+}
+add_goods_pm_no_passenger_trains = {
+}
+add_goods_pm_wooden_passenger_carriages = {
+	change_variable = { name = curr_building_buy_wood add = 5 }
+	change_variable = { name = curr_building_sell_transportation add = 15 }
+}
+add_goods_pm_steel_passenger_carriages = {
+	change_variable = { name = curr_building_buy_steel add = 5 }
+	change_variable = { name = curr_building_sell_transportation add = 30 }
+}
+add_goods_pm_privately_owned_building_railway = {
+}
+add_goods_pm_publicly_traded_building_railway = {
+}
+add_goods_pm_government_run_building_railway = {
+}
+add_goods_pm_worker_cooperative_building_railway = {
+}
+add_goods_pm_trade_center = {
+}
+add_goods_pm_trade_center_merchant_guilds = {
+}
+add_goods_pm_trade_center_privately_owned = {
+}
+add_goods_pm_trade_center_government_run = {
+}
+
+add_goods_default_building_subsistence_farms = {
+	change_variable = { name = curr_building_sell_grain add = 2.5  }
+	change_variable = { name = curr_building_sell_fabric add = 0.5  }
+	change_variable = { name = curr_building_sell_wood add = 0.5  }
+	change_variable = { name = curr_building_sell_services add = 0.5  }
+}
+add_goods_pm_home_workshops_no_building_subsistence_farms = {
+	change_variable = { name = curr_building_sell_grain add = 1.25   }
+	change_variable = { name = curr_building_sell_fabric add = 0.5   }
+	change_variable = { name = curr_building_sell_wood add = 0.5  }
+}		
+add_goods_pm_home_workshops_building_subsistence_farms = {
+	change_variable = { name = curr_building_sell_clothes add = 0.5  }
+	change_variable = { name = curr_building_sell_furniture add = 0.5  }
+	change_variable = { name = curr_building_sell_liquor add = 0.7  }
+}
+add_goods_pm_serfdom_no = {
+}
+add_goods_pm_serfdom = {
+	change_variable = { name = curr_building_sell_grain add = 0.5  }
+}		
+add_goods_default_building_subsistence_orchards = {
+	change_variable = { name = curr_building_sell_grain add = 0.5  }
+	change_variable = { name = curr_building_sell_fruit add = 1.33  }
+	change_variable = { name = curr_building_sell_fabric add = 0.25  }
+	change_variable = { name = curr_building_sell_wood add = 0.75  }
+	change_variable = { name = curr_building_sell_services add = 0.5  }
+}
+add_goods_pm_home_workshops_no_building_subsistence_orchards = {
+	change_variable = { name = curr_building_sell_grain add = 0.25  }
+	change_variable = { name = curr_building_sell_fruit add = 0.60  }
+	change_variable = { name = curr_building_sell_fabric add = 0.25  }
+	change_variable = { name = curr_building_sell_wood add = 0.75  }
+}		
+add_goods_pm_home_workshops_building_subsistence_orchards = {
+	change_variable = { name = curr_building_sell_clothes add = 0.5  }
+	change_variable = { name = curr_building_sell_furniture add = 0.5  }
+	change_variable = { name = curr_building_sell_liquor add = 0.7  }
+}
+add_goods_pm_serfdom_building_subsistence_orchards = {
+	change_variable = { name = curr_building_sell_fruit add = 0.33  }
+}		
+add_goods_default_building_subsistence_pastures = {
+	change_variable = { name = curr_building_sell_grain add = 0.5  }
+	change_variable = { name = curr_building_sell_meat add = 1.33  }
+	change_variable = { name = curr_building_sell_fabric add = 0.75  }
+	change_variable = { name = curr_building_sell_wood add = 0.25  }
+	change_variable = { name = curr_building_sell_services add = 0.5  }
+}
+add_goods_pm_home_workshops_no_building_subsistence_pastures = {
+	change_variable = { name = curr_building_sell_grain add = 0.25  }
+	change_variable = { name = curr_building_sell_meat add = 0.65  }
+	change_variable = { name = curr_building_sell_fabric add = 0.75  }
+	change_variable = { name = curr_building_sell_wood add = 0.25  }
+}		
+add_goods_pm_home_workshops_building_subsistence_pastures = {
+	change_variable = { name = curr_building_sell_clothes add = 0.5  }
+	change_variable = { name = curr_building_sell_furniture add = 0.5  }
+	change_variable = { name = curr_building_sell_liquor add = 0.7  }
+}
+add_goods_pm_serfdom_building_subsistence_pastures = {
+	change_variable = { name = curr_building_sell_meat add = 0.33  }
+}
+add_goods_default_building_subsistence_fishing_villages = {
+	change_variable = { name = curr_building_sell_grain add = 0.5  }
+	change_variable = { name = curr_building_sell_fish add = 2.0  }
+	change_variable = { name = curr_building_sell_fabric add = 0.25  }
+	change_variable = { name = curr_building_sell_wood add = 0.75  }
+	change_variable = { name = curr_building_sell_services add = 0.5  }
+}
+add_goods_pm_home_workshops_no_building_subsistence_fishing_villages = {
+	change_variable = { name = curr_building_sell_grain add = 0.25  }
+	change_variable = { name = curr_building_sell_fish add = 1.0  }
+	change_variable = { name = curr_building_sell_fabric add = 0.25  }
+	change_variable = { name = curr_building_sell_wood add = 0.75  }
+}		
+add_goods_pm_home_workshops_building_subsistence_fishing_villages = {
+	change_variable = { name = curr_building_sell_clothes add = 0.5  }
+	change_variable = { name = curr_building_sell_furniture add = 0.5  }
+	change_variable = { name = curr_building_sell_liquor add = 0.7  }
+}
+add_goods_pm_serfdom_building_subsistence_fishing_villages = {
+	change_variable = { name = curr_building_sell_fish add = 0.5  }
+}		
+add_goods_default_building_subsistence_rice_paddies = {
+	change_variable = { name = curr_building_sell_grain add = 4.5  }
+	change_variable = { name = curr_building_sell_fabric add = 0.75  }
+	change_variable = { name = curr_building_sell_wood add = 0.75  }
+	change_variable = { name = curr_building_sell_services add = 1  }
+}
+add_goods_pm_home_workshops_no_building_subsistence_rice_paddies = {
+	change_variable = { name = curr_building_sell_grain add = 2.5  }
+	change_variable = { name = curr_building_sell_fabric add = 1  }
+	change_variable = { name = curr_building_sell_wood add = 1  }
+}		
+add_goods_pm_home_workshops_building_subsistence_rice_paddies = {
+	change_variable = { name = curr_building_sell_clothes add = 1  }
+	change_variable = { name = curr_building_sell_furniture add = 1  }
+	change_variable = { name = curr_building_sell_liquor add = 1.5  }
+}
+add_goods_pm_serfdom_building_subsistence_rice_paddies = {
+	change_variable = { name = curr_building_sell_grain add = 1  }
+}
+add_goods_pm_privately_owned_building_subsistence = {
+}
+add_goods_pm_homesteading_building_subsistence = {
+}
+add_goods_pm_worker_cooperative_building_subsistence = {
+}
+add_goods_pm_government_run_building_subsistence = {
+}
+
+add_goods_pm_wooden_buildings = {
+	change_variable = { name = curr_building_buy_fabric add = 25 }
+	change_variable = { name = curr_building_buy_wood add = 75 }
+}
+add_goods_pm_iron_frame_buildings = {
+	change_variable = { name = curr_building_buy_wood add = 40 }
+	change_variable = { name = curr_building_buy_fabric add = 20 }
+	change_variable = { name = curr_building_buy_iron add = 50 }
+	change_variable = { name = curr_building_buy_tools add = 10 }
+}
+add_goods_pm_steel_frame_buildings = {
+	change_variable = { name = curr_building_buy_steel add = 50 }
+	change_variable = { name = curr_building_buy_glass add = 40 }
+	change_variable = { name = curr_building_buy_explosives add = 10 }
+	change_variable = { name = curr_building_buy_tools add = 20 }
+}
+add_goods_pm_arc_welded_buildings = {
+	change_variable = { name = curr_building_buy_steel add = 50 }
+	change_variable = { name = curr_building_buy_glass add = 40 }
+	change_variable = { name = curr_building_buy_explosives add = 20 }
+	change_variable = { name = curr_building_buy_tools add = 40 }
+	change_variable = { name = curr_building_buy_electricity add = 40 }
+}

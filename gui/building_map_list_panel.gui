@@ -1,0 +1,2642 @@
+@panel_width = 540
+
+types map_list_panel_types {
+	### BUILD BUILDINGS
+	type build_building_map_list_panel = map_list_panel {
+		name = "build_building_map_list_panel"
+		state = {
+			trigger_on_create = yes
+			on_finish = "[GetScriptedGui('gui_states_build_list_filter_incorp_p_list_create').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+			on_finish = "[GetScriptedGui('gui_states_build_list_filter_labor_vn_list_create').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+			on_finish = "[GetScriptedGui('gui_states_build_list_filter_discr_v_list_create').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+			on_finish = "[GetScriptedGui('country_gui_states_build_list_filter_infra_v_list_create').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+		}
+		state = {
+			name = _show
+			on_finish = "[PdxGuiWidget.TriggerAnimation('update_cache')]"
+		}
+		state = {
+			name = update_cache
+			on_finish = "[GetScriptedGui('country_market_cache').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+			on_finish = "[GetScriptedGui('country_states_cache').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+			on_finish = "[GetScriptedGui('country_btype_cache').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('btype',MapListBuildingPanel.GetBuildingType.MakeScope).End)]"
+			next = btype_change #may trigger second time if changed because trigger when works in parallel (interrupt doesn't help)
+		}
+		state = {
+			name = btype_change
+			delay = 0.05 #to prevent triggering before _show
+			#IsSet not needed, triggers anyway
+			trigger_when = "[Not(ObjectsEqual(GetGlobalVariable('gui_states_build_list_btype').GetBuildingType.Self,MapListBuildingPanel.GetBuildingType))]"
+			on_finish = "[GetScriptedGui('country_gui_states_build_list_save_btype').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('btype',MapListBuildingPanel.GetBuildingType.MakeScope).End)]"
+			on_finish = "[GetScriptedGui('country_create_states_build_list_quals_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+			on_finish = "[GetScriptedGui('country_clear_state_gui_map_list_index').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('vo_size',MakeScopeValue(IntToFixedPoint(GetDataModelSize(MapListPanel.AccessValidOptions)))).AddScope('io_size',MakeScopeValue(IntToFixedPoint(GetDataModelSize(MapListPanel.AccessInvalidOptions)))).AddScope('fo_size',MakeScopeValue(IntToFixedPoint(GetDataModelSize(MapListPanel.AccessFailedOptions)))).End)]"
+			on_finish = "[PdxGuiTriggerAllAnimations('state_save_gui_map_list_index')]"
+		}
+		blockoverride "headers" {
+			direction = vertical
+			margin_top = 0
+			#textbox = { size = { 25 25 } raw_text = "[GetGlobalVariable('gui_states_build_list_btype').IsSet]" }
+			#textbox = { size = { 100 25 } raw_text = "[GetGlobalVariable('gui_states_build_list_btype').GetBuildingType.GetNameNoFormatting]" }
+			#textbox = { size = { 100 25 } raw_text = "[MapListBuildingPanel.GetBuildingType.GetBuildingGroupName]" }
+			overlappingitembox = {
+				size = { 0 0 }
+				datamodel = "[MapListPanel.AccessValidOptions]"
+				item = {
+					widget = {
+						datacontext = "[MapListOption.GetBuildingData.GetState]"
+						state = {
+							name = state_save_gui_map_list_index
+							on_finish = "[GetScriptedGui('state_save_gui_map_list_vo_index').Execute(GuiScope.SetRoot(State.MakeScope).AddScope('index',MakeScopeValue(IntToFixedPoint(PdxGuiWidget.GetIndexInDataModel))).End)]"
+						}
+					}
+				}
+			}
+			overlappingitembox = {
+				size = { 0 0 }
+				datamodel = "[MapListPanel.AccessInvalidOptions]"
+				item = {
+					widget = {
+						datacontext = "[MapListOption.GetBuildingData.GetState]"
+						state = {
+							name = state_save_gui_map_list_index
+							on_finish = "[GetScriptedGui('state_save_gui_map_list_io_index').Execute(GuiScope.SetRoot(State.MakeScope).AddScope('index',MakeScopeValue(IntToFixedPoint(PdxGuiWidget.GetIndexInDataModel))).End)]"
+						}
+					}
+				}
+			}
+			overlappingitembox = {
+				size = { 0 0 }
+				datamodel = "[MapListPanel.AccessFailedOptions]"
+				item = {
+					widget = {
+						datacontext = "[MapListOption.GetBuildingData.GetState]"
+						state = {
+							name = state_save_gui_map_list_index
+							on_finish = "[GetScriptedGui('state_save_gui_map_list_fo_index').Execute(GuiScope.SetRoot(State.MakeScope).AddScope('index',MakeScopeValue(IntToFixedPoint(PdxGuiWidget.GetIndexInDataModel))).End)]"
+						}
+					}
+				}
+			}
+			#get produced goods list for this building type from script to optimize? doesn't seem to eat any frames (mb 0.5 max)
+			overlappingitembox = {
+				autoresize = yes
+				ignoreinvisible = yes
+				maximumsize = { 540 90 }
+				datacontext = "[AccessPlayer.AccessFirstMarket]"
+				datamodel = "[Market.AccessGoodsSortedByBalance]"
+				item = {
+					overlappingitembox = {
+						autoresize = yes
+						datamodel = "[Goods.AccessBuildingsProducingThis]"
+						item = {
+							flowcontainer = {
+								visible = "[ObjectsEqual(MapListBuildingPanel.GetBuildingType, BuildingType.Self)]"
+								margin_right = 3
+								direction = vertical
+								flowcontainer = {
+									#size = { 132 16 }
+									textbox = {
+										align = right|nobaseline
+										fontsize = 14
+										fontsize_min = 8
+										elide = right
+										maximumsize = { 32 16 }
+										minimumsize = { -1 16 }
+										autoresize = yes
+										raw_text = "[SelectLocalization(GreaterThan_int32(FixedPointToInt(Goods.GetMarketBuyAndSellOrdersBalance), '(int32)0'),'#gold',SelectLocalization(LessThan_int32(FixedPointToInt(Goods.GetMarketBuyAndSellOrdersBalance), '(int32)0'),'#blue','#v'))]  [FixedPointToInt(Goods.GetMarketBuyAndSellOrdersBalance)|Db=]#!"
+										tooltip = "MARKET_GOODS_BALANCE_TOOLTIP"
+									}
+									textbox = {
+										datacontext = "[Market.MakeScope]"
+										alpha = "[Scope.Var(Concatenate(Goods.GetKey,'_price_change_type')).GetValue]"
+										align = left|nobaseline
+										fontsize = 14
+										fontsize_min = 8
+										elide = right
+										maximumsize = { 41 16 }
+										minimumsize = { -1 16 }
+										autoresize = yes
+										raw_text = "@turns_into![SelectLocalization(GreaterThan_int32(FixedPointToInt(Scope.Var(Concatenate(Goods.GetKey,'_balance_prog')).GetValue), '(int32)0'),'#color_goldy_yellow',SelectLocalization(LessThan_int32(FixedPointToInt(Scope.Var(Concatenate(Goods.GetKey,'_balance_prog')).GetValue), '(int32)0'),'#color_light_blue','#color_gray'))] [FixedPointToInt(Scope.Var(Concatenate(Goods.GetKey,'_balance_prog')).GetValue)|Db=]#!"
+										tooltip = "MARKET_GOODS_BALANCE_PROG_DESC"
+									}
+									flowcontainer = {
+										margin_left = 2
+										using = market_price_tooltip_with_graph
+										textbox = {
+											size = { 23 16 }
+											align = right|nobaseline
+											raw_text = "[SelectLocalization(GreaterThanOrEqualTo_CFixedPoint(Goods.GetPercentageDeltaAgainstBasePrice(Goods.GetMarketPrice), '(CFixedPoint)0.01'),'#gold',SelectLocalization(LessThanOrEqualTo_CFixedPoint(Goods.GetPercentageDeltaAgainstBasePrice(Goods.GetMarketPrice), '(CFixedPoint)-0.01'),'#blue','#v'))] [Goods.GetPercentageDeltaAgainstBasePrice(Goods.GetMarketPrice)|b0%=]#!"
+											fontsize = 16
+											fontsize_min = 8
+											elide = right
+										}
+										textbox = {
+											datacontext = "[Market.MakeScope]"
+											alpha = "[Scope.Var(Concatenate(Goods.GetKey,'_price_change_type')).GetValue]"
+											size = { 34 16 }
+											align = left|nobaseline
+											raw_text = "@turns_into![SelectLocalization(GreaterThanOrEqualTo_CFixedPoint(Scope.Var(Concatenate(Goods.GetKey,'_price_prog')).GetValue, '(CFixedPoint)0.01'),'#color_goldy_yellow',SelectLocalization(LessThanOrEqualTo_CFixedPoint(Scope.Var(Concatenate(Goods.GetKey,'_price_prog')).GetValue, '(CFixedPoint)-0.01'),'#color_light_blue','#color_gray'))] [Scope.Var(Concatenate(Goods.GetKey,'_price_prog')).GetValue|b0%=]#!"
+											tooltip = "MARKET_GOODS_PRICE_PROG_DESC"
+											fontsize = 16
+											fontsize_min = 8
+											elide = right
+										}
+									}
+								}
+								flowcontainer = {
+									visible = "[Not(GetVariableSystem.Exists('building_map_list_max_wage'))]"
+									tooltip = "MARKET_PRODUCTIVITY_SPAN_TOOLTIP"
+									textbox = {
+										datacontext = "[Market.MakeScope]"
+										size = { 66 16 }
+										align = left|nobaseline
+										raw_text = "@money![Scope.Var(Concatenate(Goods.GetKey,'_productivity_range_l')).GetValue|v1] - [Scope.Var(Concatenate(Goods.GetKey,'_productivity_range_h')).GetValue|v1]"
+										fontsize = 14
+										fontsize_min = 10
+										elide = right
+									}
+									textbox = {
+										datacontext = "[Market.MakeScope]"
+										alpha = "[TransparentIfTrue(And(EqualTo_CFixedPoint(Scope.Var(Concatenate(Goods.GetKey,'_productivity_range_l')).GetValue,Scope.Var(Concatenate(Goods.GetKey,'_productivity_prog_range_l')).GetValue),EqualTo_CFixedPoint(Scope.Var(Concatenate(Goods.GetKey,'_productivity_range_h')).GetValue,Scope.Var(Concatenate(Goods.GetKey,'_productivity_prog_range_h')).GetValue)))]"
+										size = { 66 16 }
+										align = left|nobaseline
+										raw_text = "@turns_into![Scope.Var(Concatenate(Goods.GetKey,'_productivity_prog_range_l')).GetValue|b1] - [Scope.Var(Concatenate(Goods.GetKey,'_productivity_prog_range_h')).GetValue|b1]"
+										fontsize = 14
+										fontsize_min = 10
+										elide = right
+										default_format = "#color_gray"
+									}
+								}
+								flowcontainer = {
+									visible = "[GetVariableSystem.Exists('building_map_list_max_wage')]"
+									tooltip = "MARKET_MAX_WAGE_SPAN_VALUE_TOOLTIP"
+									textbox = {
+										datacontext = "[Market.MakeScope]"
+										size = { 66 16 }
+										align = left|nobaseline
+										raw_text = "@wage!@laborers_o!@arrow_up_up_o![Scope.Var(Concatenate(Goods.GetKey,'_max_wage_range_l')).GetValue|v1] - [Scope.Var(Concatenate(Goods.GetKey,'_max_wage_range_h')).GetValue|v1]"
+										fontsize = 14
+										fontsize_min = 10
+										elide = right
+									}
+									textbox = {
+										datacontext = "[Market.MakeScope]"
+										alpha = "[TransparentIfTrue(And(EqualTo_CFixedPoint(Scope.Var(Concatenate(Goods.GetKey,'_max_wage_range_l')).GetValue,Scope.Var(Concatenate(Goods.GetKey,'_max_wage_prog_range_l')).GetValue),EqualTo_CFixedPoint(Scope.Var(Concatenate(Goods.GetKey,'_max_wage_range_h')).GetValue,Scope.Var(Concatenate(Goods.GetKey,'_max_wage_prog_range_h')).GetValue)))]"
+										size = { 66 16 }
+										align = left|nobaseline
+										raw_text = "@turns_into![Scope.Var(Concatenate(Goods.GetKey,'_max_wage_prog_range_l')).GetValue|b1] - [Scope.Var(Concatenate(Goods.GetKey,'_max_wage_prog_range_h')).GetValue|b1]"
+										fontsize = 14
+										fontsize_min = 10
+										elide = right
+										default_format = "#color_gray"
+									}
+								}
+								flowcontainer = {
+									button = {
+										size = { 36 36 }
+										icon = {
+											size = { 100% 100% }
+											texture = "[Goods.GetTexture]"
+											tooltipwidget = {
+												FancyTooltip_Goods = {}
+											}
+										}
+										onrightclick = "[RightClickMenuManager.ShowForGoods(Goods.AccessSelf)]"
+									}
+									flowcontainer = {
+										direction = vertical
+										margin_left = 3
+										textbox = {
+											align = right|nobaseline
+											fontsize = 14
+											fontsize_min = 10
+											elide = right
+											size = { 47 18 }
+											datacontext = "[Market.MakeScope.Var(Concatenate(Goods.GetKey,'_hiring'))]"
+											alpha = "[Market.MakeScope.Var(Concatenate(Goods.GetKey,'_price_change_type')).GetValue]"
+											raw_text = "@hiring![Scope.GetValue|GD=]"
+											tooltip = "MARKET_ORDERS_HIRING"
+										}
+										textbox = {
+											align = right|nobaseline
+											fontsize = 14
+											fontsize_min = 10
+											elide = right
+											size = { 47 18 }
+											datacontext = "[Market.MakeScope.Var(Concatenate(Goods.GetKey,'_construction'))]"
+											alpha = "[Market.MakeScope.Var(Concatenate(Goods.GetKey,'_price_change_type')).GetValue]"
+											raw_text = "@construction![Scope.GetValue|GD=]"
+											tooltip = "MARKET_ORDERS_CONSTRUCTION"
+										}
+									}
+									flowcontainer = {
+										direction = vertical
+										margin_left = 3
+										textbox = {
+											maximumsize = { 43 12 }
+											autoresize = yes
+											icon = {
+												size = { 12 12 }
+												texture = "gfx/interface/icons/generic_icons/mobilize_icon_single.dds"
+											}
+											icon = {
+												visible = "[NotEqualTo_CFixedPoint(Market.MakeScope.Var('prog_add_mobilization').GetValue,'(CFixedPoint)0')]"
+												size = { 12 12 }
+												using = highlighted_circle_selection_small
+												using = Color_Blue_S
+												parentanchor = left
+											}
+											button = {
+												size = { 100% 100% }
+												click_modifiers = {
+													onshift = "[GetScriptedGui('market_toggle_prog_add_mobilization').Execute(GuiScope.SetRoot(Market.MakeScope).End)]"
+												}
+											}
+											margin_left = 12
+											align = left|nobaseline
+											fontsize = 12
+											fontsize_min = 8
+											elide = right
+											datacontext = "[Market.MakeScope.Var(Concatenate(Goods.GetKey,'_mobilization'))]"
+											alpha = "[TransparentIfZero(Scope.GetValue)]"
+											raw_text = "[Scope.GetValue|RD=]"
+											tooltip = "MARKET_ORDERS_MOB"
+										}
+										textbox = {
+											align = left|nobaseline
+											fontsize = 12
+											fontsize_min = 8
+											elide = right
+											size = { 43 12 }
+											alpha = "[TransparentIfZero(Goods.GetTotalImportExport)]"
+											raw_text = "@trade![Negate_CFixedPoint(Goods.GetTotalImportExport)|RD=]"
+											tooltip = "MARKET_PANEL_TOTAL_IMPORT_EXPORT"
+										}
+										textbox = {
+											maximumsize = { 43 12 }
+											autoresize = yes
+											icon = {
+												size = { 12 12 }
+												texture = "gfx/interface/icons/generic_icons/employment_not_full.dds"
+											}
+											icon = {
+												visible = "[NotEqualTo_CFixedPoint(Market.MakeScope.Var('prog_add_not_hiring').GetValue,'(CFixedPoint)0')]"
+												size = { 12 13 }
+												using = highlighted_circle_selection_small
+												using = Color_Blue_S
+												parentanchor = left
+											}
+											button = {
+												size = { 100% 100% }
+												click_modifiers = {
+													onshift = "[GetScriptedGui('market_toggle_prog_add_not_hiring').Execute(GuiScope.SetRoot(Market.MakeScope).End)]"
+												}
+											}
+											margin_left = 12
+											align = left|nobaseline
+											fontsize = 12
+											fontsize_min = 8
+											elide = right
+											datacontext = "[Market.MakeScope.Var(Concatenate(Goods.GetKey,'_not_hiring'))]"
+											alpha = "[TransparentIfZero(Scope.GetValue)]"
+											raw_text = "[Scope.GetValue|RD=]"
+											tooltip = "MARKET_ORDERS_NOT_HIRING"
+										}
+									}
+								}
+								hbox = {
+									maximumsize = { 132 18 }
+									#minimumsize = { 132 18 }
+									overlappingitembox = {
+										ignoreinvisible = yes
+										#maximumsize = { 54 18 }
+										autoresize = yes
+										datamodel = "[Goods.AccessBuildingsProducingThis]"
+										item = {
+											market_building_icon = {
+												blockoverride "item_visible" {
+													visible = "[GreaterThan_int32(BuildingType.GetUnderConstructionCountInCountry(GetPlayer.Self), '(int32)0')]"
+												}
+												blockoverride "item_text" {
+													text = "[BuildingType.GetUnderConstructionCountInCountry(GetPlayer.Self)|G]"
+												}
+											}
+										}
+									}
+									overlappingitembox = {
+										layoutpolicy_horizontal = shrinking
+										size = { 100% 18 }
+										ignoreinvisible = yes
+										#maximumsize = { 72 18 }
+										#autoresize = yes
+										datamodel = "[Goods.AccessBuildingsUsingThis]"
+										item = {
+											market_building_icon = {
+												blockoverride "item_visible" {
+													visible = "[GreaterThan_int32(BuildingType.GetUnderConstructionCountInCountry(GetPlayer.Self), '(int32)0')]"
+												}
+												blockoverride "item_text" {
+													text = "[BuildingType.GetUnderConstructionCountInCountry(GetPlayer.Self)|R]"
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			flowcontainer = {
+				margin_top = 1
+				flowcontainer = {
+					direction = vertical
+					flowcontainer = {
+						button_icon_round_toggle = {
+							size = { 25 25 }
+							blockoverride "on_click" {
+								onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_pms',MakeScopeValue('(CFixedPoint)1')).End)]"
+							}
+							blockoverride "view_1" {
+								visible = "[Not(EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_pms').GetValue,'(CFixedPoint)1'))]"
+							}
+							blockoverride "view_2" {
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_pms').GetValue,'(CFixedPoint)1')]"
+							}
+							blockoverride "icon_1" {
+								texture = "gfx/interface/icons/state_status_icons/incorporated_state.dds"
+								scale = 0.60
+							}
+							blockoverride "icon_2" {
+								texture = "gfx/interface/icons/notification_icons/buildings.dds"
+								scale = 0.60
+							}
+							blockoverride "tooltip_1" {
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_VIEW_BUILDINGS"
+							}
+							blockoverride "tooltip_2" {
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_VIEW_STATES"
+							}
+						}
+						button_icon_round_toggle = {
+							size = { 25 25 }
+							blockoverride "on_click" {
+								onclick = "[GetVariableSystem.Toggle('building_map_list_max_wage')]"
+							}
+							blockoverride "view_1" {
+								visible = "[Not(GetVariableSystem.Exists('building_map_list_max_wage'))]"
+							}
+							blockoverride "view_2" {
+								visible = "[GetVariableSystem.Exists('building_map_list_max_wage')]"
+							}
+							blockoverride "icon_1" {
+								texture = "gfx/interface/icons/topbar/income_power_icon.dds"
+								scale = 0.60
+							}
+							blockoverride "icon_2" {
+								textbox = {
+									size = { 100% 100% }
+									position = { 0 -1 }
+									raw_text = "@wage!@laborers_o!@arrow_up_up_o!"
+									fontsize = 15
+									align = center|nobaseline
+								}
+							}
+							blockoverride "tooltip_1" {
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_VIEW_MAX_WAGE"
+							}
+							blockoverride "tooltip_2" {
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_VIEW_PRODUCTIVITY"
+							}
+						}
+						hbox = {
+							minimumsize = { 152 25 }
+							maximumsize = { 152 25 }
+							sort_button = {
+								align = center|nobaseline
+								margin = { 2 0 }
+								text = "[SelectLocalization(EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_pms').GetValue,'(CFixedPoint)1'),'@incorporated_s!','BUILDING_MAP_LIST_PANEL_STATE_HEADER')]"
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_STATE_DESC"
+								minimumsize = { -1 25 }
+								size = { -1 25 }
+								maximumsize = { 152 25 }
+								#onclick = "[MapListPanel.Sort('state')]"
+								#onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)1')).End)]"
+								layoutpolicy_horizontal = expanding
+							}
+							overlappingitembox = {
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_pms').GetValue,'(CFixedPoint)1')]"
+								maximumsize = { 125 25 }
+								autoresize = yes
+								datacontext = "[MapListBuildingPanel.GetBuildingType]"
+								datamodel = "[BuildingType.AccessProductionMethodGroups]"
+								item = {
+									widget = {
+										size = { 25 25 }
+										using = tooltip_above
+										tooltip = "MAP_INTERACTION_BUILD_BUILDING_BULK_CHANGE_PMS"
+										button = {
+											parentanchor = center|vcenter
+											visible = "[NotEqualTo_int32( GetDataModelSize( ProductionMethodGroup.AccessCountryProductionMethods( GetPlayer.Self ) ), '(int32)1' )]"
+											using = expand_button_bg_dropdown
+											size = { 25 25 }
+											onclick = "[RightClickMenuManager.ToggleSwitchProductionMethodMenuForType(BuildingType.AccessSelf, ProductionMethodGroup.AccessSelf, PdxGuiWidget.AccessSelf)]"
+										}
+										icon = {
+											size = { 21 21 }
+											parentanchor = center
+											texture = "[ProductionMethodGroup.GetMixedIcon]"
+										}
+									}
+								}
+							}
+						}
+					}
+					flowcontainer = {
+						button_icon_round_toggle = {
+							size = { 25 25 }
+							blockoverride "on_click" {
+								onclick = "[GetVariableSystem.Toggle('building_map_list_quals')]"
+							}
+							blockoverride "view_1" {
+								visible = "[Not(GetVariableSystem.Exists('building_map_list_quals'))]"
+							}
+							blockoverride "view_2" {
+								visible = "[GetVariableSystem.Exists('building_map_list_quals')]"
+							}
+							blockoverride "icon_1" {
+								texture = "gfx/interface/icons/pops_icons/laborers.dds"
+								scale = 0.60
+							}
+							blockoverride "icon_2" {
+								texture = "gfx/interface/icons/generic_icons/green_checkmark.dds"
+								scale = 0.60
+							}
+							blockoverride "tooltip_1" {
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_VIEW_QUALS"
+							}
+							blockoverride "tooltip_2" {
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_VIEW_JOBS"
+							}
+						}
+						sort_button = {
+							align = left|nobaseline
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_BTYPE_DESC"
+							minimumsize = { -1 25 }
+							size = { 37 25 }
+							icon = {
+								visible = "[GetGlobalVariable('gui_states_build_list_order_btype').IsSet]"
+								position = { 4 4 }
+								size = { 17 17 }
+								texture = "[GetGlobalVariable('gui_states_build_list_order_btype').GetBuildingType.GetTexture]"
+							}
+							icon = {
+								visible = "[Not(GetGlobalVariable('gui_states_build_list_order_btype').IsSet)]"
+								position = { 4 4 }
+								size = { 17 17 }
+								texture = "gfx/interface/icons/notification_icons/buildings.dds"
+							}
+							textbox = {
+								position = { 4 4 }
+								size = { 17 17 }
+								visible = "[NotEqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_btype_count').GetValue,'(CFixedPoint)0')]"
+								text = "[GetGlobalVariable('gui_states_build_list_filter_btype_count').GetValue|v0]"
+								align = center|nobaseline
+								fontsize_min = 9
+								elide = right
+							}
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)1.1')).End)]"
+							click_modifiers = {
+								onalt = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)1.11')).End)]"
+							}
+							rightclick_modifiers = {
+								ondefault = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_btype',MakeScopeValue('(CFixedPoint)1')).End)]"
+								onctrl = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_not_btype',MakeScopeValue('(CFixedPoint)1')).End)]"
+							}
+							dropdown_menu_standard = {
+								parentanchor = right
+								position = { -3 0 }
+								blockoverride "dropdown_size" {
+									size = { 15 25 }
+								}
+								blockoverride "dropdown_properties" {
+									datamodel = "[AccessPlayer.MakeScope.GetList('btypes_capped')]"
+									onselectionchanged = "[PdxGuiTriggerAllAnimations('gui_states_build_list_order_btype_set')]"
+								}
+								blockoverride "dropdown_list_maxsize" {
+									maximumsize = { 58 250 }
+								}
+								active_item = {
+									button = {
+										datacontext = "[Scope.GetBuildingType]"
+										state = {
+											name = gui_states_build_list_order_btype_set
+											on_finish = "[GetScriptedGui('gui_states_build_list_order_btype_set').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('btype',BuildingType.MakeScope).End)]"
+										}
+										parentanchor = vcenter|right
+										position = { 0 2 }
+										size = { 13 16 }
+										button_trigger = none
+										texture = "gfx/interface/buttons/expand_arrow_expanded.dds"
+									}
+								}
+								item = { widget = {
+									size = { 58 25 } #extra 8 for scrollbar
+									datacontext = "[Scope.GetBuildingType]"
+						                	widget = {
+										size = { 25 25 }
+										icon = {
+											size = { 100% 100% }
+											texture = "[BuildingType.GetTexture]"
+										}
+										icon = {
+											visible = "[ObjectsEqual(GetGlobalVariable('gui_states_build_list_order_btype').GetBuildingType.Self,BuildingType.Self)]"
+											using = highlighted_square_selection
+										}
+										tooltipwidget = { #doesn't show - parent tooltip overrides it
+											FancyTooltip_BuildingType = {}
+										}
+									}
+									button_checkbox = {
+										size = { 21 21 }
+										position = { 27 2 }
+										onclick = "[GetScriptedGui('country_toggle_gui_states_build_list_filter_btype').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('btype',BuildingType.MakeScope).End)]"
+										checked = "[EqualTo_CFixedPoint(GetGlobalVariable(Concatenate('gui_states_build_list_filter_btype_',BuildingType.GetKey)).GetValue,'(CFixedPoint)1')]"
+										icon = {
+											parentanchor = hcenter|vcenter
+											visible = "[EqualTo_CFixedPoint(GetGlobalVariable(Concatenate('gui_states_build_list_filter_btype_',BuildingType.GetKey)).GetValue,'(CFixedPoint)1')]"
+											texture = "gfx/interface/buttons/default_button_frame_fancy_small.dds"
+											size = { 100% 100% }
+											using = default_fade_in_out
+										}
+									}
+								} }
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)1.1')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)1.11')]"
+								using = highlighted_square_selection
+								using = Color_Blue_S
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_btype').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_not_btype').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_right.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_not_btype').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								using = Color_Orange
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_btype').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_left.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+						}
+						sort_button = {
+							align = left|nobaseline
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_INCORP_DESC"
+							minimumsize = { -1 25 }
+							size = { 37 25 }
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)1.2')).End)]"
+							rightclick_modifiers = {
+								ondefault = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_incorp',MakeScopeValue('(CFixedPoint)1')).End)]"
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_incorp').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)1.2')]"
+								using = highlighted_square_selection
+							}
+							default_progressbar_horizontal = {
+								visible = "[NotEqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_incorp_p').GetValue,'(CFixedPoint)0')]"
+								alpha = 0.5
+								size = { 16 15 }
+								position = { 5 6 }
+								blockoverride "frame" {}
+								blockoverride "values" {
+									value = "[FixedPointToFloat(GetGlobalVariable('gui_states_build_list_filter_incorp_p').GetValue)]"
+									min = 0
+									max = 1
+								}
+							}
+							icon = {
+								visible = "[NotEqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_incorp_p').GetValue,'(CFixedPoint)0')]"
+								position = { 4 4 }
+								alpha = "[FixedPointToFloat(Add_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_incorp_p').GetValue,'(CFixedPoint)0.25'))]"
+								size = { 17 17 }
+								texture = "gfx/interface/icons/lens_toolbar_icons/incorporate_state.dds"
+							}
+							icon = {
+								position = { 4 4 }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_incorp_p').GetValue,'(CFixedPoint)0')]"
+								size = { 17 17 }
+								texture = "gfx/interface/icons/state_status_icons/unincorporated_state.dds"
+							}
+							dropdown_menu_standard = {
+								parentanchor = right
+								position = { -3 0 }
+								blockoverride "dropdown_size" {
+									size = { 15 25 }
+								}
+								blockoverride "dropdown_properties" {
+									datamodel = "[GetGlobalList('gui_states_build_list_filter_incorp_p_list')]"
+									onselectionchanged = "[PdxGuiTriggerAllAnimations('gui_states_build_list_filter_incorp_p_set')]"
+								}
+								blockoverride "dropdown_list_maxsize" {
+									maximumsize = { 60 100 }
+								}
+								active_item = {
+									button = {
+										state = {
+											name = gui_states_build_list_filter_incorp_p_set
+											on_finish = "[GetScriptedGui('gui_states_build_list_filter_incorp_p_set').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('incorp_p',MakeScopeValue(Scope.GetValue)).End)]"
+										}
+										parentanchor = vcenter|right
+										position = { 0 2 }
+										size = { 13 16 }
+										button_trigger = none
+										texture = "gfx/interface/buttons/expand_arrow_expanded.dds"
+									}
+								}
+								blockoverride "dropdown_item_properties" {
+									size = { 60 25 }
+						                	widget = {
+										size = { 60 25 }
+										default_progressbar_horizontal = {
+											visible = "[NotEqualTo_CFixedPoint(Scope.GetValue,'(CFixedPoint)0')]"
+											alpha = 0.5
+											size = { 16 15 }
+											position = { 5 6 }
+											blockoverride "frame" {}
+											blockoverride "values" {
+												value = "[FixedPointToFloat(Scope.GetValue)]"
+												min = 0
+												max = 1
+											}
+										}
+										icon = {
+											visible = "[NotEqualTo_CFixedPoint(Scope.GetValue,'(CFixedPoint)0')]"
+											position = { 4 4 }
+											alpha = "[FixedPointToFloat(Add_CFixedPoint(Scope.GetValue,'(CFixedPoint)0.25'))]"
+											size = { 17 17 }
+											texture = "gfx/interface/icons/lens_toolbar_icons/incorporate_state.dds"
+											#tooltip = "TOOLTIP_INCORPORATING_STATE"
+										}
+										icon = {
+											position = { 4 4 }
+											visible = "[EqualTo_CFixedPoint(Scope.GetValue,'(CFixedPoint)0')]"
+											size = { 17 17 }
+											texture = "gfx/interface/icons/state_status_icons/unincorporated_state.dds"
+											#tooltip = "[concept_unincorporated_state_desc]"
+										}
+										textbox = {
+											position = { 23 4 }
+											size = { 33 17 }
+											text = "[Scope.GetValue|0v%]"
+											align = nobaseline
+										}
+										icon = {
+											visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_incorp_p').GetValue,Scope.GetValue)]"
+											using = highlighted_square_selection
+										}
+									}
+								}
+							}
+						}
+						sort_button = {
+							margin_left = -10
+							margin_right = 0
+							align = center|nobaseline
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_DISCR_DESC"
+							minimumsize = { -1 25 }
+							size = { 37 25 }
+							raw_text = "@discriminated!"
+							default_progressbar_horizontal = {
+								visible = "[NotEqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_discr_v').GetValue,'(CFixedPoint)0')]"
+								alpha = 0.5
+								size = { 16 15 }
+								position = { 5 6 }
+								blockoverride "frame" {}
+								blockoverride "values" {
+									value = "[FixedPointToFloat(GetGlobalVariable('gui_states_build_list_filter_discr_v').GetValue)]"
+									min = 0
+									max = 1
+								}
+							}
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)1.3')).End)]"
+							rightclick_modifiers = {
+								ondefault = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_high_discr',MakeScopeValue('(CFixedPoint)1')).End)]"
+								onctrl = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_low_discr',MakeScopeValue('(CFixedPoint)1')).End)]"
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)1.3')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_high_discr').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_low_discr').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_right.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_low_discr').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								using = Color_Orange
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_high_discr').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_left.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							dropdown_menu_standard = {
+								parentanchor = right
+								position = { -3 0 }
+								blockoverride "dropdown_size" {
+									size = { 15 25 }
+								}
+								blockoverride "dropdown_properties" {
+									datamodel = "[GetGlobalList('gui_states_build_list_filter_discr_v_list')]"
+									onselectionchanged = "[PdxGuiTriggerAllAnimations('gui_states_build_list_filter_discr_v_set')]"
+								}
+								blockoverride "dropdown_list_maxsize" {
+									maximumsize = { 75 100 }
+								}
+								active_item = {
+									button = {
+										state = {
+											name = gui_states_build_list_filter_discr_v_set
+											on_finish = "[GetScriptedGui('gui_states_build_list_filter_discr_v_set').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('discr_v',MakeScopeValue(Scope.GetValue)).End)]"
+										}
+										parentanchor = vcenter|right
+										position = { 0 2 }
+										size = { 13 16 }
+										button_trigger = none
+										texture = "gfx/interface/buttons/expand_arrow_expanded.dds"
+									}
+								}
+								blockoverride "dropdown_item_properties" {
+									size = { 75 25 }
+						                	widget = {
+										size = { 75 25 }
+										textbox = {
+											position = { 5 3 }
+											size = { 75 17 }
+											raw_text = "@discriminated![Scope.GetValue|v%0]"
+											fontsize = 16
+											align = nobaseline
+										}
+										icon = {
+											visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_discr_v').GetValue,Scope.GetValue)]"
+											using = highlighted_square_selection
+										}
+									}
+								}
+							}
+						}
+						dropdown_menu_standard = {
+							blockoverride "dropdown_size" {
+								size = { 66 25 }
+							}
+							blockoverride "dropdown_properties" {
+								datamodel = "[GetGlobalList('gui_states_build_list_presets')]"
+								onselectionchanged = "[PdxGuiTriggerAllAnimations('state_region_gui_states_build_list_load_preset')]"
+								#raw_tooltip = "[GetGlobalVariable('gui_states_build_list_presets_max').GetValue] [GetGlobalVariable('gui_states_build_list_preset_dels_count').GetValue]"
+								#using = tooltip_above
+							}
+							blockoverride "dropdown_list_maxsize" {
+								position = { -140 32 }
+								maximumsize = { 556 232 }
+							}
+							blockoverride "dropdown_active_item_properties" {
+								button = {
+									state = {
+										name = state_region_gui_states_build_list_load_preset
+										on_finish = "[GetScriptedGui('state_region_gui_states_build_list_load_preset').Execute(GuiScope.SetRoot(Scope.GetStateRegion.MakeScope).End)]"
+										on_finish = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+									}
+									position = { 4 4 }
+									size = { 17 17 }
+									icon = {
+										size = { 100% 100% }
+										texture = "gfx/interface/icons/generic_icons/map_list_plus.dds"
+									}
+									tooltip = "MAP_INTERACTION_BUILD_BUILDING_PRESET_SAVE_DESC"
+									using = tooltip_above
+									onclick = "[GetScriptedGui('gui_states_build_list_save_preset').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+								}
+								icon_flat_standard = { #adds color
+									position = { 23 4 }
+									size = { 17 17 }
+									texture = "gfx/frontend/interface/icons/flat_icons/cloud_save.dds"
+								}
+							}
+							item = { widget = {
+								size = { 556 58 } #extra 8 for scrollbar
+					                	widget = {
+									size = { 548 58 }
+									build_building_map_list_panel_headers = {
+										position = { 4 4 }
+									}
+									using = entry_bg_fancy
+								}
+							} }
+						}
+					}
+				}
+				flowcontainer = {
+					direction = vertical
+					flowcontainer = {
+						sort_button = { #[2(1)] vars (vanilla/prog, nconstr)
+							align = center|nobaseline
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_LEVEL_DESC"
+							minimumsize = { -1 25 }
+							size = { 54 25 }
+							#onclick = "[MapListPanel.Sort('size')]"
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)2')).End)]"
+							click_modifiers = {
+								onalt = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)2.01')).End)]"
+							}
+							rightclick_modifiers = {
+								ondefault = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_not_cap',MakeScopeValue('(CFixedPoint)1')).End)]"
+								onctrl = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_not_scale_cap',MakeScopeValue('(CFixedPoint)1')).End)]"
+							}
+							button = {
+								texture = "gfx/interface/buttons/sort_button_icons/sort_icon_size.dds"
+								size = { 25 25 }
+								parentanchor = center
+								alwaystransparent = yes
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)2')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)2.01')]"
+								using = highlighted_square_selection
+								using = Color_Blue_S
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_small.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_not_cap').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_not_scale_cap').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_right.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_small.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_not_scale_cap').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								using = Color_Orange
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_not_cap').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_left.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+						}
+					}
+					flowcontainer = {
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@construction!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_CONSTRUCTION_DESC"
+							minimumsize = { -1 25 }
+							size = { 54 25 }
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)2.1')).End)]"
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)2.1')]"
+								using = highlighted_square_selection
+							}
+						}
+					}
+				}
+				flowcontainer = {
+					direction = vertical
+					flowcontainer = {
+						sort_button = { #[1(1)+2(2)]+3 vars (vanilla/prog, rlevel/prog, plevel/prog, rpm1, rpm2, ppm)
+							margin_left = -12
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@infra!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_INFRA_DESC"
+							default_progressbar_horizontal = {
+								visible = "[NotEqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_infra_v').GetValue,'(CFixedPoint)0')]"
+								alpha = 0.5
+								size = { 17 17 }
+								position = { 11 4 }
+								blockoverride "frame" {}
+								blockoverride "values" {
+									value = "[FixedPointToFloat(GetGlobalVariable('gui_states_build_list_filter_infra_v').GetValue)]"
+									min = 0
+									max = 10
+								}
+							}
+							fontsize = 18
+							minimumsize = { -1 25 }
+							size = { 52 25 }
+							#onclick = "[MapListPanel.Sort('infrastructure_balance')]"
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)3')).End)]"
+							click_modifiers = {
+								onalt = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)3.01')).End)]"
+							}
+							rightclick_modifiers = {
+								ondefault = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_infra',MakeScopeValue('(CFixedPoint)1')).End)]"
+								onalt = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_infra_prog',MakeScopeValue('(CFixedPoint)1')).End)]"
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)3')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)3.01')]"
+								using = highlighted_square_selection
+								using = Color_Blue_S
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_small.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_infra').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_infra_prog').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_right.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_small.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_infra_prog').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								using = Color_Blue_S
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_infra').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_left.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							dropdown_menu_standard = {
+								parentanchor = right
+								position = { -7 0 }
+								blockoverride "dropdown_size" {
+									size = { 15 25 }
+								}
+								blockoverride "dropdown_properties" {
+									datamodel = "[GetGlobalList('gui_states_build_list_filter_infra_v_list')]"
+									onselectionchanged = "[PdxGuiTriggerAllAnimations('country_gui_states_build_list_filter_infra_v_set')]"
+								}
+								blockoverride "dropdown_list_maxsize" {
+									maximumsize = { 75 100 }
+								}
+								active_item = {
+									button = {
+										state = {
+											name = country_gui_states_build_list_filter_infra_v_set
+											on_finish = "[GetScriptedGui('country_gui_states_build_list_filter_infra_v_set').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('infra_v',MakeScopeValue(Scope.GetValue)).End)]"
+										}
+										parentanchor = vcenter|right
+										position = { 0 2 }
+										size = { 13 16 }
+										button_trigger = none
+										texture = "gfx/interface/buttons/expand_arrow_expanded.dds"
+									}
+								}
+								blockoverride "dropdown_item_properties" {
+									size = { 75 25 }
+						                	flowcontainer = {
+										margin = { 5 4 }
+										spacing = 1
+										textbox = {
+											maximumsize = { 56 17 }
+											autoresize = yes
+											raw_text = "@infra!x[Scope.GetValue|v0]"
+											fontsize = 16
+											align = nobaseline
+										}
+										icon = {
+											size = { 17 17 }
+											texture = "[MapListBuildingPanel.GetBuildingType.GetTexture]"
+										}
+									}
+									icon = {
+										visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_infra_v').GetValue,Scope.GetValue)]"
+										using = highlighted_square_selection
+									}
+								}
+							}
+						}
+					}
+					flowcontainer = {
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@railway!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_RAILWAY_DESC"
+							fontsize = 18
+							minimumsize = { -1 25 }
+							size = { 26 25 }
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)3.1')).End)]"
+							click_modifiers = {
+								onalt = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)3.11')).End)]"
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)3.1')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)3.11')]"
+								using = highlighted_square_selection
+								using = Color_Blue_S
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@port!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_PORT_DESC"
+							fontsize = 18
+							minimumsize = { -1 25 }
+							size = { 26 25 }
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)3.2')).End)]"
+							click_modifiers = {
+								onalt = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)3.21')).End)]"
+							}
+							rightclick_modifiers = {
+								ondefault = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_coastal',MakeScopeValue('(CFixedPoint)1')).End)]"
+								onctrl = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_not_coastal',MakeScopeValue('(CFixedPoint)1')).End)]"
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)3.2')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)3.21')]"
+								using = highlighted_square_selection
+								using = Color_Blue_S
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_coastal').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_not_coastal').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_right.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_not_coastal').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								using = Color_Orange
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_coastal').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_left.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+						}
+					}
+				}
+				flowcontainer = {
+					direction = vertical
+					flowcontainer = {
+						sort_button = { #[6(1)]+2+1 vars (vanilla/prog, unemployed, peasants, auto, hiredelta, nextdelta, un+pea+auto, prog+auto, growth)
+							margin_left = -12
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@laborers!"
+							default_progressbar_horizontal = {
+								visible = "[NotEqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_labor_vn').GetValue,'(CFixedPoint)0')]"
+								alpha = 0.5
+								size = { 16 16 }
+								position = { 9 5 }
+								blockoverride "frame" {}
+								blockoverride "values" {
+									value = "[FixedPointToFloat(GetGlobalVariable('gui_states_build_list_filter_labor_vn').GetValue)]"
+									min = 0
+									max = 10
+								}
+							}
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_LABOR_DESC"
+							minimumsize = { -1 25 }
+							size = { 47 25 }
+							dropdown_menu_standard = {
+								parentanchor = right
+								position = { -7 0 }
+								blockoverride "dropdown_size" {
+									size = { 15 25 }
+								}
+								blockoverride "dropdown_properties" {
+									datamodel = "[GetGlobalList('gui_states_build_list_filter_labor_vn_list')]"
+									onselectionchanged = "[PdxGuiTriggerAllAnimations('gui_states_build_list_filter_labor_vn_set')]"
+								}
+								blockoverride "dropdown_list_maxsize" {
+									maximumsize = { 75 100 }
+								}
+								active_item = {
+									button = {
+										state = {
+											name = gui_states_build_list_filter_labor_vn_set
+											on_finish = "[GetScriptedGui('gui_states_build_list_filter_labor_vn_set').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('labor_vn',MakeScopeValue(Scope.GetValue)).End)]"
+										}
+										parentanchor = right|vcenter
+										position = { 0 2 }
+										size = { 13 16 }
+										button_trigger = none
+										texture = "gfx/interface/buttons/expand_arrow_expanded.dds"
+									}
+								}
+								blockoverride "dropdown_item_properties" {
+									size = { 75 25 }
+						                	flowcontainer = {
+										margin = { 5 4 }
+										spacing = 1
+										textbox = {
+											maximumsize = { 56 17 }
+											autoresize = yes
+											raw_text = "@laborers!x[Scope.GetValue|v0]"
+											fontsize = 16
+											align = nobaseline
+										}
+										icon = {
+											size = { 17 17 }
+											texture = "[MapListBuildingPanel.GetBuildingType.GetTexture]"
+										}
+									}
+									icon = {
+										visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_labor_vn').GetValue,Scope.GetValue)]"
+										using = highlighted_square_selection
+									}
+								}
+							}
+							#onclick = "[MapListPanel.Sort('potential_labor')]"
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)4')).End)]"
+							click_modifiers = {
+								onalt = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)4.01')).End)]"
+							}
+							rightclick_modifiers = {
+								ondefault = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_high_labor',MakeScopeValue('(CFixedPoint)1')).End)]"
+								onalt = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_high_labor_prog',MakeScopeValue('(CFixedPoint)1')).End)]"
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)4')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)4.01')]"
+								using = highlighted_square_selection
+								using = Color_Blue_S
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_small.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_high_labor').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_high_labor_prog').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_right.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_small.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_high_labor_prog').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								using = Color_Blue_S
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_high_labor').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_left.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@laborers!@hiring_o!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_HIRE_DELTA_DESC"
+							minimumsize = { -1 25 }
+							size = { 24 25 }
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)4.4')).End)]"
+							click_modifiers = {
+								onctrl = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)4.5')).End)]"
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)4.4')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)4.5')]"
+								using = highlighted_square_selection
+								using = Color_Orange
+							}
+						}
+					}
+					flowcontainer = {
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@unemployed_icon!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_UNEMPLOYED_DESC"
+							minimumsize = { -1 25 }
+							size = { 24 25 }
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)4.1')).End)]"
+							rightclick_modifiers = {
+								ondefault = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_high_unemployed',MakeScopeValue('(CFixedPoint)1')).End)]"
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)4.1')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_high_unemployed').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@peasants!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_PEASANTS_DESC"
+							minimumsize = { -1 25 }
+							size = { 24 25 }
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)4.2')).End)]"
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)4.2')]"
+								using = highlighted_square_selection
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@workers_auto!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_LABOR_AUTOPMS_DESC"
+							minimumsize = { -1 25 }
+							size = { 23 25 }
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)4.3')).End)]"
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)4.3')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[NotEqualTo_CFixedPoint(GetGlobalVariable('gui_states_workers_autopms').GetValue,'(CFixedPoint)0')]"
+								size = { 19.5 19 }
+								position = { 0 0 }
+								using = highlighted_circle_selection_small
+								using = Color_Blue_S
+							}
+						}
+					}
+				}
+				flowcontainer = {
+					direction = vertical
+					flowcontainer = {
+						sort_button = { #[5(1)+2] vars (vanilla/prog, hiring, not_hiring, auto, subsistence, construction, next)
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							text = "MAP_INTERACTION_BUILD_BUILDING_H_JOBS"
+							fontsize = 15
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_JOBS_DESC"
+							minimumsize = { -1 25 }
+							size = { 20 25 }
+							#onclick = "[MapListPanel.Sort('profit_impact')]"
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)5')).End)]"
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)5')]"
+								using = highlighted_square_selection
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@subsistence_farm"
+							fontsize = 15
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_SUBSISTENCE_JOBS_DESC"
+							minimumsize = { -1 25 }
+							size = { 19 25 }
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)5.4')).End)]"
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)5.4')]"
+								using = highlighted_square_selection
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@construction"
+							fontsize = 13
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_JOBS_CONSTRUCTION_DESC"
+							minimumsize = { -1 25 }
+							size = { 19 25 }
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)5.5')).End)]"
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)5.5')]"
+								using = highlighted_square_selection
+							}
+						}
+					}
+					flowcontainer = {
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@hiring"
+							fontsize = 15
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_HIRING_DESC"
+							minimumsize = { -1 25 }
+							size = { 20 25 }
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)5.1')).End)]"
+							click_modifiers = {
+								onctrl = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)5.12')).End)]"
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)5.1')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)5.12')]"
+								using = highlighted_square_selection
+								using = Color_Orange
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@not_hiring"
+							fontsize = 15
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_NOT_HIRING_DESC"
+							minimumsize = { -1 25 }
+							size = { 19 25 }
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)5.2')).End)]"
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)5.2')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[NotEqualTo_CFixedPoint(GetGlobalVariable('gui_states_jobs_not_hiring').GetValue,'(CFixedPoint)0')]"
+								size = { 15 15 }
+								position = { 0 0.5 }
+								using = highlighted_circle_selection_small
+								using = Color_Blue_S
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@jobs_auto"
+							fontsize = 14
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_JOBS_AUTOPMS_DESC"
+							minimumsize = { -1 25 }
+							size = { 19 25 }
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)5.3')).End)]"
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)5.3')]"
+								using = highlighted_square_selection
+							}
+						}
+					}
+				}
+				flowcontainer = {
+					direction = vertical
+					flowcontainer = {
+						parentanchor = right
+						sort_button = {
+							margin_left = 0
+							margin_right = 0
+							align = center|nobaseline
+							datacontext = "[MapListBuildingPanel.GetBuildingType]"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_BALANCE_DESC"
+							minimumsize = { -1 25 }
+							size = { 24 25 }
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)6.2')).End)]"
+							click_modifiers = {
+								onalt = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)6.21')).End)]"
+							}
+							rightclick_modifiers = {
+								ondefault = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_balance',MakeScopeValue('(CFixedPoint)1')).End)]"
+								onalt = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_balance_prog',MakeScopeValue('(CFixedPoint)1')).End)]"
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_balance').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_balance_prog').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_right.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_balance_prog').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								using = Color_Blue_S
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_balance').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_left.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							raw_text = "@b_balance!"
+							fontsize = 16
+							visible = "[Not(ObjectsEqual(BuildingType.Self, GetBuildingType('building_government_administration').Self))]"
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)6.2')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)6.21')]"
+								using = highlighted_square_selection
+								using = Color_Blue_S
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								visible = "[GreaterThan_CFixedPoint(AccessPlayer.MakeScope.Var(Concatenate(BuildingType.GetKey,'_productivity_prog_low')).GetValue,'(CFixedPoint)0')]"
+								size = { 22 23 }
+								using = Color_Red
+								using = ui_event_glow
+								alpha = 0.5
+							}
+						}
+						button_select_arrow = {
+							size = { 20 25 }
+							mirror = horizontal
+							parentanchor = vcenter
+							using = decrease_button_sound
+							using = tooltip_above
+							tooltip = "PREVIOUS_PAGE"
+							onclick = "[GetScriptedGui('gui_states_build_vo_list_page_prev').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+						}
+						textbox = {
+							raw_text = "[GetGlobalVariable('gui_states_build_vo_list_page').GetValueWithDefault('(CFixedPoint)1')]/[GetGlobalVariable('gui_states_build_vo_list_pages').GetValue]"
+							size = { 24 25 }
+							elide = right
+							fontsize_min = 9
+							parentanchor = vcenter
+							align = center|nobaseline
+						}
+						dropdown_menu_standard = {
+							blockoverride "dropdown_size" {
+								size = { 15 25 }
+							}
+							blockoverride "dropdown_properties" {
+								datamodel = "[GetGlobalList('gui_states_build_vo_pages_list')]"
+								onselectionchanged = "[PdxGuiTriggerAllAnimations('gui_states_build_vo_list_page_set')]"
+							}
+							blockoverride "dropdown_list_maxsize" {
+								maximumsize = { 50 -1 }
+							}
+							active_item = {
+								button = {
+									state = {
+										name = gui_states_build_vo_list_page_set
+										on_finish = "[GetScriptedGui('gui_states_build_vo_list_page_set').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('page',MakeScopeValue(Scope.GetValue)).End)]"
+									}
+									parentanchor = vcenter|right
+									position = { 0 2 }
+									size = { 13 16 }
+									button_trigger = none
+									texture = "gfx/interface/buttons/expand_arrow_expanded.dds"
+									tooltip = "SELECT_PAGE"
+									using = tooltip_ws
+								}
+							}
+							blockoverride "dropdown_item_properties" {
+								size = { 50 30 }
+					                	widget = {
+									size = { 100% 100% }
+									icon = {
+										visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_vo_list_page').GetValueWithDefault('(CFixedPoint)1'),Scope.GetValue)]"
+										using = highlighted_square_selection
+									}
+									textbox = {
+										size = { 100% 100% }
+										parentanchor = vcenter
+										margin_left = 7
+										text = "[Scope.GetValue]"
+										elide = right
+										align = nobaseline
+									}
+								}
+							}
+						}
+						button_select_arrow = {
+							size = { 20 25 }
+							parentanchor = vcenter
+							using = increase_button_sound
+							using = tooltip_above
+							tooltip = "NEXT_PAGE"
+							onclick = "[GetScriptedGui('gui_states_build_vo_list_page_next').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+						}
+					}
+					flowcontainer = {
+						flowcontainer = {
+							visible = "[Not(GetVariableSystem.Exists('building_map_list_max_wage'))]"
+							sort_button = { #[2(1)] vars (productivity/prog, avg_wage)
+								margin_left = 2
+								margin_right = 2
+								align = center|nobaseline
+								datacontext = "[MapListBuildingPanel.GetBuildingType]"
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_PRODUCTIVITY_DESC"
+								minimumsize = { -1 25 }
+								size = { 24 25 }
+								#onclick = "[MapListPanel.Sort('profitability')]"
+								onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)6')).End)]"
+								click_modifiers = {
+									onalt = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)6.01')).End)]"
+								}
+								raw_text = "@money!"
+								fontsize = 14
+								visible = "[Not(ObjectsEqual(BuildingType.Self, GetBuildingType('building_government_administration').Self))]"
+								icon = {
+									visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)6')]"
+									using = highlighted_square_selection
+								}
+								icon = {
+									visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)6.01')]"
+									using = highlighted_square_selection
+									using = Color_Blue_S
+								}
+							}
+							sort_button = {
+								margin_left = 2
+								margin_right = 2
+								align = center|nobaseline
+								datacontext = "[MapListBuildingPanel.GetBuildingType]"
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_WAGE_DESC"
+								minimumsize = { -1 25 }
+								size = { 24 25 }
+								onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)6.1')).End)]"
+								raw_text = "@wage!"
+								fontsize = 16
+								visible = "[Not(ObjectsEqual(BuildingType.Self, GetBuildingType('building_government_administration').Self))]"
+								icon = {
+									visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)6.1')]"
+									using = highlighted_square_selection
+								}
+							}
+						}
+						flowcontainer = {
+							visible = "[GetVariableSystem.Exists('building_map_list_max_wage')]"
+							sort_button = { #[2(1)] vars (max_wage/prog, base_wage)
+								margin_left = 2
+								margin_right = 2
+								align = center|nobaseline
+								datacontext = "[MapListBuildingPanel.GetBuildingType]"
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_MAX_WAGE_DESC"
+								minimumsize = { -1 25 }
+								size = { 24 25 }
+								#onclick = "[MapListPanel.Sort('profitability')]"
+								onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)6.3')).End)]"
+								click_modifiers = {
+									onalt = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)6.31')).End)]"
+								}
+								raw_text = "@wage!@laborers_o!@arrow_up_up_o!"
+								fontsize = 14
+								visible = "[Not(ObjectsEqual(BuildingType.Self, GetBuildingType('building_government_administration').Self))]"
+								icon = {
+									visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)6.3')]"
+									using = highlighted_square_selection
+								}
+								icon = {
+									visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)6.31')]"
+									using = highlighted_square_selection
+									using = Color_Blue_S
+								}
+							}
+							sort_button = {
+								margin_left = 2
+								margin_right = 2
+								align = center|nobaseline
+								datacontext = "[MapListBuildingPanel.GetBuildingType]"
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_BASE_WAGE_DESC"
+								minimumsize = { -1 25 }
+								size = { 24 25 }
+								onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)6.4')).End)]"
+								raw_text = "@wage!@laborers_o!"
+								fontsize = 16
+								visible = "[Not(ObjectsEqual(BuildingType.Self, GetBuildingType('building_government_administration').Self))]"
+								icon = {
+									visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)6.4')]"
+									using = highlighted_square_selection
+								}
+							}
+						}
+						sort_button = { #1(1) vars (tax_balance/prog)
+							align = center|nobaseline
+							raw_text = "@tax!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_TAX_DESC"
+							minimumsize = { -1 25 }
+							size = { 48 25 }
+							#onclick = "[MapListPanel.Sort('tax_capacity_balance')]"
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_order',MakeScopeValue('(CFixedPoint)7')).End)]"
+							visible = "[ObjectsEqual(MapListBuildingPanel.GetBuildingType, GetBuildingType('building_government_administration').Self)]"
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(GetGlobalVariable('gui_states_build_list_order').GetValue),'(CFixedPoint)7')]"
+								using = highlighted_square_selection
+							}
+						}
+						sort_button = {
+							align = center|nobaseline
+							tooltip = "BUILDING_MAP_LIST_PANEL_STATUS_HEADER_TOOLTIP"
+							minimumsize = { -1 25 }
+							size = { 30 25 }
+							#onclick = "[MapListPanel.Sort('status')]"
+							button = {
+								texture = "gfx/interface/buttons/sort_button_icons/sort_icon_status.dds"
+								size = { 20 20 }
+								parentanchor = center
+								alwaystransparent = yes
+							}
+						}
+						button_icon_reset = {
+							size = { 25 25 }
+							onclick = "[GetScriptedGui('country_market_cache').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+							onclick = "[GetScriptedGui('country_states_cache').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+							onclick = "[GetScriptedGui('country_btype_cache').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('btype',MapListBuildingPanel.GetBuildingType.MakeScope).End)]"
+							onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+							onclick = "[GetScriptedGui('country_create_states_build_list_quals_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+							rightclick_modifiers = {
+								ondefault = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('list_filter_clear',MakeScopeValue('(CFixedPoint)1')).End)]"
+								onctrl = "[GetScriptedGui('clear_gui_states_build_list_highlights').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+							}
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_UPDATE"
+						}
+					}
+				}
+			}
+		}
+
+		blockoverride "scrollarea_content" {
+			flowcontainer = {
+				#onmousehierarchyenter = "[SetCanOpenRightClickContextMenu( Not(MapListPanelManager.HasCurrentInteraction) )]"
+				#onmousehierarchyleave = "[SetCanOpenRightClickContextMenu( '(bool)yes' )]"
+				parentanchor = hcenter
+				direction = vertical
+				#datamodel = "[MapListPanel.AccessValidOptions]"
+				datamodel = "[GetGlobalList('gui_states_build_vo_list_page')]"
+				item = {
+					overlappingitembox = {
+						#this element and MapList datamodel always exists before any states are triggered, so map_list_index can always be out of bounds because not yet updated for multitude of reasons (and crash the game), so this check is needed
+						visible = "[LessThan_int32(FixedPointToInt(Scope.AccessState.MakeScope.Var('gui_map_list_vo_index').GetValue),GetDataModelSize(MapListPanel.AccessValidOptions))]"
+						datamodel = "[DataModelSubSpan(MapListPanel.AccessValidOptions,FixedPointToInt(Scope.AccessState.MakeScope.Var('gui_map_list_vo_index').GetValue),'(int32)1')]"
+						size = { @panel_width 40 }
+						block "item" {
+							item = {
+								map_list_panel_item = {}
+							}
+						}
+					}
+				}
+
+				block "empty_state" {
+					empty_state = {
+						blockoverride "visible" {
+							visible = "[Or(IsDataModelEmpty(MapListPanel.AccessValidOptions),IsDataModelEmpty(GetGlobalList('gui_states_build_vo_list_page')))]"
+						}
+						blockoverride "text" {
+							text = "[SelectLocalization(IsDataModelEmpty(MapListPanel.AccessValidOptions),'MAP_LIST_NO_AVAILABLE_OPTIONS','MAP_INTERACTION_BUILD_BUILDING_EMPTY_PAGE')]"
+						}
+					}
+				}
+			}
+
+			section_header_button = {
+				visible = "[GreaterThan_int32(GetDataModelSize(MapListPanel.AccessFailedOptions), '(int32)0')]"
+				blockoverride "left_text" {
+					text = "FAILED_OPTIONS"
+				}
+
+				blockoverride "onclick" {
+					onclick = "[MapListPanelManager.ToggleFailedOptions]"
+				}
+
+				blockoverride "onclick_showmore" {
+					visible = "[Not(MapListPanelManager.IsShowingFailedOptions)]"
+				}
+
+				blockoverride "onclick_showless" {
+					visible = "[MapListPanelManager.IsShowingFailedOptions]"
+				}
+			}
+
+			flowcontainer = {
+				direction = vertical
+				parentanchor = hcenter
+				visible = "[Not(IsDataModelEmpty(MapListPanel.AccessFailedOptions))]"
+
+				fixedgridbox = {
+					visible = "[MapListPanelManager.IsShowingFailedOptions]"
+					#datamodel = "[MapListPanel.AccessFailedOptions]"
+					datamodel = "[GetGlobalList('gui_states_build_fo_list')]"
+					addcolumn = 540
+					addrow = 40
+					item = {
+						overlappingitembox = {
+							#visible = "[LessThan_int32(FixedPointToInt(Scope.AccessState.MakeScope.Var('gui_map_list_fo_index').GetValue),GetDataModelSize(MapListPanel.AccessFailedOptions))]"
+							datamodel = "[DataModelSubSpan(MapListPanel.AccessFailedOptions,FixedPointToInt(Scope.AccessState.MakeScope.Var('gui_map_list_fo_index').GetValue),'(int32)1')]"
+							size = { @panel_width 40 }
+							block "item" {
+								item = {
+									map_list_panel_item = {}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			section_header_button = {
+				visible = "[GreaterThan_int32(GetDataModelSize(MapListPanel.AccessInvalidOptions), '(int32)0')]"
+				blockoverride "left_text" {
+					text = "INVALID_OPTIONS"
+				}
+
+				blockoverride "onclick" {
+					onclick = "[MapListPanelManager.ToggleInvalidOptions]"
+				}
+
+				blockoverride "onclick_showmore" {
+					visible = "[Not(MapListPanelManager.IsShowingInvalidOptions)]"
+				}
+
+				blockoverride "onclick_showless" {
+					visible = "[MapListPanelManager.IsShowingInvalidOptions]"
+				}
+			}
+
+			flowcontainer = {
+				direction = vertical
+				parentanchor = hcenter
+				visible = "[Not(IsDataModelEmpty(MapListPanel.AccessInvalidOptions))]"
+
+				fixedgridbox = {
+					visible = "[MapListPanelManager.IsShowingInvalidOptions]"
+					#datamodel = "[MapListPanel.AccessInvalidOptions]"
+					datamodel = "[GetGlobalList('gui_states_build_io')]"
+					addcolumn = 540
+					addrow = 40
+					item = {
+						overlappingitembox = {
+							#visible = "[LessThan_int32(FixedPointToInt(Scope.AccessState.MakeScope.Var('gui_map_list_io_index').GetValue),GetDataModelSize(MapListPanel.AccessInvalidOptions))]"
+							datamodel = "[DataModelSubSpan(MapListPanel.AccessInvalidOptions,FixedPointToInt(Scope.AccessState.MakeScope.Var('gui_map_list_io_index').GetValue),'(int32)1')]"
+							size = { @panel_width 40 }
+							block "item" {
+								item = {
+									map_list_panel_item = {}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		blockoverride "item" {
+			item = {
+				map_list_panel_item_interaction = {
+					#datacontext = "[MapListOption.GetBuildingData.GetBuilding]"
+					#datacontext = "[MapListOption.GetBuildingData.GetState]"
+					datacontext = "[Scope.AccessState]"
+					datacontext = "[State.AccessBuilding(MapListBuildingPanel.GetBuildingType.GetKey)]"
+
+					background = {
+						visible = "[Building.HasConstructionQueued]"
+						texture = "gfx/interface/buttons/button_disabled_stripes.dds"
+						spriteType = Corneredtiled
+						spriteborder = { 2 2 }
+						framesize  = { 238 63 }
+						frame = 2
+						blend_mode = overlay
+						alpha = 1
+					}
+					background = {
+						visible = "[EqualTo_int32(Building.GetExpansionLevel,'(int32)0')]"
+						texture = "gfx/interface/backgrounds/blurry_dark_bg.dds"
+						blend_mode = overlay
+						alpha = 0.6
+					}
+
+					blockoverride "name_button_visibility" {
+						visible = yes
+					}
+
+					blockoverride "name_button_size" {
+						size = { 202 40 }
+					}
+
+					blockoverride "name_button_properties" { #1-2fps
+						onmousehierarchyenter = "[AccessHighlightManager.HighlightState(State.Self)]"
+						onmousehierarchyleave = "[AccessHighlightManager.RemoveHighlight]"
+
+						onrightclick = "[RightClickMenuManager.ShowForBuilding(Building.AccessSelf)]"
+						onclick = "[InformationPanelBar.OpenStatePanelTab(State.AccessSelf,'buildings')]"
+						
+						tooltipwidget = {
+							FancyTooltip_Building = {}
+						}
+
+						white_progressbar_horizontal = {
+							visible = "[LessThan_CFixedPoint(Building.GetEmploymentPercentage, GetDefine('NGUI', 'BUILDING_CONSIDERED_FULLY_EMPLOYED'))]"
+							parentanchor = center|vcenter
+							alpha = 0.25
+							size = { 198 36 }
+							blockoverride "frame" {}
+							blockoverride "values" {
+								value = "[FixedPointToFloat(Building.GetEmploymentPercentage)]"
+								min = 0
+								max = 1
+							}
+						}
+
+						icon = {
+							visible = "[And(Building.IsActive,And(And(Not(Building.IsGovernmentFunded),Not(Building.IsSubsidized)),LessThanOrEqualTo_CFixedPoint(Building.GetBalance, '(CFixedPoint)0')))]"
+							using = highlighted_square_selection
+							using = Color_Red
+						}
+
+						hbox = {
+							position = { 7 3 }
+							margin_right = 5
+							maximumsize = { 122 17 }
+							widget = {
+								visible = "[State.IsUnincorporated]"
+								size = { 17 17 }
+								default_progressbar_horizontal = {
+									visible = "[State.IsIncorporating]"
+									alpha = 0.5
+									size = { 16 15 }
+									position = { 1 2 }
+									blockoverride "frame" {}
+									blockoverride "values" {
+										value = "[FixedPointToFloat(State.GetIncorporationProgress)]"
+										min = 0
+										max = 1
+									}
+								}
+								icon = {
+									visible = "[State.IsIncorporating]"
+									alpha = "[FixedPointToFloat(Multiply_CFixedPoint(Add_CFixedPoint(State.GetIncorporationProgress,'(CFixedPoint)0.25'),'(CFixedPoint)0.8'))]"
+									size = { 17 17 }
+									texture = "gfx/interface/icons/lens_toolbar_icons/incorporate_state.dds"
+									tooltip = "TOOLTIP_INCORPORATING_STATE"
+								}
+								icon = {
+									visible = "[Not(State.IsIncorporating)]"
+									size = { 100% 100% }
+									texture = "gfx/interface/icons/state_status_icons/unincorporated_state.dds"
+									tooltip = "[concept_unincorporated_state_desc]"
+								}
+							}
+							widget = {
+								visible = "[And(And(And(LessThan_CFixedPoint(Building.GetEmploymentPercentage, GetDefine('NGUI', 'BUILDING_CONSIDERED_FULLY_EMPLOYED')), Building.IsActive), Not(Building.IsSubsistenceBuilding)),Not(Building.ShouldShowAsHiring))]"
+								size = { 23 17 }
+								icon = {
+									size = { 15 15 }
+									texture = "gfx/interface/icons/generic_icons/employment_not_full.dds"
+									tooltip = "NOT_FULLY_EMPLOYED"
+								}
+								textbox = {
+									position = { 16 0 }
+									size = { 5 15 }
+									align = center|nobaseline
+									visible = "[And(And(Not(Building.IsGovernmentFunded),Not(Building.IsSubsidized)),LessThanOrEqualTo_CFixedPoint(Building.GetBalance, '(CFixedPoint)0'))]"
+									fontsize = 10
+									raw_text = "@money!"
+									tooltip = "[Building.GetBalanceDesc]"
+								}
+								textbox = {
+									position = { 16 0 }
+									size = { 5 15 }
+									align = center|nobaseline
+									visible = "[Or(Or(Building.IsGovernmentFunded,Building.IsSubsidized),GreaterThan_CFixedPoint(Building.GetBalance, '(CFixedPoint)0'))]"
+									fontsize = 12
+									text = "[Select_CString(State.HasInsufficientQualificationsForAvailablePositions,'@red_cross!','@green_checkmark!')]"
+									tooltip = "[State.GetPotentialQualificationsDesc]"
+								}
+							}
+							textbox = {
+								size = { 100 20 }
+								margin_left = 2
+								align = left|nobaseline
+								text = "[State.GetNameNoFormatting]"
+								elide = right
+								fontsize_min = 12
+								layoutpolicy_horizontal = expanding
+							}
+						}
+
+						building_icons = {
+							visible = "[Not(EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_pms').GetValue,'(CFixedPoint)1'))]"
+							block "size" {
+								parentanchor = right
+								position = { -3 3 }
+								maximumsize = { 68 17 }
+								autoresize = yes
+							}
+							blockoverride "datamodel" {
+								datamodel = "[State.AccessCappedRuralBuildings]"
+							}
+						}
+						building_icons = {
+							visible = "[Not(EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_pms').GetValue,'(CFixedPoint)1'))]"
+							block "size" {
+								parentanchor = bottom|right
+								position = { -3 -3 }
+								maximumsize = { 187 17 }
+								autoresize = yes
+							}
+							blockoverride "datamodel" {
+								datamodel = "[State.AccessUncappedRuralBuildings]"
+							}
+						}
+
+						overlappingitembox = {
+							visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_pms').GetValue,'(CFixedPoint)1')]"
+							parentanchor = bottom|right
+							position = { -3 -3 }
+							maximumsize = { 85 17 }
+							autoresize = yes
+							datamodel = "[Building.AccessProductionMethodGroups]"
+							item = {
+								widget = {
+									size = { 17 17 }
+									visible = "[Or(Or(Building.IsActive,EqualTo_string(Building.GetNameNoFormatting,'Conscription Center')),IsValid(Building.CancelConstruction))]"
+									datacontext = "[Building.AccessProductionMethod(ProductionMethodGroup.Self)]"
+									datacontext = "[ProductionMethod]"
+									datacontext = "[ProductionMethodGroup]"
+									using = tooltip_above
+									tooltip = "CHANGE_FROM_CURRENT_PRODUCTION_METHOD_TOOLTIP"
+
+									button = {
+										parentanchor = center|vcenter
+										visible = "[NotEqualTo_int32( GetDataModelSize( ProductionMethodGroup.AccessBuildingProductionMethods( Building.Self ) ), '(int32)1' )]"
+										using = expand_button_bg_dropdown
+										size = { 19 19 }
+										enabled = "[Building.IsOwner( GetPlayer.Self )]"
+										onclick = "[RightClickMenuManager.ToggleSwitchProductionMethodMenu(Building.AccessSelf, ProductionMethodGroup.AccessSelf, PdxGuiWidget.AccessSelf)]"
+									}
+									icon = {
+										size = { 17 17 }
+										parentanchor = center
+										texture = "[ProductionMethod.GetTexture]"
+									}
+								}
+							}
+						}
+						overlappingitembox = {
+							visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_pms').GetValue,'(CFixedPoint)1')]"
+							parentanchor = top|right
+							position = { -3 3 }
+							maximumsize = { 68 17 }
+							autoresize = yes
+							datamodel = "[Building.AccessProducedGoods]"
+							item = {
+								building_goods_icon_item = {}
+							}
+						}
+						overlappingitembox = {
+							visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_states_build_list_filter_pms').GetValue,'(CFixedPoint)1')]"
+							parentanchor = bottom|right
+							position = { -93 -3 }
+							maximumsize = { 97 17 }
+							autoresize = yes
+							datamodel = "[Building.AccessConsumedGoods]"
+							item = {
+								building_goods_icon_item = {
+									blockoverride "item_text" {
+										text = "[Building.GetConsumption(Goods.Self)|RD]"
+									}
+									block "tooltip" {
+										tooltip = "TOOLTIP_BUILDING_USES_UNITS_INFO"
+									}
+								}
+							}
+						}
+					}
+
+					blockoverride "values" {
+						flowcontainer = { #1-1.5fps
+							parentanchor = vcenter
+							direction = vertical
+							margin_right = 2
+							textbox = { #1fps
+								size = { 52 13 }
+								fontsize = 13
+								align = right|nobaseline
+								text = "[Building.GetExpansionLevelDesc]"
+								elide = right
+								using = tooltip_above
+								fontsize_min = 9
+							}
+							textbox = { #1fps
+								raw_text = "@laborers!@turns_into_o!  [FixedPointToInt(State.MakeScope.ScriptValue('state_available_workers_prog_wcache'))|Dv+]"
+								size = { 52 13 }
+								elide = right
+								fontsize = 13
+								fontsize_min = 6
+								align = right|nobaseline
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_LABOR_PROG_DESC"
+							}
+							textbox = {
+								datacontext = "[State.AccessOwner]"
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_CONSTRUCTION_DESC"
+								size = { 52 13 }
+								fontsize = 13
+								elide = right
+								fontsize_min = 8
+								alpha = "[TransparentIfFalse(State.HasConstructionQueued)]"
+								raw_text = "@construction! [Add_int32(Country.GetNumBuildingsUnderConstructionInState(State.Self), Country.GetNumBuildingsInConstructionQueueInState(State.Self))|-]"
+								align = right|nobaseline
+							}
+						}
+
+						flowcontainer = { #1-2fps
+							direction = vertical
+							margin = { 2 0 }
+							flowcontainer = {
+								textbox = {
+									size = { 14 13 }
+									align = right|nobaseline
+									text = "[State.GetInfrastructureBalance|0+]"
+									tooltip = "STATE_INFRASTRUCTURE_DESC"
+									parentanchor = vcenter
+									elide = right
+									fontsize_min = 8
+								}
+								textbox = {
+									size = { 34 13 }
+									tooltip = "STATE_INFRA_PROG"
+									raw_text = "@turns_into![State.MakeScope.ScriptValue('state_infra_prog')|0+=]"
+									elide = right
+									fontsize_min = 6
+									align = left|nobaseline
+								}
+							}
+							flowcontainer = { #1fps
+								datacontext = "[State.GetBuilding('building_railway')]"
+								tooltipwidget = {
+									FancyTooltip_Building = {}
+								}
+								icon = {
+									visible = "[Not(Or(Building.IsActive,IsValid(Building.CancelConstruction)))]"
+									size = { 13 13 }
+									texture = "[Building.GetTexture]"
+								}
+								widget = {
+									visible = "[Not(Or(Building.IsActive,IsValid(Building.CancelConstruction)))]"
+									size = { 13 13 }
+								}
+								overlappingitembox = {
+									visible = "[Or(Building.IsActive,IsValid(Building.CancelConstruction))]"
+									datamodel = "[Building.AccessProductionMethodGroups]"
+									ignoreinvisible = yes
+									size = { 26 13 }
+									item = {
+										infra_pm_item = {
+											blockoverride "size" {
+												size = { 13 13 }
+											}
+										}
+									}
+								}
+								widget = {
+									size = { 22 13 }
+									button_icon_minus_action = {
+										parentanchor = left|vcenter
+										size = { 11 11 }
+										tooltip = "[Building.GetCancelConstructionTooltip]"
+										visible = "[IsValid( Building.CancelConstruction )]"
+										onclick = "[Execute( Building.CancelConstruction )]"
+										using = tooltip_below
+									}
+									button_icon_plus_action = {
+										parentanchor = right|vcenter
+										visible = "[Or( And( Not( Building.IsValid ), IsValid( Building.QueueConstruction ) ), Not(Building.HasReachedLevelCap) )]"
+										tooltip = "[Building.GetQueueConstructionTooltip]"
+										size = { 11 11 }
+										onclick = "[Execute( Building.QueueConstruction )]"
+										enabled = "[IsValid( Building.QueueConstruction )]"
+									}
+								}
+							}
+							flowcontainer = { #1fps
+								datacontext = "[State.GetBuilding('building_port')]"
+								visible = "[State.IsCoastal]"
+								tooltipwidget = {
+									FancyTooltip_Building = {}
+								}
+								icon = {
+									visible = "[Not(Or(Building.IsActive,IsValid(Building.CancelConstruction)))]"
+									size = { 13 13 }
+									texture = "[Building.GetTexture]"
+								}
+								widget = {
+									visible = "[Not(Or(Building.IsActive,IsValid(Building.CancelConstruction)))]"
+									size = { 13 13 }
+								}
+								overlappingitembox = {
+									visible = "[Or(Building.IsActive,IsValid(Building.CancelConstruction))]"
+									datamodel = "[Building.AccessProductionMethodGroups]"
+									ignoreinvisible = yes
+									size = { 26 13 }
+									item = {
+										infra_pm_item = {
+											blockoverride "size" {
+												size = { 13 13 }
+											}
+											blockoverride "visible" {
+												visible = "[EqualTo_string(ProductionMethodGroup.GetKey,'pmg_base_building_port')]"
+											}
+										}
+									}
+								}
+								widget = {
+									size = { 22 13 }
+									button_icon_minus_action = {
+										parentanchor = left|vcenter
+										size = { 11 11 }
+										tooltip = "[Building.GetCancelConstructionTooltip]"
+										visible = "[IsValid( Building.CancelConstruction )]"
+										onclick = "[Execute( Building.CancelConstruction )]"
+										using = tooltip_below
+									}
+									button_icon_plus_action = {
+										parentanchor = right|vcenter
+										visible = "[Or( And( Not( Building.IsValid ), IsValid( Building.QueueConstruction ) ), Not(Building.HasReachedLevelCap) )]"
+										tooltip = "[Building.GetQueueConstructionTooltip]"
+										size = { 11 11 }
+										onclick = "[Execute( Building.QueueConstruction )]"
+										enabled = "[IsValid( Building.QueueConstruction )]"
+									}
+								}
+							}
+						}
+
+						flowcontainer = { #was 6fps
+							tooltip = "STATE_AVAILABLE_LABOR_TOOLTIP"
+							parentanchor = vcenter
+							margin_left = 2
+							margin_right = 2
+							flowcontainer = {
+								visible = "[Not(GetVariableSystem.Exists('building_map_list_quals'))]"
+								direction = vertical
+								textbox = {
+									size = { 54 13 }
+									alpha = "[TransparentIfZero_int64(State.GetNumUnemployedWorkingAdults)]"
+									fontsize = 13
+									align = left|nobaseline
+									raw_text = "@unemployed_icon! [State.GetNumUnemployedWorkingAdults|D-]"
+									elide = right
+								}
+								textbox = {
+									size = { 54 13 }
+									alpha = "[TransparentIfZero_int64(State.GetNumSubsistenceWorkingAdults)]"
+									fontsize = 13
+									align = left|nobaseline
+									raw_text = "@peasants! [State.GetNumSubsistenceWorkingAdults|Dv]"
+									elide = right
+								}
+								textbox = { #was 4fps
+									size = { 54 13 }
+									datacontext = "[State.MakeScope.Var('cache_available_workers_autopms')]"
+									alpha = "[TransparentIfZero(Scope.GetValue)]"
+									raw_text = "@workers_auto! [FixedPointToInt(Scope.GetValue)|Dv+]"
+									fontsize = 13
+									align = left|nobaseline
+									tooltip = "STATE_LABOR_AUTOPMS"
+									icon = {
+										visible = "[NotEqualTo_CFixedPoint(GetGlobalVariable('gui_states_workers_autopms').GetValue,'(CFixedPoint)0')]"
+										size = { 15 14.5 }
+										using = highlighted_circle_selection_small
+										using = Color_Blue_S
+										parentanchor = left
+										position = { -0.5 -1 }
+									}
+									button = {
+										size = { 100% 100% }
+										click_modifiers = {
+											onshift = "[GetScriptedGui('toggle_gui_states_workers_autopms').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+										}
+									}
+								}
+							}
+							flowcontainer = {
+								visible = "[GetVariableSystem.Exists('building_map_list_quals')]"
+								direction = vertical
+								parentanchor = vcenter
+								dynamicgridbox = {
+									visible = "[Not(IsDataModelEmpty(GetGlobalList('gui_states_build_list_quals_list')))]"
+									minimumsize = { 54 39 }
+									datamodel = "[GetGlobalList('gui_states_build_list_quals_list')]"
+									item = {
+										textbox = {
+											size = { 54 13 }
+											fontsize = 13
+											align = left|nobaseline
+											datacontext = "[Scope.GetPopType]"
+											alpha = "[TransparentIfZero(State.GetPotentialQualifications(PopType.Self))]"
+											text = "[PopType.GetTextIcon][State.GetPotentialQualifications(PopType.Self)|D+]"
+											tooltip = "[State.GetPotentialQualificationsBreakdown(PopType.Self)]"
+											elide = right
+										}
+									}
+								}
+								textbox = {
+									visible = "[IsDataModelEmpty(GetGlobalList('gui_states_build_list_quals_list'))]"
+									size = { 54 39 }
+									margin = { 2 2}
+									text = "MAP_INTERACTION_BUILD_BUILDING_NO_QUALS"
+									tooltip = "MAP_INTERACTION_BUILD_BUILDING_NO_QUALS_DESC"
+									align = nobaseline
+									fontsize = 11
+								}
+							}
+							flowcontainer = { #0.5fps
+								direction = vertical
+								#parentanchor = vcenter
+								icon = {
+									texture = "gfx/interface/icons/generic_icons/population.dds"
+									size = { 13 13 }
+									tooltip = "STATE_POP_CHANGE_DESC"
+								}                                                                      
+								#textbox = {
+								#	margin_top = -5
+								#	size = { 13 13 }
+								#	elide = right
+								#	fontsize_min = 9
+								#	#text = "[GetArrowIcon_int64(State.GetPopTotalChange)]" #this lags quite a bit
+								#	tooltip = "[State.GetPopTotalChange|D+=]"
+								#	align = center|vcenter
+								#}
+								flowcontainer = {
+									spacing = 3
+									datacontext = "[State.AccessSubsistenceBuilding]"
+									tooltipwidget = {
+										FancyTooltip_Building = {}
+									}
+									icon = {
+										alpha = "[TransparentIfFalse(Building.IsActive)]"
+										size = { 13 13 }
+										texture = "[Building.GetTexture]"
+									}
+								}
+								textbox = { #0.5fps
+									margin_top = -5
+									size = { 13 13 }
+									elide = right
+									fontsize_min = 9
+									text = "[Select_CString(State.HasInsufficientQualificationsForAvailablePositions, '@red_cross!', '@green_checkmark!')]"
+									tooltip = "[State.GetPotentialQualificationsDesc]"
+									align = center|vcenter
+								}
+							}
+						}
+
+						flowcontainer = { #was 3fps
+							direction = vertical
+							margin_left = 2
+							margin_right = 2
+							parentanchor = vcenter
+							textbox = {
+								size = { 54 13 }
+								fontsize = 13
+								align = left|nobaseline
+								alpha = "[TransparentIfZero(State.MakeScope.ScriptValue('state_available_jobs_hiring'))]"
+								raw_text = "@hiring! [FixedPointToInt(State.MakeScope.ScriptValue('state_available_jobs_hiring'))|D+]"
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_HIRING_DESC"
+								elide = right
+							}
+							textbox = {
+								size = { 54 13 }
+								fontsize = 13
+								align = left|nobaseline
+								alpha = "[TransparentIfZero(State.MakeScope.ScriptValue('state_jobs_not_hiring'))]"
+								raw_text = "@not_hiring! [FixedPointToInt(State.MakeScope.ScriptValue('state_jobs_not_hiring'))|D-]"
+								tooltip = "STATE_JOBS_NOT_HIRING"
+								elide = right
+								icon = {
+									visible = "[NotEqualTo_CFixedPoint(GetGlobalVariable('gui_states_jobs_not_hiring').GetValue,'(CFixedPoint)0')]"
+									size = { 13 14 }
+									using = highlighted_circle_selection_small
+									using = Color_Blue_S
+									parentanchor = left
+								}
+								button = {
+									size = { 100% 100% }
+									click_modifiers = {
+										onshift = "[GetScriptedGui('toggle_gui_states_jobs_not_hiring').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+									}
+								}
+							}
+							textbox = { #was 3fps
+								size = { 54 13 }
+								fontsize = 13
+								datacontext = "[State.MakeScope.Var('cache_available_jobs_autopms')]"
+								alpha = "[TransparentIfZero(Scope.GetValue)]"
+								raw_text = "@jobs_auto! [FixedPointToInt(Scope.GetValue)|Dv+]"
+								align = left|nobaseline
+								tooltip = "STATE_JOBS_AUTOPMS"
+							}
+						}
+
+						flowcontainer = {
+							visible = "[Not(ObjectsEqual(Building.GetBuildingType, GetBuildingType('building_government_administration').Self))]"
+							margin = { 2 0 }
+							flowcontainer = {
+								visible = "[Not(GetVariableSystem.Exists('building_map_list_max_wage'))]"
+								direction = vertical
+								textbox = {
+									size = { 44 13 }
+									align = right|nobaseline
+									raw_text = "@money![Building.GetAverageAnnualEarningsPerEmployeeFormatted|v1+]"
+									tooltip = "MAP_INTERACTION_BUILD_BUILDING_PRODUCTIVITY_DESC"
+									fontsize = 13
+									elide = right
+									fontsize_min = 10
+								}
+								widget = {
+									size = { 44 13 }
+									textbox = {
+										size = { 100% 100% }
+										align = right|nobaseline
+										raw_text = "@turns_into![State.MakeScope.Var(Concatenate(Building.GetBuildingType.GetKey,'_productivity_prog')).GetValue|v1]"
+										tooltip = "BUILDING_PROD_PROG"
+										fontsize = 13
+										elide = right
+										fontsize_min = 8
+									}
+									icon = {
+										parentanchor = hcenter|vcenter
+										visible = "[And(Building.IsActive,And(And(Not(Building.IsGovernmentFunded),Not(Building.IsSubsidized)),LessThanOrEqualTo_CFixedPoint(State.MakeScope.Var(Concatenate(Building.GetBuildingType.GetKey,'_productivity_prog')).GetValue, Building.GetAverageAnnualWage)))]"
+										size = { 125% 130% }
+										using = highlighted_square_selection
+										using = Color_Red
+									}
+								}
+								textbox = {
+									size = { 44 13 }
+									align = right|nobaseline
+									raw_text = "@wage![Building.GetAverageAnnualWage|v1+]"
+									tooltip = "TOOLTIP_BUILDING_AVERAGE_WAGE"
+									fontsize = 13
+									elide = right
+									fontsize_min = 10
+								}
+							}
+							flowcontainer = {
+								visible = "[GetVariableSystem.Exists('building_map_list_max_wage')]"
+								direction = vertical
+								textbox = {
+									size = { 44 13 }
+									align = right|nobaseline
+									raw_text = "@wage!@laborers_o!@arrow_up_up_o![State.MakeScope.Var(Concatenate(Building.GetBuildingType.GetKey,'_max_wage')).GetValue|v1]"
+									tooltip = "BUILDING_MAX_WAGE"
+									fontsize = 13
+									elide = right
+									fontsize_min = 10
+								}
+								widget = {
+									size = { 44 13 }
+									textbox = {
+										size = { 100% 100% }
+										align = right|nobaseline
+										raw_text = "@turns_into![State.MakeScope.Var(Concatenate(Building.GetBuildingType.GetKey,'_max_wage_prog')).GetValue|v1]"
+										tooltip = "BUILDING_MAX_WAGE_PROG"
+										fontsize = 13
+										elide = right
+										fontsize_min = 8
+									}
+									#icon = {
+									#	parentanchor = hcenter|vcenter
+									#	visible = "[And(Building.IsActive,And(And(Not(Building.IsGovernmentFunded),Not(Building.IsSubsidized)),LessThanOrEqualTo_CFixedPoint(State.MakeScope.Var(Concatenate(Building.GetBuildingType.GetKey,'_productivity_prog')).GetValue, Building.GetAverageAnnualWage)))]"
+									#	size = { 125% 130% }
+									#	using = highlighted_square_selection
+									#	using = Color_Red
+									#}
+								}
+								textbox = {
+									size = { 44 13 }
+									align = right|nobaseline
+									raw_text = "@wage!@laborers_o![State.MakeScope.Var(Concatenate(Building.GetBuildingType.GetKey,'_base_wage')).GetValue|v1]"
+									tooltip = "BUILDING_BASE_WAGE_DESC"
+									fontsize = 13
+									elide = right
+									fontsize_min = 10
+								}
+							}
+						}
+
+						# Government Administration
+						textbox = {
+							margin = { 2 0 }
+							size = { 46 25 }
+							align = center|nobaseline
+							raw_text = "[State.CalcTaxCapacityBalance|0+=]"
+							tooltip = "STATE_TAX_CAPACITY_DESC"
+							parentanchor = vcenter
+							elide = right
+							fontsize_min = 10
+							visible = "[ObjectsEqual(Building.GetBuildingType, GetBuildingType('building_government_administration').Self)]"
+						}
+					}
+					blockoverride "button_color" {
+						icon = {
+							visible = "[LessThan_CFixedPoint(State.GetConstructionEfficiency, '(CFixedPoint)-0.5')]"
+							parentanchor = right|top
+							position = { -6 6 }
+							size = { 12 12 }
+							texture = "gfx/interface/icons/generic_icons/warning.dds"
+						}
+						icon = {
+							visible = "[LessThan_CFixedPoint(State.GetConstructionEfficiency, '(CFixedPoint)-0.25')]"
+							parentanchor = right|bottom
+							position = { -5 -5 }
+							size = { 14 14 }
+							texture = "gfx/interface/icons/alert_icons/wasted_construction.dds"
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+types map_list_building_icons
+{
+	type building_icons = overlappingitembox {
+		ignoreinvisible = yes
+		block "size" {}
+		block "datamodel" {}
+		item = {
+			building_icons_item = {}
+		}
+	}
+
+	type building_icons_item = widget {
+		visible = "[Building.IsExpandable]"
+		size = { 17 17 }
+		tooltipwidget = {
+			FancyTooltip_Building = {}
+		}
+		icon = {
+			alpha = "[TransparentIfTrue(Building.HasReachedLevelCap)]"
+			parentanchor = hcenter|vcenter
+			size = { 100% 100% }
+			texture = "[Building.GetTexture]"
+		}
+		button = {
+			size = { 100% 100% }
+			click_modifiers = {
+				onctrl = "[GetScriptedGui('country_toggle_gui_states_build_list_highlight').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('btype',Building.GetBuildingType.MakeScope).End)]"
+			}
+			onrightclick = "[RightClickMenuManager.ShowForBuilding(Building.AccessSelf)]"
+		}
+		widget = {
+			visible = "[EqualTo_CFixedPoint(GetGlobalVariable(Concatenate('gui_states_build_list_highlight_',Building.GetBuildingType.GetKey)).GetValue,'(CFixedPoint)1')]"
+			size = { 100% 100% }
+			icon = {
+				parentanchor = hcenter|vcenter
+				visible = "[Or(GreaterThan_int32(Building.GetExpansionLevel,'(int32)0'),Building.HasConstructionQueued)]"
+				size = { 21 21 }
+				using = highlighted_square_selection
+				using = Color_Orange
+				alpha = "[TransparentIfTrue(Building.HasReachedLevelCap)]"
+			}
+			icon = {
+				parentanchor = hcenter|vcenter
+				visible = "[Not(Or(GreaterThan_int32(Building.GetExpansionLevel,'(int32)0'),Building.HasConstructionQueued))]"
+				size = { 21 21 }
+				using = highlighted_square_selection
+				alpha = "[TransparentIfTrue(Building.HasReachedLevelCap)]"
+			}
+		}
+		icon = {
+			visible = "[And(Not(EqualTo_CFixedPoint(GetGlobalVariable(Concatenate('gui_states_build_list_highlight_',Building.GetBuildingType.GetKey)).GetValue,'(CFixedPoint)1')),Or(GreaterThan_int32(Building.GetExpansionLevel,'(int32)0'),Building.HasConstructionQueued))]"
+			size = { 100% 100% }
+			texture = "gfx/interface/buttons/default_button_frame.dds"
+		}
+	}
+	type building_goods_icon_item = widget {
+		size = { 25 17 }
+		block "tooltip" {
+			tooltip = "TOOLTIP_BUILDING_PRODUCES_UNITS_INFO"
+		}
+		icon = {
+			size = { 17 17 }
+			parentanchor = center
+			texture = "[Goods.GetTexture]"
+			alpha = 0.4
+		}
+		textbox = {
+			parentanchor = center|vcenter
+			size = { 25 17 }
+			#elide = right
+			#fontsize_min = 6
+			fontsize = 9
+			block "item_text" {
+				text = "[Building.GetProduction(Goods.Self)|GD]"
+			}
+			align = hcenter|vcenter
+		}
+	}
+}
+
+template Color_Blue_S
+{
+    color = { 0.41 0.67 0.74 1 }
+}

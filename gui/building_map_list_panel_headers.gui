@@ -1,0 +1,949 @@
+types build_building_map_list_panel_headers_types {
+	type build_building_map_list_panel_headers = flowcontainer {
+				 flowcontainer = {
+					direction = vertical
+					flowcontainer = {
+						button_icon_round_toggle = {
+							size = { 25 25 }
+							blockoverride "on_click" {
+							}
+							blockoverride "view_1" {
+								visible = "[Not(EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_pms').GetValue,'(CFixedPoint)1'))]"
+							}
+							blockoverride "view_2" {
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_pms').GetValue,'(CFixedPoint)1')]"
+							}
+							blockoverride "icon_1" {
+								texture = "gfx/interface/icons/state_status_icons/incorporated_state.dds"
+								scale = 0.60
+							}
+							blockoverride "icon_2" {
+								texture = "gfx/interface/icons/notification_icons/buildings.dds"
+								scale = 0.60
+							}
+							blockoverride "tooltip_1" {
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_VIEW_BUILDINGS"
+							}
+							blockoverride "tooltip_2" {
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_VIEW_STATES"
+							}
+						}
+						button_icon_round_toggle = {
+							size = { 25 25 }
+							blockoverride "on_click" {
+							}
+							blockoverride "view_1" {
+								visible = "[Not(GetVariableSystem.Exists('building_map_list_max_wage'))]"
+							}
+							blockoverride "view_2" {
+								visible = "[GetVariableSystem.Exists('building_map_list_max_wage')]"
+							}
+							blockoverride "icon_1" {
+								texture = "gfx/interface/icons/topbar/income_power_icon.dds"
+								scale = 0.60
+							}
+							blockoverride "icon_2" {
+								textbox = {
+									size = { 100% 100% }
+									position = { 0 -1 }
+									raw_text = "@wage!@laborers_o!@arrow_up_up_o!"
+									fontsize = 15
+									align = center|nobaseline
+								}
+							}
+							blockoverride "tooltip_1" {
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_VIEW_MAX_WAGE"
+							}
+							blockoverride "tooltip_2" {
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_VIEW_PRODUCTIVITY"
+							}
+						}
+						flowcontainer = { hbox = { #flowcontainer to fix hbox overlaying previous button_icon_round_toggle for some reason
+							#problem still persists as buttons only highlight on the second opening of presets dropdown
+							minimumsize = { 152 25 }
+							maximumsize = { 152 25 }
+							sort_button = {
+								align = center|nobaseline
+								margin = { 2 0 }
+								text = "[SelectLocalization(EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_pms').GetValue,'(CFixedPoint)1'),'@incorporated_s!','BUILDING_MAP_LIST_PANEL_STATE_HEADER')]"
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_STATE_DESC"
+								minimumsize = { -1 25 }
+								size = { -1 25 }
+								maximumsize = { 152 25 }
+								layoutpolicy_horizontal = expanding
+							}
+							overlappingitembox = {
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_pms').GetValue,'(CFixedPoint)1')]"
+								maximumsize = { 125 25 }
+								autoresize = yes
+								datacontext = "[MapListBuildingPanel.GetBuildingType]"
+								datamodel = "[BuildingType.AccessProductionMethodGroups]"
+								item = {
+									widget = {
+										size = { 25 25 }
+										using = tooltip_above
+										tooltip = "MAP_INTERACTION_BUILD_BUILDING_BULK_CHANGE_PMS"
+										button = {
+											parentanchor = center|vcenter
+											visible = "[NotEqualTo_int32( GetDataModelSize( ProductionMethodGroup.AccessCountryProductionMethods( GetPlayer.Self ) ), '(int32)1' )]"
+											using = expand_button_bg_dropdown
+											size = { 25 25 }
+										}
+										icon = {
+											size = { 21 21 }
+											parentanchor = center
+											texture = "[ProductionMethodGroup.GetMixedIcon]"
+										}
+									}
+								}
+							}
+						} }
+					}
+					flowcontainer = {
+						button_icon_round_toggle = {
+							size = { 25 25 }
+							blockoverride "on_click" {
+							}
+							blockoverride "view_1" {
+								visible = "[Not(GetVariableSystem.Exists('building_map_list_quals'))]"
+							}
+							blockoverride "view_2" {
+								visible = "[GetVariableSystem.Exists('building_map_list_quals')]"
+							}
+							blockoverride "icon_1" {
+								texture = "gfx/interface/icons/pops_icons/laborers.dds"
+								scale = 0.60
+							}
+							blockoverride "icon_2" {
+								texture = "gfx/interface/icons/generic_icons/green_checkmark.dds"
+								scale = 0.60
+							}
+							blockoverride "tooltip_1" {
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_VIEW_QUALS"
+							}
+							blockoverride "tooltip_2" {
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_VIEW_JOBS"
+							}
+						}
+						sort_button = {
+							align = left|nobaseline
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_BTYPE_DESC"
+							minimumsize = { -1 25 }
+							size = { 37 25 }
+							icon = {
+								visible = "[Scope.Var('gui_states_build_list_order_btype').IsSet]"
+								position = { 4 4 }
+								size = { 17 17 }
+								texture = "[Scope.Var('gui_states_build_list_order_btype').GetBuildingType.GetTexture]"
+							}
+							icon = {
+								visible = "[Not(Scope.Var('gui_states_build_list_order_btype').IsSet)]"
+								position = { 4 4 }
+								size = { 17 17 }
+								texture = "gfx/interface/icons/notification_icons/buildings.dds"
+							}
+							textbox = {
+								position = { 4 4 }
+								size = { 17 17 }
+								visible = "[NotEqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_btype_count').GetValue,'(CFixedPoint)0')]"
+								text = "[Scope.Var('gui_states_build_list_filter_btype_count').GetValue|v0]"
+								align = center|nobaseline
+								fontsize_min = 9
+								elide = right
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)1.1')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)1.11')]"
+								using = highlighted_square_selection
+								using = Color_Blue_S
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_btype').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_not_btype').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_right.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_not_btype').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								using = Color_Orange
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_btype').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_left.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+						}
+						sort_button = {
+							align = left|nobaseline
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_INCORP_DESC"
+							minimumsize = { -1 25 }
+							size = { 37 25 }
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_incorp').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)1.2')]"
+								using = highlighted_square_selection
+							}
+							default_progressbar_horizontal = {
+								visible = "[NotEqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_incorp_p').GetValue,'(CFixedPoint)0')]"
+								alpha = 0.5
+								size = { 16 15 }
+								position = { 5 6 }
+								blockoverride "frame" {}
+								blockoverride "values" {
+									value = "[FixedPointToFloat(Scope.Var('gui_states_build_list_filter_incorp_p').GetValue)]"
+									min = 0
+									max = 1
+								}
+							}
+							icon = {
+								visible = "[NotEqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_incorp_p').GetValue,'(CFixedPoint)0')]"
+								position = { 4 4 }
+								alpha = "[FixedPointToFloat(Add_CFixedPoint(Scope.Var('gui_states_build_list_filter_incorp_p').GetValue,'(CFixedPoint)0.25'))]"
+								size = { 17 17 }
+								texture = "gfx/interface/icons/lens_toolbar_icons/incorporate_state.dds"
+							}
+							icon = {
+								position = { 4 4 }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_incorp_p').GetValue,'(CFixedPoint)0')]"
+								size = { 17 17 }
+								texture = "gfx/interface/icons/state_status_icons/unincorporated_state.dds"
+							}
+						}
+						sort_button = {
+							margin_left = -10
+							margin_right = 0
+							align = center|nobaseline
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_DISCR_DESC"
+							minimumsize = { -1 25 }
+							size = { 37 25 }
+							raw_text = "@discriminated!"
+							default_progressbar_horizontal = {
+								visible = "[NotEqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_discr_v').GetValue,'(CFixedPoint)0')]"
+								alpha = 0.5
+								size = { 16 15 }
+								position = { 5 6 }
+								blockoverride "frame" {}
+								blockoverride "values" {
+									value = "[FixedPointToFloat(Scope.Var('gui_states_build_list_filter_discr_v').GetValue)]"
+									min = 0
+									max = 1
+								}
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)1.3')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_high_discr').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_low_discr').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_right.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_low_discr').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								using = Color_Orange
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_high_discr').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_left.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+						}
+						button = {
+							size = { 66 25 }
+							button_trigger = none
+							using = default_button
+							button = {
+								position = { 4 4 }
+								size = { 17 17 }
+								icon = {
+									size = { 100% 100% }
+									texture = "gfx/interface/icons/generic_icons/map_list_cross.dds"
+								}
+								onclick = "[GetScriptedGui('state_region_gui_states_build_list_delete_preset').Execute(GuiScope.SetRoot(Scope.GetStateRegion.MakeScope).End)]"
+								click_modifiers = {
+									onctrl = "[GetScriptedGui('state_region_gui_states_build_list_overwrite_preset').Execute(GuiScope.SetRoot(Scope.GetStateRegion.MakeScope).End)]"
+								}
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_PRESET_DELETE_DESC"
+								using = tooltip_below
+							}
+							textbox = {
+								position = { 23 0 }
+								size = { 37 25 }
+								raw_text = "[Scope.Var('gui_states_build_list_preset').GetValue|v0]"
+								fontsize = 16
+								align = center|nobaseline
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_PRESET_LOAD_DESC"
+								using = tooltip_below
+							}
+							#onclick = "[GetScriptedGui('state_region_gui_states_build_list_load_preset').Execute(GuiScope.SetRoot(Scope.GetStateRegion.MakeScope).End)]"
+							#onclick = "[GetScriptedGui('country_gui_states_build_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+						}
+					}
+				}
+				flowcontainer = {
+					direction = vertical
+					flowcontainer = {
+						sort_button = { #[2(1)] vars (vanilla/prog, nconstr)
+							align = center|nobaseline
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_LEVEL_DESC"
+							minimumsize = { -1 25 }
+							size = { 54 25 }
+							button = {
+								texture = "gfx/interface/buttons/sort_button_icons/sort_icon_size.dds"
+								size = { 25 25 }
+								parentanchor = center
+								alwaystransparent = yes
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)2')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)2.01')]"
+								using = highlighted_square_selection
+								using = Color_Blue_S
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_small.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_not_cap').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_not_scale_cap').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_right.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_small.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_not_scale_cap').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								using = Color_Orange
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_not_cap').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_left.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+						}
+					}
+					flowcontainer = {
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@construction!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_CONSTRUCTION_DESC"
+							minimumsize = { -1 25 }
+							size = { 54 25 }
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)2.1')]"
+								using = highlighted_square_selection
+							}
+						}
+					}
+				}
+				flowcontainer = {
+					direction = vertical
+					flowcontainer = {
+						sort_button = { #[1(1)+2(2)]+3 vars (vanilla/prog, rlevel/prog, plevel/prog, rpm1, rpm2, ppm)
+							margin_left = -12
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@infra!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_INFRA_DESC"
+							default_progressbar_horizontal = {
+								visible = "[NotEqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_infra_v').GetValue,'(CFixedPoint)0')]"
+								alpha = 0.5
+								size = { 17 17 }
+								position = { 11 4 }
+								blockoverride "frame" {}
+								blockoverride "values" {
+									value = "[FixedPointToFloat(Scope.Var('gui_states_build_list_filter_infra_v').GetValue)]"
+									min = 0
+									max = 10
+								}
+							}
+							fontsize = 18
+							minimumsize = { -1 25 }
+							size = { 52 25 }
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)3')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)3.01')]"
+								using = highlighted_square_selection
+								using = Color_Blue_S
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_small.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_infra').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_infra_prog').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_right.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_small.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_infra_prog').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								using = Color_Blue_S
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_infra').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_left.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+						}
+					}
+					flowcontainer = {
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@railway!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_RAILWAY_DESC"
+							fontsize = 18
+							minimumsize = { -1 25 }
+							size = { 26 25 }
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)3.1')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)3.11')]"
+								using = highlighted_square_selection
+								using = Color_Blue_S
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@port!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_PORT_DESC"
+							fontsize = 18
+							minimumsize = { -1 25 }
+							size = { 26 25 }
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)3.2')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)3.21')]"
+								using = highlighted_square_selection
+								using = Color_Blue_S
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_coastal').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_not_coastal').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_right.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_not_coastal').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								using = Color_Orange
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_coastal').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_left.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+						}
+					}
+				}
+				flowcontainer = {
+					direction = vertical
+					flowcontainer = {
+						sort_button = { #[6(1)]+2+1 vars (vanilla/prog, unemployed, peasants, auto, hiredelta, nextdelta, un+pea+auto, prog+auto, growth)
+							margin_left = -12
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@laborers!"
+							default_progressbar_horizontal = {
+								visible = "[NotEqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_labor_vn').GetValue,'(CFixedPoint)0')]"
+								alpha = 0.5
+								size = { 16 16 }
+								position = { 9 5 }
+								blockoverride "frame" {}
+								blockoverride "values" {
+									value = "[FixedPointToFloat(Scope.Var('gui_states_build_list_filter_labor_vn').GetValue)]"
+									min = 0
+									max = 10
+								}
+							}
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_LABOR_DESC"
+							minimumsize = { -1 25 }
+							size = { 47 25 }
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)4')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)4.01')]"
+								using = highlighted_square_selection
+								using = Color_Blue_S
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_small.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_high_labor').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_high_labor_prog').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_right.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_small.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_high_labor_prog').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								using = Color_Blue_S
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_high_labor').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_left.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@laborers!@hiring_o!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_HIRE_DELTA_DESC"
+							minimumsize = { -1 25 }
+							size = { 24 25 }
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)4.4')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)4.5')]"
+								using = highlighted_square_selection
+								using = Color_Orange
+							}
+						}
+					}
+					flowcontainer = {
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@unemployed_icon!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_UNEMPLOYED_DESC"
+							minimumsize = { -1 25 }
+							size = { 24 25 }
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)4.1')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_high_unemployed').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@peasants!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_PEASANTS_DESC"
+							minimumsize = { -1 25 }
+							size = { 24 25 }
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)4.2')]"
+								using = highlighted_square_selection
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@workers_auto!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_LABOR_AUTOPMS_DESC"
+							minimumsize = { -1 25 }
+							size = { 23 25 }
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)4.3')]"
+								using = highlighted_square_selection
+							}
+						}
+					}
+				}
+				flowcontainer = {
+					direction = vertical
+					flowcontainer = {
+						sort_button = { #[5(1)+2] vars (vanilla/prog, hiring, not_hiring, auto, subsistence, construction, next)
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							text = "MAP_INTERACTION_BUILD_BUILDING_H_JOBS"
+							fontsize = 15
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_JOBS_DESC"
+							minimumsize = { -1 25 }
+							size = { 20 25 }
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)5')]"
+								using = highlighted_square_selection
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@subsistence_farm"
+							fontsize = 15
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_SUBSISTENCE_JOBS_DESC"
+							minimumsize = { -1 25 }
+							size = { 19 25 }
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)5.4')]"
+								using = highlighted_square_selection
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@construction"
+							fontsize = 13
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_JOBS_CONSTRUCTION_DESC"
+							minimumsize = { -1 25 }
+							size = { 19 25 }
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)5.5')]"
+								using = highlighted_square_selection
+							}
+						}
+					}
+					flowcontainer = {
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@hiring"
+							fontsize = 15
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_HIRING_DESC"
+							minimumsize = { -1 25 }
+							size = { 19 25 }
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)5.1')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)5.12')]"
+								using = highlighted_square_selection
+								using = Color_Orange
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@not_hiring"
+							fontsize = 15
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_NOT_HIRING_DESC"
+							minimumsize = { -1 25 }
+							size = { 20 25 }
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)5.2')]"
+								using = highlighted_square_selection
+							}
+						}
+						sort_button = {
+							margin_left = 2
+							margin_right = 2
+							align = center|nobaseline
+							raw_text = "@jobs_auto"
+							fontsize = 14
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_JOBS_AUTOPMS_DESC"
+							minimumsize = { -1 25 }
+							size = { 19 25 }
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)5.3')]"
+								using = highlighted_square_selection
+							}
+						}
+					}
+				}
+				flowcontainer = {
+					direction = vertical
+					flowcontainer = {
+						parentanchor = right
+						sort_button = {
+							margin_left = 0
+							margin_right = 0
+							align = center|nobaseline
+							datacontext = "[MapListBuildingPanel.GetBuildingType]"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_BALANCE_DESC"
+							minimumsize = { -1 25 }
+							size = { 24 25 }
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_balance').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_balance_prog').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_right.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								texture = "gfx/interface/buttons/default_button_frame_fancy_big.dds"
+								size = { 100% 100% }
+								visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_balance_prog').GetValue,'(CFixedPoint)1')]"
+								using = default_fade_in_out
+								using = Color_Blue_S
+								modify_texture = {
+									visible = "[EqualTo_CFixedPoint(Scope.Var('gui_states_build_list_filter_balance').GetValue,'(CFixedPoint)1')]"
+									texture = "gfx/interface/masks/fade_horizontal_left.dds"
+									spriteType = Corneredstretched
+									spriteborder = { 0 0 }
+									blend_mode = alphamultiply
+								}
+							}
+							raw_text = "@b_balance!"
+							fontsize = 16
+							visible = "[Not(ObjectsEqual(BuildingType.Self, GetBuildingType('building_government_administration').Self))]"
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)6.2')]"
+								using = highlighted_square_selection
+							}
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)6.21')]"
+								using = highlighted_square_selection
+								using = Color_Blue_S
+							}
+							icon = {
+								parentanchor = hcenter|vcenter
+								visible = "[GreaterThan_CFixedPoint(AccessPlayer.MakeScope.Var(Concatenate(BuildingType.GetKey,'_productivity_prog_low')).GetValue,'(CFixedPoint)0')]"
+								size = { 22 23 }
+								using = Color_Red
+								using = ui_event_glow
+								alpha = 0.5
+							}
+						}
+						button_select_arrow = {
+							size = { 20 25 }
+							mirror = horizontal
+							parentanchor = vcenter
+							using = decrease_button_sound
+							using = tooltip_above
+							tooltip = "PREVIOUS_PAGE"
+						}
+						textbox = {
+							raw_text = "[Scope.Var('gui_states_build_vo_list_page').GetValueWithDefault('(CFixedPoint)1')]"
+							size = { 39 -1 }
+							elide = right
+							fontsize_min = 9
+							parentanchor = vcenter
+							align = center|nobaseline
+						}
+						button_select_arrow = {
+							size = { 20 25 }
+							parentanchor = vcenter
+							using = increase_button_sound
+							using = tooltip_above
+							tooltip = "NEXT_PAGE"
+						}
+					}
+					flowcontainer = {
+						flowcontainer = {
+							visible = "[Not(GetVariableSystem.Exists('building_map_list_max_wage'))]"
+							sort_button = { #[2(1)] vars (productivity/prog, avg_wage)
+								margin_left = 2
+								margin_right = 2
+								align = center|nobaseline
+								datacontext = "[MapListBuildingPanel.GetBuildingType]"
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_PRODUCTIVITY_DESC"
+								minimumsize = { -1 25 }
+								size = { 24 25 }
+								raw_text = "@money!"
+								fontsize = 14
+								visible = "[Not(ObjectsEqual(BuildingType.Self, GetBuildingType('building_government_administration').Self))]"
+								icon = {
+									visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)6')]"
+									using = highlighted_square_selection
+								}
+								icon = {
+									visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)6.01')]"
+									using = highlighted_square_selection
+									using = Color_Blue_S
+								}
+							}
+							sort_button = {
+								margin_left = 2
+								margin_right = 2
+								align = center|nobaseline
+								datacontext = "[MapListBuildingPanel.GetBuildingType]"
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_WAGE_DESC"
+								minimumsize = { -1 25 }
+								size = { 24 25 }
+								raw_text = "@wage!"
+								fontsize = 16
+								visible = "[Not(ObjectsEqual(BuildingType.Self, GetBuildingType('building_government_administration').Self))]"
+								icon = {
+									visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)6.1')]"
+									using = highlighted_square_selection
+								}
+							}
+						}
+						flowcontainer = {
+							visible = "[GetVariableSystem.Exists('building_map_list_max_wage')]"
+							sort_button = { #[2(1)] vars (max_wage/prog, base_wage)
+								margin_left = 2
+								margin_right = 2
+								align = center|nobaseline
+								datacontext = "[MapListBuildingPanel.GetBuildingType]"
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_MAX_WAGE_DESC"
+								minimumsize = { -1 25 }
+								size = { 24 25 }
+								raw_text = "@wage!@laborers_o!@arrow_up_up_o!"
+								fontsize = 14
+								visible = "[Not(ObjectsEqual(BuildingType.Self, GetBuildingType('building_government_administration').Self))]"
+								icon = {
+									visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)6.3')]"
+									using = highlighted_square_selection
+								}
+								icon = {
+									visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)6.31')]"
+									using = highlighted_square_selection
+									using = Color_Blue_S
+								}
+							}
+							sort_button = {
+								margin_left = 2
+								margin_right = 2
+								align = center|nobaseline
+								datacontext = "[MapListBuildingPanel.GetBuildingType]"
+								tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_BASE_WAGE_DESC"
+								minimumsize = { -1 25 }
+								size = { 24 25 }
+								raw_text = "@wage!@laborers_o!"
+								fontsize = 16
+								visible = "[Not(ObjectsEqual(BuildingType.Self, GetBuildingType('building_government_administration').Self))]"
+								icon = {
+									visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)6.4')]"
+									using = highlighted_square_selection
+								}
+							}
+						}
+						sort_button = { #1(1) vars (tax_balance/prog)
+							align = center|nobaseline
+							raw_text = "@tax!"
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_H_TAX_DESC"
+							minimumsize = { -1 25 }
+							size = { 48 25 }
+							visible = "[ObjectsEqual(MapListBuildingPanel.GetBuildingType, GetBuildingType('building_government_administration').Self)]"
+							icon = {
+								visible = "[EqualTo_CFixedPoint(Abs_CFixedPoint(Scope.Var('gui_states_build_list_order').GetValue),'(CFixedPoint)7')]"
+								using = highlighted_square_selection
+							}
+						}
+						sort_button = {
+							align = center|nobaseline
+							tooltip = "BUILDING_MAP_LIST_PANEL_STATUS_HEADER_TOOLTIP"
+							minimumsize = { -1 25 }
+							size = { 30 25 }
+							button = {
+								texture = "gfx/interface/buttons/sort_button_icons/sort_icon_status.dds"
+								size = { 20 20 }
+								parentanchor = center
+								alwaystransparent = yes
+							}
+						}
+						button_icon_reset = {
+							size = { 25 25 }
+							tooltip = "MAP_INTERACTION_BUILD_BUILDING_UPDATE"
+						}
+					}
+				}
+			}
+}

@@ -1,0 +1,15 @@
+﻿building_add_goods_action = {
+	building_add_goods_$BTYPE$ = yes
+}
+
+building_add_goods = {
+	building_act_building_type = { ACTION = building_add_goods_action }
+}
+
+building_add_employment_action = {
+	building_add_employment_$BTYPE$ = yes
+}
+
+building_add_employment = {
+	building_act_building_type = { ACTION = building_add_employment_action }
+}

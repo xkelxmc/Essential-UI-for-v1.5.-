@@ -1,0 +1,126 @@
+﻿not_enough_workers_in_state = {
+	script_context = player_state
+
+	valid = {
+		state_available_workers_next_hire < 0
+	}
+
+	open_panel = states_panel|buildings
+	type = important_action
+	alert_group = not_enough_workers_in_state_group
+}
+
+low_infamy = {
+	script_context = player_country
+
+	valid = {
+		infamy < 2.5
+	}
+
+	open_panel = country_panel|diplomacy
+	type = important_action
+}
+
+construction_wasted = {
+	script_context = player_country
+	valid = {
+		has_wasted_construction = yes
+	}
+	type = angry_important_action
+	open_panel = production_methods|construction_queues
+}
+
+high_unemployment_in_state = {
+	script_context = player_state
+
+	valid = {
+		NOT = { owner.var:show_unemployed_alert ?= 0 }
+		state_unemployed_not_hiring >= 15000
+		state_available_jobs_autopms = 0
+	}
+
+	open_panel = states_panel|buildings
+	type = important_action
+	alert_group = high_unemployment_in_state_group 
+}
+
+high_unemployment_in_state_autopms = {
+	script_context = player_state
+
+	valid = {
+		state_unemployed_not_hiring >= 15000
+		state_available_jobs_autopms > 0
+	}
+
+	open_panel = states_panel|buildings
+	type = important_action
+	alert_group = high_unemployment_in_state_autopms_group 
+}
+
+infra_prog_low_in_state = {
+	script_context = player_state
+
+	valid = {
+		state_infra_prog < 0
+	}
+
+	open_panel = states_panel|buildings
+	type = important_action
+	alert_group = infra_prog_low_in_state_group 
+}
+
+legitimacy_level_custom_alert = {
+	script_context = player_country
+	texture = "gfx/interface/icons/alert_icons/low_legitimacy.dds"
+	
+	valid = {
+		trigger_if = { limit =  { has_variable = legitimacy_level_alert }
+			government_legitimacy < var:legitimacy_level_alert
+		} trigger_else = {
+			yes = no
+		}
+	}
+	
+	open_panel = politics|interest_groups
+	type = alert
+}
+
+colony_points_wasted = {
+	script_context = player_country
+	
+	valid = {
+		state_region_player_colonizable_count > 0
+		country_colonial_growth_per_colony_extra_ratio > 0.05
+	}
+	
+	open_panel = politics|institutions
+	#open_panel = lens_toolbar|establish_colony #can't find a way to open
+	#open_popup = colony_map_list_panel
+	type = important_action
+}
+
+state_can_be_incorporated = {
+	script_context = player_state
+
+	valid = {
+		is_incorporated = no
+		incorporation_progress = 0
+		is_treaty_port = no
+		is_under_colonization = no
+		NOT = { state_region = { any_scope_state = { owner = {
+			is_country_type = decentralized #has active play
+			OR = { #has truce and no colonization rights
+				is_diplomatic_play_committed_participant = yes
+				AND = {
+					has_truce_with = ROOT.owner
+					NOT = { has_diplomatic_pact = { who = ROOT.owner type = colonization_rights } }
+				}
+			}
+		} } } }
+		#modifier:state_disallow_incorporation not used
+	}
+
+	open_panel = states_panel
+	type = important_action
+	alert_group = state_can_be_incorporated_group 
+}

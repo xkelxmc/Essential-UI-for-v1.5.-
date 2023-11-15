@@ -1,0 +1,822 @@
+﻿country_market_cache = {
+	effect = {
+		#every_scope_country = { limit = { is_local_player = yes }
+			#debug_log = "country_market_cache"
+			market = { act_market_goods = { ACTION = market_set_all_zero } }
+			every_scope_building = {
+				limit = {
+					is_subsistence_building = no
+				}
+				market = { set_variable = { name = curr_building_usage_set value = no } }
+				if = { limit = { level > 0 }
+					if = { limit = { OR = { is_building_type = building_barracks is_building_type = building_conscription_center } }
+						#Calc value from mobilization
+						#Mobilization stores only current value, all unoccupied goes to hiring/not_hiring
+						building_set_curr_usage_if_not_set = yes
+						if = { limit = { is_building_type = building_conscription_center state = { has_active_building = building_conscription_center } }
+							#Add whole conscription center (building_mobilization_cost_mult will be added below)
+							market = { act_market_goods = { ACTION = market_mob_subtract_curr_usage } }
+						}
+						market = { set_variable = { name = curr_building_mob value = 0 } }
+						every_combat_units = {
+							limit = { commander ?= { is_mobilized = yes } }
+							owner.market = { change_variable = { name = curr_building_mob add = 1 } }
+						}
+						market = {
+							if = { limit = { var:curr_building_mob > 0 }
+								#this modifier is applied only after building_input_*_add (not into it), so we just take it
+								change_variable = { name = curr_building_mob multiply = { value = PREV.modifier:building_mobilization_cost_mult divide = PREV.level } }
+								act_market_goods = { ACTION = market_mob_subtract_curr_usage_with_mob }
+							}
+						}
+					}
+					if = { limit = {
+						occupancy < 1
+						OR = {
+							NOT = { is_building_type = building_conscription_center }
+							state = { has_active_building = building_conscription_center }
+						} }
+						#Calc value from not fully occupied
+						#Conscription center goes fully to mobilization value
+						if = { limit = { occupancy > 0 }
+							#prod / occ * (1-occ) = prod * (1-occ) / occ = prod * ( 1/occ - 1) = prod/occ - prod
+							building_set_curr_usage_if_not_set = yes
+							market = {
+								set_variable = { name = curr_building_not_occ value = { value = 1 divide = PREV.occupancy subtract = 1 } }
+							}
+						} else = {
+							building_set_curr_usage_from_pms = yes
+							market = {
+								set_variable = { name = curr_building_not_occ value = 1 }
+							}
+							#debug_log = "[THIS.GetBuilding.GetNameNoFormatting] in [THIS.GetBuilding.GetState.GetNameNoFormatting]"
+						}
+						if = { limit = { weekly_profit < 0 is_government_funded = no is_subsidized = no }
+							market = { act_market_goods = { ACTION = market_not_hiring_add_curr_usage_with_occ } }
+						}
+						else = {
+							market = { act_market_goods = { ACTION = market_hiring_add_curr_usage_with_occ } }
+						}
+					}
+				}
+				#there may be level > 0 AND under construction also, so no else
+				if = { limit = { is_under_construction = yes }
+					market = {
+						#perL*tProg*qL+perL*(tProg-t)*L = perL*(tProg*qL+(tProg-t)*L) = perL*(tProg*(qL+L)-t*L)
+						set_variable = { name = curr_building_throughput value = PREV.building_throughput_mult }
+						set_variable = { name = curr_building_throughput_prog value = PREV.building_throughput_mult_prog }
+						set_variable = { name = curr_building_throughput_delta value = { value = var:curr_building_throughput_prog subtract = var:curr_building_throughput } }
+					}
+					if = { limit = { level > 0 occupancy > 0 }
+						#following can be rewritten using per_level, but this is safer and faster
+						building_set_curr_usage_if_not_set = yes
+						market = {
+							set_variable = { name = curr_building_level value = PREV.level }
+							act_market_goods = { ACTION = market_curr_usage_divide_building_occ_and_throughput }
+							act_market_goods = { ACTION = market_construction_add_curr_usage_tdelta }
+							act_market_goods = { ACTION = market_curr_usage_divide_curr_building_level }
+						}
+					} else = {
+						act_market_goods = { ACTION = building_set_curr_usage_0 }
+						building_add_goods = yes
+					}
+					market = {
+						set_variable = { name = curr_building_levelq value = PREV.building_levelq }
+						act_market_goods = { ACTION = market_curr_usage_multiply_curr_building_levelq_and_tprog }
+						act_market_goods = { ACTION = market_construction_add_curr_usage }
+					}
+				}
+			}
+			market = {
+				act_market_goods = { ACTION = market_mob_set_balance }
+				act_market_goods = { ACTION = market_not_hiring_set_balance }
+				act_market_goods = { ACTION = market_hiring_set_balance }
+				act_market_goods = { ACTION = market_construction_set_balance }
+				act_market_goods = { ACTION = market_set_progs }
+				act_market_goods = { ACTION = market_remove_curr_usage }
+				remove_variable = curr_building_usage_set
+				remove_variable = curr_building_buy_with_occ
+				remove_variable = curr_building_sell_with_occ
+				remove_variable = curr_building_mob
+				remove_variable = curr_building_not_occ
+				remove_variable = curr_building_level
+				remove_variable = curr_building_throughput
+				remove_variable = curr_building_throughput_prog
+				remove_variable = curr_building_throughput_delta
+				remove_variable = curr_building_levelq
+			}
+		#}
+	}
+}
+
+state_save_building_levelq = {
+	saved_scopes = { qbuilding levelq }
+	effect = {
+		#debug_log = "state_save_building_levelq"
+		scope:qbuilding ?= { building_act_building_type = { ACTION = building_save_levelq } }
+	}
+}
+
+country_states_cache = {
+	effect = {
+		#debug_log = "country_states_cache"
+		every_scope_state = {
+			set_variable = { name = cache_available_workers_autopms value = state_available_workers_autopms }
+			set_variable = { name = cache_available_jobs_autopms value = state_available_jobs_autopms }
+		}
+	}
+}
+
+country_save_legitimacy_level_alert = {
+	saved_scopes = { legitimacy_level }
+	effect = {
+		#debug_log = "country_save_legitimacy_level_alert"
+		set_variable = { name = legitimacy_level_alert value = scope:legitimacy_level }
+	}
+}
+
+country_btype_cache = {
+	saved_scopes = { btype }
+	effect = {
+		#debug_log = "country_btype_cache"
+		if = { limit = { NOT = { exists = global_var:gui_states_build_list_filter_btype_count } }
+			set_global_variable = { name = gui_states_build_list_filter_btype_count value = 0 }
+		}
+		clear_variable_list = buildings_capped
+		act_building_types = { ACTION = country_set_productivity_prog_low_0 }
+		market = { act_market_goods = { ACTION = market_remove_productivity_prog_range } }
+		every_scope_state = {
+			act_building_types = { ACTION = state_set_productivity_prog_0 }
+		}
+		every_scope_building = {
+			#limit = { THIS.type = scope:btype } #for now, let all buildings, because player can switch btypes w/o closing the map list
+			#hidden monuments have level = 0 occ = 1 and employment = 0
+			limit = { is_subsistence_building = no NOT = { is_building_group = bg_monuments_hidden } }
+			#debug_log = "country_btype_cache [THIS.GetBuilding.GetName] occ = [THIS.GetBuilding.GetEmploymentPercentage] level = [THIS.GetBuilding.GetExpansionLevel] type = [THIS.GetBuilding.GetBuildingType.GetKey]"
+			state = { set_variable = { name = curr_building_productivity_prog value = 0 } }
+			if = { limit = { level > 0 occupancy > 0 }
+				if = { limit = { NOT = { exists = local_var:gov_building_base_wage } is_government_funded = yes }
+					set_local_variable = { name = gov_building_productivity value = 0 }
+				}
+				act_market_goods_cost = { ACTION = building_change_curr_productivity_prog }
+				building_act_building_type = { ACTION = building_set_productivity_prog }
+				act_market_goods = { ACTION = building_change_productivity_prog_range }
+			} else = {
+				#debug_log = "[THIS.GetBuilding.GetNameNoFormatting] in [THIS.GetBuilding.GetState.GetNameNoFormatting]"
+				act_market_goods = { ACTION = building_set_curr_usage_0 }
+				building_add_goods = yes
+				act_market_goods_cost = { ACTION = building_change_curr_productivity_prog_from_pms }
+				building_act_building_type = { ACTION = building_set_productivity_prog_from_pms }
+				act_market_goods = { ACTION = building_change_productivity_prog_range_from_pms }
+			}
+			state = { remove_variable = curr_building_productivity_prog }
+			if = {
+				limit = {
+					OR = {
+						is_building_group = bg_agriculture
+						is_building_group = bg_plantations
+						is_building_group = bg_mining
+						is_building_group = bg_logging
+						is_building_group = bg_rubber
+						is_building_group = bg_whaling
+						is_building_group = bg_fishing
+						is_building_group = bg_oil_extraction
+					}
+					NOT = { owner = { is_target_in_variable_list = { name = buildings_capped target = PREV } } }
+				}
+				owner = { add_to_variable_list = { name = buildings_capped target = PREV } }
+			}
+		}
+		market = { act_market_goods = { ACTION = market_set_productivity_prog_range_0_ifnexists } }
+		clear_variable_list = btypes_capped
+		ordered_in_list = {
+			variable = buildings_capped
+			order_by = { subtract = building_lenses_pos }
+			min = 0
+			owner = { add_to_variable_list = { name = btypes_capped target = PREV.type } }
+		}
+	}	
+}
+
+create_state_regions_list = {
+	effect = {
+		#debug_log = "country_create_state_regions_list"
+		every_state_region = {
+			add_to_global_variable_list = { name = state_regions target = THIS }
+			#debug_log = "[THIS.GetStateRegion.GetName]"
+		}
+	}
+}
+
+state_region_save_colonizable = {
+	saved_scopes = { colonizable }
+	effect = {
+		#debug_log = "state_region_save_colonizable [THIS.GetStateRegion.GetName]"
+		set_variable = { name = player_colonizable value = scope:colonizable }
+	}
+}
+
+country_unemployed_alert_toggle = {
+	effect = {
+		#debug_log = country_unemployed_alert_toggle
+		if = { limit = { exists = var:show_unemployed_alert }
+			if = { limit = { var:show_unemployed_alert = 1 } set_variable = { name = show_unemployed_alert value = 0 } }
+			else = { set_variable = { name = show_unemployed_alert value = 1 } }
+		} else = { set_variable = { name = show_unemployed_alert value = 0 } }
+	}
+}
+
+market_gui_market_goods_list = {
+	saved_scopes = { list_order list_filter }
+	effect = {
+		#debug_log = "order_gui_market_goods_list"
+		clear_global_variable_list = gui_market_goods_list
+		if = { limit = { exists = scope:list_filter } market = {
+			if = { limit = { exists = var:gui_filter } 
+				if = { limit = { var:gui_filter = scope:list_filter } set_variable = { name = gui_filter value = 0 } }
+				else = { set_variable = { name = gui_filter value = scope:list_filter } }
+			} else = { set_variable = { name = gui_filter value = scope:list_filter } }
+		} }
+		if = { limit = { exists = scope:list_order } market = {
+			if = { limit = { exists = var:gui_order } 
+				if = { limit = { var:gui_order = scope:list_order } set_variable = { name = gui_order value = { subtract = scope:list_order } } }
+				else = { set_variable = { name = gui_order value = scope:list_order } }
+			} else = { set_variable = { name = gui_order value = scope:list_order } }
+		} }
+		ordered_market_goods = {
+			limit = {
+				trigger_if = { limit = { NOT = { exists = market.var:gui_filter } } }
+				trigger_else = { OR = { #remake with trigger_else_ifs to save cpu
+					market.var:gui_filter = 0
+					AND = { market.var:gui_filter = 1 market_goods_is_staple = yes }
+					AND = { market.var:gui_filter = 2 market_goods_is_industrial = yes }
+					AND = { market.var:gui_filter = 3 market_goods_is_luxury = yes }
+					AND = { market.var:gui_filter = 4 market_goods_is_military = yes }
+					AND = { market.var:gui_filter = 4.1 market_goods_is_military_a = yes }
+					AND = { market.var:gui_filter = 5 market_goods_is_construction = yes }
+					AND = { market.var:gui_filter = 6 market_goods_is_government = yes }
+				} }
+			}
+			order_by = {
+				if = { limit = { NOT = { exists = market.var:gui_order } } value = { subtract = market_goods_alphabet } }
+				else_if = { limit = { market.var:gui_order = -1 } value = market_goods_alphabet }
+				else_if = { limit = { market.var:gui_order = 1 } value = { subtract = market_goods_alphabet } }
+				else_if = { limit = { market.var:gui_order = 2 } value = market_goods_sell_orders }
+				else_if = { limit = { market.var:gui_order = -2 } value = { subtract = market_goods_sell_orders } }
+				else_if = { limit = { market.var:gui_order = 3 } value = market_goods_buy_orders }
+				else_if = { limit = { market.var:gui_order = -3 } value = { subtract = market_goods_buy_orders } }
+				else_if = { limit = { market.var:gui_order = 4 } value = market_goods_delta}
+				else_if = { limit = { market.var:gui_order = -4 } value = { subtract = market_goods_delta } }
+				else_if = { limit = { market.var:gui_order = 4.01 } value = market_goods_balance_prog }
+				else_if = { limit = { market.var:gui_order = -4.01 } value = { subtract = market_goods_balance_prog } }
+				else_if = { limit = { market.var:gui_order = 4.1 } value = market_goods_hiring }
+				else_if = { limit = { market.var:gui_order = -4.1 } value = { subtract = market_goods_hiring } }
+				else_if = { limit = { market.var:gui_order = 4.2 } value = market_goods_construction }
+				else_if = { limit = { market.var:gui_order = -4.2 } value = { subtract = market_goods_construction } }
+				else_if = { limit = { market.var:gui_order = 4.3 } value = market_goods_mobilization }
+				else_if = { limit = { market.var:gui_order = -4.3 } value = { subtract = market_goods_mobilization } }
+				else_if = { limit = { market.var:gui_order = 4.4 } value = { value = market_goods_exports subtract = market_goods_imports } }
+				else_if = { limit = { market.var:gui_order = -4.4 } value = { value = market_goods_imports subtract = market_goods_exports } }
+				else_if = { limit = { market.var:gui_order = 4.5 } value = market_goods_not_hiring }
+				else_if = { limit = { market.var:gui_order = -4.5 } value = { subtract = market_goods_not_hiring } }
+				else_if = { limit = { market.var:gui_order = 4.6 } value = market_goods_productivity_range_l }
+				else_if = { limit = { market.var:gui_order = -4.6 } value = { subtract = market_goods_productivity_range_l } }
+				else_if = { limit = { market.var:gui_order = 4.61 } value = market_goods_productivity_prog_range_l }
+				else_if = { limit = { market.var:gui_order = -4.61 } value = { subtract = market_goods_productivity_prog_range_l } }
+				else_if = { limit = { market.var:gui_order = 4.7 } value = market_goods_productivity_range_h }
+				else_if = { limit = { market.var:gui_order = -4.7 } value = { subtract = market_goods_productivity_range_h } }
+				else_if = { limit = { market.var:gui_order = 4.71 } value = market_goods_productivity_prog_range_h }
+				else_if = { limit = { market.var:gui_order = -4.71 } value = { subtract = market_goods_productivity_prog_range_h } }
+				else_if = { limit = { market.var:gui_order = 4.8 } value = market_goods_max_wage_range_l }
+				else_if = { limit = { market.var:gui_order = -4.8 } value = { subtract = market_goods_max_wage_range_l } }
+				else_if = { limit = { market.var:gui_order = 4.81 } value = market_goods_max_wage_prog_range_l }
+				else_if = { limit = { market.var:gui_order = -4.81 } value = { subtract = market_goods_max_wage_prog_range_l } }
+				else_if = { limit = { market.var:gui_order = 4.9 } value = market_goods_max_wage_range_h }
+				else_if = { limit = { market.var:gui_order = -4.9 } value = { subtract = market_goods_max_wage_range_h } }
+				else_if = { limit = { market.var:gui_order = 4.91 } value = market_goods_max_wage_prog_range_h }
+				else_if = { limit = { market.var:gui_order = -4.91 } value = { subtract = market_goods_max_wage_prog_range_h } }
+				else_if = { limit = { market.var:gui_order = 5 } value = market_goods_price}
+				else_if = { limit = { market.var:gui_order = -5 } value = { subtract = market_goods_price } }
+				else_if = { limit = { market.var:gui_order = 5.01 } value = market_goods_price_prog }
+				else_if = { limit = { market.var:gui_order = -5.01 } value = { subtract = market_goods_price_prog } }
+			}
+			min = 0
+			add_to_global_variable_list = { name = gui_market_goods_list target = THIS }
+			#debug_log = "[THIS.GetMarketGoods.GetGoods.GetKey]"
+		}
+	}
+}
+
+country_gui_states_build_list_save_btype = {
+	saved_scopes = { btype }
+	effect = {
+		#debug_log = gui_states_build_list_save_btype
+		if = { limit = { exists = global_var:gui_states_build_list_btype }
+			if = { limit = { global_var:gui_states_build_list_btype != scope:btype }
+				#debug_log = "gui_states_build_list_save_btype nbtype"
+				set_global_variable = { name = gui_states_build_list_btype value = scope:btype }
+			}
+		} else = {
+			set_global_variable = { name = gui_states_build_list_btype value = scope:btype }
+		}
+	}
+}
+
+country_gui_states_build_list = {
+	saved_scopes = { list_order list_filter_clear list_filter_pms list_filter_high_unemployed list_filter_incorp list_filter_balance list_filter_balance_prog list_filter_high_labor list_filter_high_labor_prog list_filter_not_cap list_filter_high_discr list_filter_low_discr list_filter_infra list_filter_infra_prog list_filter_btype list_filter_coastal list_filter_not_coastal list_filter_not_scale_cap list_filter_any_manufacturing list_filter_not_btype }
+	effect = {
+		#debug_log = country_gui_states_build_list
+		act_gui_states_build_list_filters = { ACTION = gui_states_build_list_filter_toggle }
+		if = { limit = { exists = scope:list_order }
+			if = { limit = { exists = global_var:gui_states_build_list_order } 
+				if = { limit = { global_var:gui_states_build_list_order = scope:list_order } set_global_variable = { name = gui_states_build_list_order value = { subtract = scope:list_order } } }
+				else = { set_global_variable = { name = gui_states_build_list_order value = scope:list_order } }
+			} else = { set_global_variable = { name = gui_states_build_list_order value = scope:list_order } }
+		}
+		country_create_gui_states_build_list = yes
+	}
+}
+
+state_save_gui_map_list_vo_index = {
+	saved_scopes = { index }
+	effect = {
+		#debug_log = state_save_gui_map_list_vo_index
+		set_variable = { name = gui_map_list_vo_index value = scope:index }
+		change_global_variable = { name = gui_states_build_vo_list_size add = 1 }
+		state_create_gui_states_build_list_ife = yes
+	}
+}
+
+state_save_gui_map_list_io_index = {
+	saved_scopes = { index }
+	effect = {
+		#debug_log = state_save_gui_map_list_io_index
+		set_variable = { name = gui_map_list_io_index value = scope:index }
+		change_global_variable = { name = gui_states_build_io_list_size add = 1 }
+		state_create_gui_states_build_list_ife = yes
+	}
+}
+
+state_save_gui_map_list_fo_index = {
+	saved_scopes = { index }
+	effect = {
+		#debug_log = state_save_gui_map_list_fo_index
+		set_variable = { name = gui_map_list_fo_index value = scope:index }
+		change_global_variable = { name = gui_states_build_fo_list_size add = 1 }
+		state_create_gui_states_build_list_ife = yes
+	}
+}
+
+country_clear_state_gui_map_list_index = {
+	saved_scopes = { vo_size io_size fo_size }
+	effect = {
+		#debug_log = country_clear_state_gui_map_list_index
+		every_scope_state = {
+			remove_variable = gui_map_list_vo_index
+			remove_variable = gui_map_list_io_index
+			remove_variable = gui_map_list_fo_index
+		}
+		set_global_variable = { name = gui_states_build_vo_list_size value = 0 }
+		set_global_variable = { name = gui_states_build_io_list_size value = 0 }
+		set_global_variable = { name = gui_states_build_fo_list_size value = 0 }
+		set_global_variable = { name = gui_states_build_vo_list_esize value = scope:vo_size }
+		set_global_variable = { name = gui_states_build_io_list_esize value = scope:io_size }
+		set_global_variable = { name = gui_states_build_fo_list_esize value = scope:fo_size }
+	}
+}
+
+gui_states_build_vo_list_page_prev = {
+	effect = {
+		#debug_log = gui_states_build_vo_list_page_prev
+		if = { limit = { NOT = { exists = global_var:gui_states_build_vo_list_page } }
+			set_global_variable = { name = gui_states_build_vo_list_page value = 1 }
+		}
+		if = { limit = { global_var:gui_states_build_vo_list_page > 1 }
+			change_global_variable = { name = gui_states_build_vo_list_page subtract = 1 }
+			country_create_gui_states_build_vo_list_page = yes
+		} else_if = { limit = { global_var:gui_states_build_vo_list_pages > 1 }
+			set_global_variable = { name = gui_states_build_vo_list_page value = global_var:gui_states_build_vo_list_pages }
+			country_create_gui_states_build_vo_list_page = yes
+		}
+	}
+}
+
+gui_states_build_vo_list_page_next = {
+	effect = {
+		#debug_log = gui_states_build_vo_list_page_next
+		if = { limit = { NOT = { exists = global_var:gui_states_build_vo_list_page } }
+			set_global_variable = { name = gui_states_build_vo_list_page value = 1 }
+		}
+		if = { limit = { global_var:gui_states_build_vo_list_page < global_var:gui_states_build_vo_list_pages }
+			change_global_variable = { name = gui_states_build_vo_list_page add = 1 }
+			country_create_gui_states_build_vo_list_page = yes
+		} else_if = { limit = { global_var:gui_states_build_vo_list_pages > 1 }
+			set_global_variable = { name = gui_states_build_vo_list_page value = 1 }
+			country_create_gui_states_build_vo_list_page = yes
+		}
+	}
+}
+
+gui_states_build_vo_list_page_set = {
+	saved_scopes = { page }
+	effect = {
+		#debug_log = gui_states_build_vo_list_page_set
+		set_global_variable = { name = gui_states_build_vo_list_page value = scope:page }
+		country_create_gui_states_build_vo_list_page = yes
+	}
+}
+
+gui_states_build_list_order_btype_set = {
+	saved_scopes = { btype }
+	effect = {
+		#debug_log = gui_states_build_list_order_btype_set
+		if = { limit = { global_var:gui_states_build_list_order_btype ?= scope:btype }
+			remove_global_variable = gui_states_build_list_order_btype
+		} else = {
+			set_global_variable = { name = gui_states_build_list_order_btype value = scope:btype }
+		}
+		country_create_gui_states_build_list = yes
+	}
+}
+
+gui_states_build_list_filter_incorp_p_list_create = {
+	effect = {
+		#debug_log = gui_states_build_list_filter_incorp_p_list_create
+		clear_global_variable_list = gui_states_build_list_filter_incorp_p_list
+		add_to_global_variable_list = { name = gui_states_build_list_filter_incorp_p_list target = 0 }
+		add_to_global_variable_list = { name = gui_states_build_list_filter_incorp_p_list target = 0.25 }
+		add_to_global_variable_list = { name = gui_states_build_list_filter_incorp_p_list target = 0.5 }
+		add_to_global_variable_list = { name = gui_states_build_list_filter_incorp_p_list target = 0.75 }
+		if = { limit = { NOT = { exists = global_var:gui_states_build_list_filter_incorp_p } }
+			set_global_variable = { name = gui_states_build_list_filter_incorp_p value = 0 }
+		}
+	}
+}
+
+gui_states_build_list_filter_incorp_p_set = {
+	saved_scopes = { incorp_p }
+	effect = {
+		#debug_log = gui_states_build_list_filter_incorp_p_set
+		if = { limit = { global_var:gui_states_build_list_filter_incorp_p ?= scope:incorp_p }
+			set_global_variable = { name = gui_states_build_list_filter_incorp_p value = scope:incorp_p }
+		} else = {
+			set_global_variable = { name = gui_states_build_list_filter_incorp_p value = scope:incorp_p }
+			country_create_gui_states_build_list = yes
+		}
+	}
+}
+
+country_create_states_build_list_quals_list = {
+	effect = {
+		#debug_log = country_create_states_build_list_quals_list
+		clear_global_variable_list = gui_states_build_list_quals_list
+		random_scope_building = {
+			limit = { type = global_var:gui_states_build_list_btype }
+			if = { limit = { OR = {
+					is_building_group = bg_manufacturing
+					is_building_group = bg_mining
+					is_building_group = bg_logging
+					is_building_group = bg_rubber
+					is_building_group = bg_whaling
+					is_building_group = bg_fishing
+					is_building_group = bg_oil_extraction
+				} }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:capitalists }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:engineers }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:machinists }
+			}
+			else_if = { limit = { OR = { is_building_group = bg_agriculture is_building_group = bg_plantations } }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:aristocrats }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:clergymen }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:farmers }
+			}
+			else_if = { limit = { is_building_group = bg_arts }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:capitalists }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:aristocrats }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:academics }
+			}
+			else_if = { limit = { is_building_group = bg_bureaucracy }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:aristocrats }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:bureaucrats }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:clerks }
+			}
+			else_if = { limit = { is_building_group = bg_technology }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:academics }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:clergymen }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:clerks }
+			}
+			else_if = { limit = { is_building_type = building_port }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:bureaucrats }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:machinists }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:clerks }
+			}
+			else_if = { limit = { is_building_group = bg_construction }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:bureaucrats }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:machinists }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:clerks }
+			}
+			else_if = { limit = { is_building_group = bg_canals }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:capitalists }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:machinists }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:clerks }
+			}
+			else_if = { limit = { is_building_group = bg_military }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:officers }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:soldiers }
+			}
+			else_if = { limit = { is_building_group = bg_skyscraper }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:bureaucrats }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:clerks }
+			}
+			else_if = { limit = { is_building_group = bg_private_infrastructure }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:capitalists }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:engineers }
+				add_to_global_variable_list = { name = gui_states_build_list_quals_list target = pop_type:machinists }
+			}
+			#bg_monuments - each different
+		}
+	}
+}
+
+country_toggle_gui_states_build_list_highlight = {
+	saved_scopes = { btype }
+	effect = {
+		#debug_log = country_toggle_gui_states_build_list_highlight
+		random_scope_building = {
+			limit = { type = scope:btype }
+			building_act_building_type = { ACTION = building_toggle_gui_states_build_list_highlight }
+		}
+	}
+}
+
+clear_gui_states_build_list_highlights = {
+	effect = {
+		#debug_log = clear_gui_states_build_list_highlights
+		act_building_types = { ACTION = btype_clear_gui_states_build_list_highlights }
+	}
+}
+
+gui_states_build_list_filter_labor_vn_list_create = {
+	effect = {
+		#debug_log = gui_states_build_list_filter_labor_vn_list_create
+		clear_global_variable_list = gui_states_build_list_filter_labor_vn_list
+		add_to_global_variable_list = { name = gui_states_build_list_filter_labor_vn_list target = 1 }
+		add_to_global_variable_list = { name = gui_states_build_list_filter_labor_vn_list target = 2 }
+		add_to_global_variable_list = { name = gui_states_build_list_filter_labor_vn_list target = 5 }
+		add_to_global_variable_list = { name = gui_states_build_list_filter_labor_vn_list target = 10 }
+		if = { limit = { NOT = { exists = global_var:gui_states_build_list_filter_labor_vn } }
+			set_global_variable = { name = gui_states_build_list_filter_labor_vn value = 10 }
+		}
+	}
+}
+
+gui_states_build_list_filter_labor_vn_set = {
+	saved_scopes = { labor_vn }
+	effect = {
+		#debug_log = gui_states_build_list_filter_labor_vn_set
+		if = { limit = { not = { global_var:gui_states_build_list_filter_labor_vn ?= scope:labor_vn } }
+			set_global_variable = { name = gui_states_build_list_filter_labor_vn value = scope:labor_vn }
+			country_create_gui_states_build_list = yes
+		}
+	}
+}
+
+country_clear_religions = {
+	effect = {
+		#debug_log = country_clear_religions
+		clear_variable_list = discriminated_religions
+	}
+}
+
+country_save_religion = {
+	saved_scopes = { religion }
+	saved_scopes = { is_discriminated }
+	effect = {
+		#debug_log = country_save_religion
+		if = { limit = { scope:is_discriminated = yes }
+			add_to_variable_list = { name = discriminated_religions target = scope:religion }
+		}
+	}
+}
+
+gui_states_build_list_filter_discr_v_list_create = {
+	effect = {
+		#debug_log = gui_states_build_list_filter_discr_v_list_create
+		clear_global_variable_list = gui_states_build_list_filter_discr_v_list
+		add_to_global_variable_list = { name = gui_states_build_list_filter_discr_v_list target = 0 }
+		add_to_global_variable_list = { name = gui_states_build_list_filter_discr_v_list target = 0.25 }
+		add_to_global_variable_list = { name = gui_states_build_list_filter_discr_v_list target = 0.5 }
+		add_to_global_variable_list = { name = gui_states_build_list_filter_discr_v_list target = 0.75 }
+		if = { limit = { NOT = { exists = global_var:gui_states_build_list_filter_discr_v } }
+			set_global_variable = { name = gui_states_build_list_filter_discr_v value = 0}
+		}
+	}
+}
+
+gui_states_build_list_filter_discr_v_set = {
+	saved_scopes = { discr_v }
+	effect = {
+		#debug_log = gui_states_build_list_filter_discr_v_set
+		if = { limit = { not = { global_var:gui_states_build_list_filter_discr_v ?= scope:discr_v } }
+			set_global_variable = { name = gui_states_build_list_filter_discr_v value = scope:discr_v }
+			country_create_gui_states_build_list = yes
+		}
+	}
+}
+
+gui_states_build_list_save_preset = {
+	effect = {
+		#debug_log = gui_states_build_list_save_preset
+		if = { limit = { NOT = { exists = global_var:gui_states_build_list_presets_max } }
+			set_global_variable = { name = gui_states_build_list_presets_max value = 0 }
+		}
+		if = { limit = { NOT = { exists = global_var:gui_states_build_list_preset_dels_count } }
+			set_global_variable = { name = gui_states_build_list_preset_dels_count value = 0 }
+		}
+		if = { limit = { global_var:gui_states_build_list_preset_dels_count > 0 }
+			ordered_in_global_list = {
+				variable = gui_states_build_list_preset_dels
+				order_by = { subtract = THIS }
+				position = 0
+				set_local_variable = { name = preset_num value = THIS }
+				remove_list_global_variable = { name = gui_states_build_list_preset_dels target = THIS }
+				change_global_variable = { name = gui_states_build_list_preset_dels_count subtract = 1 }
+				#debug_log = del
+			}
+		} else = {
+			change_global_variable = { name = gui_states_build_list_presets_max add = 1 }
+			set_local_variable = { name = preset_num value = global_var:gui_states_build_list_presets_max }
+			#debug_log = count
+		}
+		ordered_state_region = {
+			limit = { NOT = { exists = var:gui_states_build_list_preset } }
+			position = 0
+			set_variable = { name = gui_states_build_list_preset value = local_var:preset_num }
+			state_region_gui_states_build_list_save_preset_values = yes
+		}
+		gui_states_build_list_create_presets = yes
+		remove_local_variable = preset_num
+	}
+}
+
+state_region_gui_states_build_list_overwrite_preset = {
+	effect = {
+		#debug_log = state_region_gui_states_build_list_overwrite_preset
+		state_region_gui_states_build_list_save_preset_values = yes
+	}
+}
+
+state_region_gui_states_build_list_delete_preset = {
+	effect = {
+		#debug_log = gui_states_build_list_delete_preset
+		if = { limit = { NOT = { var:gui_states_build_list_preset = global_var:gui_states_build_list_presets_max } }
+			add_to_global_variable_list = { name = gui_states_build_list_preset_dels target = var:gui_states_build_list_preset }
+			if = { limit = { NOT = { exists = global_var:gui_states_build_list_preset_dels_count } }
+				set_global_variable = { name = gui_states_build_list_preset_dels_count value = 0 }
+			}
+			change_global_variable = { name = gui_states_build_list_preset_dels_count add = 1 }
+			#debug_log = add_del
+		} else = {
+			change_global_variable = { name = gui_states_build_list_presets_max subtract = 1 }
+		}
+		remove_variable = gui_states_build_list_preset
+		gui_states_build_list_create_presets = yes
+	}
+}
+
+state_region_gui_states_build_list_load_preset = {
+	effect = {
+		#debug_log = gui_states_build_list_load_preset
+		if = { limit = { exists = var:gui_states_build_list_order }
+			set_global_variable = { name = gui_states_build_list_order value = var:gui_states_build_list_order }
+		}
+		act_gui_states_build_list_filters = { ACTION = state_region_gui_states_build_list_load_filter }
+		act_gui_states_build_list_settings = { ACTION = state_region_gui_states_build_list_load_setting }
+		act_building_types = { ACTION = state_region_gui_states_build_list_load_filter_btype_settings }
+		set_global_variable = { name = gui_states_build_vo_list_page value = var:gui_states_build_vo_list_page }
+	}
+}
+
+country_gui_states_build_list_filter_infra_v_list_create = {
+	effect = {
+		#debug_log = gui_states_build_list_filter_infra_v_list_create
+		clear_global_variable_list = gui_states_build_list_filter_infra_v_list
+		add_to_global_variable_list = { name = gui_states_build_list_filter_infra_v_list target = 1 }
+		add_to_global_variable_list = { name = gui_states_build_list_filter_infra_v_list target = 2 }
+		add_to_global_variable_list = { name = gui_states_build_list_filter_infra_v_list target = 5 }
+		add_to_global_variable_list = { name = gui_states_build_list_filter_infra_v_list target = 10 }
+		if = { limit = { NOT = { exists = global_var:gui_states_build_list_filter_infra_v } }
+			set_global_variable = { name = gui_states_build_list_filter_infra_v value = 1 }
+		}
+	}
+}
+
+country_gui_states_build_list_filter_infra_v_set = {
+	saved_scopes = { infra_v }
+	effect = {
+		#debug_log = country_gui_states_build_list_filter_infra_v_set
+		if = { limit = { not = { global_var:gui_states_build_list_filter_infra_v ?= scope:infra_v } }
+			set_global_variable = { name = gui_states_build_list_filter_infra_v value = scope:infra_v }
+			country_create_gui_states_build_list = yes
+		}
+	}
+}
+
+country_toggle_gui_states_build_list_filter_btype = {
+	saved_scopes = { btype }
+	effect = {
+		#debug_log = country_toggle_gui_states_build_list_filter_btype
+		random_in_list = {
+			variable = buildings_capped
+			limit = { type = scope:btype }
+			building_act_building_type = { ACTION = building_toggle_gui_states_build_list_filter_btype }
+			PREV = {
+				if = { limit = { OR = {
+						global_var:gui_states_build_list_filter_btype ?= 1
+						global_var:gui_states_build_list_filter_not_btype ?= 1
+					} }
+					country_create_gui_states_build_list = yes
+				}
+			}
+		}
+	}
+}
+
+state_save_btype_reachedcap = {
+	saved_scopes = { btype reachedcap }
+	effect = {
+		#debug_log = "state_save_btype_reachedcap"
+		save_temporary_scope_as = check_state
+		owner = { random_in_list = {
+			variable = buildings_capped
+			limit = { type = scope:btype }
+			building_act_building_type = { ACTION = building_save_reachedcap }
+		} }
+	}
+}
+
+toggle_gui_states_jobs_not_hiring = {
+	effect = {
+		#debug_log = toggle_gui_states_jobs_not_hiring 
+		if = { limit = { exists = global_var:gui_states_jobs_not_hiring } remove_global_variable = gui_states_jobs_not_hiring }
+		else = { set_global_variable = { name = gui_states_jobs_not_hiring value = 1 } }
+	}
+}
+
+toggle_gui_states_workers_autopms = {
+	effect = {
+		#debug_log = toggle_gui_states_workers_autopms
+		if = { limit = { exists = global_var:gui_states_workers_autopms } remove_global_variable = gui_states_workers_autopms }
+		else = { set_global_variable = { name = gui_states_workers_autopms value = 1 } }
+	}
+}
+
+market_toggle_prog_add_not_hiring = {
+	effect = {
+		#debug_log = market_toggle_prog_add_not_hiring
+		if = { limit = { exists = var:prog_add_not_hiring } remove_variable = prog_add_not_hiring }
+		else = { set_variable = { name = prog_add_not_hiring value = 1 } }
+	}
+}
+
+market_toggle_prog_add_mobilization = {
+	effect = {
+		#debug_log = market_toggle_prog_add_mobilization
+		if = { limit = { exists = var:prog_add_mobilization } remove_variable = prog_add_mobilization }
+		else = { set_variable = { name = prog_add_mobilization value = 1 } }
+	}
+}
+
+create_poll_delays_list = {
+	effect = {
+		#debug_log = create_poll_delays_list
+		clear_global_variable_list = gui_poll_delays_list
+		add_to_global_variable_list = { name = gui_poll_delays_list target = 0 }
+		add_to_global_variable_list = { name = gui_poll_delays_list target = 1 }
+		add_to_global_variable_list = { name = gui_poll_delays_list target = 2 }
+		add_to_global_variable_list = { name = gui_poll_delays_list target = 3 }
+		add_to_global_variable_list = { name = gui_poll_delays_list target = 5 }
+		if = { limit = { NOT = { exists = global_var:gui_construction_paused_poll_delay } }
+			set_global_variable = { name = gui_construction_paused_poll_delay value = 0 }
+		}
+		if = { limit = { NOT = { exists = global_var:gui_construction_poll_delay } }
+			set_global_variable = { name = gui_construction_poll_delay value = 3 }
+		}
+	}
+}
+
+gui_save_construction_paused_poll_delay = {
+	saved_scopes = { poll_delay }
+	effect = {
+		#debug_log = gui_save_construction_paused_poll_delay
+		set_global_variable = { name = gui_construction_paused_poll_delay value = scope:poll_delay }
+	}
+}
+
+gui_save_construction_poll_delay = {
+	saved_scopes = { poll_delay }
+	effect = {
+		#debug_log = gui_save_construction_poll_delay
+		set_global_variable = { name = gui_construction_poll_delay value = scope:poll_delay }
+	}
+}

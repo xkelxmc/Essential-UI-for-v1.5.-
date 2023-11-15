@@ -1,0 +1,12 @@
+{
+  "name" : "Essential UI (v1.5)",
+  "id" : "",
+  "version" : "1.5.2",
+  "supported_game_version" : "1.5.*",
+  "short_description" : "Overhauls economic UI (Market Panel, Building Map List, State Buildings Tab, Alerts) to finally allow you to figure out where is the problem and balance your economy",
+  "tags" : ["Utilities","Economy And Buildings","Graphics"],
+  "relationships" : [],
+  "game_custom_data" : {
+    "multiplayer_synchronized" : true
+  }
+}

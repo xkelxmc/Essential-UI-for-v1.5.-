@@ -1,0 +1,238 @@
+texticon = {
+	icon = not_hiring
+	iconsize = {
+		texture = "gfx/interface/icons/generic_icons/employment_not_full.dds"
+		offset = { 0 20 }
+		fontsize = 120
+	}
+}
+
+texticon = {
+	icon = hiring
+	iconsize = {
+		texture = "gfx/interface/icons/generic_icons/employment_not_full_hiring.dds"
+		offset = { 0 20 }
+		fontsize = 120
+	}
+}
+
+texticon = {
+	icon = hiring_next
+	iconsize = {
+		texture = "gfx/interface/icons/generic_icons/play_next.dds"
+		offset = { 0 5 }
+		fontsize = 39
+	}
+}
+
+texticon = {
+	icon = jobs_auto
+	iconsize = {
+		texture = "gfx/interface/icons/production_method_icons/rotary_valve_engine.dds"
+		offset = { 0 20 }
+		fontsize = 96
+	}
+}
+
+texticon = {
+	icon = workers_auto
+	iconsize = {
+		texture = "gfx/interface/icons/production_method_icons/no_automation.dds"
+		offset = { 0 20 }
+		fontsize = 96
+	}
+}
+
+texticon = {
+	icon = infra
+	iconsize = {
+		texture = "gfx/interface/icons/state_status_icons/state_infrastructure.dds"
+		offset = { 0 20 }
+		fontsize = 120
+	}
+}
+
+texticon = {
+	icon = railway
+	iconsize = {
+		texture = "gfx/interface/icons/building_icons/building_railway.dds"
+		offset = { 0 30 }
+		fontsize = 280
+	}
+}
+
+texticon = {
+	icon = port
+	iconsize = {
+		texture = "gfx/interface/icons/building_icons/building_port.dds"
+		offset = { 0 30 }
+		fontsize = 280
+	}
+}
+
+texticon = {
+	icon = subsistence_farm
+	iconsize = {
+		texture = "gfx/interface/icons/building_icons/building_subsistence_farm.dds"
+		offset = { 0 30 }
+		fontsize = 280
+	}
+}
+
+texticon = {
+	icon = unincorporated_s
+	iconsize = {
+		texture = "gfx/interface/icons/state_status_icons/unincorporated_state.dds"
+		offset = { 0 20 }
+		fontsize = 140
+	}
+}
+
+texticon = {
+	icon = incorporate
+	iconsize = {
+		texture = "gfx/interface/icons/lens_toolbar_icons/incorporate_state.dds"
+		offset = { 0 15 }
+		fontsize = 106
+	}
+}
+
+texticon = {
+	icon = incorporated_s
+	iconsize = {
+		texture = "gfx/interface/icons/state_status_icons/incorporated_state.dds"
+		offset = { 0 20 }
+		fontsize = 140
+	}
+}
+
+texticon = {
+	icon = tax
+	iconsize = {
+		texture = "gfx/interface/icons/state_status_icons/state_tax_capacity.dds"
+		offset = { 0 20 }
+		fontsize = 120
+	}
+}
+
+texticon = {
+	icon = wage
+	iconsize = {
+		texture = "gfx/interface/icons/decree/decree_emergency_relief.dds"
+		#offset = { 0 25 }
+		#fontsize = 165
+		offset = { 0 35 }
+		fontsize = 140
+	}
+}
+
+texticon = {
+	icon = colonizable
+	iconsize = {
+		texture = "gfx/interface/icons/state_status_icons/colonizable.dds"
+		offset = { 0 20 }
+		fontsize = 120
+	}
+}
+
+texticon = {
+	icon = colony
+	iconsize = {
+		texture = "gfx/interface/icons/state_status_icons/colony.dds"
+		offset = { 0 20 }
+		fontsize = 120
+	}
+}
+
+texticon = {
+	icon = turns_into_o
+	iconsize = {
+		offset = { -78 -30 }
+		texture = "gfx/interface/icons/generic_icons/turns_into.dds"
+		fontsize = 80
+	}
+}
+
+texticon = {
+	icon = hiring_o
+	iconsize = {
+		texture = "gfx/interface/icons/generic_icons/employment_not_full_hiring.dds"
+		offset = { -183 -50 }
+		fontsize = 180
+	}
+}
+
+texticon = {
+	icon = hiring_next_o
+	iconsize = {
+		texture = "gfx/interface/icons/generic_icons/play_next.dds"
+		offset = { -53 -13 }
+		fontsize = 50
+	}
+}
+
+texticon = {
+	icon = population
+	iconsize = {
+		texture = "gfx/interface/icons/generic_icons/population.dds"
+		offset = { 0 20 }
+		fontsize = 120
+	}
+}
+
+texticon = {
+	icon = update
+	iconsize = {
+		texture = "gfx/interface/buttons/button_icons/reset.dds"
+		offset = { 0 33 }
+		fontsize = 75
+	}
+}
+
+texticon = {
+	icon = discriminated
+	iconsize = {
+		texture = "gfx/interface/icons/generic_icons/discriminated_icon.dds"
+		offset = { 0 8 }
+		fontsize = 50
+	}
+}
+
+texticon = {
+	icon = b_balance
+	iconsize = {
+		texture = "gfx/interface/main_hud/budget_btn.dds"
+		offset = { -20 20 }
+		fontsize = 65
+	}
+}
+
+texticon = {
+	icon = laborers_o
+	iconsize = {
+		#offset = { -520 -130 }
+		offset = { -270 70 }
+		texture = "gfx/interface/icons/pops_icons/laborers.dds"
+		#fontsize = 500
+		fontsize = 300
+	}
+}
+
+texticon = {
+	icon = arrow_up_up_o
+	iconsize = {
+		#offset = { 0 5 }
+		offset = { -20 5 }
+		texture = "gfx/interface/icons/generic_icons/trend_upup.dds"
+		fontsize = 35
+	}
+}
+
+texticon = {
+	icon = g_balance
+	iconsize = {
+		texture = "gfx/interface/icons/generic_icons/ongoing_action_both.dds"
+		offset = { 0 5 }
+		fontsize = 50
+	}
+}

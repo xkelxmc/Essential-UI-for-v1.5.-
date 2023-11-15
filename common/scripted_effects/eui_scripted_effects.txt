@@ -1,0 +1,1175 @@
+﻿act_market_goods = { #52
+	$ACTION$ = { GOODS = ammunition }
+	$ACTION$ = { GOODS = small_arms }
+	$ACTION$ = { GOODS = artillery }
+	$ACTION$ = { GOODS = tanks }
+	$ACTION$ = { GOODS = aeroplanes }
+	$ACTION$ = { GOODS = manowars }
+	$ACTION$ = { GOODS = ironclads }
+	$ACTION$ = { GOODS = grain }
+	$ACTION$ = { GOODS = fish }
+	$ACTION$ = { GOODS = fabric }
+	$ACTION$ = { GOODS = wood }
+	$ACTION$ = { GOODS = groceries }
+	$ACTION$ = { GOODS = clothes }
+	$ACTION$ = { GOODS = furniture }
+	$ACTION$ = { GOODS = paper }
+	$ACTION$ = { GOODS = services }
+	$ACTION$ = { GOODS = transportation }
+	$ACTION$ = { GOODS = electricity }
+	$ACTION$ = { GOODS = clippers }
+	$ACTION$ = { GOODS = steamers }
+	$ACTION$ = { GOODS = silk }
+	$ACTION$ = { GOODS = dye }
+	$ACTION$ = { GOODS = sulfur }
+	$ACTION$ = { GOODS = coal }
+	$ACTION$ = { GOODS = iron }
+	$ACTION$ = { GOODS = lead }
+	$ACTION$ = { GOODS = hardwood }
+	$ACTION$ = { GOODS = rubber }
+	$ACTION$ = { GOODS = oil }
+	$ACTION$ = { GOODS = engines }
+	$ACTION$ = { GOODS = steel }
+	$ACTION$ = { GOODS = glass }
+	$ACTION$ = { GOODS = fertilizer }
+	$ACTION$ = { GOODS = tools }
+	$ACTION$ = { GOODS = explosives }
+	$ACTION$ = { GOODS = porcelain }
+	$ACTION$ = { GOODS = meat }
+	$ACTION$ = { GOODS = fruit }
+	$ACTION$ = { GOODS = liquor }
+	$ACTION$ = { GOODS = wine }
+	$ACTION$ = { GOODS = tea }
+	$ACTION$ = { GOODS = coffee }
+	$ACTION$ = { GOODS = sugar }
+	$ACTION$ = { GOODS = tobacco }
+	$ACTION$ = { GOODS = opium }
+	$ACTION$ = { GOODS = automobiles }
+	$ACTION$ = { GOODS = telephones }
+	$ACTION$ = { GOODS = radios }
+	$ACTION$ = { GOODS = luxury_clothes }
+	$ACTION$ = { GOODS = luxury_furniture }
+	$ACTION$ = { GOODS = gold }
+	$ACTION$ = { GOODS = fine_art }
+}
+
+market_set_all_zero = {
+	set_variable = { name = $GOODS$_hiring_buy value = 0 }
+	set_variable = { name = $GOODS$_hiring_sell value = 0 }
+	set_variable = { name = $GOODS$_hiring_mob value = 0 }
+	set_variable = { name = $GOODS$_hiring_mob_add value = 0 }
+	set_variable = { name = $GOODS$_hiring_conscr value = 0 }
+	set_variable = { name = $GOODS$_not_hiring_buy value = 0 }
+	set_variable = { name = $GOODS$_not_hiring_sell value = 0 }
+	set_variable = { name = $GOODS$_mobilization_buy value = 0 }
+	set_variable = { name = $GOODS$_mobilization_sell value = 0 }
+	set_variable = { name = $GOODS$_construction_buy value = 0 }
+	set_variable = { name = $GOODS$_construction_sell value = 0 }
+	set_variable = { name = $GOODS$_construction_mob value = 0 }
+	set_variable = { name = $GOODS$_construction_mob_add value = 0 }
+}
+
+building_set_curr_usage = {
+	market = {
+		set_variable = { name = curr_building_sell_$GOODS$ value = PREV.modifier:building_output_$GOODS$_add }
+		if = { limit = { exists = PREV.modifier:building_input_$GOODS$_add } #use has_modifier to suppress warnings?
+			set_variable = { name = curr_building_buy_$GOODS$ value = PREV.modifier:building_input_$GOODS$_add }
+		} else = { set_variable = { name = curr_building_buy_$GOODS$ value = 0 } }
+	}
+}
+
+building_set_curr_usage_if_not_set = {
+	if = { limit = { market = { var:curr_building_usage_set = no } }
+		act_market_goods = { ACTION = building_set_curr_usage }
+		market = { set_variable = curr_building_usage_set }
+	}
+}
+
+building_set_curr_usage_0 = {
+	market = {
+		set_variable = { name = curr_building_buy_$GOODS$ value = 0 }
+		set_variable = { name = curr_building_sell_$GOODS$ value = 0 }
+	}
+}
+
+market_curr_usage_multiply_curr_building_level_and_tprog = {
+	change_variable = { name = curr_building_buy_$GOODS$ multiply = { value = var:curr_building_level multiply = { value = 1 add = var:curr_building_throughput_prog } } }
+	change_variable = { name = curr_building_sell_$GOODS$ multiply = { value = var:curr_building_level multiply = { value = 1 add = var:curr_building_throughput_prog } } }
+}
+
+building_set_curr_usage_from_pms = {
+	act_market_goods = { ACTION = building_set_curr_usage_0 }
+	building_add_goods = yes
+	market = {
+		set_variable = { name = curr_building_level value = PREV.level }
+		set_variable = { name = curr_building_throughput_prog value = PREV.building_throughput_mult_prog }
+		act_market_goods = { ACTION = market_curr_usage_multiply_curr_building_level_and_tprog }
+	}
+}
+
+market_remove_curr_usage = {
+	remove_variable = curr_building_buy_$GOODS$
+	remove_variable = curr_building_sell_$GOODS$
+}
+
+market_mob_subtract_curr_usage = {
+	change_variable = { name = $GOODS$_mobilization_buy subtract = var:curr_building_buy_$GOODS$ }
+	change_variable = { name = $GOODS$_mobilization_sell subtract =  var:curr_building_sell_$GOODS$ }
+}
+
+#PREV = building
+market_mob_subtract_curr_usage_with_mob = {
+	change_variable = { name = $GOODS$_mobilization_buy subtract = { value = var:curr_building_buy_$GOODS$ multiply = var:curr_building_mob } }
+	change_variable = { name = $GOODS$_mobilization_sell subtract = { value = var:curr_building_sell_$GOODS$ multiply = var:curr_building_mob } }
+}
+
+market_mob_set_balance = {
+	set_variable = { name = $GOODS$_mobilization value = { value = var:$GOODS$_mobilization_sell subtract = var:$GOODS$_mobilization_buy } }
+}
+
+market_not_hiring_add_curr_usage_with_occ = {
+	change_variable = { name = $GOODS$_not_hiring_buy add = { value = var:curr_building_buy_$GOODS$ multiply = var:curr_building_not_occ } }
+	change_variable = { name = $GOODS$_not_hiring_sell add = { value = var:curr_building_sell_$GOODS$ multiply = var:curr_building_not_occ } }
+}
+
+market_not_hiring_set_balance = {
+	set_variable = { name = $GOODS$_not_hiring value = { value = var:$GOODS$_not_hiring_sell subtract = var:$GOODS$_not_hiring_buy } }
+}
+
+#PREV = building
+market_hiring_add_curr_usage_with_occ = {
+	set_variable = { name = curr_building_buy_with_occ value = { value = var:curr_building_buy_$GOODS$ multiply = var:curr_building_not_occ } }
+	set_variable = { name = curr_building_sell_with_occ value = { value = var:curr_building_sell_$GOODS$ multiply = var:curr_building_not_occ } }
+	change_variable = { name = $GOODS$_hiring_buy add = var:curr_building_buy_with_occ }
+	change_variable = { name = $GOODS$_hiring_sell add = var:curr_building_sell_with_occ }
+	if = { limit = { PREV = { OR = { is_building_type = building_barracks is_building_type = building_conscription_center } } }
+		change_variable = { name = $GOODS$_hiring_mob add = { value = var:curr_building_sell_with_occ subtract = var:curr_building_buy_with_occ } }
+		change_variable = { name = $GOODS$_hiring_mob_add add = {
+			value = { value = var:curr_building_sell_with_occ multiply = PREV.modifier:building_mobilization_cost_mult }
+			subtract = { value = var:curr_building_buy_with_occ multiply = PREV.modifier:building_mobilization_cost_mult }
+		} }
+		if = { limit = { PREV = { is_building_type = building_conscription_center } }
+			change_variable = { name = $GOODS$_hiring_conscr add = { value = var:curr_building_sell_with_occ subtract = var:curr_building_buy_with_occ } }
+		}
+	}
+}
+
+market_hiring_set_balance = {
+	set_variable = { name = $GOODS$_hiring value = { value = var:$GOODS$_hiring_sell subtract = var:$GOODS$_hiring_buy } }
+}
+
+#PREV = building
+market_curr_usage_divide_building_occ_and_throughput = {
+	change_variable = { name = curr_building_buy_$GOODS$ divide = { value = PREV.occupancy multiply = { value = 1 add = var:curr_building_throughput } } }
+	change_variable = { name = curr_building_sell_$GOODS$ divide = { value = PREV.occupancy multiply = { value = 1 add = var:curr_building_throughput } } }
+}
+
+#PREV = building
+market_construction_add_curr_usage_tdelta = {
+	change_variable = { name = $GOODS$_construction_buy add = { value = var:curr_building_buy_$GOODS$ multiply = var:curr_building_throughput_delta } }
+	change_variable = { name = $GOODS$_construction_sell add = { value = var:curr_building_sell_$GOODS$ multiply = var:curr_building_throughput_delta } }
+	if = { limit = { PREV = { is_building_type = building_barracks } }
+		#this seems to be 0 always as no scale throughput on barracks
+		change_variable = { name = $GOODS$_construction_mob add = {
+			value = { value = var:curr_building_sell_$GOODS$ multiply = var:curr_building_throughput_delta }
+			subtract = { value = var:curr_building_buy_$GOODS$ multiply = var:curr_building_throughput_delta }
+		} }
+		change_variable = { name = $GOODS$_construction_mob_add add = {
+			value = { value = var:curr_building_sell_$GOODS$  multiply = PREV.modifier:building_mobilization_cost_mult }
+			subtract = { value = var:curr_building_buy_$GOODS$  multiply = PREV.modifier:building_mobilization_cost_mult }
+		} }
+	}
+}
+
+market_curr_usage_divide_curr_building_level = {
+	change_variable = { name = curr_building_buy_$GOODS$ divide = var:curr_building_level }
+	change_variable = { name = curr_building_sell_$GOODS$ divide = var:curr_building_level }
+}
+
+market_curr_usage_multiply_curr_building_levelq_and_tprog = {
+	change_variable = { name = curr_building_buy_$GOODS$ multiply = { value = var:curr_building_levelq multiply = { value = 1 add = var:curr_building_throughput_prog } } }
+	change_variable = { name = curr_building_sell_$GOODS$ multiply = { value = var:curr_building_levelq multiply = { value = 1 add = var:curr_building_throughput_prog } } }
+}
+
+#PREV = building
+market_construction_add_curr_usage = {
+	change_variable = { name = $GOODS$_construction_buy add = var:curr_building_buy_$GOODS$ }
+	change_variable = { name = $GOODS$_construction_sell add = var:curr_building_sell_$GOODS$ }
+	if = { limit = { PREV = { is_building_type = building_barracks } }
+		change_variable = { name = $GOODS$_construction_mob add = { value = var:curr_building_sell_$GOODS$ subtract = var:curr_building_buy_$GOODS$ } }
+		change_variable = { name = $GOODS$_construction_mob_add add = {
+			value = { value = var:curr_building_sell_$GOODS$  multiply = PREV.modifier:building_mobilization_cost_mult }
+			subtract = { value = var:curr_building_buy_$GOODS$  multiply = PREV.modifier:building_mobilization_cost_mult }
+		} }
+	}
+}
+
+market_construction_set_balance = {
+	set_variable = { name = $GOODS$_construction value = { value = var:$GOODS$_construction_sell subtract = var:$GOODS$_construction_buy } }
+}
+
+set_price_var = {
+	if = { limit = { $BALANCE$ < 0 }
+		#Shortage, balance is negative. Price modifier = (Balance / Sell Orders) * -75%
+		if = { limit = { $SELL_ORDERS$ = 0 }
+			set_variable = { name = $VAR_NAME$ value = 0.75 }
+		}
+		else = { set_variable = { name = $VAR_NAME$ value = {
+			value = $BALANCE$
+			divide = $SELL_ORDERS$
+			multiply = -0.75
+		} } }
+	} else_if = { limit = { $BALANCE$ > 0 }
+		#Surplus, balance is positive. Price modifier = (Balance / Buy Orders) * -75%
+		if = { limit = { $BUY_ORDERS$ = 0 }
+			if = { limit = { g:$GOODS$ = g:gold } set_variable = { name = $VAR_NAME$ value = 0 } }
+			else = { set_variable = { name = $VAR_NAME$ value = -0.75 } }
+		}
+		else = { set_variable = { name = $VAR_NAME$ value = {
+			value = $BALANCE$
+			divide = $BUY_ORDERS$
+			multiply = -0.75
+		} } }
+	} else = { set_variable = { name = $VAR_NAME$ value = 0 } }
+	clamp_variable = { name = $VAR_NAME$ max = 0.75 min = -0.75 }
+}
+
+market_set_progs = {
+	set_variable = { name = $GOODS$_balance_prog value = { value = mg:$GOODS$.market_goods_delta add = var:$GOODS$_hiring add = var:$GOODS$_construction } }
+	if = { limit = { exists = var:prog_add_not_hiring } change_variable = { name = $GOODS$_balance_prog add = var:$GOODS$_not_hiring } }
+	if = { limit = { exists = var:prog_add_mobilization } change_variable = { name = $GOODS$_balance_prog add = var:$GOODS$_mobilization } }
+	set_variable = { name = $GOODS$_buy_prog value = { value = mg:$GOODS$.market_goods_buy_orders add = var:$GOODS$_hiring_buy add = var:$GOODS$_construction_buy } }
+	if = { limit = { exists = var:prog_add_not_hiring } change_variable = { name = $GOODS$_buy_prog add = var:$GOODS$_not_hiring_buy } }
+	if = { limit = { exists = var:prog_add_mobilization } change_variable = { name = $GOODS$_buy_prog add = var:$GOODS$_mobilization_buy } }
+	set_variable = { name = $GOODS$_sell_prog value = { value = mg:$GOODS$.market_goods_sell_orders add = var:$GOODS$_hiring_sell add = var:$GOODS$_construction_sell } }
+	if = { limit = { exists = var:prog_add_not_hiring } change_variable = { name = $GOODS$_sell_prog add = var:$GOODS$_not_hiring_sell } }
+	if = { limit = { exists = var:prog_add_mobilization } change_variable = { name = $GOODS$_sell_prog add = var:$GOODS$_mobilization_sell } }
+	set_price_var = { GOODS = $GOODS$ BALANCE = var:$GOODS$_balance_prog SELL_ORDERS = var:$GOODS$_sell_prog BUY_ORDERS = var:$GOODS$_buy_prog VAR_NAME = $GOODS$_price_prog }
+	set_price_var = { GOODS = $GOODS$ BALANCE = mg:$GOODS$.market_goods_delta SELL_ORDERS = mg:$GOODS$.market_goods_sell_orders BUY_ORDERS = mg:$GOODS$.market_goods_buy_orders VAR_NAME = $GOODS$_price }
+	if = { limit = { var:$GOODS$_price = 0 }
+		if = { limit = { var:$GOODS$_price_prog = 0 } set_local_variable = { name = price_change_ratio value = 1 } }
+		else = { set_local_variable = { name = price_change_ratio value = var:$GOODS$_price_prog } }
+	} else = {
+		set_local_variable = { name = price_change_ratio value = { value = var:$GOODS$_price_prog divide = var:$GOODS$_price } }
+	}
+	#0.99 < y/x < 1.01
+	if = { limit = { OR = { local_var:price_change_ratio < 0.99 local_var:price_change_ratio > 1.01 } }
+		set_variable = { name = $GOODS$_price_change_type value = 1 } #big change
+	} else_if = { limit = { OR = { local_var:price_change_ratio = 1 } }
+		set_variable = { name = $GOODS$_price_change_type value = 0.25 } #no change
+	} else = {
+		set_variable = { name = $GOODS$_price_change_type value = 0.5 } #small change
+	}
+	remove_variable = $GOODS$_price
+	remove_local_variable = price_change_ratio
+}
+
+building_act_building_type = {
+	if = { limit = { is_building_type = building_food_industry } $ACTION$ = { BTYPE = building_food_industry } }
+	else_if = { limit = { is_building_type = building_textile_mills } $ACTION$ = { BTYPE = building_textile_mills } }
+	else_if = { limit = { is_building_type = building_furniture_manufacturies } $ACTION$ = { BTYPE = building_furniture_manufacturies } }
+	else_if = { limit = { is_building_type = building_glassworks } $ACTION$ = { BTYPE = building_glassworks } }
+	else_if = { limit = { is_building_type = building_tooling_workshops } $ACTION$ = { BTYPE = building_tooling_workshops } }
+	else_if = { limit = { is_building_type = building_paper_mills } $ACTION$ = { BTYPE = building_paper_mills } }
+	else_if = { limit = { is_building_type = building_chemical_plants } $ACTION$ = { BTYPE = building_chemical_plants } }
+	else_if = { limit = { is_building_type = building_synthetics_plants } $ACTION$ = { BTYPE = building_synthetics_plants } }
+	else_if = { limit = { is_building_type = building_steel_mills } $ACTION$ = { BTYPE = building_steel_mills } }
+	else_if = { limit = { is_building_type = building_motor_industry } $ACTION$ = { BTYPE = building_motor_industry } }
+	else_if = { limit = { is_building_type = building_shipyards } $ACTION$ = { BTYPE = building_shipyards } }
+	else_if = { limit = { is_building_type = building_war_machine_industry } $ACTION$ = { BTYPE = building_war_machine_industry } }
+	else_if = { limit = { is_building_type = building_electrics_industry } $ACTION$ = { BTYPE = building_electrics_industry } }
+	else_if = { limit = { is_building_type = building_arms_industry } $ACTION$ = { BTYPE = building_arms_industry } }
+	else_if = { limit = { is_building_type = building_munition_plants } $ACTION$ = { BTYPE = building_munition_plants } }
+	else_if = { limit = { is_building_type = building_rye_farm } $ACTION$ = { BTYPE = building_rye_farm } }
+	else_if = { limit = { is_building_type = building_wheat_farm } $ACTION$ = { BTYPE = building_wheat_farm } }
+	else_if = { limit = { is_building_type = building_rice_farm } $ACTION$ = { BTYPE = building_rice_farm } }
+	else_if = { limit = { is_building_type = building_maize_farm } $ACTION$ = { BTYPE = building_maize_farm } }
+	else_if = { limit = { is_building_type = building_millet_farm } $ACTION$ = { BTYPE = building_millet_farm } }
+	else_if = { limit = { is_building_type = building_livestock_ranch } $ACTION$ = { BTYPE = building_livestock_ranch } }
+	else_if = { limit = { is_building_type = building_coal_mine } $ACTION$ = { BTYPE = building_coal_mine } }
+	else_if = { limit = { is_building_type = building_iron_mine } $ACTION$ = { BTYPE = building_iron_mine } }
+	else_if = { limit = { is_building_type = building_lead_mine } $ACTION$ = { BTYPE = building_lead_mine } }
+	else_if = { limit = { is_building_type = building_sulfur_mine } $ACTION$ = { BTYPE = building_sulfur_mine } }
+	else_if = { limit = { is_building_type = building_gold_mine } $ACTION$ = { BTYPE = building_gold_mine } }
+	else_if = { limit = { is_building_type = building_gold_fields } $ACTION$ = { BTYPE = building_gold_fields } }
+	else_if = { limit = { is_building_type = building_coffee_plantation } $ACTION$ = { BTYPE = building_coffee_plantation } }
+	else_if = { limit = { is_building_type = building_cotton_plantation } $ACTION$ = { BTYPE = building_cotton_plantation } }
+	else_if = { limit = { is_building_type = building_dye_plantation } $ACTION$ = { BTYPE = building_dye_plantation } }
+	else_if = { limit = { is_building_type = building_opium_plantation } $ACTION$ = { BTYPE = building_opium_plantation } }
+	else_if = { limit = { is_building_type = building_tea_plantation } $ACTION$ = { BTYPE = building_tea_plantation } }
+	else_if = { limit = { is_building_type = building_tobacco_plantation } $ACTION$ = { BTYPE = building_tobacco_plantation } }
+	else_if = { limit = { is_building_type = building_sugar_plantation } $ACTION$ = { BTYPE = building_sugar_plantation } }
+	else_if = { limit = { is_building_type = building_banana_plantation } $ACTION$ = { BTYPE = building_banana_plantation } }
+	else_if = { limit = { is_building_type = building_silk_plantation } $ACTION$ = { BTYPE = building_silk_plantation } }
+	else_if = { limit = { is_building_type = building_barracks } $ACTION$ = { BTYPE = building_barracks } }
+	else_if = { limit = { is_building_type = building_conscription_center } $ACTION$ = { BTYPE = building_conscription_center } }
+	else_if = { limit = { is_building_type = building_naval_base } $ACTION$ = { BTYPE = building_naval_base } }
+	else_if = { limit = { is_building_type = building_urban_center } $ACTION$ = { BTYPE = building_urban_center } }
+	else_if = { limit = { is_building_type = building_arts_academy } $ACTION$ = { BTYPE = building_arts_academy } }
+	else_if = { limit = { is_building_type = building_power_plant } $ACTION$ = { BTYPE = building_power_plant } }
+	else_if = { limit = { is_building_type = building_port } $ACTION$ = { BTYPE = building_port } }
+	else_if = { limit = { is_building_type = building_government_administration } $ACTION$ = { BTYPE = building_government_administration } }
+	else_if = { limit = { is_building_type = building_university } $ACTION$ = { BTYPE = building_university } }
+	else_if = { limit = { is_building_type = building_skyscraper } $ACTION$ = { BTYPE = building_skyscraper } }
+	else_if = { limit = { is_building_type = building_eiffel_tower } $ACTION$ = { BTYPE = building_eiffel_tower } }
+	else_if = { limit = { is_building_type = building_angkor_wat } $ACTION$ = { BTYPE = building_angkor_wat } }
+	else_if = { limit = { is_building_type = building_big_ben } $ACTION$ = { BTYPE = building_big_ben } }
+	else_if = { limit = { is_building_type = building_forbidden_city } $ACTION$ = { BTYPE = building_forbidden_city } }
+	else_if = { limit = { is_building_type = building_hagia_sophia } $ACTION$ = { BTYPE = building_hagia_sophia } }
+	else_if = { limit = { is_building_type = building_mosque_of_djenne } $ACTION$ = { BTYPE = building_mosque_of_djenne } }
+	else_if = { limit = { is_building_type = building_saint_basils_cathedral } $ACTION$ = { BTYPE = building_saint_basils_cathedral } }
+	else_if = { limit = { is_building_type = building_statue_of_liberty } $ACTION$ = { BTYPE = building_statue_of_liberty } }
+	else_if = { limit = { is_building_type = building_taj_mahal } $ACTION$ = { BTYPE = building_taj_mahal } }
+	else_if = { limit = { is_building_type = building_vatican_city } $ACTION$ = { BTYPE = building_vatican_city } }
+	else_if = { limit = { is_building_type = building_white_house } $ACTION$ = { BTYPE = building_white_house } }
+	else_if = { limit = { is_building_type = building_machu_picchu } $ACTION$ = { BTYPE = building_machu_picchu } }
+	else_if = { limit = { is_building_type = building_argebam } $ACTION$ = { BTYPE = building_argebam } }
+	else_if = { limit = { is_building_type = building_chichen_itza } $ACTION$ = { BTYPE = building_chichen_itza } }
+	else_if = { limit = { is_building_type = building_easter_island_heads } $ACTION$ = { BTYPE = building_easter_island_heads } }
+	else_if = { limit = { is_building_type = building_eye_of_sahara } $ACTION$ = { BTYPE = building_eye_of_sahara } }
+	else_if = { limit = { is_building_type = building_giza_necropolis } $ACTION$ = { BTYPE = building_giza_necropolis } }
+	else_if = { limit = { is_building_type = building_khaju_bridge } $ACTION$ = { BTYPE = building_khaju_bridge } }
+	else_if = { limit = { is_building_type = building_petra } $ACTION$ = { BTYPE = building_petra } }
+	else_if = { limit = { is_building_type = building_capitol_hill } $ACTION$ = { BTYPE = building_capitol_hill } }
+	else_if = { limit = { is_building_type = building_central_park } $ACTION$ = { BTYPE = building_central_park } }
+	else_if = { limit = { is_building_type = building_martandsuntemple } $ACTION$ = { BTYPE = building_martandsuntemple } }
+	else_if = { limit = { is_building_type = building_observatorygreenwich } $ACTION$ = { BTYPE = building_observatorygreenwich } }
+	else_if = { limit = { is_building_type = building_temple_of_poseidon } $ACTION$ = { BTYPE = building_temple_of_poseidon } }
+	else_if = { limit = { is_building_type = building_wat_arun } $ACTION$ = { BTYPE = building_wat_arun } }
+	else_if = { limit = { is_building_type = building_logging_camp } $ACTION$ = { BTYPE = building_logging_camp } }
+	else_if = { limit = { is_building_type = building_rubber_plantation } $ACTION$ = { BTYPE = building_rubber_plantation } }
+	else_if = { limit = { is_building_type = building_fishing_wharf } $ACTION$ = { BTYPE = building_fishing_wharf } }
+	else_if = { limit = { is_building_type = building_whaling_station } $ACTION$ = { BTYPE = building_whaling_station } }
+	else_if = { limit = { is_building_type = building_oil_rig } $ACTION$ = { BTYPE = building_oil_rig } }
+	else_if = { limit = { is_building_type = building_suez_canal } $ACTION$ = { BTYPE = building_suez_canal } }
+	else_if = { limit = { is_building_type = building_panama_canal } $ACTION$ = { BTYPE = building_panama_canal } }
+	else_if = { limit = { is_building_type = building_railway } $ACTION$ = { BTYPE = building_railway } }
+	else_if = { limit = { is_building_type = building_trade_center } $ACTION$ = { BTYPE = building_trade_center } }
+	else_if = { limit = { is_building_type = building_subsistence_farms } $ACTION$ = { BTYPE = building_subsistence_farms } }
+	else_if = { limit = { is_building_type = building_subsistence_orchards } $ACTION$ = { BTYPE = building_subsistence_orchards } }
+	else_if = { limit = { is_building_type = building_subsistence_pastures } $ACTION$ = { BTYPE = building_subsistence_pastures } }
+	else_if = { limit = { is_building_type = building_subsistence_fishing_villages } $ACTION$ = { BTYPE = building_subsistence_fishing_villages } }
+	else_if = { limit = { is_building_type = building_subsistence_rice_paddies } $ACTION$ = { BTYPE = building_subsistence_rice_paddies } }
+	else_if = { limit = { is_building_type = building_construction_sector } $ACTION$ = { BTYPE = building_construction_sector } }
+}
+
+building_save_levelq = {
+	state = {
+		set_variable = { name = $BTYPE$_levelq value = scope:levelq }
+	}
+}
+
+act_market_goods_cost = {
+	$ACTION$ = { GOODS = ammunition COST = 50 }
+	$ACTION$ = { GOODS = small_arms COST = 60 }
+	$ACTION$ = { GOODS = artillery COST = 70 }
+	$ACTION$ = { GOODS = tanks COST = 80 }
+	$ACTION$ = { GOODS = aeroplanes COST = 80 }
+	$ACTION$ = { GOODS = manowars COST = 70 }
+	$ACTION$ = { GOODS = ironclads COST = 80 }
+	$ACTION$ = { GOODS = grain COST = 20 }
+	$ACTION$ = { GOODS = fish COST = 20 }
+	$ACTION$ = { GOODS = fabric COST = 20 }
+	$ACTION$ = { GOODS = wood COST = 20 }
+	$ACTION$ = { GOODS = groceries COST = 30 }
+	$ACTION$ = { GOODS = clothes COST = 30 }
+	$ACTION$ = { GOODS = furniture COST = 30 }
+	$ACTION$ = { GOODS = paper COST = 30 }
+	$ACTION$ = { GOODS = services COST = 30 }
+	$ACTION$ = { GOODS = transportation COST = 30 }
+	$ACTION$ = { GOODS = electricity COST = 30 }
+	$ACTION$ = { GOODS = clippers COST = 60 }
+	$ACTION$ = { GOODS = steamers COST = 70 }
+	$ACTION$ = { GOODS = silk COST = 40 }
+	$ACTION$ = { GOODS = dye COST = 40 }
+	$ACTION$ = { GOODS = sulfur COST = 50 }
+	$ACTION$ = { GOODS = coal COST = 30 }
+	$ACTION$ = { GOODS = iron COST = 40 }
+	$ACTION$ = { GOODS = lead COST = 40 }
+	$ACTION$ = { GOODS = hardwood COST = 40 }
+	$ACTION$ = { GOODS = rubber COST = 40 }
+	$ACTION$ = { GOODS = oil COST = 40 }
+	$ACTION$ = { GOODS = engines COST = 60 }
+	$ACTION$ = { GOODS = steel COST = 50 }
+	$ACTION$ = { GOODS = glass COST = 40 }
+	$ACTION$ = { GOODS = fertilizer COST = 30 }
+	$ACTION$ = { GOODS = tools COST = 40 }
+	$ACTION$ = { GOODS = explosives COST = 50 }
+	$ACTION$ = { GOODS = porcelain COST = 70 }
+	$ACTION$ = { GOODS = meat COST = 30 }
+	$ACTION$ = { GOODS = fruit COST = 30 }
+	$ACTION$ = { GOODS = liquor COST = 30 }
+	$ACTION$ = { GOODS = wine COST = 50 }
+	$ACTION$ = { GOODS = tea COST = 50 }
+	$ACTION$ = { GOODS = coffee COST = 50 }
+	$ACTION$ = { GOODS = sugar COST = 30 }
+	$ACTION$ = { GOODS = tobacco COST = 40 }
+	$ACTION$ = { GOODS = opium COST = 50 }
+	$ACTION$ = { GOODS = automobiles COST = 100 }
+	$ACTION$ = { GOODS = telephones COST = 70 }
+	$ACTION$ = { GOODS = radios COST = 80 }
+	$ACTION$ = { GOODS = luxury_clothes COST = 60 }
+	$ACTION$ = { GOODS = luxury_furniture COST = 60 }
+	$ACTION$ = { GOODS = gold COST = 100 }
+	$ACTION$ = { GOODS = fine_art COST = 200 }
+}
+
+building_change_curr_productivity_prog = {
+	if = { limit = { exists = market.var:$GOODS$_price_prog } set_local_variable = { name = curr_goods_price_prog value = market.var:$GOODS$_price_prog } }
+	else = { set_local_variable = { name = curr_goods_price_prog value = 0 } }
+	if = { limit = { NOT = { exists = local_var:gov_building_base_wage } is_government_funded = yes }
+		if = { limit = { exists = market.var:$GOODS$_price } set_local_variable = { name = curr_goods_price_prog value = market.var:$GOODS$_price } }
+		else = { set_local_variable = { name = curr_goods_price value = 0 } }
+	}
+	state = {
+		if = { limit = { PREV.modifier:building_output_$GOODS$_add != 0 }
+			change_variable = { name = curr_building_productivity_prog add = { 
+				value = PREV.modifier:building_output_$GOODS$_add
+				multiply = $COST$
+				multiply = { value = 1 add = local_var:curr_goods_price_prog }
+			} }
+			if = { limit = { NOT = { exists = local_var:gov_building_base_wage } PREV = { is_government_funded = yes } }
+				change_local_variable = { name = gov_building_productivity add = { 
+					value = PREV.modifier:building_output_$GOODS$_add
+					multiply = $COST$
+					multiply = { value = 1 add = local_var:curr_goods_price }
+				} }
+			}
+		}
+		if = { limit = { exists = PREV.modifier:building_input_$GOODS$_add }
+			if = { limit = { PREV.modifier:building_input_$GOODS$_add != 0 }
+				change_variable = { name = curr_building_productivity_prog subtract = { 
+					value = PREV.modifier:building_input_$GOODS$_add
+					multiply = $COST$
+					multiply = { value = 1 add = local_var:curr_goods_price_prog }
+				} }
+				PREV = { if = { limit = { modifier:building_input_$GOODS$_add > 0 }
+					if = { limit = { is_building_type = building_construction_sector } market = { set_variable = $GOODS$_is_construction } }
+					else_if = { limit = { is_government_funded = yes NOT = { is_building_group = bg_military } } market = { set_variable = $GOODS$_is_government } }
+					if = { limit = { is_building_group = bg_military } market = { set_variable = $GOODS$_is_military } }
+				} }
+				if = { limit = { NOT = { exists = local_var:gov_building_base_wage } PREV = { is_government_funded = yes } }
+					change_local_variable = { name = gov_building_productivity subtract = { 
+						value = PREV.modifier:building_input_$GOODS$_add
+						multiply = $COST$
+						multiply = { value = 1 add = local_var:curr_goods_price }
+					} }
+				}
+			}	
+		}
+	}
+	remove_local_variable = curr_goods_price_prog
+}
+
+building_set_productivity_prog_low = {
+	remove_local_variable = curr_building_productivity_prog_low
+	if = { limit = {
+			is_government_funded = no
+			is_subsidized = no
+		}
+		if = { limit = { state.var:$BTYPE$_productivity_prog < local_var:curr_building_avg_wage }
+			set_local_variable = curr_building_productivity_prog_low
+			owner = { change_variable = { name = $BTYPE$_productivity_prog_low add = 1 } }
+		}
+	}
+}
+
+building_set_productivity_prog = {
+	set_local_variable = { name = curr_building_productivity value = earnings }
+	set_local_variable = { name = curr_building_avg_wage value = building_avg_wage }
+	set_local_variable = { name = curr_building_total_jobs value = building_total_jobs }
+	set_local_variable = { name = curr_building_total_jobs_weighted value = building_total_jobs_weighted }
+	state = {
+		set_variable = { name = curr_building_productivity_prog value = {
+			value = var:curr_building_productivity_prog
+			divide = PREV.occupancy
+			divide = { value = 1 add = PREV.building_throughput_mult }
+			multiply = { value = 1 add = PREV.building_throughput_mult_prog }
+			divide = local_var:curr_building_total_jobs
+			multiply = 52
+		} }
+		set_variable = { name = $BTYPE$_productivity_prog value = var:curr_building_productivity_prog }
+		set_max_wage_var = { VAR_NAME = curr_building_max_wage_prog PRODUCTIVITY = var:curr_building_productivity_prog TOTAL_JOBS = local_var:curr_building_total_jobs TOTAL_JOBS_WEIGHTED = local_var:curr_building_total_jobs_weighted }
+		set_variable = { name = $BTYPE$_max_wage_prog value = local_var:curr_building_max_wage_prog }
+		set_max_wage_var = { VAR_NAME = curr_building_max_wage PRODUCTIVITY = local_var:curr_building_productivity TOTAL_JOBS = local_var:curr_building_total_jobs TOTAL_JOBS_WEIGHTED = local_var:curr_building_total_jobs_weighted }
+		set_variable = { name = $BTYPE$_max_wage value = local_var:curr_building_max_wage }
+		if = { limit = { PREV = { is_government_funded = yes } }
+			if = { limit = { NOT = { exists = local_var:gov_building_base_wage } }
+				set_local_variable = { name = gov_building_productivity value = {
+					value = local_var:gov_building_productivity
+					divide = PREV.occupancy
+					divide = local_var:curr_building_total_jobs
+					multiply = 52
+				} }
+				set_local_variable = { name = gov_building_avg_wage value = {
+					value = local_var:gov_building_productivity
+					subtract = {
+						value = PREV.weekly_profit
+						multiply = 52
+						divide = local_var:curr_building_total_jobs
+						divide = PREV.occupancy
+					}
+				} }
+				set_max_wage_var = { VAR_NAME = gov_building_base_wage PRODUCTIVITY = local_var:gov_building_avg_wage TOTAL_JOBS = local_var:curr_building_total_jobs TOTAL_JOBS_WEIGHTED = local_var:curr_building_total_jobs_weighted }
+			}
+			set_local_variable = { name = curr_building_base_wage value = local_var:gov_building_base_wage }
+		} else = {
+			set_max_wage_var = { VAR_NAME = curr_building_base_wage PRODUCTIVITY = local_var:curr_building_avg_wage TOTAL_JOBS = local_var:curr_building_total_jobs TOTAL_JOBS_WEIGHTED = local_var:curr_building_total_jobs_weighted }
+		}
+		set_variable = { name = $BTYPE$_base_wage value = local_var:curr_building_base_wage }
+	}
+	building_set_productivity_prog_low = { BTYPE = $BTYPE$ }
+}
+
+building_change_curr_productivity_prog_from_pms = {
+	if = { limit = { exists = market.var:$GOODS$_price_prog } set_local_variable = { name = curr_goods_price_prog value = market.var:$GOODS$_price_prog } }
+	else = { set_local_variable = { name = curr_goods_price_prog value = 0 } }
+	state = {
+		if = { limit = { market.var:curr_building_sell_$GOODS$ != 0 }
+			change_variable = { name = curr_building_productivity_prog add = { 
+				value = market.var:curr_building_sell_$GOODS$
+				multiply = $COST$
+				multiply = { value = 1 add = local_var:curr_goods_price_prog }
+			} }
+		}
+		if = { limit = { exists = market.var:curr_building_buy_$GOODS$ }
+			if = { limit = { market.var:curr_building_buy_$GOODS$ != 0 }
+				change_variable = { name = curr_building_productivity_prog subtract = { 
+					value = market.var:curr_building_buy_$GOODS$
+					multiply = $COST$
+					multiply = { value = 1 add = local_var:curr_goods_price_prog }
+				} }
+				PREV = { if = { limit = { market.var:curr_building_buy_$GOODS$ > 0 }
+					if = { limit = { is_building_type = building_construction_sector } market = { set_variable = $GOODS$_is_construction } }
+					else_if = { limit = { is_government_funded = yes NOT = { is_building_group = bg_military } } market = { set_variable = $GOODS$_is_government } }
+					if = { limit = { is_building_group = bg_military } market = { set_variable = $GOODS$_is_military } }
+				} }
+			}
+		}	
+	}
+	remove_local_variable = curr_goods_price_prog
+}
+
+building_set_curr_employment_jobtypes_from_pms = {
+	set_local_variable = { name = curr_building_employment_aristocrats_add value = 0 }
+	set_local_variable = { name = curr_building_employment_capitalists_add value = 0 }
+	set_local_variable = { name = curr_building_employment_officers_add value = 0 }
+	set_local_variable = { name = curr_building_employment_academics_add value = 0 }
+	set_local_variable = { name = curr_building_employment_bureaucrats_add value = 0 }
+	set_local_variable = { name = curr_building_employment_clergymen_add value = 0 }
+	set_local_variable = { name = curr_building_employment_engineers_add value = 0 }
+	set_local_variable = { name = curr_building_employment_shopkeepers_add value = 0 }
+	set_local_variable = { name = curr_building_employment_clerks_add value = 0 }
+	set_local_variable = { name = curr_building_employment_farmers_add value = 0 }
+	set_local_variable = { name = curr_building_employment_machinists_add value = 0 }
+	set_local_variable = { name = curr_building_employment_laborers_add value = 0 }
+	set_local_variable = { name = curr_building_employment_soldiers_add value = 0 }
+	set_local_variable = { name = curr_building_employment_peasants_add value = 0 }
+	building_add_employment = yes
+}
+
+building_set_productivity_prog_from_pms = {
+	set_local_variable = { name = curr_building_total_jobs value = building_employment }
+	building_set_curr_employment_jobtypes_from_pms = yes
+	set_local_variable = { name = curr_building_total_jobs_weighted value = building_total_jobs_weighted_from_pms }
+	state = {
+		set_variable = { name = curr_building_productivity_prog value = {
+			value = var:curr_building_productivity_prog
+			multiply = { value = 1 add = PREV.building_throughput_mult_prog }
+			divide = local_var:curr_building_total_jobs
+			divide = { value = 1 add = PREV.building_group_employee_mult }
+			multiply = 52
+		} }
+		set_variable = { name = $BTYPE$_productivity_prog value = var:curr_building_productivity_prog }
+		set_max_wage_var = { VAR_NAME = curr_building_max_wage_prog PRODUCTIVITY = var:curr_building_productivity_prog TOTAL_JOBS = local_var:curr_building_total_jobs TOTAL_JOBS_WEIGHTED = local_var:curr_building_total_jobs_weighted }
+		set_variable = { name = $BTYPE$_max_wage_prog value = local_var:curr_building_max_wage_prog }
+	}
+	building_set_productivity_prog_low = { BTYPE = $BTYPE$ }
+}
+
+act_building_types = {
+	$ACTION$ = { BTYPE = building_food_industry }
+	$ACTION$ = { BTYPE = building_textile_mills }
+	$ACTION$ = { BTYPE = building_furniture_manufacturies }
+	$ACTION$ = { BTYPE = building_glassworks }
+	$ACTION$ = { BTYPE = building_tooling_workshops }
+	$ACTION$ = { BTYPE = building_paper_mills }
+	$ACTION$ = { BTYPE = building_chemical_plants }
+	$ACTION$ = { BTYPE = building_synthetics_plants }
+	$ACTION$ = { BTYPE = building_steel_mills }
+	$ACTION$ = { BTYPE = building_motor_industry }
+	$ACTION$ = { BTYPE = building_shipyards }
+	$ACTION$ = { BTYPE = building_war_machine_industry }
+	$ACTION$ = { BTYPE = building_electrics_industry }
+	$ACTION$ = { BTYPE = building_arms_industry }
+	$ACTION$ = { BTYPE = building_munition_plants }
+	$ACTION$ = { BTYPE = building_rye_farm }
+	$ACTION$ = { BTYPE = building_wheat_farm }
+	$ACTION$ = { BTYPE = building_rice_farm }
+	$ACTION$ = { BTYPE = building_maize_farm }
+	$ACTION$ = { BTYPE = building_millet_farm }
+	$ACTION$ = { BTYPE = building_livestock_ranch }
+	$ACTION$ = { BTYPE = building_coal_mine }
+	$ACTION$ = { BTYPE = building_iron_mine }
+	$ACTION$ = { BTYPE = building_lead_mine }
+	$ACTION$ = { BTYPE = building_sulfur_mine }
+	$ACTION$ = { BTYPE = building_gold_mine }
+	$ACTION$ = { BTYPE = building_gold_fields }
+	$ACTION$ = { BTYPE = building_coffee_plantation }
+	$ACTION$ = { BTYPE = building_cotton_plantation }
+	$ACTION$ = { BTYPE = building_dye_plantation }
+	$ACTION$ = { BTYPE = building_opium_plantation }
+	$ACTION$ = { BTYPE = building_tea_plantation }
+	$ACTION$ = { BTYPE = building_tobacco_plantation }
+	$ACTION$ = { BTYPE = building_sugar_plantation }
+	$ACTION$ = { BTYPE = building_banana_plantation }
+	$ACTION$ = { BTYPE = building_silk_plantation }
+	$ACTION$ = { BTYPE = building_barracks }
+	$ACTION$ = { BTYPE = building_conscription_center }
+	$ACTION$ = { BTYPE = building_naval_base }
+	$ACTION$ = { BTYPE = building_urban_center }
+	$ACTION$ = { BTYPE = building_arts_academy }
+	$ACTION$ = { BTYPE = building_power_plant }
+	$ACTION$ = { BTYPE = building_port }
+	$ACTION$ = { BTYPE = building_government_administration }
+	$ACTION$ = { BTYPE = building_university }
+	$ACTION$ = { BTYPE = building_skyscraper }
+	$ACTION$ = { BTYPE = building_eiffel_tower }
+	$ACTION$ = { BTYPE = building_angkor_wat }
+	$ACTION$ = { BTYPE = building_big_ben }
+	$ACTION$ = { BTYPE = building_forbidden_city }
+	$ACTION$ = { BTYPE = building_hagia_sophia }
+	$ACTION$ = { BTYPE = building_mosque_of_djenne }
+	$ACTION$ = { BTYPE = building_saint_basils_cathedral }
+	$ACTION$ = { BTYPE = building_statue_of_liberty }
+	$ACTION$ = { BTYPE = building_taj_mahal }
+	$ACTION$ = { BTYPE = building_vatican_city }
+	$ACTION$ = { BTYPE = building_white_house }
+	$ACTION$ = { BTYPE = building_machu_picchu }
+	$ACTION$ = { BTYPE = building_argebam }
+	$ACTION$ = { BTYPE = building_chichen_itza }
+	$ACTION$ = { BTYPE = building_easter_island_heads }
+	$ACTION$ = { BTYPE = building_eye_of_sahara }
+	$ACTION$ = { BTYPE = building_giza_necropolis }
+	$ACTION$ = { BTYPE = building_khaju_bridge }
+	$ACTION$ = { BTYPE = building_petra }
+	$ACTION$ = { BTYPE = building_capitol_hill }
+	$ACTION$ = { BTYPE = building_central_park }
+	$ACTION$ = { BTYPE = building_martandsuntemple }
+	$ACTION$ = { BTYPE = building_observatorygreenwich }
+	$ACTION$ = { BTYPE = building_temple_of_poseidon }
+	$ACTION$ = { BTYPE = building_wat_arun }
+	$ACTION$ = { BTYPE = building_logging_camp }
+	$ACTION$ = { BTYPE = building_rubber_plantation }
+	$ACTION$ = { BTYPE = building_fishing_wharf }
+	$ACTION$ = { BTYPE = building_whaling_station }
+	$ACTION$ = { BTYPE = building_oil_rig }
+	$ACTION$ = { BTYPE = building_suez_canal }
+	$ACTION$ = { BTYPE = building_panama_canal }
+	$ACTION$ = { BTYPE = building_railway }
+	$ACTION$ = { BTYPE = building_trade_center }
+	$ACTION$ = { BTYPE = building_subsistence_farms }
+	$ACTION$ = { BTYPE = building_subsistence_orchards }
+	$ACTION$ = { BTYPE = building_subsistence_pastures }
+	$ACTION$ = { BTYPE = building_subsistence_fishing_villages }
+	$ACTION$ = { BTYPE = building_subsistence_rice_paddies }
+	$ACTION$ = { BTYPE = building_construction_sector }
+}
+
+state_set_productivity_prog_0 = {
+	set_variable = { name = $BTYPE$_productivity_prog value = 0 }
+	set_variable = { name = $BTYPE$_max_wage_prog value = 0 }
+	set_variable = { name = $BTYPE$_max_wage value = 0 }
+	set_variable = { name = $BTYPE$_base_wage value = 0 }
+}
+
+
+country_set_productivity_prog_low_0 = {
+	set_variable = { name = $BTYPE$_productivity_prog_low value = 0 }
+}
+
+market_remove_productivity_prog_range = {
+	remove_variable = $GOODS$_productivity_range_l
+	remove_variable = $GOODS$_productivity_range_h
+	remove_variable = $GOODS$_productivity_prog_range_l
+	remove_variable = $GOODS$_productivity_prog_range_h
+	remove_variable = $GOODS$_max_wage_range_l
+	remove_variable = $GOODS$_max_wage_range_h
+	remove_variable = $GOODS$_max_wage_prog_range_l
+	remove_variable = $GOODS$_max_wage_prog_range_h
+	remove_variable = $GOODS$_is_construction
+	remove_variable = $GOODS$_is_government
+	remove_variable = $GOODS$_is_military
+	set_variable = { name = $GOODS$_productivity_prog_low value = 0 }
+}
+
+set_max_wage_var = {
+	if = { limit = { $PRODUCTIVITY$ > 0 } #may change to != 0 to see negative progs
+		set_local_variable = { name = $VAR_NAME$ value = { value = $PRODUCTIVITY$ multiply = $TOTAL_JOBS$ divide = $TOTAL_JOBS_WEIGHTED$ } }
+	} else = { set_local_variable = { name = $VAR_NAME$ value = 0 } }
+}
+
+building_change_productivity_prog_range = {
+	if = { limit = { exists = modifier:building_output_$GOODS$_add }
+		if = { limit = { modifier:building_output_$GOODS$_add > 0 }
+			if = { limit = { exists = market.var:$GOODS$_productivity_prog_range_l }
+				if = { limit = { state.var:curr_building_productivity_prog < market.var:$GOODS$_productivity_prog_range_l }
+					market = { set_variable = { name = $GOODS$_productivity_prog_range_l value = PREV.state.var:curr_building_productivity_prog } }
+				}
+			} else = {
+				market = { set_variable = { name = $GOODS$_productivity_prog_range_l value = PREV.state.var:curr_building_productivity_prog } }
+			}
+			if = { limit = { exists = market.var:$GOODS$_productivity_prog_range_h }
+				if = { limit = { state.var:curr_building_productivity_prog > market.var:$GOODS$_productivity_prog_range_h }
+					market = { set_variable = { name = $GOODS$_productivity_prog_range_h value = PREV.state.var:curr_building_productivity_prog } }
+				}
+			} else = {
+				market = { set_variable = { name = $GOODS$_productivity_prog_range_h value = PREV.state.var:curr_building_productivity_prog } }
+			}
+			if = { limit = { exists = market.var:$GOODS$_productivity_range_l }
+				if = { limit = { local_var:curr_building_productivity < market.var:$GOODS$_productivity_range_l }
+					market = { set_variable = { name = $GOODS$_productivity_range_l value = local_var:curr_building_productivity } }
+				}
+			} else = {
+				market = { set_variable = { name = $GOODS$_productivity_range_l value = local_var:curr_building_productivity } }
+			}
+			if = { limit = { exists = market.var:$GOODS$_productivity_range_h }
+				if = { limit = { local_var:curr_building_productivity > market.var:$GOODS$_productivity_range_h }
+					market = { set_variable = { name = $GOODS$_productivity_range_h value = local_var:curr_building_productivity } }
+				}
+			} else = {
+				market = { set_variable = { name = $GOODS$_productivity_range_h value = local_var:curr_building_productivity } }
+			}
+			if = { limit = { exists = local_var:curr_building_productivity_prog_low }
+				market = { change_variable = { name = $GOODS$_productivity_prog_low add = 1 } }
+			}
+
+			if = { limit = { exists = market.var:$GOODS$_max_wage_prog_range_l }
+				if = { limit = { local_var:curr_building_max_wage_prog < market.var:$GOODS$_max_wage_prog_range_l }
+					market = { set_variable = { name = $GOODS$_max_wage_prog_range_l value = local_var:curr_building_max_wage_prog } }
+				}
+			} else = {
+				market = { set_variable = { name = $GOODS$_max_wage_prog_range_l value = local_var:curr_building_max_wage_prog } }
+			}
+			if = { limit = { exists = market.var:$GOODS$_max_wage_prog_range_h }
+				if = { limit = { local_var:curr_building_max_wage_prog > market.var:$GOODS$_max_wage_prog_range_h }
+					market = { set_variable = { name = $GOODS$_max_wage_prog_range_h value = local_var:curr_building_max_wage_prog } }
+				}
+			} else = {
+				market = { set_variable = { name = $GOODS$_max_wage_prog_range_h value = local_var:curr_building_max_wage_prog } }
+			}
+			if = { limit = { exists = market.var:$GOODS$_max_wage_range_l }
+				if = { limit = { local_var:curr_building_max_wage < market.var:$GOODS$_max_wage_range_l }
+					market = { set_variable = { name = $GOODS$_max_wage_range_l value = local_var:curr_building_max_wage } }
+				}
+			} else = {
+				market = { set_variable = { name = $GOODS$_max_wage_range_l value = local_var:curr_building_max_wage } }
+			}
+			if = { limit = { exists = market.var:$GOODS$_max_wage_range_h }
+				if = { limit = { local_var:curr_building_max_wage > market.var:$GOODS$_max_wage_range_h }
+					market = { set_variable = { name = $GOODS$_max_wage_range_h value = local_var:curr_building_max_wage } }
+				}
+			} else = {
+				market = { set_variable = { name = $GOODS$_max_wage_range_h value = local_var:curr_building_max_wage } }
+			}
+		}
+	}
+}
+
+market_set_productivity_prog_range_0_ifnexists = {
+	if = { limit = { NOT = { exists = var:$GOODS$_productivity_range_l } } set_variable = { name = $GOODS$_productivity_range_l value = 0 } }
+	if = { limit = { NOT = { exists = var:$GOODS$_productivity_range_h } } set_variable = { name = $GOODS$_productivity_range_h value = 0 } }
+	if = { limit = { NOT = { exists = var:$GOODS$_productivity_prog_range_l } } set_variable = { name = $GOODS$_productivity_prog_range_l value = 0 } }
+	if = { limit = { NOT = { exists = var:$GOODS$_productivity_prog_range_h } } set_variable = { name = $GOODS$_productivity_prog_range_h value = 0 } }
+	if = { limit = { NOT = { exists = var:$GOODS$_max_wage_range_l } } set_variable = { name = $GOODS$_max_wage_range_l value = 0 } }
+	if = { limit = { NOT = { exists = var:$GOODS$_max_wage_range_h } } set_variable = { name = $GOODS$_max_wage_range_h value = 0 } }
+	if = { limit = { NOT = { exists = var:$GOODS$_max_wage_prog_range_l } } set_variable = { name = $GOODS$_max_wage_prog_range_l value = 0 } }
+	if = { limit = { NOT = { exists = var:$GOODS$_max_wage_prog_range_h } } set_variable = { name = $GOODS$_max_wage_prog_range_h value = 0 } }
+}
+
+building_change_productivity_prog_range_from_pms = {
+	if = { limit = { exists = market.var:curr_building_sell_$GOODS$ }
+		if = { limit = { market.var:curr_building_sell_$GOODS$ > 0 }
+			if = { limit = { exists = market.var:$GOODS$_productivity_prog_range_l }
+				if = { limit = { state.var:curr_building_productivity_prog < market.var:$GOODS$_productivity_prog_range_l }
+					market = { set_variable = { name = $GOODS$_productivity_prog_range_l value = PREV.state.var:curr_building_productivity_prog } }
+				}
+			} else = {
+				market = { set_variable = { name = $GOODS$_productivity_prog_range_l value = PREV.state.var:curr_building_productivity_prog } }
+			}
+			if = { limit = { exists = market.var:$GOODS$_productivity_prog_range_h }
+				if = { limit = { state.var:curr_building_productivity_prog > market.var:$GOODS$_productivity_prog_range_h }
+					market = { set_variable = { name = $GOODS$_productivity_prog_range_h value = PREV.state.var:curr_building_productivity_prog } }
+				}
+			} else = {
+				market = { set_variable = { name = $GOODS$_productivity_prog_range_h value = PREV.state.var:curr_building_productivity_prog } }
+			}
+			if = { limit = { exists = local_var:curr_building_productivity_prog_low }
+				market = { change_variable = { name = $GOODS$_productivity_prog_low add = 1 } }
+			}
+
+			if = { limit = { exists = market.var:$GOODS$_max_wage_prog_range_l }
+				if = { limit = { local_var:curr_building_max_wage_prog < market.var:$GOODS$_max_wage_prog_range_l }
+					market = { set_variable = { name = $GOODS$_max_wage_prog_range_l value = local_var:curr_building_max_wage_prog } }
+				}
+			} else = {
+				market = { set_variable = { name = $GOODS$_max_wage_prog_range_l value = local_var:curr_building_max_wage_prog } }
+			}
+			if = { limit = { exists = market.var:$GOODS$_max_wage_prog_range_h }
+				if = { limit = { local_var:curr_building_max_wage_prog > market.var:$GOODS$_max_wage_prog_range_h }
+					market = { set_variable = { name = $GOODS$_max_wage_prog_range_h value = local_var:curr_building_max_wage_prog } }
+				}
+			} else = {
+				market = { set_variable = { name = $GOODS$_max_wage_prog_range_h value = local_var:curr_building_max_wage_prog } }
+			}
+		}
+	}
+}
+
+state_create_gui_states_build_list_ife = {
+	if = {
+		limit = {
+			global_var:gui_states_build_vo_list_size = global_var:gui_states_build_vo_list_esize
+			global_var:gui_states_build_io_list_size = global_var:gui_states_build_io_list_esize
+			global_var:gui_states_build_fo_list_size = global_var:gui_states_build_fo_list_esize
+		}
+		owner = { country_create_gui_states_build_list = yes }
+	}
+}
+
+country_create_gui_states_build_list = {
+	clear_global_variable_list = gui_states_build_vo_list
+	clear_global_variable_list = gui_states_build_io_list
+	clear_global_variable_list = gui_states_build_fo_list
+	set_global_variable = { name = gui_states_build_vo_list_size value = 0 }
+	set_global_variable = { name = gui_states_build_io_list_size value = 0 }
+	set_global_variable = { name = gui_states_build_fo_list_size value = 0 }
+	country_gui_states_build_list_filter_infra_need_set = yes
+	ordered_scope_state = {
+		limit = {
+			OR = { exists = var:gui_map_list_vo_index exists = var:gui_map_list_io_index exists = var:gui_map_list_fo_index }
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_pms ?= 1 }
+				state_btype_level_prog > 0
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_high_unemployed ?= 1 }
+				state_unemployed_not_hiring > 15000
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_incorp ?= 1 exists = global_var:gui_states_build_list_filter_incorp_p }
+				incorporation_progress > global_var:gui_states_build_list_filter_incorp_p
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_balance ?= 1 }
+				state_btype_earnings < state_btype_avg_wage
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_balance_prog ?= 1 }
+				state_btype_productivity_prog < state_btype_avg_wage
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_high_labor ?= 1 exists = global_var:gui_states_build_list_filter_labor_vn }
+				state_available_workers > state_btype_labor_need
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_high_labor_prog ?= 1 exists = global_var:gui_states_build_list_filter_labor_vn }
+				state_available_workers_prog_wcache > state_btype_labor_need
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_not_cap ?=1 }
+				state_btype_not_cap = yes
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_high_discr ?= 1 }
+				state_discrimination > global_var:gui_states_build_list_filter_discr_v
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_low_discr ?= 1 }
+				state_discrimination < global_var:gui_states_build_list_filter_discr_v
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_infra ?= 1 exists = global_var:gui_states_build_list_filter_infra_need }
+				state_infrastructure_balance > global_var:gui_states_build_list_filter_infra_need
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_infra_prog ?= 1 exists = global_var:gui_states_build_list_filter_infra_need }
+				state_infra_prog > global_var:gui_states_build_list_filter_infra_need
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_btype ?= 1 }
+				state_any_gui_map_list_filter_btype_not_reached_cap = no
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_coastal ?= 1 }
+				is_coastal = yes
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_not_coastal ?= 1 }
+				is_coastal = no
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_not_scale_cap ?= 1 }
+				state_btype_scale_cap = no
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_any_manufacturing ?= 1 }
+				state_any_building_manufacturing = yes
+			}
+			trigger_if = { limit = { global_var:gui_states_build_list_filter_not_btype ?= 1 }
+				state_any_not_gui_map_list_filter_btype = yes
+			}
+		}
+		order_by = {
+			if = { limit = { NOT = { exists = global_var:gui_states_build_list_order } } } #alphabet
+			#else_if = { limit = { global_var:gui_states_build_list_order = -1 } value = state_gui_map_list_index } #alphabet
+			#else_if = { limit = { global_var:gui_states_build_list_order = 1 } subtract = state_gui_map_list_index } #alphabet
+			else_if = { limit = { global_var:gui_states_build_list_order = 1.1 } value = state_order_btype_level }
+			else_if = { limit = { global_var:gui_states_build_list_order = -1.1 } subtract = state_order_btype_level }
+			else_if = { limit = { global_var:gui_states_build_list_order = 1.11 } value = state_order_btype_level_prog }
+			else_if = { limit = { global_var:gui_states_build_list_order = -1.11 } subtract = state_order_btype_level_prog }
+			else_if = { limit = { global_var:gui_states_build_list_order = 1.2 } value = incorporation_progress }
+			else_if = { limit = { global_var:gui_states_build_list_order = -1.2 } subtract = incorporation_progress }
+			else_if = { limit = { global_var:gui_states_build_list_order = 1.3 } value = state_discrimination }
+			else_if = { limit = { global_var:gui_states_build_list_order = -1.3 } subtract = state_discrimination }
+			else_if = { limit = { global_var:gui_states_build_list_order = 2 } value = state_btype_level }
+			else_if = { limit = { global_var:gui_states_build_list_order = -2 } subtract = state_btype_level }
+			else_if = { limit = { global_var:gui_states_build_list_order = 2.01 } value = state_btype_level_prog }
+			else_if = { limit = { global_var:gui_states_build_list_order = -2.01 } subtract = state_btype_level_prog }
+			else_if = { limit = { global_var:gui_states_build_list_order = 2.1 } value = state_num_construction }
+			else_if = { limit = { global_var:gui_states_build_list_order = -2.1 } subtract = state_num_construction }
+			else_if = { limit = { global_var:gui_states_build_list_order = 3 } value = state_infrastructure_balance }
+			else_if = { limit = { global_var:gui_states_build_list_order = -3 } subtract = state_infrastructure_balance }
+			else_if = { limit = { global_var:gui_states_build_list_order = 3.01 } value = state_infra_prog }
+			else_if = { limit = { global_var:gui_states_build_list_order = -3.01 } subtract = state_infra_prog }
+			else_if = { limit = { global_var:gui_states_build_list_order = 3.1 } value = state_railway_level }
+			else_if = { limit = { global_var:gui_states_build_list_order = -3.1 } subtract = state_railway_level }
+			else_if = { limit = { global_var:gui_states_build_list_order = 3.11 } value = state_railway_level_prog }
+			else_if = { limit = { global_var:gui_states_build_list_order = -3.11 } subtract = state_railway_level_prog }
+			else_if = { limit = { global_var:gui_states_build_list_order = 3.2 } value = state_port_level }
+			else_if = { limit = { global_var:gui_states_build_list_order = -3.2 } subtract = state_port_level }
+			else_if = { limit = { global_var:gui_states_build_list_order = 3.21 } value = state_port_level_prog }
+			else_if = { limit = { global_var:gui_states_build_list_order = -3.21 } subtract = state_port_level_prog }
+			else_if = { limit = { global_var:gui_states_build_list_order = 4 } value = state_available_workers }
+			else_if = { limit = { global_var:gui_states_build_list_order = -4 } subtract = state_available_workers }
+			else_if = { limit = { global_var:gui_states_build_list_order = 4.01 } value = state_available_workers_prog_wcache }
+			else_if = { limit = { global_var:gui_states_build_list_order = -4.01 } subtract = state_available_workers_prog_wcache }
+			else_if = { limit = { global_var:gui_states_build_list_order = 4.1 } value = state_unemployed }
+			else_if = { limit = { global_var:gui_states_build_list_order = -4.1 } subtract = state_unemployed }
+			else_if = { limit = { global_var:gui_states_build_list_order = 4.2 } value = state_subsistence_workers }
+			else_if = { limit = { global_var:gui_states_build_list_order = -4.2 } subtract = state_subsistence_workers }
+			else_if = { limit = { global_var:gui_states_build_list_order = 4.3 } value = state_available_workers_autopms }
+			else_if = { limit = { global_var:gui_states_build_list_order = -4.3 } subtract = state_available_workers_autopms }
+			else_if = { limit = { global_var:gui_states_build_list_order = 4.4 } value = state_next_available_workers_all_hiring }
+			else_if = { limit = { global_var:gui_states_build_list_order = -4.4 } subtract = state_next_available_workers_all_hiring }
+			else_if = { limit = { global_var:gui_states_build_list_order = 4.5 } value = state_available_workers_next_hire }
+			else_if = { limit = { global_var:gui_states_build_list_order = -4.5 } subtract = state_available_workers_next_hire }
+			else_if = { limit = { global_var:gui_states_build_list_order = 5 } value = state_available_jobs }
+			else_if = { limit = { global_var:gui_states_build_list_order = -5 } subtract = state_available_jobs }
+			else_if = { limit = { global_var:gui_states_build_list_order = 5.1 } value = state_available_jobs_hiring }
+			else_if = { limit = { global_var:gui_states_build_list_order = -5.1 } subtract = state_available_jobs_hiring }
+			else_if = { limit = { global_var:gui_states_build_list_order = 5.12 } value = state_next_hire }
+			else_if = { limit = { global_var:gui_states_build_list_order = -5.12 } subtract = state_next_hire }
+			else_if = { limit = { global_var:gui_states_build_list_order = 5.2 } value = state_jobs_not_hiring }
+			else_if = { limit = { global_var:gui_states_build_list_order = -5.2 } subtract = state_jobs_not_hiring }
+			else_if = { limit = { global_var:gui_states_build_list_order = 5.3 } value = state_available_jobs_autopms }
+			else_if = { limit = { global_var:gui_states_build_list_order = -5.3 } subtract = state_available_jobs_autopms }
+			else_if = { limit = { global_var:gui_states_build_list_order = 5.4 } value = state_subsistence_jobs }
+			else_if = { limit = { global_var:gui_states_build_list_order = -5.4 } subtract = state_subsistence_jobs }
+			else_if = { limit = { global_var:gui_states_build_list_order = 5.5 } value = state_jobs_construction }
+			else_if = { limit = { global_var:gui_states_build_list_order = -5.5 } subtract = state_jobs_construction }
+			else_if = { limit = { global_var:gui_states_build_list_order = 6 } value = state_btype_earnings }
+			else_if = { limit = { global_var:gui_states_build_list_order = -6 } subtract = state_btype_earnings }
+			else_if = { limit = { global_var:gui_states_build_list_order = 6.01 } value = state_btype_productivity_prog }
+			else_if = { limit = { global_var:gui_states_build_list_order = -6.01 } subtract = state_btype_productivity_prog }
+			else_if = { limit = { global_var:gui_states_build_list_order = 6.1 } value = state_btype_avg_wage }
+			else_if = { limit = { global_var:gui_states_build_list_order = -6.1 } subtract = state_btype_avg_wage }
+			else_if = { limit = { global_var:gui_states_build_list_order = 6.2 } value = { value = state_btype_earnings subtract = state_btype_avg_wage } }
+			else_if = { limit = { global_var:gui_states_build_list_order = -6.2 } subtract = { value = state_btype_productivity_prog subtract = state_btype_avg_wage } }
+			else_if = { limit = { global_var:gui_states_build_list_order = 6.21 } value = { value = state_btype_productivity_prog subtract = state_btype_avg_wage } }
+			else_if = { limit = { global_var:gui_states_build_list_order = -6.21 } subtract = { value = state_btype_earnings subtract = state_btype_avg_wage } }
+			else_if = { limit = { global_var:gui_states_build_list_order = 6.3 } value = state_btype_max_wage }
+			else_if = { limit = { global_var:gui_states_build_list_order = -6.3 } subtract = state_btype_max_wage }
+			else_if = { limit = { global_var:gui_states_build_list_order = 6.31 } value = state_btype_max_wage_prog }
+			else_if = { limit = { global_var:gui_states_build_list_order = -6.31 } subtract = state_btype_max_wage_prog }
+			else_if = { limit = { global_var:gui_states_build_list_order = 6.4 } value = state_btype_base_wage }
+			else_if = { limit = { global_var:gui_states_build_list_order = -6.4 } subtract = state_btype_base_wage }
+			else_if = { limit = { global_var:gui_states_build_list_order = 7 } value = tax_capacity subtract = tax_capacity_usage }
+			else_if = { limit = { global_var:gui_states_build_list_order = -7 } value = tax_capacity_usage subtract = tax_capacity }
+		}
+		min = 0
+		if = { limit = { has_variable = gui_map_list_vo_index }
+			add_to_global_variable_list = { name = gui_states_build_vo_list target = THIS }
+			change_global_variable = { name = gui_states_build_vo_list_size add = 1 }
+		}
+		if = { limit = { has_variable = gui_map_list_io_index }
+			add_to_global_variable_list = { name = gui_states_build_io_list target = THIS }
+			change_global_variable = { name = gui_states_build_io_list_size add = 1 }
+		}
+		if = { limit = { has_variable = gui_map_list_fo_index }
+			add_to_global_variable_list = { name = gui_states_build_fo_list target = THIS }
+			change_global_variable = { name = gui_states_build_fo_list_size add = 1 }
+		}
+		#debug_log = "[THIS.GetState.GetName]"
+	}
+	set_global_variable = { name = gui_states_build_vo_list_pages value = { value = global_var:gui_states_build_vo_list_size divide = gui_states_build_list_page_size ceiling = yes } }
+	clear_global_variable_list = gui_states_build_vo_pages_list
+	set_local_variable = { name = curr_page value = 1 }
+	while = {
+		limit = { local_var:curr_page <= global_var:gui_states_build_vo_list_pages }
+		add_to_global_variable_list = { name = gui_states_build_vo_pages_list target = local_var:curr_page }
+		change_local_variable = { name = curr_page add = 1 }
+		#debug_log = curr_page
+	}
+	remove_local_variable = curr_page
+	if = { limit = { NOT = { exists = global_var:gui_states_build_vo_list_page } }
+		set_global_variable = { name = gui_states_build_vo_list_page value = 1 }
+	} else = {
+		change_global_variable = { name = gui_states_build_vo_list_page min = global_var:gui_states_build_vo_list_pages }
+		change_global_variable = { name = gui_states_build_vo_list_page max = 1 }
+	}
+	country_create_gui_states_build_vo_list_page = yes
+}
+
+country_create_gui_states_build_vo_list_page = {
+	#debug_log = country_create_gui_states_build_vo_list_page
+	clear_global_variable_list = gui_states_build_vo_list_page
+	ordered_in_global_list = {
+		variable = gui_states_build_vo_list
+		min = { value = global_var:gui_states_build_vo_list_page subtract = 1 multiply = gui_states_build_list_page_size }
+		max = { value = global_var:gui_states_build_vo_list_page multiply = gui_states_build_list_page_size }
+		check_range_bounds = no
+		add_to_global_variable_list = { name = gui_states_build_vo_list_page target = THIS }
+	}
+}
+
+gui_filter_toggle = {
+	if = { limit = { exists = scope:list_filter_clear } set_global_variable = { name = $VAR_NAME$ value = 0 } }
+	else_if = { limit = { exists = scope:$SCOPE_NAME$ }
+		if = { limit = { exists = global_var:$VAR_NAME$ } 
+			set_global_variable = { name = $VAR_NAME$ value = { value = 1 subtract = global_var:$VAR_NAME$ } }
+		} else = { set_global_variable = { name = $VAR_NAME$ value = 1 } }
+	}
+}
+
+building_toggle_gui_states_build_list_highlight = {
+	if = { limit = { exists = global_var:gui_states_build_list_highlight_$BTYPE$ } remove_global_variable = gui_states_build_list_highlight_$BTYPE$ }
+	else = { set_global_variable = { name = gui_states_build_list_highlight_$BTYPE$ value = 1 } }
+}
+
+btype_clear_gui_states_build_list_highlights = {
+	remove_global_variable = gui_states_build_list_highlight_$BTYPE$
+}
+
+gui_states_build_list_create_presets = {
+	clear_global_variable_list = gui_states_build_list_presets
+	ordered_state_region = {
+		limit = { exists = var:gui_states_build_list_preset }
+		order_by = { subtract = var:gui_states_build_list_preset }
+		min = 0
+		add_to_global_variable_list = { name = gui_states_build_list_presets target = THIS }
+	}
+}
+
+act_gui_states_build_list_filters = {
+	$ACTION$ = { FILTER = pms }
+	$ACTION$ = { FILTER = high_unemployed }
+	$ACTION$ = { FILTER = incorp }
+	$ACTION$ = { FILTER = balance }
+	$ACTION$ = { FILTER = balance_prog }
+	$ACTION$ = { FILTER = high_labor }
+	$ACTION$ = { FILTER = high_labor_prog }
+	$ACTION$ = { FILTER = not_cap }
+	$ACTION$ = { FILTER = high_discr }
+	$ACTION$ = { FILTER = low_discr }
+	$ACTION$ = { FILTER = infra }
+	$ACTION$ = { FILTER = infra_prog }
+	$ACTION$ = { FILTER = btype }
+	$ACTION$ = { FILTER = coastal }
+	$ACTION$ = { FILTER = not_coastal }
+	$ACTION$ = { FILTER = not_scale_cap }
+	$ACTION$ = { FILTER = any_manufacturing }
+	$ACTION$ = { FILTER = not_btype }
+}
+
+act_gui_states_build_list_settings = {
+	$ACTION$ = { SETTING = order_btype }
+	$ACTION$ = { SETTING = filter_incorp_p }
+	$ACTION$ = { SETTING = filter_labor_vn }
+	$ACTION$ = { SETTING = filter_discr_v }
+	$ACTION$ = { SETTING = filter_infra_v }
+	$ACTION$ = { SETTING = filter_btype_count }
+}
+
+gui_states_build_list_filter_toggle = {
+	gui_filter_toggle = { SCOPE_NAME = list_filter_$FILTER$ VAR_NAME = gui_states_build_list_filter_$FILTER$ }
+}
+
+state_region_gui_states_build_list_save_filter = {
+	if = { limit = { exists = global_var:gui_states_build_list_filter_$FILTER$ }
+		set_variable = { name = gui_states_build_list_filter_$FILTER$ value = global_var:gui_states_build_list_filter_$FILTER$ }
+	} else = {
+		set_variable = { name = gui_states_build_list_filter_$FILTER$ value = 0 }
+	}
+}
+
+state_region_gui_states_build_list_load_filter = {
+	if = { limit = { exists = var:gui_states_build_list_filter_$FILTER$ }
+		set_global_variable = { name = gui_states_build_list_filter_$FILTER$ value = var:gui_states_build_list_filter_$FILTER$ }
+	} else = {
+		set_global_variable = { name = gui_states_build_list_filter_$FILTER$ value = 0 }
+	}
+}
+
+state_region_gui_states_build_list_save_setting = {
+	if = { limit = { exists = global_var:gui_states_build_list_$SETTING$ }
+		set_variable = { name = gui_states_build_list_$SETTING$ value = global_var:gui_states_build_list_$SETTING$ }
+	} else = {
+		remove_variable = gui_states_build_list_$SETTING$
+	}
+}
+
+state_region_gui_states_build_list_load_setting = {
+	if = { limit = { exists = var:gui_states_build_list_$SETTING$ }
+		set_global_variable = { name = gui_states_build_list_$SETTING$ value = var:gui_states_build_list_$SETTING$ }
+	} else = {
+		remove_global_variable = gui_states_build_list_$SETTING$
+	}
+}
+
+country_gui_states_build_list_filter_infra_need_set = {
+	#debug_log = country_gui_states_build_list_filter_infra_need_set
+	if = { limit = { exists = global_var:gui_states_build_list_filter_infra_v }
+		random_scope_building = {
+			limit = { type = global_var:gui_states_build_list_btype }
+			set_global_variable = { name = gui_states_build_list_filter_infra_need value = { value = building_infra_usage_per_level multiply = global_var:gui_states_build_list_filter_infra_v } }
+		}
+	}
+}
+
+building_toggle_gui_states_build_list_filter_btype = {
+	if = { limit = { NOT = { exists = global_var:gui_states_build_list_filter_btype_count } }
+		set_global_variable = { name = gui_states_build_list_filter_btype_count value = 0 }
+	}
+	if = { limit = { exists = global_var:gui_states_build_list_filter_btype_$BTYPE$ }
+		remove_global_variable = gui_states_build_list_filter_btype_$BTYPE$
+		change_global_variable = { name = gui_states_build_list_filter_btype_count subtract = 1 }
+	}
+	else = {
+		set_global_variable = { name = gui_states_build_list_filter_btype_$BTYPE$ value = 1 }
+		change_global_variable = { name = gui_states_build_list_filter_btype_count add = 1 }
+	}
+}
+
+building_save_reachedcap = {
+	scope:check_state = { set_variable = { name = $BTYPE$_reachedcap value = scope:reachedcap } }
+}
+
+state_region_gui_states_build_list_save_filter_btype_settings = {
+	if = { limit = { exists = global_var:gui_states_build_list_filter_btype_$BTYPE$ }
+		set_variable = { name = gui_states_build_list_filter_btype_$BTYPE$ value = global_var:gui_states_build_list_filter_btype_$BTYPE$ }
+	} else = {
+		remove_variable = gui_states_build_list_filter_btype_$BTYPE$
+	}
+}
+
+state_region_gui_states_build_list_load_filter_btype_settings = {
+	if = { limit = { exists = var:gui_states_build_list_filter_btype_$BTYPE$ }
+		set_global_variable = { name = gui_states_build_list_filter_btype_$BTYPE$ value = var:gui_states_build_list_filter_btype_$BTYPE$ }
+	} else = {
+		remove_global_variable = gui_states_build_list_filter_btype_$BTYPE$
+	}
+}
+
+state_region_gui_states_build_list_save_preset_values = {
+	if = { limit = { exists = global_var:gui_states_build_list_order }
+		set_variable = { name = gui_states_build_list_order value = global_var:gui_states_build_list_order }
+	}
+	act_gui_states_build_list_filters = { ACTION = state_region_gui_states_build_list_save_filter }
+	act_gui_states_build_list_settings = { ACTION = state_region_gui_states_build_list_save_setting }
+	act_building_types = { ACTION = state_region_gui_states_build_list_save_filter_btype_settings }
+	set_variable = { name = gui_states_build_vo_list_page value = global_var:gui_states_build_vo_list_page }
+}

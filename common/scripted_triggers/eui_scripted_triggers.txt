@@ -1,0 +1,116 @@
+﻿jobs_autopms_2000 = {
+	OR = {
+		$ACTION$ = pm_rotary_valve_engine_building_furniture_manufacturies
+		$ACTION$ = pm_rotary_valve_engine_building_tooling_workshops
+		$ACTION$ = pm_rotary_valve_engine_building_paper_mills
+		$ACTION$ = pm_rotary_valve_engine_building_steel_mills
+		$ACTION$ = pm_assembly_lines_building_motor_industry
+		$ACTION$ = pm_rotary_valve_engine_building_arms_industry
+		$ACTION$ = pm_rotary_valve_engine_building_munition_plants
+		$ACTION$ = pm_refrigerated_rail_cars_building_fishing_wharf
+		$ACTION$ = pm_refrigerated_rail_cars_building_whaling_station
+		$ACTION$ = pm_tanker_cars
+	}
+}
+
+sjobs_autopms_2000 = {
+	OR = {
+		state = {
+			is_production_method_active = {
+				building_type = $BType$
+				production_method = pm_rotary_valve_engine_building_furniture_manufacturies
+			}
+		}
+	}
+}
+
+has_or_can_pm = {
+	OR = {
+		can_activate_production_method = {
+			building_type = $BTYPE$
+			production_method = $PM$
+		}
+		is_production_method_active = {
+			building_type = $BTYPE$
+			production_method = $PM$
+		}
+	}
+}
+
+any_state_region_player_colonizable = {
+	any_state_region = {
+		trigger_if = { limit = { exists = var:player_colonizable }
+			var:player_colonizable = yes
+		}
+	}
+}
+
+building_not_reached_cap = {
+	scope:check_state = { var:$BTYPE$_reachedcap = no }
+}
+
+state_btype_not_cap = {
+	trigger_if = { limit = { NOT = { any_scope_building = { type = global_var:gui_states_build_list_btype } } }
+		trigger_if = { limit = { owner = { any_in_list = { variable = buildings_capped type = global_var:gui_states_build_list_btype } } }
+			#always = yes
+			save_temporary_scope_as = check_state
+			owner = { any_in_list = {
+				variable = buildings_capped
+				type = global_var:gui_states_build_list_btype
+				building_trigger_building_type = { TRIGGER = building_not_reached_cap }
+			} }
+		} trigger_else = {
+			always = yes
+		}
+	} trigger_else = {
+		any_scope_building = {
+			type = global_var:gui_states_build_list_btype
+			can_queue_building_levels = 1
+		}
+	}
+}
+
+building_gui_map_list_filter_btype_not_reached_cap = {
+	trigger_if = {
+		limit = {
+			exists = global_var:gui_states_build_list_filter_btype_$BTYPE$ #in filter
+			scope:check_state = { exists = var:$BTYPE$_reachedcap } #building possible in state
+		}
+		scope:check_state = { var:$BTYPE$_reachedcap = no }
+	} trigger_else = { always = no }
+}
+
+state_any_gui_map_list_filter_btype_not_reached_cap = {
+	save_temporary_scope_as = check_state
+	owner = { any_in_list = {
+		variable = buildings_capped
+		building_trigger_building_type = { TRIGGER = building_gui_map_list_filter_btype_not_reached_cap }
+	} }
+}
+
+state_btype_scale_cap = {
+	any_scope_building = {
+		type = global_var:gui_states_build_list_btype
+		NOR = { is_building_group = bg_infrastructure is_building_group = bg_military is_subsistence_building = yes }
+		building_level_prog > modifier:building_economy_of_scale_level_cap_add
+	}
+}
+
+state_any_building_manufacturing = {
+	any_scope_building = {
+		is_building_group = bg_manufacturing
+	}
+}
+
+building_any_not_gui_map_list_filter_btype = {
+	NOT = { exists = global_var:gui_states_build_list_filter_btype_$BTYPE$ } #not in filter
+}
+
+#Not in exceptions: bg_arts, bg_technology
+state_any_not_gui_map_list_filter_btype = {
+	any_scope_building = {
+		#exceptions
+		NOR = { is_building_group = bg_service is_building_group = bg_trade is_building_group = bg_bureaucracy is_building_group = bg_skyscraper is_building_group = bg_monuments is_building_group = bg_infrastructure is_building_group = bg_monuments_hidden is_building_group = bg_military is_subsistence_building = yes }
+		building_trigger_building_type = { TRIGGER = building_any_not_gui_map_list_filter_btype }
+	} 
+}

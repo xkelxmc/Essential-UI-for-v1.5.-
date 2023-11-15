@@ -1,0 +1,1112 @@
+﻿building_add_goods_pmg_dummy = {
+	if = { limit = { has_active_production_method = pm_dummy } market = { add_goods_pm_dummy = yes } }
+}
+
+building_add_goods_pmg_base_building_food_industry = {
+	if = { limit = { has_active_production_method = pm_bakery } market = { add_goods_pm_bakery = yes } }
+	else_if = { limit = { has_active_production_method = pm_sweeteners } market = { add_goods_pm_sweeteners = yes } }
+	else_if = { limit = { has_active_production_method = pm_baking_powder } market = { add_goods_pm_baking_powder = yes } }
+}
+building_add_goods_pmg_canning = {
+	if = { limit = { has_active_production_method = pm_disabled_canning } market = { add_goods_pm_disabled_canning = yes } }
+	else_if = { limit = { has_active_production_method = pm_cannery } market = { add_goods_pm_cannery = yes } }
+	else_if = { limit = { has_active_production_method = pm_vacuum_canning } market = { add_goods_pm_vacuum_canning = yes } }
+}
+building_add_goods_pmg_distillery = {
+	if = { limit = { has_active_production_method = pm_disabled_distillery } market = { add_goods_pm_disabled_distillery = yes } }
+	else_if = { limit = { has_active_production_method = pm_pot_stills } market = { add_goods_pm_pot_stills = yes } }
+	else_if = { limit = { has_active_production_method = pm_patent_stills } market = { add_goods_pm_patent_stills = yes } }
+}
+building_add_goods_pmg_automation_building_food_industry = {
+	if = { limit = { has_active_production_method = pm_manual_dough_processing } market = { add_goods_pm_manual_dough_processing = yes } }
+	else_if = { limit = { has_active_production_method = pm_automated_bakery } market = { add_goods_pm_automated_bakery = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_food_industry = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_food_industry } market = { add_goods_pm_merchant_guilds_building_food_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_food_industry } market = { add_goods_pm_privately_owned_building_food_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_food_industry } market = { add_goods_pm_publicly_traded_building_food_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_food_industry } market = { add_goods_pm_government_run_building_food_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_food_industry } market = { add_goods_pm_worker_cooperative_building_food_industry = yes } }
+}
+building_add_goods_pmg_base_building_textile_mills = {
+	if = { limit = { has_active_production_method = pm_handsewn_clothes } market = { add_goods_pm_handsewn_clothes = yes } }
+	else_if = { limit = { has_active_production_method = pm_dye_workshops } market = { add_goods_pm_dye_workshops = yes } }
+	else_if = { limit = { has_active_production_method = pm_sewing_machines } market = { add_goods_pm_sewing_machines = yes } }
+	else_if = { limit = { has_active_production_method = pm_electric_sewing_machines } market = { add_goods_pm_electric_sewing_machines = yes } }
+}
+building_add_goods_pmg_luxury_building_textile_mills = {
+	if = { limit = { has_active_production_method = pm_no_luxury_clothes } market = { add_goods_pm_no_luxury_clothes = yes } }
+	else_if = { limit = { has_active_production_method = pm_craftsman_sewing } market = { add_goods_pm_craftsman_sewing = yes } }
+	else_if = { limit = { has_active_production_method = pm_elastics } market = { add_goods_pm_elastics = yes } }
+}
+building_add_goods_pmg_automation_building_textile_mills = {
+	if = { limit = { has_active_production_method = pm_traditional_looms } market = { add_goods_pm_traditional_looms = yes } }
+	else_if = { limit = { has_active_production_method = pm_mechanized_looms } market = { add_goods_pm_mechanized_looms = yes } }
+	else_if = { limit = { has_active_production_method = pm_automatic_power_looms } market = { add_goods_pm_automatic_power_looms = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_textile_mills = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_textile_mills } market = { add_goods_pm_merchant_guilds_building_textile_mills = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_textile_mills } market = { add_goods_pm_privately_owned_building_textile_mills = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_textile_mills } market = { add_goods_pm_publicly_traded_building_textile_mills = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_textile_mills } market = { add_goods_pm_government_run_building_textile_mills = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_textile_mills } market = { add_goods_pm_worker_cooperative_building_textile_mills = yes } }
+}
+building_add_goods_pmg_base_building_furniture_manufacturies = {
+	if = { limit = { has_active_production_method = pm_handcrafted_furniture } market = { add_goods_pm_handcrafted_furniture = yes } }
+	else_if = { limit = { has_active_production_method = pm_lathe } market = { add_goods_pm_lathe = yes } }
+	else_if = { limit = { has_active_production_method = pm_mechanized_workshops } market = { add_goods_pm_mechanized_workshops = yes } }
+}
+building_add_goods_pmg_luxury_building_furniture_manufacturies = {
+	if = { limit = { has_active_production_method = pm_no_luxuries } market = { add_goods_pm_no_luxuries = yes } }
+	else_if = { limit = { has_active_production_method = pm_luxury_furniture } market = { add_goods_pm_luxury_furniture = yes } }
+	else_if = { limit = { has_active_production_method = pm_precision_tools } market = { add_goods_pm_precision_tools = yes } }
+}
+building_add_goods_pmg_automation_building_furniture_manufacturies = {
+	if = { limit = { has_active_production_method = pm_automation_disabled } market = { add_goods_pm_automation_disabled = yes } }
+	else_if = { limit = { has_active_production_method = pm_watertube_boiler_building_furniture_manufacturies } market = { add_goods_pm_watertube_boiler_building_furniture_manufacturies = yes } }
+	else_if = { limit = { has_active_production_method = pm_rotary_valve_engine_building_furniture_manufacturies } market = { add_goods_pm_rotary_valve_engine_building_furniture_manufacturies = yes } }
+	else_if = { limit = { has_active_production_method = pm_assembly_lines_building_furniture_manufacturies } market = { add_goods_pm_assembly_lines_building_furniture_manufacturies = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_furniture_manufacturies = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_furniture_manufacturies } market = { add_goods_pm_merchant_guilds_building_furniture_manufacturies = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_furniture_manufacturies } market = { add_goods_pm_privately_owned_building_furniture_manufacturies = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_furniture_manufacturies } market = { add_goods_pm_publicly_traded_building_furniture_manufacturies = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_furniture_manufacturies } market = { add_goods_pm_government_run_building_furniture_manufacturies = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_furniture_manufacturies } market = { add_goods_pm_worker_cooperative_building_furniture_manufacturies = yes } }
+}
+building_add_goods_pmg_base_building_tooling_workshops = {
+	if = { limit = { has_active_production_method = pm_crude_tools } market = { add_goods_pm_crude_tools = yes } }
+	else_if = { limit = { has_active_production_method = pm_pig_iron } market = { add_goods_pm_pig_iron = yes } }
+	else_if = { limit = { has_active_production_method = pm_steel } market = { add_goods_pm_steel = yes } }
+}
+building_add_goods_pmg_automation_building_tooling_workshops = {
+	if = { limit = { has_active_production_method = pm_automation_disabled } market = { add_goods_pm_automation_disabled = yes } }
+	else_if = { limit = { has_active_production_method = pm_watertube_boiler_building_tooling_workshops } market = { add_goods_pm_watertube_boiler_building_tooling_workshops = yes } }
+	else_if = { limit = { has_active_production_method = pm_rotary_valve_engine_building_tooling_workshops } market = { add_goods_pm_rotary_valve_engine_building_tooling_workshops = yes } }
+	else_if = { limit = { has_active_production_method = pm_assembly_lines_building_tooling_workshops } market = { add_goods_pm_assembly_lines_building_tooling_workshops = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_tooling_workshops = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_tooling_workshops } market = { add_goods_pm_merchant_guilds_building_tooling_workshops = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_tooling_workshops } market = { add_goods_pm_privately_owned_building_tooling_workshops = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_tooling_workshops } market = { add_goods_pm_publicly_traded_building_tooling_workshops = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_tooling_workshops } market = { add_goods_pm_government_run_building_tooling_workshops = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_tooling_workshops } market = { add_goods_pm_worker_cooperative_building_tooling_workshops = yes } }
+}
+building_add_goods_pmg_base_building_glassworks = {
+	if = { limit = { has_active_production_method = pm_forest_glass } market = { add_goods_pm_forest_glass = yes } }
+	else_if = { limit = { has_active_production_method = pm_leaded_glass } market = { add_goods_pm_leaded_glass = yes } }
+	else_if = { limit = { has_active_production_method = pm_crystal_glass } market = { add_goods_pm_crystal_glass = yes } }
+	else_if = { limit = { has_active_production_method = pm_houseware_plastics } market = { add_goods_pm_houseware_plastics = yes } }
+}
+building_add_goods_pmg_luxury_building_glassworks = {
+	if = { limit = { has_active_production_method = pm_disabled_ceramics } market = { add_goods_pm_disabled_ceramics = yes } }
+	else_if = { limit = { has_active_production_method = pm_ceramics } market = { add_goods_pm_ceramics = yes } }
+	else_if = { limit = { has_active_production_method = pm_bone_china } market = { add_goods_pm_bone_china = yes } }
+}
+building_add_goods_pmg_glassblowing = {
+	if = { limit = { has_active_production_method = pm_manual_glassblowing } market = { add_goods_pm_manual_glassblowing = yes } }
+	else_if = { limit = { has_active_production_method = pm_automatic_bottle_blowers } market = { add_goods_pm_automatic_bottle_blowers = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_glassworks = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_glassworks } market = { add_goods_pm_merchant_guilds_building_glassworks = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_glassworks } market = { add_goods_pm_privately_owned_building_glassworks = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_glassworks } market = { add_goods_pm_publicly_traded_building_glassworks = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_glassworks } market = { add_goods_pm_government_run_building_glassworks = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_glassworks } market = { add_goods_pm_worker_cooperative_building_glassworks = yes } }
+}
+building_add_goods_pmg_base_building_paper_mills = {
+	if = { limit = { has_active_production_method = pm_pulp_pressing } market = { add_goods_pm_pulp_pressing = yes } }
+	else_if = { limit = { has_active_production_method = pm_sulfite_pulping } market = { add_goods_pm_sulfite_pulping = yes } }
+	else_if = { limit = { has_active_production_method = pm_bleached_paper } market = { add_goods_pm_bleached_paper = yes } }
+}
+building_add_goods_pmg_automation_building_paper_mills = {
+	if = { limit = { has_active_production_method = pm_automation_disabled } market = { add_goods_pm_automation_disabled = yes } }
+	else_if = { limit = { has_active_production_method = pm_watertube_boiler_building_paper_mills } market = { add_goods_pm_watertube_boiler_building_paper_mills = yes } }
+	else_if = { limit = { has_active_production_method = pm_rotary_valve_engine_building_paper_mills } market = { add_goods_pm_rotary_valve_engine_building_paper_mills = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_paper_mills = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_paper_mills } market = { add_goods_pm_merchant_guilds_building_paper_mills = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_paper_mills } market = { add_goods_pm_privately_owned_building_paper_mills = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_paper_mills } market = { add_goods_pm_publicly_traded_building_paper_mills = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_paper_mills } market = { add_goods_pm_government_run_building_paper_mills = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_paper_mills } market = { add_goods_pm_worker_cooperative_building_paper_mills = yes } }
+}
+building_add_goods_pmg_fertilizer_production = {
+	if = { limit = { has_active_production_method = pm_artificial_fertilizers } market = { add_goods_pm_artificial_fertilizers = yes } }
+	else_if = { limit = { has_active_production_method = pm_improved_fertilizer } market = { add_goods_pm_improved_fertilizer = yes } }
+	else_if = { limit = { has_active_production_method = pm_nitrogen_fixation } market = { add_goods_pm_nitrogen_fixation = yes } }
+}
+building_add_goods_pmg_explosives_building_chemical_plants = {
+	if = { limit = { has_active_production_method = pm_no_explosives_production } market = { add_goods_pm_no_explosives_production = yes } }
+	else_if = { limit = { has_active_production_method = pm_leblanc_process } market = { add_goods_pm_leblanc_process = yes } }
+	else_if = { limit = { has_active_production_method = pm_ammonia-soda_process } market = { add_goods_pm_ammonia-soda_process = yes } }
+	else_if = { limit = { has_active_production_method = pm_vacuum_evaporation } market = { add_goods_pm_vacuum_evaporation = yes } }
+	else_if = { limit = { has_active_production_method = pm_brine_electrolysis } market = { add_goods_pm_brine_electrolysis = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_chemical_plants = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } market = { add_goods_pm_privately_owned_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_chemical_plants } market = { add_goods_pm_publicly_traded_building_chemical_plants = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } market = { add_goods_pm_government_run_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } market = { add_goods_pm_worker_cooperative_industry = yes } }
+}
+building_add_goods_pmg_synthetic_dyes = {
+	if = { limit = { has_active_production_method = pm_dye_production } market = { add_goods_pm_dye_production = yes } }
+}
+building_add_goods_pmg_synthetic_silk = {
+	if = { limit = { has_active_production_method = pm_no_artificial_fibers } market = { add_goods_pm_no_artificial_fibers = yes } }
+	else_if = { limit = { has_active_production_method = pm_rayon } market = { add_goods_pm_rayon = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_synthetics_plants = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } market = { add_goods_pm_privately_owned_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_synthetic_plants } market = { add_goods_pm_publicly_traded_building_synthetic_plants = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } market = { add_goods_pm_government_run_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } market = { add_goods_pm_worker_cooperative_industry = yes } }
+}
+building_add_goods_pmg_steelmaking_process = {
+	if = { limit = { has_active_production_method = pm_blister_steel_process } market = { add_goods_pm_blister_steel_process = yes } }
+	else_if = { limit = { has_active_production_method = pm_bessemer_process } market = { add_goods_pm_bessemer_process = yes } }
+	else_if = { limit = { has_active_production_method = pm_open_hearth_process } market = { add_goods_pm_open_hearth_process = yes } }
+	else_if = { limit = { has_active_production_method = pm_electric_arc_process } market = { add_goods_pm_electric_arc_process = yes } }
+}
+building_add_goods_pmg_automation_building_steel_mills = {
+	if = { limit = { has_active_production_method = pm_automation_disabled } market = { add_goods_pm_automation_disabled = yes } }
+	else_if = { limit = { has_active_production_method = pm_watertube_boiler_building_steel_mills } market = { add_goods_pm_watertube_boiler_building_steel_mills = yes } }
+	else_if = { limit = { has_active_production_method = pm_rotary_valve_engine_building_steel_mills } market = { add_goods_pm_rotary_valve_engine_building_steel_mills = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_steel_mills = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } market = { add_goods_pm_privately_owned_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_steel_mills } market = { add_goods_pm_publicly_traded_building_steel_mills = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } market = { add_goods_pm_government_run_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } market = { add_goods_pm_worker_cooperative_industry = yes } }
+}
+building_add_goods_pmg_base_building_motor_industry = {
+	if = { limit = { has_active_production_method = pm_steam_engines } market = { add_goods_pm_steam_engines = yes } }
+	else_if = { limit = { has_active_production_method = pm_electric_engines } market = { add_goods_pm_electric_engines = yes } }
+	else_if = { limit = { has_active_production_method = pm_diesel_engines } market = { add_goods_pm_diesel_engines = yes } }
+}
+building_add_goods_pmg_automobile_production = {
+	if = { limit = { has_active_production_method = pm_automobiles_disabled } market = { add_goods_pm_automobiles_disabled = yes } }
+	else_if = { limit = { has_active_production_method = pm_automobile_production } market = { add_goods_pm_automobile_production = yes } }
+}
+building_add_goods_pmg_automation_building_motor_industry = {
+	if = { limit = { has_active_production_method = pm_automation_disabled } market = { add_goods_pm_automation_disabled = yes } }
+	else_if = { limit = { has_active_production_method = pm_watertube_boiler_building_motor_industry } market = { add_goods_pm_watertube_boiler_building_motor_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_rotary_valve_engine_building_motor_industry } market = { add_goods_pm_rotary_valve_engine_building_motor_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_assembly_lines_building_motor_industry } market = { add_goods_pm_assembly_lines_building_motor_industry = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_motor_industry = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } market = { add_goods_pm_privately_owned_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_motor_industries } market = { add_goods_pm_publicly_traded_building_motor_industries = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } market = { add_goods_pm_government_run_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } market = { add_goods_pm_worker_cooperative_industry = yes } }
+}
+building_add_goods_pmg_base_building_shipyards = {
+	if = { limit = { has_active_production_method = pm_basic_shipbuilding } market = { add_goods_pm_basic_shipbuilding = yes } }
+	else_if = { limit = { has_active_production_method = pm_complex_shipbuilding } market = { add_goods_pm_complex_shipbuilding = yes } }
+	else_if = { limit = { has_active_production_method = pm_metal_shipbuilding } market = { add_goods_pm_metal_shipbuilding = yes } }
+	else_if = { limit = { has_active_production_method = pm_arc_welding_shipbuilding } market = { add_goods_pm_arc_welding_shipbuilding = yes } }
+}
+building_add_goods_pmg_military_base = {
+	if = { limit = { has_active_production_method = pm_no_military_shipbuilding } market = { add_goods_pm_no_military_shipbuilding = yes } }
+	else_if = { limit = { has_active_production_method = pm_military_shipbuilding_wooden } market = { add_goods_pm_military_shipbuilding_wooden = yes } }
+	else_if = { limit = { has_active_production_method = pm_military_shipbuilding_wooden_2 } market = { add_goods_pm_military_shipbuilding_wooden_2 = yes } }
+	else_if = { limit = { has_active_production_method = pm_military_shipbuilding_steam } market = { add_goods_pm_military_shipbuilding_steam = yes } }
+	else_if = { limit = { has_active_production_method = pm_military_shipbuilding_steam_2 } market = { add_goods_pm_military_shipbuilding_steam_2 = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_shipyards = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_shipyards } market = { add_goods_pm_merchant_guilds_building_shipyards = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_shipyards } market = { add_goods_pm_privately_owned_building_shipyards = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_shipyards } market = { add_goods_pm_publicly_traded_building_shipyards = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_shipyards } market = { add_goods_pm_government_run_building_shipyards = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_shipyards } market = { add_goods_pm_worker_cooperative_building_shipyards = yes } }
+}
+building_add_goods_pmg_aeroplanes = {
+	if = { limit = { has_active_production_method = pm_aeroplane_production } market = { add_goods_pm_aeroplane_production = yes } }
+}
+building_add_goods_pmg_tanks = {
+	if = { limit = { has_active_production_method = pm_no_tank_production } market = { add_goods_pm_no_tank_production = yes } }
+	else_if = { limit = { has_active_production_method = pm_tank_production } market = { add_goods_pm_tank_production = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_war_machine_industry = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } market = { add_goods_pm_privately_owned_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_war_machines_induestries } market = { add_goods_pm_publicly_traded_building_war_machines_induestries = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } market = { add_goods_pm_government_run_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } market = { add_goods_pm_worker_cooperative_industry = yes } }
+}
+building_add_goods_pmg_telephones_category = {
+	if = { limit = { has_active_production_method = pm_telephones } market = { add_goods_pm_telephones = yes } }
+}
+building_add_goods_pmg_radios_category = {
+	if = { limit = { has_active_production_method = pm_no_radios } market = { add_goods_pm_no_radios = yes } }
+	else_if = { limit = { has_active_production_method = pm_radios } market = { add_goods_pm_radios = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_electrics_industry = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } market = { add_goods_pm_privately_owned_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_electrics_industries } market = { add_goods_pm_publicly_traded_building_electrics_industries = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } market = { add_goods_pm_government_run_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } market = { add_goods_pm_worker_cooperative_industry = yes } }
+}
+building_add_goods_pmg_firearms_manufacturing = {
+	if = { limit = { has_active_production_method = pm_muskets } market = { add_goods_pm_muskets = yes } }
+	else_if = { limit = { has_active_production_method = pm_rifles } market = { add_goods_pm_rifles = yes } }
+	else_if = { limit = { has_active_production_method = pm_repeaters } market = { add_goods_pm_repeaters = yes } }
+	else_if = { limit = { has_active_production_method = pm_bolt_action_rifles } market = { add_goods_pm_bolt_action_rifles = yes } }
+}
+building_add_goods_pmg_automation_building_arms_industry = {
+	if = { limit = { has_active_production_method = pm_automation_disabled } market = { add_goods_pm_automation_disabled = yes } }
+	else_if = { limit = { has_active_production_method = pm_rotary_valve_engine_building_arms_industry } market = { add_goods_pm_rotary_valve_engine_building_arms_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_assembly_lines_building_arms_industry } market = { add_goods_pm_assembly_lines_building_arms_industry = yes } }
+}
+building_add_goods_pmg_foundries = {
+	if = { limit = { has_active_production_method = pm_no_artillery_production } market = { add_goods_pm_no_artillery_production = yes } }
+	else_if = { limit = { has_active_production_method = pm_cannons } market = { add_goods_pm_cannons = yes } }
+	else_if = { limit = { has_active_production_method = pm_smoothbores } market = { add_goods_pm_smoothbores = yes } }
+	else_if = { limit = { has_active_production_method = pm_breech_loaders } market = { add_goods_pm_breech_loaders = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_arms_industry = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_arms_industry } market = { add_goods_pm_merchant_guilds_building_arms_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_arms_industry } market = { add_goods_pm_privately_owned_building_arms_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_arms_industry } market = { add_goods_pm_publicly_traded_building_arms_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_arms_industry } market = { add_goods_pm_government_run_building_arms_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_arms_industry } market = { add_goods_pm_worker_cooperative_building_arms_industry = yes } }
+}
+building_add_goods_pmg_base_building_munition_plants = {
+	if = { limit = { has_active_production_method = pm_percussion_caps } market = { add_goods_pm_percussion_caps = yes } }
+	else_if = { limit = { has_active_production_method = pm_explosive_shells } market = { add_goods_pm_explosive_shells = yes } }
+}
+building_add_goods_pmg_automation_building_munition_plants = {
+	if = { limit = { has_active_production_method = pm_automation_disabled } market = { add_goods_pm_automation_disabled = yes } }
+	else_if = { limit = { has_active_production_method = pm_rotary_valve_engine_building_munition_plants } market = { add_goods_pm_rotary_valve_engine_building_munition_plants = yes } }
+	else_if = { limit = { has_active_production_method = pm_assembly_lines_building_munition_plants } market = { add_goods_pm_assembly_lines_building_munition_plants = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_munition_plants = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } market = { add_goods_pm_privately_owned_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_munition_plants } market = { add_goods_pm_publicly_traded_building_munition_plants = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } market = { add_goods_pm_government_run_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } market = { add_goods_pm_worker_cooperative_industry = yes } }
+}
+
+building_add_goods_pmg_base_building_rye_farm = {
+	if = { limit = { has_active_production_method = pm_simple_farming } market = { add_goods_pm_simple_farming = yes } }
+	else_if = { limit = { has_active_production_method = pm_soil_enriching_farming } market = { add_goods_pm_soil_enriching_farming = yes } }
+	else_if = { limit = { has_active_production_method = pm_fertilization } market = { add_goods_pm_fertilization = yes } }
+	else_if = { limit = { has_active_production_method = pm_chemical_fertilizer } market = { add_goods_pm_chemical_fertilizer = yes } }
+}
+building_add_goods_pmg_secondary_building_rye_farm = {
+	if = { limit = { has_active_production_method = pm_no_secondary } market = { add_goods_pm_no_secondary = yes } }
+	else_if = { limit = { has_active_production_method = pm_potatoes } market = { add_goods_pm_potatoes = yes } }
+	else_if = { limit = { has_active_production_method = pm_apple_orchards } market = { add_goods_pm_apple_orchards = yes } }
+}
+building_add_goods_pmg_harvesting_process_building_rye_farm = {
+	if = { limit = { has_active_production_method = pm_tools_disabled } market = { add_goods_pm_tools_disabled = yes } }
+	else_if = { limit = { has_active_production_method = pm_tools } market = { add_goods_pm_tools = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_threshers } market = { add_goods_pm_steam_threshers = yes } }
+	else_if = { limit = { has_active_production_method = pm_tractors } market = { add_goods_pm_tractors = yes } }
+	else_if = { limit = { has_active_production_method = pm_compression_ignition_tractors } market = { add_goods_pm_compression_ignition_tractors = yes } }
+}
+building_add_goods_pmg_ownership_land_building_rye_farm = {
+	if = { limit = { has_active_production_method = pm_privately_owned } market = { add_goods_pm_privately_owned = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded } market = { add_goods_pm_publicly_traded = yes } }
+	else_if = { limit = { has_active_production_method = pm_homesteading } market = { add_goods_pm_homesteading = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run } market = { add_goods_pm_government_run = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_farm } market = { add_goods_pm_worker_cooperative_farm = yes } }
+}
+building_add_goods_pmg_base_building_wheat_farm = {
+	if = { limit = { has_active_production_method = pm_simple_farming } market = { add_goods_pm_simple_farming = yes } }
+	else_if = { limit = { has_active_production_method = pm_soil_enriching_farming } market = { add_goods_pm_soil_enriching_farming = yes } }
+	else_if = { limit = { has_active_production_method = pm_fertilization } market = { add_goods_pm_fertilization = yes } }
+	else_if = { limit = { has_active_production_method = pm_chemical_fertilizer } market = { add_goods_pm_chemical_fertilizer = yes } }
+}
+building_add_goods_pmg_secondary_building_wheat_farm = {
+	if = { limit = { has_active_production_method = pm_no_secondary } market = { add_goods_pm_no_secondary = yes } }
+	else_if = { limit = { has_active_production_method = pm_citrus_orchards } market = { add_goods_pm_citrus_orchards = yes } }
+	else_if = { limit = { has_active_production_method = pm_vineyards } market = { add_goods_pm_vineyards = yes } }
+}
+building_add_goods_pmg_harvesting_process_building_wheat_farm = {
+	if = { limit = { has_active_production_method = pm_tools_disabled } market = { add_goods_pm_tools_disabled = yes } }
+	else_if = { limit = { has_active_production_method = pm_tools } market = { add_goods_pm_tools = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_threshers } market = { add_goods_pm_steam_threshers = yes } }
+	else_if = { limit = { has_active_production_method = pm_tractors } market = { add_goods_pm_tractors = yes } }
+	else_if = { limit = { has_active_production_method = pm_compression_ignition_tractors } market = { add_goods_pm_compression_ignition_tractors = yes } }
+}
+building_add_goods_pmg_ownership_land_building_wheat_farm = {
+	if = { limit = { has_active_production_method = pm_privately_owned } market = { add_goods_pm_privately_owned = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded } market = { add_goods_pm_publicly_traded = yes } }
+	else_if = { limit = { has_active_production_method = pm_homesteading } market = { add_goods_pm_homesteading = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run } market = { add_goods_pm_government_run = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_farm } market = { add_goods_pm_worker_cooperative_farm = yes } }
+}
+building_add_goods_pmg_base_building_rice_farm = {
+	if = { limit = { has_active_production_method = pm_simple_farming_building_rice_farm } market = { add_goods_pm_simple_farming_building_rice_farm = yes } }
+	else_if = { limit = { has_active_production_method = pm_soil_enriching_farming_building_rice_farm } market = { add_goods_pm_soil_enriching_farming_building_rice_farm = yes } }
+	else_if = { limit = { has_active_production_method = pm_fertilization_building_rice_farm } market = { add_goods_pm_fertilization_building_rice_farm = yes } }
+	else_if = { limit = { has_active_production_method = pm_chemical_fertilizer_building_rice_farm } market = { add_goods_pm_chemical_fertilizer_building_rice_farm = yes } }
+}
+building_add_goods_pmg_secondary_building_rice_farm = {
+	if = { limit = { has_active_production_method = pm_no_secondary } market = { add_goods_pm_no_secondary = yes } }
+	else_if = { limit = { has_active_production_method = pm_fig_orchards } market = { add_goods_pm_fig_orchards = yes } }
+}
+building_add_goods_pmg_harvesting_process_building_rice_farm = {
+	if = { limit = { has_active_production_method = pm_tools_disabled } market = { add_goods_pm_tools_disabled = yes } }
+	else_if = { limit = { has_active_production_method = pm_tools } market = { add_goods_pm_tools = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_threshers } market = { add_goods_pm_steam_threshers = yes } }
+}
+building_add_goods_pmg_ownership_land_building_rice_farm = {
+	if = { limit = { has_active_production_method = pm_privately_owned } market = { add_goods_pm_privately_owned = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded } market = { add_goods_pm_publicly_traded = yes } }
+	else_if = { limit = { has_active_production_method = pm_homesteading } market = { add_goods_pm_homesteading = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run } market = { add_goods_pm_government_run = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_farm } market = { add_goods_pm_worker_cooperative_farm = yes } }
+}
+building_add_goods_pmg_base_building_maize_farm = {
+	if = { limit = { has_active_production_method = pm_simple_farming } market = { add_goods_pm_simple_farming = yes } }
+	else_if = { limit = { has_active_production_method = pm_soil_enriching_farming } market = { add_goods_pm_soil_enriching_farming = yes } }
+	else_if = { limit = { has_active_production_method = pm_fertilization } market = { add_goods_pm_fertilization = yes } }
+	else_if = { limit = { has_active_production_method = pm_chemical_fertilizer } market = { add_goods_pm_chemical_fertilizer = yes } }
+}
+building_add_goods_pmg_secondary_building_maize_farm = {
+	if = { limit = { has_active_production_method = pm_no_secondary } market = { add_goods_pm_no_secondary = yes } }
+	else_if = { limit = { has_active_production_method = pm_citrus_orchards } market = { add_goods_pm_citrus_orchards = yes } }
+	else_if = { limit = { has_active_production_method = pm_vineyards_building_maize_farm } market = { add_goods_pm_vineyards_building_maize_farm = yes } }
+}
+building_add_goods_pmg_harvesting_process_building_maize_farm = {
+	if = { limit = { has_active_production_method = pm_tools_disabled } market = { add_goods_pm_tools_disabled = yes } }
+	else_if = { limit = { has_active_production_method = pm_tools } market = { add_goods_pm_tools = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_threshers } market = { add_goods_pm_steam_threshers = yes } }
+	else_if = { limit = { has_active_production_method = pm_tractors } market = { add_goods_pm_tractors = yes } }
+	else_if = { limit = { has_active_production_method = pm_compression_ignition_tractors } market = { add_goods_pm_compression_ignition_tractors = yes } }
+}
+building_add_goods_pmg_ownership_land_building_maize_farm = {
+	if = { limit = { has_active_production_method = pm_privately_owned } market = { add_goods_pm_privately_owned = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded } market = { add_goods_pm_publicly_traded = yes } }
+	else_if = { limit = { has_active_production_method = pm_homesteading } market = { add_goods_pm_homesteading = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run } market = { add_goods_pm_government_run = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_farm } market = { add_goods_pm_worker_cooperative_farm = yes } }
+}
+building_add_goods_pmg_base_building_millet_farm = {
+	if = { limit = { has_active_production_method = pm_simple_farming } market = { add_goods_pm_simple_farming = yes } }
+	else_if = { limit = { has_active_production_method = pm_soil_enriching_farming } market = { add_goods_pm_soil_enriching_farming = yes } }
+	else_if = { limit = { has_active_production_method = pm_fertilization } market = { add_goods_pm_fertilization = yes } }
+	else_if = { limit = { has_active_production_method = pm_chemical_fertilizer } market = { add_goods_pm_chemical_fertilizer = yes } }
+}
+building_add_goods_pmg_secondary_building_millet_farm = {
+	if = { limit = { has_active_production_method = pm_no_secondary } market = { add_goods_pm_no_secondary = yes } }
+	else_if = { limit = { has_active_production_method = pm_fig_orchards } market = { add_goods_pm_fig_orchards = yes } }
+}
+building_add_goods_pmg_harvesting_process_building_millet_farm = {
+	if = { limit = { has_active_production_method = pm_tools_disabled } market = { add_goods_pm_tools_disabled = yes } }
+	else_if = { limit = { has_active_production_method = pm_tools } market = { add_goods_pm_tools = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_threshers } market = { add_goods_pm_steam_threshers = yes } }
+	else_if = { limit = { has_active_production_method = pm_tractors } market = { add_goods_pm_tractors = yes } }
+	else_if = { limit = { has_active_production_method = pm_compression_ignition_tractors } market = { add_goods_pm_compression_ignition_tractors = yes } }
+}
+building_add_goods_pmg_ownership_land_building_millet_farm = {
+	if = { limit = { has_active_production_method = pm_privately_owned } market = { add_goods_pm_privately_owned = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded } market = { add_goods_pm_publicly_traded = yes } }
+	else_if = { limit = { has_active_production_method = pm_homesteading } market = { add_goods_pm_homesteading = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run } market = { add_goods_pm_government_run = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_farm } market = { add_goods_pm_worker_cooperative_farm = yes } }
+}
+building_add_goods_pmg_base_building_livestock_ranch = {
+	if = { limit = { has_active_production_method = pm_simple_ranch } market = { add_goods_pm_simple_ranch = yes } }
+	else_if = { limit = { has_active_production_method = pm_intensive_grazing_ranch } market = { add_goods_pm_intensive_grazing_ranch = yes } }
+}
+building_add_goods_pmg_slaughtering = {
+	if = { limit = { has_active_production_method = pm_open_air_stockyards } market = { add_goods_pm_open_air_stockyards = yes } }
+	else_if = { limit = { has_active_production_method = pm_butchering_tools } market = { add_goods_pm_butchering_tools = yes } }
+	else_if = { limit = { has_active_production_method = pm_slaughterhouses } market = { add_goods_pm_slaughterhouses = yes } }
+	else_if = { limit = { has_active_production_method = pm_mechanized_slaughtering } market = { add_goods_pm_mechanized_slaughtering = yes } }
+}
+building_add_goods_pmg_fencing = {
+	if = { limit = { has_active_production_method = pm_standard_fences } market = { add_goods_pm_standard_fences = yes } }
+	else_if = { limit = { has_active_production_method = pm_barbed_wire_fences } market = { add_goods_pm_barbed_wire_fences = yes } }
+	else_if = { limit = { has_active_production_method = pm_electric_fencing } market = { add_goods_pm_electric_fencing = yes } }
+}
+building_add_goods_pmg_refrigeration_building_livestock_ranch = {
+	if = { limit = { has_active_production_method = pm_unrefrigerated } market = { add_goods_pm_unrefrigerated = yes } }
+	else_if = { limit = { has_active_production_method = pm_refrigerated_storage_building_livestock_ranch } market = { add_goods_pm_refrigerated_storage_building_livestock_ranch = yes } }
+	else_if = { limit = { has_active_production_method = pm_refrigerated_rail_cars_building_livestock_ranch } market = { add_goods_pm_refrigerated_rail_cars_building_livestock_ranch = yes } }
+}
+building_add_goods_pmg_ownership_land_building_livestock_ranch = {
+	if = { limit = { has_active_production_method = pm_privately_owned } market = { add_goods_pm_privately_owned = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded } market = { add_goods_pm_publicly_traded = yes } }
+	else_if = { limit = { has_active_production_method = pm_homesteading } market = { add_goods_pm_homesteading = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run } market = { add_goods_pm_government_run = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_farm } market = { add_goods_pm_worker_cooperative_farm = yes } }
+}
+
+building_add_goods_pmg_mining_equipment_building_coal_mine = {
+	if = { limit = { has_active_production_method = pm_picks_and_shovels_building_coal_mine } market = { add_goods_pm_picks_and_shovels_building_coal_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_atmospheric_engine_pump_building_coal_mine } market = { add_goods_pm_atmospheric_engine_pump_building_coal_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_condensing_engine_pump_building_coal_mine } market = { add_goods_pm_condensing_engine_pump_building_coal_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_diesel_pump_building_coal_mine } market = { add_goods_pm_diesel_pump_building_coal_mine = yes } }
+}
+building_add_goods_pmg_explosives_building_coal_mine = {
+	if = { limit = { has_active_production_method = pm_no_explosives } market = { add_goods_pm_no_explosives = yes } }
+	else_if = { limit = { has_active_production_method = pm_nitroglycerin_building_coal_mine } market = { add_goods_pm_nitroglycerin_building_coal_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_dynamite_building_coal_mine } market = { add_goods_pm_dynamite_building_coal_mine = yes } }
+}
+building_add_goods_pmg_steam_automation_building_coal_mine = {
+	if = { limit = { has_active_production_method = pm_no_steam_automation } market = { add_goods_pm_no_steam_automation = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_donkey_building_coal_mine } market = { add_goods_pm_steam_donkey_building_coal_mine = yes } }
+}
+building_add_goods_pmg_train_automation_building_coal_mine = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_rail_transport_mine } market = { add_goods_pm_rail_transport_mine = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_coal_mine = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_coal_mine } market = { add_goods_pm_merchant_guilds_building_coal_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_coal_mine } market = { add_goods_pm_privately_owned_building_coal_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_coal_mine } market = { add_goods_pm_publicly_traded_building_coal_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_coal_mine } market = { add_goods_pm_government_run_building_coal_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_coal_mine } market = { add_goods_pm_worker_cooperative_building_coal_mine = yes } }
+}
+building_add_goods_pmg_mining_equipment_building_iron_mine = {
+	if = { limit = { has_active_production_method = pm_picks_and_shovels_building_iron_mine } market = { add_goods_pm_picks_and_shovels_building_iron_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_atmospheric_engine_pump_building_iron_mine } market = { add_goods_pm_atmospheric_engine_pump_building_iron_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_condensing_engine_pump_building_iron_mine } market = { add_goods_pm_condensing_engine_pump_building_iron_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_diesel_pump_building_iron_mine } market = { add_goods_pm_diesel_pump_building_iron_mine = yes } }
+}
+building_add_goods_pmg_explosives_building_iron_mine = {
+	if = { limit = { has_active_production_method = pm_no_explosives } market = { add_goods_pm_no_explosives = yes } }
+	else_if = { limit = { has_active_production_method = pm_nitroglycerin_building_iron_mine } market = { add_goods_pm_nitroglycerin_building_iron_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_dynamite_building_iron_mine } market = { add_goods_pm_dynamite_building_iron_mine = yes } }
+}
+building_add_goods_pmg_steam_automation_building_iron_mine = {
+	if = { limit = { has_active_production_method = pm_no_steam_automation } market = { add_goods_pm_no_steam_automation = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_donkey_mine } market = { add_goods_pm_steam_donkey_mine = yes } }
+}
+building_add_goods_pmg_train_automation_building_iron_mine = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_rail_transport_mine } market = { add_goods_pm_rail_transport_mine = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_iron_mine = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_iron_mine } market = { add_goods_pm_merchant_guilds_building_iron_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_iron_mine } market = { add_goods_pm_privately_owned_building_iron_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_iron_mine } market = { add_goods_pm_publicly_traded_building_iron_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_iron_mine } market = { add_goods_pm_government_run_building_iron_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_iron_mine } market = { add_goods_pm_worker_cooperative_building_iron_mine = yes } }
+}
+building_add_goods_pmg_mining_equipment_building_lead_mine = {
+	if = { limit = { has_active_production_method = pm_picks_and_shovels_building_lead_mine } market = { add_goods_pm_picks_and_shovels_building_lead_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_atmospheric_engine_pump_building_lead_mine } market = { add_goods_pm_atmospheric_engine_pump_building_lead_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_condensing_engine_pump_building_lead_mine } market = { add_goods_pm_condensing_engine_pump_building_lead_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_diesel_pump_building_lead_mine } market = { add_goods_pm_diesel_pump_building_lead_mine = yes } }
+}
+building_add_goods_pmg_explosives_building_lead_mine = {
+	if = { limit = { has_active_production_method = pm_no_explosives } market = { add_goods_pm_no_explosives = yes } }
+	else_if = { limit = { has_active_production_method = pm_nitroglycerin_building_lead_mine } market = { add_goods_pm_nitroglycerin_building_lead_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_dynamite_building_lead_mine } market = { add_goods_pm_dynamite_building_lead_mine = yes } }
+}
+building_add_goods_pmg_steam_automation_building_lead_mine = {
+	if = { limit = { has_active_production_method = pm_no_steam_automation } market = { add_goods_pm_no_steam_automation = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_donkey_mine } market = { add_goods_pm_steam_donkey_mine = yes } }
+}
+building_add_goods_pmg_train_automation_building_lead_mine = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_rail_transport_mine } market = { add_goods_pm_rail_transport_mine = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_lead_mine = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_lead_mine } market = { add_goods_pm_merchant_guilds_building_lead_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_lead_mine } market = { add_goods_pm_privately_owned_building_lead_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_lead_mine } market = { add_goods_pm_publicly_traded_building_lead_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_lead_mine } market = { add_goods_pm_government_run_building_lead_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_lead_mine } market = { add_goods_pm_worker_cooperative_building_lead_mine = yes } }
+}
+building_add_goods_pmg_mining_equipment_building_sulfur_mine = {
+	if = { limit = { has_active_production_method = pm_picks_and_shovels_building_sulfur_mine } market = { add_goods_pm_picks_and_shovels_building_sulfur_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_atmospheric_engine_pump_building_sulfur_mine } market = { add_goods_pm_atmospheric_engine_pump_building_sulfur_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_condensing_engine_pump_building_sulfur_mine } market = { add_goods_pm_condensing_engine_pump_building_sulfur_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_diesel_pump_building_sulfur_mine } market = { add_goods_pm_diesel_pump_building_sulfur_mine = yes } }
+}
+building_add_goods_pmg_explosives_building_sulfur_mine = {
+	if = { limit = { has_active_production_method = pm_no_explosives } market = { add_goods_pm_no_explosives = yes } }
+	else_if = { limit = { has_active_production_method = pm_nitroglycerin_building_sulfur_mine } market = { add_goods_pm_nitroglycerin_building_sulfur_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_dynamite_building_sulfur_mine } market = { add_goods_pm_dynamite_building_sulfur_mine = yes } }
+}
+building_add_goods_pmg_steam_automation_building_sulfur_mine = {
+	if = { limit = { has_active_production_method = pm_no_steam_automation } market = { add_goods_pm_no_steam_automation = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_donkey_mine } market = { add_goods_pm_steam_donkey_mine = yes } }
+}
+building_add_goods_pmg_train_automation_building_sulfur_mine = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_rail_transport_mine } market = { add_goods_pm_rail_transport_mine = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_sulfur_mine = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_sulfur_mine } market = { add_goods_pm_merchant_guilds_building_sulfur_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_sulfur_mine } market = { add_goods_pm_privately_owned_building_sulfur_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_sulfur_mine } market = { add_goods_pm_publicly_traded_building_sulfur_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_sulfur_mine } market = { add_goods_pm_government_run_building_sulfur_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_sulfur_mine } market = { add_goods_pm_worker_cooperative_building_sulfur_mine = yes } }
+}
+building_add_goods_pmg_mining_equipment_building_gold_mine = {
+	if = { limit = { has_active_production_method = pm_picks_and_shovels_building_gold_mine } market = { add_goods_pm_picks_and_shovels_building_gold_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_atmospheric_engine_pump_building_gold_mine } market = { add_goods_pm_atmospheric_engine_pump_building_gold_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_condensing_engine_pump_building_gold_mine } market = { add_goods_pm_condensing_engine_pump_building_gold_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_diesel_pump_building_gold_mine } market = { add_goods_pm_diesel_pump_building_gold_mine = yes } }
+}
+building_add_goods_pmg_explosives_building_gold_mine = {
+	if = { limit = { has_active_production_method = pm_no_explosives } market = { add_goods_pm_no_explosives = yes } }
+	else_if = { limit = { has_active_production_method = pm_nitroglycerin_building_gold_mine } market = { add_goods_pm_nitroglycerin_building_gold_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_dynamite_building_gold_mine } market = { add_goods_pm_dynamite_building_gold_mine = yes } }
+}
+building_add_goods_pmg_steam_automation_building_gold_mine = {
+	if = { limit = { has_active_production_method = pm_no_steam_automation } market = { add_goods_pm_no_steam_automation = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_donkey_mine } market = { add_goods_pm_steam_donkey_mine = yes } }
+}
+building_add_goods_pmg_train_automation_building_gold_mine = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_rail_transport_mine } market = { add_goods_pm_rail_transport_mine = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_gold_mine = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_gold_mine } market = { add_goods_pm_merchant_guilds_building_gold_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_gold_mine } market = { add_goods_pm_privately_owned_building_gold_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_gold_mine } market = { add_goods_pm_publicly_traded_building_gold_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_gold_mine } market = { add_goods_pm_government_run_building_gold_mine = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_gold_mine } market = { add_goods_pm_worker_cooperative_building_gold_mine = yes } }
+}
+building_add_goods_pmg_base_building_gold_fields = {
+	if = { limit = { has_active_production_method = default_building_gold_fields } market = { add_goods_default_building_gold_fields = yes } }
+}
+
+building_add_goods_pmg_base_building_coffee_plantation = {
+	if = { limit = { has_active_production_method = default_building_coffee_plantation } market = { add_goods_default_building_coffee_plantation = yes } }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_coffee_plantation } market = { add_goods_automatic_irrigation_building_coffee_plantation = yes } }
+}
+building_add_goods_pmg_train_automation_building_coffee_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } market = { add_goods_pm_steam_rail_transport = yes } }
+}
+building_add_goods_pmg_ownership_land_building_coffee_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } market = { add_goods_pm_privately_owned_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } market = { add_goods_pm_publicly_traded_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } market = { add_goods_pm_government_run_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } market = { add_goods_pm_worker_cooperative_plantation = yes } }
+}
+building_add_goods_pmg_base_building_cotton_plantation = {
+	if = { limit = { has_active_production_method = default_building_cotton_plantation } market = { add_goods_default_building_cotton_plantation = yes } }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_cotton_plantation } market = { add_goods_automatic_irrigation_building_cotton_plantation = yes } }
+}
+building_add_goods_pmg_train_automation_building_cotton_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } market = { add_goods_pm_steam_rail_transport = yes } }
+}
+building_add_goods_pmg_ownership_land_building_cotton_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } market = { add_goods_pm_privately_owned_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } market = { add_goods_pm_publicly_traded_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } market = { add_goods_pm_government_run_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } market = { add_goods_pm_worker_cooperative_plantation = yes } }
+}
+building_add_goods_pmg_base_building_dye_plantation = {
+	if = { limit = { has_active_production_method = default_building_dye_plantation } market = { add_goods_default_building_dye_plantation = yes } }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_dye_plantation } market = { add_goods_automatic_irrigation_building_dye_plantation = yes } }
+}
+building_add_goods_pmg_train_automation_building_dye_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } market = { add_goods_pm_steam_rail_transport = yes } }
+}
+building_add_goods_pmg_ownership_land_building_dye_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } market = { add_goods_pm_privately_owned_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } market = { add_goods_pm_publicly_traded_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } market = { add_goods_pm_government_run_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } market = { add_goods_pm_worker_cooperative_plantation = yes } }
+}
+building_add_goods_pmg_base_building_opium_plantation = {
+	if = { limit = { has_active_production_method = default_building_opium_plantation } market = { add_goods_default_building_opium_plantation = yes } }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_opium_plantation } market = { add_goods_automatic_irrigation_building_opium_plantation = yes } }
+}
+building_add_goods_pmg_train_automation_building_opium_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } market = { add_goods_pm_steam_rail_transport = yes } }
+}
+building_add_goods_pmg_ownership_land_building_opium_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } market = { add_goods_pm_privately_owned_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } market = { add_goods_pm_publicly_traded_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } market = { add_goods_pm_government_run_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } market = { add_goods_pm_worker_cooperative_plantation = yes } }
+}
+building_add_goods_pmg_base_building_tea_plantation = {
+	if = { limit = { has_active_production_method = default_building_tea_plantation } market = { add_goods_default_building_tea_plantation = yes } }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_tea_plantation } market = { add_goods_automatic_irrigation_building_tea_plantation = yes } }
+}
+building_add_goods_pmg_train_automation_building_tea_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } market = { add_goods_pm_steam_rail_transport = yes } }
+}
+building_add_goods_pmg_ownership_land_building_tea_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } market = { add_goods_pm_privately_owned_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } market = { add_goods_pm_publicly_traded_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } market = { add_goods_pm_government_run_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } market = { add_goods_pm_worker_cooperative_plantation = yes } }
+}
+building_add_goods_pmg_base_building_tobacco_plantation = {
+	if = { limit = { has_active_production_method = default_building_tobacco_plantation } market = { add_goods_default_building_tobacco_plantation = yes } }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_tobacco_plantation } market = { add_goods_automatic_irrigation_building_tobacco_plantation = yes } }
+}
+building_add_goods_pmg_train_automation_building_tobacco_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } market = { add_goods_pm_steam_rail_transport = yes } }
+}
+building_add_goods_pmg_ownership_land_building_tobacco_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } market = { add_goods_pm_privately_owned_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } market = { add_goods_pm_publicly_traded_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } market = { add_goods_pm_government_run_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } market = { add_goods_pm_worker_cooperative_plantation = yes } }
+}
+building_add_goods_pmg_base_building_sugar_plantation = {
+	if = { limit = { has_active_production_method = default_building_sugar_plantation } market = { add_goods_default_building_sugar_plantation = yes } }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_sugar_plantation } market = { add_goods_automatic_irrigation_building_sugar_plantation = yes } }
+}
+building_add_goods_pmg_train_automation_building_sugar_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } market = { add_goods_pm_steam_rail_transport = yes } }
+}
+building_add_goods_pmg_ownership_land_building_sugar_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } market = { add_goods_pm_privately_owned_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } market = { add_goods_pm_publicly_traded_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } market = { add_goods_pm_government_run_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } market = { add_goods_pm_worker_cooperative_plantation = yes } }
+}
+building_add_goods_pmg_base_building_banana_plantation = {
+	if = { limit = { has_active_production_method = default_building_banana_plantation } market = { add_goods_default_building_banana_plantation = yes } }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_banana_plantation } market = { add_goods_automatic_irrigation_building_banana_plantation = yes } }
+}
+building_add_goods_pmg_train_automation_building_banana_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } market = { add_goods_pm_steam_rail_transport = yes } }
+}
+building_add_goods_pmg_ownership_land_building_banana_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } market = { add_goods_pm_privately_owned_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } market = { add_goods_pm_publicly_traded_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } market = { add_goods_pm_government_run_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } market = { add_goods_pm_worker_cooperative_plantation = yes } }
+}
+building_add_goods_pmg_base_building_silk_plantation = {
+	if = { limit = { has_active_production_method = default_building_silk_plantation } market = { add_goods_default_building_silk_plantation = yes } }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_silk_plantation } market = { add_goods_automatic_irrigation_building_silk_plantation = yes } }
+}
+building_add_goods_pmg_train_automation_building_silk_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } market = { add_goods_pm_steam_rail_transport = yes } }
+}
+building_add_goods_pmg_ownership_land_building_silk_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } market = { add_goods_pm_privately_owned_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } market = { add_goods_pm_publicly_traded_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } market = { add_goods_pm_government_run_plantation = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } market = { add_goods_pm_worker_cooperative_plantation = yes } }
+}
+
+building_add_goods_pmg_organization = {
+	if = { limit = { has_active_production_method = pm_irregular_infantry } market = { add_goods_pm_irregular_infantry = yes } }
+	else_if = { limit = { has_active_production_method = pm_line_infantry } market = { add_goods_pm_line_infantry = yes } }
+	else_if = { limit = { has_active_production_method = pm_skirmish_infantry } market = { add_goods_pm_skirmish_infantry = yes } }
+	else_if = { limit = { has_active_production_method = pm_trench_infantry } market = { add_goods_pm_trench_infantry = yes } }
+	else_if = { limit = { has_active_production_method = pm_squad_infantry } market = { add_goods_pm_squad_infantry = yes } }
+	else_if = { limit = { has_active_production_method = pm_mechanized_infantry } market = { add_goods_pm_mechanized_infantry = yes } }
+}
+building_add_goods_pmg_artillery = {
+	if = { limit = { has_active_production_method = pm_no_artillery } market = { add_goods_pm_no_artillery = yes } }
+	else_if = { limit = { has_active_production_method = pm_cannon_artillery } market = { add_goods_pm_cannon_artillery = yes } }
+	else_if = { limit = { has_active_production_method = pm_mobile_artillery } market = { add_goods_pm_mobile_artillery = yes } }
+	else_if = { limit = { has_active_production_method = pm_shrapnel_artillery } market = { add_goods_pm_shrapnel_artillery = yes } }
+	else_if = { limit = { has_active_production_method = pm_siege_artillery } market = { add_goods_pm_siege_artillery = yes } }
+}
+building_add_goods_pmg_reconaissance = {
+	if = { limit = { has_active_production_method = pm_cavalry_scouts } market = { add_goods_pm_cavalry_scouts = yes } }
+	else_if = { limit = { has_active_production_method = pm_bicycle_messengers } market = { add_goods_pm_bicycle_messengers = yes } }
+	else_if = { limit = { has_active_production_method = pm_motorized_recon } market = { add_goods_pm_motorized_recon = yes } }
+	else_if = { limit = { has_active_production_method = pm_aerial_recon } market = { add_goods_pm_aerial_recon = yes } }
+}
+building_add_goods_pmg_specialist_companies = {
+	if = { limit = { has_active_production_method = pm_no_specialists } market = { add_goods_pm_no_specialists = yes } }
+	else_if = { limit = { has_active_production_method = pm_machine_gunners } market = { add_goods_pm_machine_gunners = yes } }
+	else_if = { limit = { has_active_production_method = pm_infiltrators } market = { add_goods_pm_infiltrators = yes } }
+	else_if = { limit = { has_active_production_method = pm_flamethrower_company } market = { add_goods_pm_flamethrower_company = yes } }
+	else_if = { limit = { has_active_production_method = pm_chemical_weapons_specialists } market = { add_goods_pm_chemical_weapons_specialists = yes } }
+}
+building_add_goods_pmg_organization_conscription = {
+	if = { limit = { has_active_production_method = pm_irregular_infantry_conscription } market = { add_goods_pm_irregular_infantry_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_line_infantry_conscription } market = { add_goods_pm_line_infantry_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_skirmish_infantry_conscription } market = { add_goods_pm_skirmish_infantry_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_trench_infantry_conscription } market = { add_goods_pm_trench_infantry_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_squad_infantry_conscription } market = { add_goods_pm_squad_infantry_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_mechanized_infantry_conscription } market = { add_goods_pm_mechanized_infantry_conscription = yes } }
+}
+building_add_goods_pmg_artillery_conscription = {
+	if = { limit = { has_active_production_method = pm_no_artillery_conscription } market = { add_goods_pm_no_artillery_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_cannon_artillery_conscription } market = { add_goods_pm_cannon_artillery_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_mobile_artillery_conscription } market = { add_goods_pm_mobile_artillery_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_shrapnel_artillery_conscription } market = { add_goods_pm_shrapnel_artillery_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_siege_artillery_conscription } market = { add_goods_pm_siege_artillery_conscription = yes } }
+}
+building_add_goods_pmg_reconaissance_conscription = {
+	if = { limit = { has_active_production_method = pm_cavalry_scouts_conscription } market = { add_goods_pm_cavalry_scouts_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_bicycle_messengers_conscription } market = { add_goods_pm_bicycle_messengers_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_motorized_recon_conscription } market = { add_goods_pm_motorized_recon_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_aerial_recon_conscription } market = { add_goods_pm_aerial_recon_conscription = yes } }
+}
+building_add_goods_pmg_specialist_companies_conscription = {
+	if = { limit = { has_active_production_method = pm_no_specialists_conscription } market = { add_goods_pm_no_specialists_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_machine_gunners_conscription } market = { add_goods_pm_machine_gunners_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_infiltrators_conscription } market = { add_goods_pm_infiltrators_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_flamethrower_company_conscription } market = { add_goods_pm_flamethrower_company_conscription = yes } }
+	else_if = { limit = { has_active_production_method = pm_chemical_weapons_specialists_conscription } market = { add_goods_pm_chemical_weapons_specialists_conscription = yes } }
+}
+building_add_goods_pmg_medical_aid = {
+	if = { limit = { has_active_production_method = pm_wound_dressing } market = { add_goods_pm_wound_dressing = yes } }
+	else_if = { limit = { has_active_production_method = pm_first_aid } market = { add_goods_pm_first_aid = yes } }
+	else_if = { limit = { has_active_production_method = pm_field_hospitals } market = { add_goods_pm_field_hospitals = yes } }
+}
+building_add_goods_pmg_ship_class = {
+	if = { limit = { has_active_production_method = pm_man_o_wars } market = { add_goods_pm_man_o_wars = yes } }
+	else_if = { limit = { has_active_production_method = pm_ironclads } market = { add_goods_pm_ironclads = yes } }
+	else_if = { limit = { has_active_production_method = pm_monitors } market = { add_goods_pm_monitors = yes } }
+	else_if = { limit = { has_active_production_method = pm_dreadnoughts } market = { add_goods_pm_dreadnoughts = yes } }
+	else_if = { limit = { has_active_production_method = pm_battleships } market = { add_goods_pm_battleships = yes } }
+}
+building_add_goods_pmg_escorts = {
+	if = { limit = { has_active_production_method = pm_frigates } market = { add_goods_pm_frigates = yes } }
+	else_if = { limit = { has_active_production_method = pm_destroyers } market = { add_goods_pm_destroyers = yes } }
+	else_if = { limit = { has_active_production_method = pm_carriers } market = { add_goods_pm_carriers = yes } }
+}
+building_add_goods_pmg_raiders = {
+	if = { limit = { has_active_production_method = pm_commerce_raider } market = { add_goods_pm_commerce_raider = yes } }
+	else_if = { limit = { has_active_production_method = pm_torpedo_boat } market = { add_goods_pm_torpedo_boat = yes } }
+	else_if = { limit = { has_active_production_method = pm_submarine } market = { add_goods_pm_submarine = yes } }
+}
+building_add_goods_pmg_naval_theory = {
+	if = { limit = { has_active_production_method = pm_no_naval_theory } market = { add_goods_pm_no_naval_theory = yes } }
+	else_if = { limit = { has_active_production_method = pm_power_of_the_purse } market = { add_goods_pm_power_of_the_purse = yes } }
+	else_if = { limit = { has_active_production_method = pm_jeune_ecole } market = { add_goods_pm_jeune_ecole = yes } }
+	else_if = { limit = { has_active_production_method = pm_sea_lane_strategies } market = { add_goods_pm_sea_lane_strategies = yes } }
+	else_if = { limit = { has_active_production_method = pm_battlefleet_tactics } market = { add_goods_pm_battlefleet_tactics = yes } }
+}
+
+building_add_goods_pmg_amenities = {
+	if = { limit = { has_active_production_method = pm_market_stalls } market = { add_goods_pm_market_stalls = yes } }
+	else_if = { limit = { has_active_production_method = pm_market_squares } market = { add_goods_pm_market_squares = yes } }
+	else_if = { limit = { has_active_production_method = pm_covered_markets } market = { add_goods_pm_covered_markets = yes } }
+	else_if = { limit = { has_active_production_method = pm_arcades } market = { add_goods_pm_arcades = yes } }
+}
+building_add_goods_pmg_street_lighting = {
+	if = { limit = { has_active_production_method = pm_no_street_lighting } market = { add_goods_pm_no_street_lighting = yes } }
+	else_if = { limit = { has_active_production_method = pm_gas_streetlights } market = { add_goods_pm_gas_streetlights = yes } }
+	else_if = { limit = { has_active_production_method = pm_electric_streetlights } market = { add_goods_pm_electric_streetlights = yes } }
+}
+building_add_goods_pmg_public_transport = {
+	if = { limit = { has_active_production_method = pm_no_public_transport } market = { add_goods_pm_no_public_transport = yes } }
+	else_if = { limit = { has_active_production_method = pm_public_trams } market = { add_goods_pm_public_trams = yes } }
+	else_if = { limit = { has_active_production_method = pm_public_motor_carriages } market = { add_goods_pm_public_motor_carriages = yes } }
+}
+building_add_goods_pmg_urban_clergy = {
+	if = { limit = { has_active_production_method = pm_state_urban_clergy } market = { add_goods_pm_state_urban_clergy = yes } }
+	else_if = { limit = { has_active_production_method = pm_free_urban_clergy } market = { add_goods_pm_free_urban_clergy = yes } }
+	else_if = { limit = { has_active_production_method = pm_no_urban_clergy } market = { add_goods_pm_no_urban_clergy = yes } }
+}
+building_add_goods_pmg_base_building_arts_academy = {
+	if = { limit = { has_active_production_method = pm_traditional_art } market = { add_goods_pm_traditional_art = yes } }
+	else_if = { limit = { has_active_production_method = pm_realist_art } market = { add_goods_pm_realist_art = yes } }
+	else_if = { limit = { has_active_production_method = pm_photographic_art } market = { add_goods_pm_photographic_art = yes } }
+	else_if = { limit = { has_active_production_method = pm_film_art } market = { add_goods_pm_film_art = yes } }
+}
+building_add_goods_pmg_ownership_building_arts_academy = {
+	if = { limit = { has_active_production_method = pm_traditional_patronage } market = { add_goods_pm_traditional_patronage = yes } }
+	else_if = { limit = { has_active_production_method = pm_bourgeoisie_patronage } market = { add_goods_pm_bourgeoisie_patronage = yes } }
+	else_if = { limit = { has_active_production_method = pm_independent_artists } market = { add_goods_pm_independent_artists = yes } }
+}
+building_add_goods_pmg_base_building_power_plant = {
+	if = { limit = { has_active_production_method = pm_hydroelectric_plant } market = { add_goods_pm_hydroelectric_plant = yes } }
+	else_if = { limit = { has_active_production_method = pm_coal-fired_plant } market = { add_goods_pm_coal-fired_plant = yes } }
+	else_if = { limit = { has_active_production_method = pm_oil-fired_plant } market = { add_goods_pm_oil-fired_plant = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_power_plant = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } market = { add_goods_pm_privately_owned_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_power_plant } market = { add_goods_pm_publicly_traded_building_power_plant = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } market = { add_goods_pm_government_run_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } market = { add_goods_pm_worker_cooperative_industry = yes } }
+}
+
+building_add_goods_pmg_base_building_port = {
+	if = { limit = { has_active_production_method = pm_anchorage } market = { add_goods_pm_anchorage = yes } }
+	else_if = { limit = { has_active_production_method = pm_basic_port } market = { add_goods_pm_basic_port = yes } }
+	else_if = { limit = { has_active_production_method = pm_industrial_port } market = { add_goods_pm_industrial_port = yes } }
+	else_if = { limit = { has_active_production_method = pm_modern_port } market = { add_goods_pm_modern_port = yes } }
+}
+building_add_goods_pmg_base_building_government_administration = {
+	if = { limit = { has_active_production_method = pm_simple_organization } market = { add_goods_pm_simple_organization = yes } }
+	else_if = { limit = { has_active_production_method = pm_horizontal_drawer_cabinets } market = { add_goods_pm_horizontal_drawer_cabinets = yes } }
+	else_if = { limit = { has_active_production_method = pm_vertical_filing_cabinets } market = { add_goods_pm_vertical_filing_cabinets = yes } }
+	else_if = { limit = { has_active_production_method = pm_switch_boards } market = { add_goods_pm_switch_boards = yes } }
+}
+building_add_goods_pmg_government_administration_bureaucrat_professionalism = {
+	if = { limit = { has_active_production_method = pm_hereditary_bureaucrats } market = { add_goods_pm_hereditary_bureaucrats = yes } }
+	else_if = { limit = { has_active_production_method = pm_professional_bureaucrats } market = { add_goods_pm_professional_bureaucrats = yes } }
+}
+building_add_goods_pmg_government_administration_religious_administration = {
+	if = { limit = { has_active_production_method = pm_religious_bureaucrats } market = { add_goods_pm_religious_bureaucrats = yes } }
+	else_if = { limit = { has_active_production_method = pm_secular_bureaucrats } market = { add_goods_pm_secular_bureaucrats = yes } }
+}
+building_add_goods_pmg_base_building_university = {
+	if = { limit = { has_active_production_method = pm_scholastic_education } market = { add_goods_pm_scholastic_education = yes } }
+	else_if = { limit = { has_active_production_method = pm_philosophy_department } market = { add_goods_pm_philosophy_department = yes } }
+	else_if = { limit = { has_active_production_method = pm_analytical_philosophy_department } market = { add_goods_pm_analytical_philosophy_department = yes } }
+}
+building_add_goods_pmg_university_academia = {
+	if = { limit = { has_active_production_method = pm_religious_academia } market = { add_goods_pm_religious_academia = yes } }
+	else_if = { limit = { has_active_production_method = pm_secular_academia } market = { add_goods_pm_secular_academia = yes } }
+}
+building_add_goods_pmg_base_building_skyscraper = {
+	if = { limit = { has_active_production_method = pm_skyscraper_bureaucratic_nexus } market = { add_goods_pm_skyscraper_bureaucratic_nexus = yes } }
+	else_if = { limit = { has_active_production_method = pm_skyscraper_trade_nexus } market = { add_goods_pm_skyscraper_trade_nexus = yes } }
+}
+building_add_goods_pmg_airship_mooring_post = {
+	if = { limit = { has_active_production_method = pm_no_airships } market = { add_goods_pm_no_airships = yes } }
+	else_if = { limit = { has_active_production_method = pm_airship_mooring_post } market = { add_goods_pm_airship_mooring_post = yes } }
+}
+
+building_add_goods_pmg_base_building_eiffel_tower = {
+	if = { limit = { has_active_production_method = pm_default_building_eiffel_tower } market = { add_goods_pm_default_building_eiffel_tower = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } market = { add_goods_pm_monument_prestige_only = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } market = { add_goods_pm_monument_no_effects = yes } }
+}
+building_add_goods_pmg_base_building_angkor_wat = {
+	if = { limit = { has_active_production_method = pm_default_building_angkor_wat } market = { add_goods_pm_default_building_angkor_wat = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } market = { add_goods_pm_monument_prestige_only = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } market = { add_goods_pm_monument_no_effects = yes } }
+}
+building_add_goods_pmg_base_building_big_ben = {
+	if = { limit = { has_active_production_method = pm_default_building_big_ben } market = { add_goods_pm_default_building_big_ben = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } market = { add_goods_pm_monument_prestige_only = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } market = { add_goods_pm_monument_no_effects = yes } }
+}
+building_add_goods_pmg_base_building_forbidden_city = {
+	if = { limit = { has_active_production_method = pm_default_building_forbidden_city } market = { add_goods_pm_default_building_forbidden_city = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } market = { add_goods_pm_monument_prestige_only = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } market = { add_goods_pm_monument_no_effects = yes } }
+}
+building_add_goods_pmg_base_building_hagia_sophia = {
+	if = { limit = { has_active_production_method = pm_default_building_hagia_sophia } market = { add_goods_pm_default_building_hagia_sophia = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } market = { add_goods_pm_monument_prestige_only = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } market = { add_goods_pm_monument_no_effects = yes } }
+}
+building_add_goods_pmg_base_building_mosque_of_djenne = {
+	if = { limit = { has_active_production_method = pm_default_building_mosque_of_djenne } market = { add_goods_pm_default_building_mosque_of_djenne = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } market = { add_goods_pm_monument_prestige_only = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } market = { add_goods_pm_monument_no_effects = yes } }
+}
+building_add_goods_pmg_base_building_saint_basils_cathedral = {
+	if = { limit = { has_active_production_method = pm_default_building_saint_basils_cathedral } market = { add_goods_pm_default_building_saint_basils_cathedral = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } market = { add_goods_pm_monument_prestige_only = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } market = { add_goods_pm_monument_no_effects = yes } }
+}
+building_add_goods_pmg_base_building_statue_of_liberty = {
+	if = { limit = { has_active_production_method = pm_default_building_statue_of_liberty } market = { add_goods_pm_default_building_statue_of_liberty = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } market = { add_goods_pm_monument_prestige_only = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } market = { add_goods_pm_monument_no_effects = yes } }
+}
+building_add_goods_pmg_base_building_taj_mahal = {
+	if = { limit = { has_active_production_method = pm_default_building_taj_mahal } market = { add_goods_pm_default_building_taj_mahal = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } market = { add_goods_pm_monument_prestige_only = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } market = { add_goods_pm_monument_no_effects = yes } }
+}
+building_add_goods_pmg_base_building_vatican_city = {
+	if = { limit = { has_active_production_method = pm_default_building_vatican_city } market = { add_goods_pm_default_building_vatican_city = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only_vatican_city } market = { add_goods_pm_monument_prestige_only_vatican_city = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } market = { add_goods_pm_monument_prestige_only = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } market = { add_goods_pm_monument_no_effects = yes } }
+}
+building_add_goods_pmg_base_building_white_house = {
+	if = { limit = { has_active_production_method = pm_default_building_white_house } market = { add_goods_pm_default_building_white_house = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } market = { add_goods_pm_monument_prestige_only = yes } }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } market = { add_goods_pm_monument_no_effects = yes } }
+}
+
+building_add_goods_pmg_base_building_logging_camp = {
+	if = { limit = { has_active_production_method = pm_simple_forestry } market = { add_goods_pm_simple_forestry = yes } }
+	else_if = { limit = { has_active_production_method = pm_saw_mills } market = { add_goods_pm_saw_mills = yes } }
+	else_if = { limit = { has_active_production_method = pm_electric_saw_mills } market = { add_goods_pm_electric_saw_mills = yes } }
+}
+building_add_goods_pmg_hardwood = {
+	if = { limit = { has_active_production_method = pm_no_hardwood } market = { add_goods_pm_no_hardwood = yes } }
+	else_if = { limit = { has_active_production_method = pm_hardwood } market = { add_goods_pm_hardwood = yes } }
+}
+building_add_goods_pmg_equipment = {
+	if = { limit = { has_active_production_method = pm_no_equipment } market = { add_goods_pm_no_equipment = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_donkey_building_logging_camp } market = { add_goods_pm_steam_donkey_building_logging_camp = yes } }
+	else_if = { limit = { has_active_production_method = pm_chainsaws } market = { add_goods_pm_chainsaws = yes } }
+}
+building_add_goods_pmg_transportation_building_logging_camp = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_rail_transport_building_logging_camp } market = { add_goods_pm_rail_transport_building_logging_camp = yes } }
+	else_if = { limit = { has_active_production_method = pm_log_carts } market = { add_goods_pm_log_carts = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_logging_camp = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_logging_camp } market = { add_goods_pm_merchant_guilds_building_logging_camp = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_logging_camp } market = { add_goods_pm_privately_owned_building_logging_camp = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_logging_camp } market = { add_goods_pm_publicly_traded_building_logging_camp = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_logging_camp } market = { add_goods_pm_government_run_building_logging_camp = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_logging_camp } market = { add_goods_pm_worker_cooperative_building_logging_camp = yes } }
+}
+building_add_goods_pmg_base_building_rubber_plantation = {
+	if = { limit = { has_active_production_method = default_building_rubber_plantation } market = { add_goods_default_building_rubber_plantation = yes } }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_rubber_plantation } market = { add_goods_automatic_irrigation_building_rubber_plantation = yes } }
+}
+building_add_goods_pmg_train_automation_building_rubber_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } market = { add_goods_pm_steam_rail_transport = yes } }
+}
+building_add_goods_pmg_ownership_land_building_rubber_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned } market = { add_goods_pm_privately_owned = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded } market = { add_goods_pm_publicly_traded = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run } market = { add_goods_pm_government_run = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } market = { add_goods_pm_worker_cooperative_plantation = yes } }
+}
+building_add_goods_pmg_base_building_fishing_wharf = {
+	if = { limit = { has_active_production_method = pm_simple_fishing } market = { add_goods_pm_simple_fishing = yes } }
+	else_if = { limit = { has_active_production_method = pm_fishing_trawlers } market = { add_goods_pm_fishing_trawlers = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_trawlers } market = { add_goods_pm_steam_trawlers = yes } }
+}
+building_add_goods_pmg_refrigeration_building_fishing_wharf = {
+	if = { limit = { has_active_production_method = pm_unrefrigerated } market = { add_goods_pm_unrefrigerated = yes } }
+	else_if = { limit = { has_active_production_method = pm_refrigerated_storage_building_fishing_wharf } market = { add_goods_pm_refrigerated_storage_building_fishing_wharf = yes } }
+	else_if = { limit = { has_active_production_method = pm_refrigerated_rail_cars_building_fishing_wharf } market = { add_goods_pm_refrigerated_rail_cars_building_fishing_wharf = yes } }
+	else_if = { limit = { has_active_production_method = pm_flash_freezing_building_fishing_wharf } market = { add_goods_pm_flash_freezing_building_fishing_wharf = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_fishing_wharf = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_fishing_wharf } market = { add_goods_pm_merchant_guilds_building_fishing_wharf = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_fishing_wharf } market = { add_goods_pm_privately_owned_building_fishing_wharf = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_fishing_wharf } market = { add_goods_pm_publicly_traded_building_fishing_wharf = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_fishing_wharf } market = { add_goods_pm_government_run_building_fishing_wharf = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_fishing_wharf } market = { add_goods_pm_worker_cooperative_building_fishing_wharf = yes } }
+}
+building_add_goods_pmg_base_building_whaling_station = {
+	if = { limit = { has_active_production_method = pm_simple_whaling } market = { add_goods_pm_simple_whaling = yes } }
+	else_if = { limit = { has_active_production_method = pm_wooden_whaling_ships } market = { add_goods_pm_wooden_whaling_ships = yes } }
+	else_if = { limit = { has_active_production_method = pm_steam_whaling_ships } market = { add_goods_pm_steam_whaling_ships = yes } }
+}
+building_add_goods_pmg_refrigeration_building_whaling_station = {
+	if = { limit = { has_active_production_method = pm_unrefrigerated } market = { add_goods_pm_unrefrigerated = yes } }
+	else_if = { limit = { has_active_production_method = pm_refrigerated_storage_building_whaling_station } market = { add_goods_pm_refrigerated_storage_building_whaling_station = yes } }
+	else_if = { limit = { has_active_production_method = pm_refrigerated_rail_cars_building_whaling_station } market = { add_goods_pm_refrigerated_rail_cars_building_whaling_station = yes } }
+	else_if = { limit = { has_active_production_method = pm_flash_freezing_building_whaling_station } market = { add_goods_pm_flash_freezing_building_whaling_station = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_whaling_station = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_whaling_station } market = { add_goods_pm_merchant_guilds_building_whaling_station = yes } }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_whaling_station } market = { add_goods_pm_privately_owned_building_whaling_station = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_whaling_station } market = { add_goods_pm_publicly_traded_building_whaling_station = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_whaling_station } market = { add_goods_pm_government_run_building_whaling_station = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_whaling_station } market = { add_goods_pm_worker_cooperative_building_whaling_station = yes } }
+}
+building_add_goods_pmg_base_building_oil_rig = {
+	if = { limit = { has_active_production_method = pm_steam_derricks } market = { add_goods_pm_steam_derricks = yes } }
+	else_if = { limit = { has_active_production_method = pm_combustion_derricks } market = { add_goods_pm_combustion_derricks = yes } }
+}
+building_add_goods_pmg_transportation_building_oil_rig = {
+	if = { limit = { has_active_production_method = pm_road_carts } market = { add_goods_pm_road_carts = yes } }
+	else_if = { limit = { has_active_production_method = pm_rail_transport_building_oil_rig } market = { add_goods_pm_rail_transport_building_oil_rig = yes } }
+	else_if = { limit = { has_active_production_method = pm_tanker_cars } market = { add_goods_pm_tanker_cars = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_oil_rig = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } market = { add_goods_pm_privately_owned_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_oil_rig } market = { add_goods_pm_publicly_traded_building_oil_rig = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } market = { add_goods_pm_government_run_industry = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } market = { add_goods_pm_worker_cooperative_industry = yes } }
+}
+
+building_add_goods_pmg_canal = {
+	if = { limit = { has_active_production_method = pm_canal } market = { add_goods_pm_canal = yes } }
+}
+
+building_add_goods_pmg_base_building_railway = {
+	if = { limit = { has_active_production_method = pm_steam_trains } market = { add_goods_pm_steam_trains = yes } }
+	else_if = { limit = { has_active_production_method = pm_electric_trains } market = { add_goods_pm_electric_trains = yes } }
+	else_if = { limit = { has_active_production_method = pm_diesel_trains } market = { add_goods_pm_diesel_trains = yes } }
+}
+building_add_goods_pmg_passenger_trains = {
+	if = { limit = { has_active_production_method = pm_no_passenger_trains } market = { add_goods_pm_no_passenger_trains = yes } }
+	else_if = { limit = { has_active_production_method = pm_wooden_passenger_carriages } market = { add_goods_pm_wooden_passenger_carriages = yes } }
+	else_if = { limit = { has_active_production_method = pm_steel_passenger_carriages } market = { add_goods_pm_steel_passenger_carriages = yes } }
+}
+building_add_goods_pmg_ownership_capital_building_railway = {
+	if = { limit = { has_active_production_method = pm_privately_owned_building_railway } market = { add_goods_pm_privately_owned_building_railway = yes } }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_railway } market = { add_goods_pm_publicly_traded_building_railway = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_railway } market = { add_goods_pm_government_run_building_railway = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_railway } market = { add_goods_pm_worker_cooperative_building_railway = yes } }
+}
+building_add_goods_pmg_base_building_trade_center = {
+	if = { limit = { has_active_production_method = pm_trade_center } market = { add_goods_pm_trade_center = yes } }
+}
+building_add_goods_pmg_ownership_building_trade_center = {
+	if = { limit = { has_active_production_method = pm_trade_center_merchant_guilds } market = { add_goods_pm_trade_center_merchant_guilds = yes } }
+	else_if = { limit = { has_active_production_method = pm_trade_center_privately_owned } market = { add_goods_pm_trade_center_privately_owned = yes } }
+	else_if = { limit = { has_active_production_method = pm_trade_center_government_run } market = { add_goods_pm_trade_center_government_run = yes } }
+}
+
+building_add_goods_pmg_base_building_subsistence_farms = {
+	if = { limit = { has_active_production_method = default_building_subsistence_farms } market = { add_goods_default_building_subsistence_farms = yes } }
+}
+building_add_goods_pmg_home_workshops_building_subsistence_farms = {
+	if = { limit = { has_active_production_method = pm_home_workshops_no_building_subsistence_farms } market = { add_goods_pm_home_workshops_no_building_subsistence_farms = yes } }
+	else_if = { limit = { has_active_production_method = pm_home_workshops_building_subsistence_farms } market = { add_goods_pm_home_workshops_building_subsistence_farms = yes } }
+}
+building_add_goods_pmg_serfdom_building_subsistence_farms = {
+	if = { limit = { has_active_production_method = pm_serfdom_no } market = { add_goods_pm_serfdom_no = yes } }
+	else_if = { limit = { has_active_production_method = pm_serfdom } market = { add_goods_pm_serfdom = yes } }
+}
+building_add_goods_pmg_base_building_subsistence_orchards = {
+	if = { limit = { has_active_production_method = default_building_subsistence_orchards } market = { add_goods_default_building_subsistence_orchards = yes } }
+}
+building_add_goods_pmg_home_workshops_building_subsistence_orchards = {
+	if = { limit = { has_active_production_method = pm_home_workshops_no_building_subsistence_orchards } market = { add_goods_pm_home_workshops_no_building_subsistence_orchards = yes } }
+	else_if = { limit = { has_active_production_method = pm_home_workshops_building_subsistence_orchards } market = { add_goods_pm_home_workshops_building_subsistence_orchards = yes } }
+}
+building_add_goods_pmg_serfdom_building_subsistence_orchards = {
+	if = { limit = { has_active_production_method = pm_serfdom_no } market = { add_goods_pm_serfdom_no = yes } }
+	else_if = { limit = { has_active_production_method = pm_serfdom_building_subsistence_orchards } market = { add_goods_pm_serfdom_building_subsistence_orchards = yes } }
+}
+building_add_goods_pmg_base_building_subsistence_pastures = {
+	if = { limit = { has_active_production_method = default_building_subsistence_pastures } market = { add_goods_default_building_subsistence_pastures = yes } }
+}
+building_add_goods_pmg_home_workshops_building_subsistence_pastures = {
+	if = { limit = { has_active_production_method = pm_home_workshops_no_building_subsistence_pastures } market = { add_goods_pm_home_workshops_no_building_subsistence_pastures = yes } }
+	else_if = { limit = { has_active_production_method = pm_home_workshops_building_subsistence_pastures } market = { add_goods_pm_home_workshops_building_subsistence_pastures = yes } }
+}
+building_add_goods_pmg_serfdom_building_subsistence_pastures = {
+	if = { limit = { has_active_production_method = pm_serfdom_no } market = { add_goods_pm_serfdom_no = yes } }
+	else_if = { limit = { has_active_production_method = pm_serfdom_building_subsistence_pastures } market = { add_goods_pm_serfdom_building_subsistence_pastures = yes } }
+}
+building_add_goods_pmg_base_building_subsistence_fishing_villages = {
+	if = { limit = { has_active_production_method = default_building_subsistence_fishing_villages } market = { add_goods_default_building_subsistence_fishing_villages = yes } }
+}
+building_add_goods_pmg_home_workshops_building_subsistence_fishing_villages = {
+	if = { limit = { has_active_production_method = pm_home_workshops_no_building_subsistence_fishing_villages } market = { add_goods_pm_home_workshops_no_building_subsistence_fishing_villages = yes } }
+	else_if = { limit = { has_active_production_method = pm_home_workshops_building_subsistence_fishing_villages } market = { add_goods_pm_home_workshops_building_subsistence_fishing_villages = yes } }
+}
+building_add_goods_pmg_serfdom_building_subsistence_fishing_villages = {
+	if = { limit = { has_active_production_method = pm_serfdom_no } market = { add_goods_pm_serfdom_no = yes } }
+	else_if = { limit = { has_active_production_method = pm_serfdom_building_subsistence_fishing_villages } market = { add_goods_pm_serfdom_building_subsistence_fishing_villages = yes } }
+}
+building_add_goods_pmg_base_building_subsistence_rice_paddies = {
+	if = { limit = { has_active_production_method = default_building_subsistence_rice_paddies } market = { add_goods_default_building_subsistence_rice_paddies = yes } }
+}
+building_add_goods_pmg_home_workshops_building_subsistence_rice_paddies = {
+	if = { limit = { has_active_production_method = pm_home_workshops_no_building_subsistence_rice_paddies } market = { add_goods_pm_home_workshops_no_building_subsistence_rice_paddies = yes } }
+	else_if = { limit = { has_active_production_method = pm_home_workshops_building_subsistence_rice_paddies } market = { add_goods_pm_home_workshops_building_subsistence_rice_paddies = yes } }
+}
+building_add_goods_pmg_serfdom_building_subsistence_rice_paddies = {
+	if = { limit = { has_active_production_method = pm_serfdom_no } market = { add_goods_pm_serfdom_no = yes } }
+	else_if = { limit = { has_active_production_method = pm_serfdom_building_subsistence_rice_paddies } market = { add_goods_pm_serfdom_building_subsistence_rice_paddies = yes } }
+}
+building_add_goods_pmg_ownership_building_subsistence = {
+	if = { limit = { has_active_production_method = pm_privately_owned_building_subsistence } market = { add_goods_pm_privately_owned_building_subsistence = yes } }
+	else_if = { limit = { has_active_production_method = pm_homesteading_building_subsistence } market = { add_goods_pm_homesteading_building_subsistence = yes } }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_subsistence } market = { add_goods_pm_worker_cooperative_building_subsistence = yes } }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_subsistence } market = { add_goods_pm_government_run_building_subsistence = yes } }
+}
+
+building_add_goods_pmg_base_building_construction_sector = {
+	if = { limit = { has_active_production_method = pm_wooden_buildings } market = { add_goods_pm_wooden_buildings = yes } }
+	else_if = { limit = { has_active_production_method = pm_iron_frame_buildings } market = { add_goods_pm_iron_frame_buildings = yes } }
+	else_if = { limit = { has_active_production_method = pm_steel_frame_buildings } market = { add_goods_pm_steel_frame_buildings = yes } }
+	else_if = { limit = { has_active_production_method = pm_arc_welded_buildings } market = { add_goods_pm_arc_welded_buildings = yes } }
+}

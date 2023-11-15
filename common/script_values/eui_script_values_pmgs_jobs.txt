@@ -1,0 +1,1112 @@
+﻿building_employment_pmg_dummy = {
+	if = { limit = { has_active_production_method = pm_dummy } add = employment_pm_dummy }
+}
+
+building_employment_pmg_base_building_food_industry = {
+	if = { limit = { has_active_production_method = pm_bakery } add = employment_pm_bakery }
+	else_if = { limit = { has_active_production_method = pm_sweeteners } add = employment_pm_sweeteners }
+	else_if = { limit = { has_active_production_method = pm_baking_powder } add = employment_pm_baking_powder }
+}
+building_employment_pmg_canning = {
+	if = { limit = { has_active_production_method = pm_disabled_canning } add = employment_pm_disabled_canning }
+	else_if = { limit = { has_active_production_method = pm_cannery } add = employment_pm_cannery }
+	else_if = { limit = { has_active_production_method = pm_vacuum_canning } add = employment_pm_vacuum_canning }
+}
+building_employment_pmg_distillery = {
+	if = { limit = { has_active_production_method = pm_disabled_distillery } add = employment_pm_disabled_distillery }
+	else_if = { limit = { has_active_production_method = pm_pot_stills } add = employment_pm_pot_stills }
+	else_if = { limit = { has_active_production_method = pm_patent_stills } add = employment_pm_patent_stills }
+}
+building_employment_pmg_automation_building_food_industry = {
+	if = { limit = { has_active_production_method = pm_manual_dough_processing } add = employment_pm_manual_dough_processing }
+	else_if = { limit = { has_active_production_method = pm_automated_bakery } add = employment_pm_automated_bakery }
+}
+building_employment_pmg_ownership_capital_building_food_industry = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_food_industry } add = employment_pm_merchant_guilds_building_food_industry }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_food_industry } add = employment_pm_privately_owned_building_food_industry }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_food_industry } add = employment_pm_publicly_traded_building_food_industry }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_food_industry } add = employment_pm_government_run_building_food_industry }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_food_industry } add = employment_pm_worker_cooperative_building_food_industry }
+}
+building_employment_pmg_base_building_textile_mills = {
+	if = { limit = { has_active_production_method = pm_handsewn_clothes } add = employment_pm_handsewn_clothes }
+	else_if = { limit = { has_active_production_method = pm_dye_workshops } add = employment_pm_dye_workshops }
+	else_if = { limit = { has_active_production_method = pm_sewing_machines } add = employment_pm_sewing_machines }
+	else_if = { limit = { has_active_production_method = pm_electric_sewing_machines } add = employment_pm_electric_sewing_machines }
+}
+building_employment_pmg_luxury_building_textile_mills = {
+	if = { limit = { has_active_production_method = pm_no_luxury_clothes } add = employment_pm_no_luxury_clothes }
+	else_if = { limit = { has_active_production_method = pm_craftsman_sewing } add = employment_pm_craftsman_sewing }
+	else_if = { limit = { has_active_production_method = pm_elastics } add = employment_pm_elastics }
+}
+building_employment_pmg_automation_building_textile_mills = {
+	if = { limit = { has_active_production_method = pm_traditional_looms } add = employment_pm_traditional_looms }
+	else_if = { limit = { has_active_production_method = pm_mechanized_looms } add = employment_pm_mechanized_looms }
+	else_if = { limit = { has_active_production_method = pm_automatic_power_looms } add = employment_pm_automatic_power_looms }
+}
+building_employment_pmg_ownership_capital_building_textile_mills = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_textile_mills } add = employment_pm_merchant_guilds_building_textile_mills }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_textile_mills } add = employment_pm_privately_owned_building_textile_mills }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_textile_mills } add = employment_pm_publicly_traded_building_textile_mills }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_textile_mills } add = employment_pm_government_run_building_textile_mills }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_textile_mills } add = employment_pm_worker_cooperative_building_textile_mills }
+}
+building_employment_pmg_base_building_furniture_manufacturies = {
+	if = { limit = { has_active_production_method = pm_handcrafted_furniture } add = employment_pm_handcrafted_furniture }
+	else_if = { limit = { has_active_production_method = pm_lathe } add = employment_pm_lathe }
+	else_if = { limit = { has_active_production_method = pm_mechanized_workshops } add = employment_pm_mechanized_workshops }
+}
+building_employment_pmg_luxury_building_furniture_manufacturies = {
+	if = { limit = { has_active_production_method = pm_no_luxuries } add = employment_pm_no_luxuries }
+	else_if = { limit = { has_active_production_method = pm_luxury_furniture } add = employment_pm_luxury_furniture }
+	else_if = { limit = { has_active_production_method = pm_precision_tools } add = employment_pm_precision_tools }
+}
+building_employment_pmg_automation_building_furniture_manufacturies = {
+	if = { limit = { has_active_production_method = pm_automation_disabled } add = employment_pm_automation_disabled }
+	else_if = { limit = { has_active_production_method = pm_watertube_boiler_building_furniture_manufacturies } add = employment_pm_watertube_boiler_building_furniture_manufacturies }
+	else_if = { limit = { has_active_production_method = pm_rotary_valve_engine_building_furniture_manufacturies } add = employment_pm_rotary_valve_engine_building_furniture_manufacturies }
+	else_if = { limit = { has_active_production_method = pm_assembly_lines_building_furniture_manufacturies } add = employment_pm_assembly_lines_building_furniture_manufacturies }
+}
+building_employment_pmg_ownership_capital_building_furniture_manufacturies = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_furniture_manufacturies } add = employment_pm_merchant_guilds_building_furniture_manufacturies }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_furniture_manufacturies } add = employment_pm_privately_owned_building_furniture_manufacturies }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_furniture_manufacturies } add = employment_pm_publicly_traded_building_furniture_manufacturies }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_furniture_manufacturies } add = employment_pm_government_run_building_furniture_manufacturies }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_furniture_manufacturies } add = employment_pm_worker_cooperative_building_furniture_manufacturies }
+}
+building_employment_pmg_base_building_tooling_workshops = {
+	if = { limit = { has_active_production_method = pm_crude_tools } add = employment_pm_crude_tools }
+	else_if = { limit = { has_active_production_method = pm_pig_iron } add = employment_pm_pig_iron }
+	else_if = { limit = { has_active_production_method = pm_steel } add = employment_pm_steel }
+}
+building_employment_pmg_automation_building_tooling_workshops = {
+	if = { limit = { has_active_production_method = pm_automation_disabled } add = employment_pm_automation_disabled }
+	else_if = { limit = { has_active_production_method = pm_watertube_boiler_building_tooling_workshops } add = employment_pm_watertube_boiler_building_tooling_workshops }
+	else_if = { limit = { has_active_production_method = pm_rotary_valve_engine_building_tooling_workshops } add = employment_pm_rotary_valve_engine_building_tooling_workshops }
+	else_if = { limit = { has_active_production_method = pm_assembly_lines_building_tooling_workshops } add = employment_pm_assembly_lines_building_tooling_workshops }
+}
+building_employment_pmg_ownership_capital_building_tooling_workshops = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_tooling_workshops } add = employment_pm_merchant_guilds_building_tooling_workshops }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_tooling_workshops } add = employment_pm_privately_owned_building_tooling_workshops }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_tooling_workshops } add = employment_pm_publicly_traded_building_tooling_workshops }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_tooling_workshops } add = employment_pm_government_run_building_tooling_workshops }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_tooling_workshops } add = employment_pm_worker_cooperative_building_tooling_workshops }
+}
+building_employment_pmg_base_building_glassworks = {
+	if = { limit = { has_active_production_method = pm_forest_glass } add = employment_pm_forest_glass }
+	else_if = { limit = { has_active_production_method = pm_leaded_glass } add = employment_pm_leaded_glass }
+	else_if = { limit = { has_active_production_method = pm_crystal_glass } add = employment_pm_crystal_glass }
+	else_if = { limit = { has_active_production_method = pm_houseware_plastics } add = employment_pm_houseware_plastics }
+}
+building_employment_pmg_luxury_building_glassworks = {
+	if = { limit = { has_active_production_method = pm_disabled_ceramics } add = employment_pm_disabled_ceramics }
+	else_if = { limit = { has_active_production_method = pm_ceramics } add = employment_pm_ceramics }
+	else_if = { limit = { has_active_production_method = pm_bone_china } add = employment_pm_bone_china }
+}
+building_employment_pmg_glassblowing = {
+	if = { limit = { has_active_production_method = pm_manual_glassblowing } add = employment_pm_manual_glassblowing }
+	else_if = { limit = { has_active_production_method = pm_automatic_bottle_blowers } add = employment_pm_automatic_bottle_blowers }
+}
+building_employment_pmg_ownership_capital_building_glassworks = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_glassworks } add = employment_pm_merchant_guilds_building_glassworks }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_glassworks } add = employment_pm_privately_owned_building_glassworks }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_glassworks } add = employment_pm_publicly_traded_building_glassworks }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_glassworks } add = employment_pm_government_run_building_glassworks }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_glassworks } add = employment_pm_worker_cooperative_building_glassworks }
+}
+building_employment_pmg_base_building_paper_mills = {
+	if = { limit = { has_active_production_method = pm_pulp_pressing } add = employment_pm_pulp_pressing }
+	else_if = { limit = { has_active_production_method = pm_sulfite_pulping } add = employment_pm_sulfite_pulping }
+	else_if = { limit = { has_active_production_method = pm_bleached_paper } add = employment_pm_bleached_paper }
+}
+building_employment_pmg_automation_building_paper_mills = {
+	if = { limit = { has_active_production_method = pm_automation_disabled } add = employment_pm_automation_disabled }
+	else_if = { limit = { has_active_production_method = pm_watertube_boiler_building_paper_mills } add = employment_pm_watertube_boiler_building_paper_mills }
+	else_if = { limit = { has_active_production_method = pm_rotary_valve_engine_building_paper_mills } add = employment_pm_rotary_valve_engine_building_paper_mills }
+}
+building_employment_pmg_ownership_capital_building_paper_mills = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_paper_mills } add = employment_pm_merchant_guilds_building_paper_mills }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_paper_mills } add = employment_pm_privately_owned_building_paper_mills }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_paper_mills } add = employment_pm_publicly_traded_building_paper_mills }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_paper_mills } add = employment_pm_government_run_building_paper_mills }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_paper_mills } add = employment_pm_worker_cooperative_building_paper_mills }
+}
+building_employment_pmg_fertilizer_production = {
+	if = { limit = { has_active_production_method = pm_artificial_fertilizers } add = employment_pm_artificial_fertilizers }
+	else_if = { limit = { has_active_production_method = pm_improved_fertilizer } add = employment_pm_improved_fertilizer }
+	else_if = { limit = { has_active_production_method = pm_nitrogen_fixation } add = employment_pm_nitrogen_fixation }
+}
+building_employment_pmg_explosives_building_chemical_plants = {
+	if = { limit = { has_active_production_method = pm_no_explosives_production } add = employment_pm_no_explosives_production }
+	else_if = { limit = { has_active_production_method = pm_leblanc_process } add = employment_pm_leblanc_process }
+	else_if = { limit = { has_active_production_method = pm_ammonia-soda_process } add = employment_pm_ammonia-soda_process }
+	else_if = { limit = { has_active_production_method = pm_vacuum_evaporation } add = employment_pm_vacuum_evaporation }
+	else_if = { limit = { has_active_production_method = pm_brine_electrolysis } add = employment_pm_brine_electrolysis }
+}
+building_employment_pmg_ownership_capital_building_chemical_plants = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } add = employment_pm_privately_owned_industry }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_chemical_plants } add = employment_pm_publicly_traded_building_chemical_plants }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } add = employment_pm_government_run_industry }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } add = employment_pm_worker_cooperative_industry }
+}
+building_employment_pmg_synthetic_dyes = {
+	if = { limit = { has_active_production_method = pm_dye_production } add = employment_pm_dye_production }
+}
+building_employment_pmg_synthetic_silk = {
+	if = { limit = { has_active_production_method = pm_no_artificial_fibers } add = employment_pm_no_artificial_fibers }
+	else_if = { limit = { has_active_production_method = pm_rayon } add = employment_pm_rayon }
+}
+building_employment_pmg_ownership_capital_building_synthetics_plants = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } add = employment_pm_privately_owned_industry }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_synthetic_plants } add = employment_pm_publicly_traded_building_synthetic_plants }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } add = employment_pm_government_run_industry }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } add = employment_pm_worker_cooperative_industry }
+}
+building_employment_pmg_steelmaking_process = {
+	if = { limit = { has_active_production_method = pm_blister_steel_process } add = employment_pm_blister_steel_process }
+	else_if = { limit = { has_active_production_method = pm_bessemer_process } add = employment_pm_bessemer_process }
+	else_if = { limit = { has_active_production_method = pm_open_hearth_process } add = employment_pm_open_hearth_process }
+	else_if = { limit = { has_active_production_method = pm_electric_arc_process } add = employment_pm_electric_arc_process }
+}
+building_employment_pmg_automation_building_steel_mills = {
+	if = { limit = { has_active_production_method = pm_automation_disabled } add = employment_pm_automation_disabled }
+	else_if = { limit = { has_active_production_method = pm_watertube_boiler_building_steel_mills } add = employment_pm_watertube_boiler_building_steel_mills }
+	else_if = { limit = { has_active_production_method = pm_rotary_valve_engine_building_steel_mills } add = employment_pm_rotary_valve_engine_building_steel_mills }
+}
+building_employment_pmg_ownership_capital_building_steel_mills = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } add = employment_pm_privately_owned_industry }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_steel_mills } add = employment_pm_publicly_traded_building_steel_mills }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } add = employment_pm_government_run_industry }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } add = employment_pm_worker_cooperative_industry }
+}
+building_employment_pmg_base_building_motor_industry = {
+	if = { limit = { has_active_production_method = pm_steam_engines } add = employment_pm_steam_engines }
+	else_if = { limit = { has_active_production_method = pm_electric_engines } add = employment_pm_electric_engines }
+	else_if = { limit = { has_active_production_method = pm_diesel_engines } add = employment_pm_diesel_engines }
+}
+building_employment_pmg_automobile_production = {
+	if = { limit = { has_active_production_method = pm_automobiles_disabled } add = employment_pm_automobiles_disabled }
+	else_if = { limit = { has_active_production_method = pm_automobile_production } add = employment_pm_automobile_production }
+}
+building_employment_pmg_automation_building_motor_industry = {
+	if = { limit = { has_active_production_method = pm_automation_disabled } add = employment_pm_automation_disabled }
+	else_if = { limit = { has_active_production_method = pm_watertube_boiler_building_motor_industry } add = employment_pm_watertube_boiler_building_motor_industry }
+	else_if = { limit = { has_active_production_method = pm_rotary_valve_engine_building_motor_industry } add = employment_pm_rotary_valve_engine_building_motor_industry }
+	else_if = { limit = { has_active_production_method = pm_assembly_lines_building_motor_industry } add = employment_pm_assembly_lines_building_motor_industry }
+}
+building_employment_pmg_ownership_capital_building_motor_industry = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } add = employment_pm_privately_owned_industry }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_motor_industries } add = employment_pm_publicly_traded_building_motor_industries }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } add = employment_pm_government_run_industry }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } add = employment_pm_worker_cooperative_industry }
+}
+building_employment_pmg_base_building_shipyards = {
+	if = { limit = { has_active_production_method = pm_basic_shipbuilding } add = employment_pm_basic_shipbuilding }
+	else_if = { limit = { has_active_production_method = pm_complex_shipbuilding } add = employment_pm_complex_shipbuilding }
+	else_if = { limit = { has_active_production_method = pm_metal_shipbuilding } add = employment_pm_metal_shipbuilding }
+	else_if = { limit = { has_active_production_method = pm_arc_welding_shipbuilding } add = employment_pm_arc_welding_shipbuilding }
+}
+building_employment_pmg_military_base = {
+	if = { limit = { has_active_production_method = pm_no_military_shipbuilding } add = employment_pm_no_military_shipbuilding }
+	else_if = { limit = { has_active_production_method = pm_military_shipbuilding_wooden } add = employment_pm_military_shipbuilding_wooden }
+	else_if = { limit = { has_active_production_method = pm_military_shipbuilding_wooden_2 } add = employment_pm_military_shipbuilding_wooden_2 }
+	else_if = { limit = { has_active_production_method = pm_military_shipbuilding_steam } add = employment_pm_military_shipbuilding_steam }
+	else_if = { limit = { has_active_production_method = pm_military_shipbuilding_steam_2 } add = employment_pm_military_shipbuilding_steam_2 }
+}
+building_employment_pmg_ownership_capital_building_shipyards = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_shipyards } add = employment_pm_merchant_guilds_building_shipyards }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_shipyards } add = employment_pm_privately_owned_building_shipyards }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_shipyards } add = employment_pm_publicly_traded_building_shipyards }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_shipyards } add = employment_pm_government_run_building_shipyards }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_shipyards } add = employment_pm_worker_cooperative_building_shipyards }
+}
+building_employment_pmg_aeroplanes = {
+	if = { limit = { has_active_production_method = pm_aeroplane_production } add = employment_pm_aeroplane_production }
+}
+building_employment_pmg_tanks = {
+	if = { limit = { has_active_production_method = pm_no_tank_production } add = employment_pm_no_tank_production }
+	else_if = { limit = { has_active_production_method = pm_tank_production } add = employment_pm_tank_production }
+}
+building_employment_pmg_ownership_capital_building_war_machine_industry = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } add = employment_pm_privately_owned_industry }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_war_machines_induestries } add = employment_pm_publicly_traded_building_war_machines_induestries }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } add = employment_pm_government_run_industry }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } add = employment_pm_worker_cooperative_industry }
+}
+building_employment_pmg_telephones_category = {
+	if = { limit = { has_active_production_method = pm_telephones } add = employment_pm_telephones }
+}
+building_employment_pmg_radios_category = {
+	if = { limit = { has_active_production_method = pm_no_radios } add = employment_pm_no_radios }
+	else_if = { limit = { has_active_production_method = pm_radios } add = employment_pm_radios }
+}
+building_employment_pmg_ownership_capital_building_electrics_industry = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } add = employment_pm_privately_owned_industry }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_electrics_industries } add = employment_pm_publicly_traded_building_electrics_industries }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } add = employment_pm_government_run_industry }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } add = employment_pm_worker_cooperative_industry }
+}
+building_employment_pmg_firearms_manufacturing = {
+	if = { limit = { has_active_production_method = pm_muskets } add = employment_pm_muskets }
+	else_if = { limit = { has_active_production_method = pm_rifles } add = employment_pm_rifles }
+	else_if = { limit = { has_active_production_method = pm_repeaters } add = employment_pm_repeaters }
+	else_if = { limit = { has_active_production_method = pm_bolt_action_rifles } add = employment_pm_bolt_action_rifles }
+}
+building_employment_pmg_automation_building_arms_industry = {
+	if = { limit = { has_active_production_method = pm_automation_disabled } add = employment_pm_automation_disabled }
+	else_if = { limit = { has_active_production_method = pm_rotary_valve_engine_building_arms_industry } add = employment_pm_rotary_valve_engine_building_arms_industry }
+	else_if = { limit = { has_active_production_method = pm_assembly_lines_building_arms_industry } add = employment_pm_assembly_lines_building_arms_industry }
+}
+building_employment_pmg_foundries = {
+	if = { limit = { has_active_production_method = pm_no_artillery_production } add = employment_pm_no_artillery_production }
+	else_if = { limit = { has_active_production_method = pm_cannons } add = employment_pm_cannons }
+	else_if = { limit = { has_active_production_method = pm_smoothbores } add = employment_pm_smoothbores }
+	else_if = { limit = { has_active_production_method = pm_breech_loaders } add = employment_pm_breech_loaders }
+}
+building_employment_pmg_ownership_capital_building_arms_industry = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_arms_industry } add = employment_pm_merchant_guilds_building_arms_industry }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_arms_industry } add = employment_pm_privately_owned_building_arms_industry }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_arms_industry } add = employment_pm_publicly_traded_building_arms_industry }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_arms_industry } add = employment_pm_government_run_building_arms_industry }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_arms_industry } add = employment_pm_worker_cooperative_building_arms_industry }
+}
+building_employment_pmg_base_building_munition_plants = {
+	if = { limit = { has_active_production_method = pm_percussion_caps } add = employment_pm_percussion_caps }
+	else_if = { limit = { has_active_production_method = pm_explosive_shells } add = employment_pm_explosive_shells }
+}
+building_employment_pmg_automation_building_munition_plants = {
+	if = { limit = { has_active_production_method = pm_automation_disabled } add = employment_pm_automation_disabled }
+	else_if = { limit = { has_active_production_method = pm_rotary_valve_engine_building_munition_plants } add = employment_pm_rotary_valve_engine_building_munition_plants }
+	else_if = { limit = { has_active_production_method = pm_assembly_lines_building_munition_plants } add = employment_pm_assembly_lines_building_munition_plants }
+}
+building_employment_pmg_ownership_capital_building_munition_plants = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } add = employment_pm_privately_owned_industry }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_munition_plants } add = employment_pm_publicly_traded_building_munition_plants }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } add = employment_pm_government_run_industry }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } add = employment_pm_worker_cooperative_industry }
+}
+
+building_employment_pmg_base_building_rye_farm = {
+	if = { limit = { has_active_production_method = pm_simple_farming } add = employment_pm_simple_farming }
+	else_if = { limit = { has_active_production_method = pm_soil_enriching_farming } add = employment_pm_soil_enriching_farming }
+	else_if = { limit = { has_active_production_method = pm_fertilization } add = employment_pm_fertilization }
+	else_if = { limit = { has_active_production_method = pm_chemical_fertilizer } add = employment_pm_chemical_fertilizer }
+}
+building_employment_pmg_secondary_building_rye_farm = {
+	if = { limit = { has_active_production_method = pm_no_secondary } add = employment_pm_no_secondary }
+	else_if = { limit = { has_active_production_method = pm_potatoes } add = employment_pm_potatoes }
+	else_if = { limit = { has_active_production_method = pm_apple_orchards } add = employment_pm_apple_orchards }
+}
+building_employment_pmg_harvesting_process_building_rye_farm = {
+	if = { limit = { has_active_production_method = pm_tools_disabled } add = employment_pm_tools_disabled }
+	else_if = { limit = { has_active_production_method = pm_tools } add = employment_pm_tools }
+	else_if = { limit = { has_active_production_method = pm_steam_threshers } add = employment_pm_steam_threshers }
+	else_if = { limit = { has_active_production_method = pm_tractors } add = employment_pm_tractors }
+	else_if = { limit = { has_active_production_method = pm_compression_ignition_tractors } add = employment_pm_compression_ignition_tractors }
+}
+building_employment_pmg_ownership_land_building_rye_farm = {
+	if = { limit = { has_active_production_method = pm_privately_owned } add = employment_pm_privately_owned }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded } add = employment_pm_publicly_traded }
+	else_if = { limit = { has_active_production_method = pm_homesteading } add = employment_pm_homesteading }
+	else_if = { limit = { has_active_production_method = pm_government_run } add = employment_pm_government_run }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_farm } add = employment_pm_worker_cooperative_farm }
+}
+building_employment_pmg_base_building_wheat_farm = {
+	if = { limit = { has_active_production_method = pm_simple_farming } add = employment_pm_simple_farming }
+	else_if = { limit = { has_active_production_method = pm_soil_enriching_farming } add = employment_pm_soil_enriching_farming }
+	else_if = { limit = { has_active_production_method = pm_fertilization } add = employment_pm_fertilization }
+	else_if = { limit = { has_active_production_method = pm_chemical_fertilizer } add = employment_pm_chemical_fertilizer }
+}
+building_employment_pmg_secondary_building_wheat_farm = {
+	if = { limit = { has_active_production_method = pm_no_secondary } add = employment_pm_no_secondary }
+	else_if = { limit = { has_active_production_method = pm_citrus_orchards } add = employment_pm_citrus_orchards }
+	else_if = { limit = { has_active_production_method = pm_vineyards } add = employment_pm_vineyards }
+}
+building_employment_pmg_harvesting_process_building_wheat_farm = {
+	if = { limit = { has_active_production_method = pm_tools_disabled } add = employment_pm_tools_disabled }
+	else_if = { limit = { has_active_production_method = pm_tools } add = employment_pm_tools }
+	else_if = { limit = { has_active_production_method = pm_steam_threshers } add = employment_pm_steam_threshers }
+	else_if = { limit = { has_active_production_method = pm_tractors } add = employment_pm_tractors }
+	else_if = { limit = { has_active_production_method = pm_compression_ignition_tractors } add = employment_pm_compression_ignition_tractors }
+}
+building_employment_pmg_ownership_land_building_wheat_farm = {
+	if = { limit = { has_active_production_method = pm_privately_owned } add = employment_pm_privately_owned }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded } add = employment_pm_publicly_traded }
+	else_if = { limit = { has_active_production_method = pm_homesteading } add = employment_pm_homesteading }
+	else_if = { limit = { has_active_production_method = pm_government_run } add = employment_pm_government_run }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_farm } add = employment_pm_worker_cooperative_farm }
+}
+building_employment_pmg_base_building_rice_farm = {
+	if = { limit = { has_active_production_method = pm_simple_farming_building_rice_farm } add = employment_pm_simple_farming_building_rice_farm }
+	else_if = { limit = { has_active_production_method = pm_soil_enriching_farming_building_rice_farm } add = employment_pm_soil_enriching_farming_building_rice_farm }
+	else_if = { limit = { has_active_production_method = pm_fertilization_building_rice_farm } add = employment_pm_fertilization_building_rice_farm }
+	else_if = { limit = { has_active_production_method = pm_chemical_fertilizer_building_rice_farm } add = employment_pm_chemical_fertilizer_building_rice_farm }
+}
+building_employment_pmg_secondary_building_rice_farm = {
+	if = { limit = { has_active_production_method = pm_no_secondary } add = employment_pm_no_secondary }
+	else_if = { limit = { has_active_production_method = pm_fig_orchards } add = employment_pm_fig_orchards }
+}
+building_employment_pmg_harvesting_process_building_rice_farm = {
+	if = { limit = { has_active_production_method = pm_tools_disabled } add = employment_pm_tools_disabled }
+	else_if = { limit = { has_active_production_method = pm_tools } add = employment_pm_tools }
+	else_if = { limit = { has_active_production_method = pm_steam_threshers } add = employment_pm_steam_threshers }
+}
+building_employment_pmg_ownership_land_building_rice_farm = {
+	if = { limit = { has_active_production_method = pm_privately_owned } add = employment_pm_privately_owned }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded } add = employment_pm_publicly_traded }
+	else_if = { limit = { has_active_production_method = pm_homesteading } add = employment_pm_homesteading }
+	else_if = { limit = { has_active_production_method = pm_government_run } add = employment_pm_government_run }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_farm } add = employment_pm_worker_cooperative_farm }
+}
+building_employment_pmg_base_building_maize_farm = {
+	if = { limit = { has_active_production_method = pm_simple_farming } add = employment_pm_simple_farming }
+	else_if = { limit = { has_active_production_method = pm_soil_enriching_farming } add = employment_pm_soil_enriching_farming }
+	else_if = { limit = { has_active_production_method = pm_fertilization } add = employment_pm_fertilization }
+	else_if = { limit = { has_active_production_method = pm_chemical_fertilizer } add = employment_pm_chemical_fertilizer }
+}
+building_employment_pmg_secondary_building_maize_farm = {
+	if = { limit = { has_active_production_method = pm_no_secondary } add = employment_pm_no_secondary }
+	else_if = { limit = { has_active_production_method = pm_citrus_orchards } add = employment_pm_citrus_orchards }
+	else_if = { limit = { has_active_production_method = pm_vineyards_building_maize_farm } add = employment_pm_vineyards_building_maize_farm }
+}
+building_employment_pmg_harvesting_process_building_maize_farm = {
+	if = { limit = { has_active_production_method = pm_tools_disabled } add = employment_pm_tools_disabled }
+	else_if = { limit = { has_active_production_method = pm_tools } add = employment_pm_tools }
+	else_if = { limit = { has_active_production_method = pm_steam_threshers } add = employment_pm_steam_threshers }
+	else_if = { limit = { has_active_production_method = pm_tractors } add = employment_pm_tractors }
+	else_if = { limit = { has_active_production_method = pm_compression_ignition_tractors } add = employment_pm_compression_ignition_tractors }
+}
+building_employment_pmg_ownership_land_building_maize_farm = {
+	if = { limit = { has_active_production_method = pm_privately_owned } add = employment_pm_privately_owned }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded } add = employment_pm_publicly_traded }
+	else_if = { limit = { has_active_production_method = pm_homesteading } add = employment_pm_homesteading }
+	else_if = { limit = { has_active_production_method = pm_government_run } add = employment_pm_government_run }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_farm } add = employment_pm_worker_cooperative_farm }
+}
+building_employment_pmg_base_building_millet_farm = {
+	if = { limit = { has_active_production_method = pm_simple_farming } add = employment_pm_simple_farming }
+	else_if = { limit = { has_active_production_method = pm_soil_enriching_farming } add = employment_pm_soil_enriching_farming }
+	else_if = { limit = { has_active_production_method = pm_fertilization } add = employment_pm_fertilization }
+	else_if = { limit = { has_active_production_method = pm_chemical_fertilizer } add = employment_pm_chemical_fertilizer }
+}
+building_employment_pmg_secondary_building_millet_farm = {
+	if = { limit = { has_active_production_method = pm_no_secondary } add = employment_pm_no_secondary }
+	else_if = { limit = { has_active_production_method = pm_fig_orchards } add = employment_pm_fig_orchards }
+}
+building_employment_pmg_harvesting_process_building_millet_farm = {
+	if = { limit = { has_active_production_method = pm_tools_disabled } add = employment_pm_tools_disabled }
+	else_if = { limit = { has_active_production_method = pm_tools } add = employment_pm_tools }
+	else_if = { limit = { has_active_production_method = pm_steam_threshers } add = employment_pm_steam_threshers }
+	else_if = { limit = { has_active_production_method = pm_tractors } add = employment_pm_tractors }
+	else_if = { limit = { has_active_production_method = pm_compression_ignition_tractors } add = employment_pm_compression_ignition_tractors }
+}
+building_employment_pmg_ownership_land_building_millet_farm = {
+	if = { limit = { has_active_production_method = pm_privately_owned } add = employment_pm_privately_owned }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded } add = employment_pm_publicly_traded }
+	else_if = { limit = { has_active_production_method = pm_homesteading } add = employment_pm_homesteading }
+	else_if = { limit = { has_active_production_method = pm_government_run } add = employment_pm_government_run }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_farm } add = employment_pm_worker_cooperative_farm }
+}
+building_employment_pmg_base_building_livestock_ranch = {
+	if = { limit = { has_active_production_method = pm_simple_ranch } add = employment_pm_simple_ranch }
+	else_if = { limit = { has_active_production_method = pm_intensive_grazing_ranch } add = employment_pm_intensive_grazing_ranch }
+}
+building_employment_pmg_slaughtering = {
+	if = { limit = { has_active_production_method = pm_open_air_stockyards } add = employment_pm_open_air_stockyards }
+	else_if = { limit = { has_active_production_method = pm_butchering_tools } add = employment_pm_butchering_tools }
+	else_if = { limit = { has_active_production_method = pm_slaughterhouses } add = employment_pm_slaughterhouses }
+	else_if = { limit = { has_active_production_method = pm_mechanized_slaughtering } add = employment_pm_mechanized_slaughtering }
+}
+building_employment_pmg_fencing = {
+	if = { limit = { has_active_production_method = pm_standard_fences } add = employment_pm_standard_fences }
+	else_if = { limit = { has_active_production_method = pm_barbed_wire_fences } add = employment_pm_barbed_wire_fences }
+	else_if = { limit = { has_active_production_method = pm_electric_fencing } add = employment_pm_electric_fencing }
+}
+building_employment_pmg_refrigeration_building_livestock_ranch = {
+	if = { limit = { has_active_production_method = pm_unrefrigerated } add = employment_pm_unrefrigerated }
+	else_if = { limit = { has_active_production_method = pm_refrigerated_storage_building_livestock_ranch } add = employment_pm_refrigerated_storage_building_livestock_ranch }
+	else_if = { limit = { has_active_production_method = pm_refrigerated_rail_cars_building_livestock_ranch } add = employment_pm_refrigerated_rail_cars_building_livestock_ranch }
+}
+building_employment_pmg_ownership_land_building_livestock_ranch = {
+	if = { limit = { has_active_production_method = pm_privately_owned } add = employment_pm_privately_owned }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded } add = employment_pm_publicly_traded }
+	else_if = { limit = { has_active_production_method = pm_homesteading } add = employment_pm_homesteading }
+	else_if = { limit = { has_active_production_method = pm_government_run } add = employment_pm_government_run }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_farm } add = employment_pm_worker_cooperative_farm }
+}
+
+building_employment_pmg_mining_equipment_building_coal_mine = {
+	if = { limit = { has_active_production_method = pm_picks_and_shovels_building_coal_mine } add = employment_pm_picks_and_shovels_building_coal_mine }
+	else_if = { limit = { has_active_production_method = pm_atmospheric_engine_pump_building_coal_mine } add = employment_pm_atmospheric_engine_pump_building_coal_mine }
+	else_if = { limit = { has_active_production_method = pm_condensing_engine_pump_building_coal_mine } add = employment_pm_condensing_engine_pump_building_coal_mine }
+	else_if = { limit = { has_active_production_method = pm_diesel_pump_building_coal_mine } add = employment_pm_diesel_pump_building_coal_mine }
+}
+building_employment_pmg_explosives_building_coal_mine = {
+	if = { limit = { has_active_production_method = pm_no_explosives } add = employment_pm_no_explosives }
+	else_if = { limit = { has_active_production_method = pm_nitroglycerin_building_coal_mine } add = employment_pm_nitroglycerin_building_coal_mine }
+	else_if = { limit = { has_active_production_method = pm_dynamite_building_coal_mine } add = employment_pm_dynamite_building_coal_mine }
+}
+building_employment_pmg_steam_automation_building_coal_mine = {
+	if = { limit = { has_active_production_method = pm_no_steam_automation } add = employment_pm_no_steam_automation }
+	else_if = { limit = { has_active_production_method = pm_steam_donkey_building_coal_mine } add = employment_pm_steam_donkey_building_coal_mine }
+}
+building_employment_pmg_train_automation_building_coal_mine = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_rail_transport_mine } add = employment_pm_rail_transport_mine }
+}
+building_employment_pmg_ownership_capital_building_coal_mine = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_coal_mine } add = employment_pm_merchant_guilds_building_coal_mine }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_coal_mine } add = employment_pm_privately_owned_building_coal_mine }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_coal_mine } add = employment_pm_publicly_traded_building_coal_mine }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_coal_mine } add = employment_pm_government_run_building_coal_mine }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_coal_mine } add = employment_pm_worker_cooperative_building_coal_mine }
+}
+building_employment_pmg_mining_equipment_building_iron_mine = {
+	if = { limit = { has_active_production_method = pm_picks_and_shovels_building_iron_mine } add = employment_pm_picks_and_shovels_building_iron_mine }
+	else_if = { limit = { has_active_production_method = pm_atmospheric_engine_pump_building_iron_mine } add = employment_pm_atmospheric_engine_pump_building_iron_mine }
+	else_if = { limit = { has_active_production_method = pm_condensing_engine_pump_building_iron_mine } add = employment_pm_condensing_engine_pump_building_iron_mine }
+	else_if = { limit = { has_active_production_method = pm_diesel_pump_building_iron_mine } add = employment_pm_diesel_pump_building_iron_mine }
+}
+building_employment_pmg_explosives_building_iron_mine = {
+	if = { limit = { has_active_production_method = pm_no_explosives } add = employment_pm_no_explosives }
+	else_if = { limit = { has_active_production_method = pm_nitroglycerin_building_iron_mine } add = employment_pm_nitroglycerin_building_iron_mine }
+	else_if = { limit = { has_active_production_method = pm_dynamite_building_iron_mine } add = employment_pm_dynamite_building_iron_mine }
+}
+building_employment_pmg_steam_automation_building_iron_mine = {
+	if = { limit = { has_active_production_method = pm_no_steam_automation } add = employment_pm_no_steam_automation }
+	else_if = { limit = { has_active_production_method = pm_steam_donkey_mine } add = employment_pm_steam_donkey_mine }
+}
+building_employment_pmg_train_automation_building_iron_mine = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_rail_transport_mine } add = employment_pm_rail_transport_mine }
+}
+building_employment_pmg_ownership_capital_building_iron_mine = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_iron_mine } add = employment_pm_merchant_guilds_building_iron_mine }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_iron_mine } add = employment_pm_privately_owned_building_iron_mine }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_iron_mine } add = employment_pm_publicly_traded_building_iron_mine }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_iron_mine } add = employment_pm_government_run_building_iron_mine }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_iron_mine } add = employment_pm_worker_cooperative_building_iron_mine }
+}
+building_employment_pmg_mining_equipment_building_lead_mine = {
+	if = { limit = { has_active_production_method = pm_picks_and_shovels_building_lead_mine } add = employment_pm_picks_and_shovels_building_lead_mine }
+	else_if = { limit = { has_active_production_method = pm_atmospheric_engine_pump_building_lead_mine } add = employment_pm_atmospheric_engine_pump_building_lead_mine }
+	else_if = { limit = { has_active_production_method = pm_condensing_engine_pump_building_lead_mine } add = employment_pm_condensing_engine_pump_building_lead_mine }
+	else_if = { limit = { has_active_production_method = pm_diesel_pump_building_lead_mine } add = employment_pm_diesel_pump_building_lead_mine }
+}
+building_employment_pmg_explosives_building_lead_mine = {
+	if = { limit = { has_active_production_method = pm_no_explosives } add = employment_pm_no_explosives }
+	else_if = { limit = { has_active_production_method = pm_nitroglycerin_building_lead_mine } add = employment_pm_nitroglycerin_building_lead_mine }
+	else_if = { limit = { has_active_production_method = pm_dynamite_building_lead_mine } add = employment_pm_dynamite_building_lead_mine }
+}
+building_employment_pmg_steam_automation_building_lead_mine = {
+	if = { limit = { has_active_production_method = pm_no_steam_automation } add = employment_pm_no_steam_automation }
+	else_if = { limit = { has_active_production_method = pm_steam_donkey_mine } add = employment_pm_steam_donkey_mine }
+}
+building_employment_pmg_train_automation_building_lead_mine = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_rail_transport_mine } add = employment_pm_rail_transport_mine }
+}
+building_employment_pmg_ownership_capital_building_lead_mine = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_lead_mine } add = employment_pm_merchant_guilds_building_lead_mine }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_lead_mine } add = employment_pm_privately_owned_building_lead_mine }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_lead_mine } add = employment_pm_publicly_traded_building_lead_mine }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_lead_mine } add = employment_pm_government_run_building_lead_mine }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_lead_mine } add = employment_pm_worker_cooperative_building_lead_mine }
+}
+building_employment_pmg_mining_equipment_building_sulfur_mine = {
+	if = { limit = { has_active_production_method = pm_picks_and_shovels_building_sulfur_mine } add = employment_pm_picks_and_shovels_building_sulfur_mine }
+	else_if = { limit = { has_active_production_method = pm_atmospheric_engine_pump_building_sulfur_mine } add = employment_pm_atmospheric_engine_pump_building_sulfur_mine }
+	else_if = { limit = { has_active_production_method = pm_condensing_engine_pump_building_sulfur_mine } add = employment_pm_condensing_engine_pump_building_sulfur_mine }
+	else_if = { limit = { has_active_production_method = pm_diesel_pump_building_sulfur_mine } add = employment_pm_diesel_pump_building_sulfur_mine }
+}
+building_employment_pmg_explosives_building_sulfur_mine = {
+	if = { limit = { has_active_production_method = pm_no_explosives } add = employment_pm_no_explosives }
+	else_if = { limit = { has_active_production_method = pm_nitroglycerin_building_sulfur_mine } add = employment_pm_nitroglycerin_building_sulfur_mine }
+	else_if = { limit = { has_active_production_method = pm_dynamite_building_sulfur_mine } add = employment_pm_dynamite_building_sulfur_mine }
+}
+building_employment_pmg_steam_automation_building_sulfur_mine = {
+	if = { limit = { has_active_production_method = pm_no_steam_automation } add = employment_pm_no_steam_automation }
+	else_if = { limit = { has_active_production_method = pm_steam_donkey_mine } add = employment_pm_steam_donkey_mine }
+}
+building_employment_pmg_train_automation_building_sulfur_mine = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_rail_transport_mine } add = employment_pm_rail_transport_mine }
+}
+building_employment_pmg_ownership_capital_building_sulfur_mine = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_sulfur_mine } add = employment_pm_merchant_guilds_building_sulfur_mine }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_sulfur_mine } add = employment_pm_privately_owned_building_sulfur_mine }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_sulfur_mine } add = employment_pm_publicly_traded_building_sulfur_mine }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_sulfur_mine } add = employment_pm_government_run_building_sulfur_mine }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_sulfur_mine } add = employment_pm_worker_cooperative_building_sulfur_mine }
+}
+building_employment_pmg_mining_equipment_building_gold_mine = {
+	if = { limit = { has_active_production_method = pm_picks_and_shovels_building_gold_mine } add = employment_pm_picks_and_shovels_building_gold_mine }
+	else_if = { limit = { has_active_production_method = pm_atmospheric_engine_pump_building_gold_mine } add = employment_pm_atmospheric_engine_pump_building_gold_mine }
+	else_if = { limit = { has_active_production_method = pm_condensing_engine_pump_building_gold_mine } add = employment_pm_condensing_engine_pump_building_gold_mine }
+	else_if = { limit = { has_active_production_method = pm_diesel_pump_building_gold_mine } add = employment_pm_diesel_pump_building_gold_mine }
+}
+building_employment_pmg_explosives_building_gold_mine = {
+	if = { limit = { has_active_production_method = pm_no_explosives } add = employment_pm_no_explosives }
+	else_if = { limit = { has_active_production_method = pm_nitroglycerin_building_gold_mine } add = employment_pm_nitroglycerin_building_gold_mine }
+	else_if = { limit = { has_active_production_method = pm_dynamite_building_gold_mine } add = employment_pm_dynamite_building_gold_mine }
+}
+building_employment_pmg_steam_automation_building_gold_mine = {
+	if = { limit = { has_active_production_method = pm_no_steam_automation } add = employment_pm_no_steam_automation }
+	else_if = { limit = { has_active_production_method = pm_steam_donkey_mine } add = employment_pm_steam_donkey_mine }
+}
+building_employment_pmg_train_automation_building_gold_mine = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_rail_transport_mine } add = employment_pm_rail_transport_mine }
+}
+building_employment_pmg_ownership_capital_building_gold_mine = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_gold_mine } add = employment_pm_merchant_guilds_building_gold_mine }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_gold_mine } add = employment_pm_privately_owned_building_gold_mine }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_gold_mine } add = employment_pm_publicly_traded_building_gold_mine }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_gold_mine } add = employment_pm_government_run_building_gold_mine }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_gold_mine } add = employment_pm_worker_cooperative_building_gold_mine }
+}
+building_employment_pmg_base_building_gold_fields = {
+	if = { limit = { has_active_production_method = default_building_gold_fields } add = employment_default_building_gold_fields }
+}
+
+building_employment_pmg_base_building_coffee_plantation = {
+	if = { limit = { has_active_production_method = default_building_coffee_plantation } add = employment_default_building_coffee_plantation }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_coffee_plantation } add = employment_automatic_irrigation_building_coffee_plantation }
+}
+building_employment_pmg_train_automation_building_coffee_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } add = employment_pm_steam_rail_transport }
+}
+building_employment_pmg_ownership_land_building_coffee_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } add = employment_pm_privately_owned_plantation }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } add = employment_pm_publicly_traded_plantation }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } add = employment_pm_government_run_plantation }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } add = employment_pm_worker_cooperative_plantation }
+}
+building_employment_pmg_base_building_cotton_plantation = {
+	if = { limit = { has_active_production_method = default_building_cotton_plantation } add = employment_default_building_cotton_plantation }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_cotton_plantation } add = employment_automatic_irrigation_building_cotton_plantation }
+}
+building_employment_pmg_train_automation_building_cotton_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } add = employment_pm_steam_rail_transport }
+}
+building_employment_pmg_ownership_land_building_cotton_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } add = employment_pm_privately_owned_plantation }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } add = employment_pm_publicly_traded_plantation }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } add = employment_pm_government_run_plantation }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } add = employment_pm_worker_cooperative_plantation }
+}
+building_employment_pmg_base_building_dye_plantation = {
+	if = { limit = { has_active_production_method = default_building_dye_plantation } add = employment_default_building_dye_plantation }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_dye_plantation } add = employment_automatic_irrigation_building_dye_plantation }
+}
+building_employment_pmg_train_automation_building_dye_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } add = employment_pm_steam_rail_transport }
+}
+building_employment_pmg_ownership_land_building_dye_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } add = employment_pm_privately_owned_plantation }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } add = employment_pm_publicly_traded_plantation }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } add = employment_pm_government_run_plantation }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } add = employment_pm_worker_cooperative_plantation }
+}
+building_employment_pmg_base_building_opium_plantation = {
+	if = { limit = { has_active_production_method = default_building_opium_plantation } add = employment_default_building_opium_plantation }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_opium_plantation } add = employment_automatic_irrigation_building_opium_plantation }
+}
+building_employment_pmg_train_automation_building_opium_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } add = employment_pm_steam_rail_transport }
+}
+building_employment_pmg_ownership_land_building_opium_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } add = employment_pm_privately_owned_plantation }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } add = employment_pm_publicly_traded_plantation }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } add = employment_pm_government_run_plantation }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } add = employment_pm_worker_cooperative_plantation }
+}
+building_employment_pmg_base_building_tea_plantation = {
+	if = { limit = { has_active_production_method = default_building_tea_plantation } add = employment_default_building_tea_plantation }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_tea_plantation } add = employment_automatic_irrigation_building_tea_plantation }
+}
+building_employment_pmg_train_automation_building_tea_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } add = employment_pm_steam_rail_transport }
+}
+building_employment_pmg_ownership_land_building_tea_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } add = employment_pm_privately_owned_plantation }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } add = employment_pm_publicly_traded_plantation }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } add = employment_pm_government_run_plantation }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } add = employment_pm_worker_cooperative_plantation }
+}
+building_employment_pmg_base_building_tobacco_plantation = {
+	if = { limit = { has_active_production_method = default_building_tobacco_plantation } add = employment_default_building_tobacco_plantation }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_tobacco_plantation } add = employment_automatic_irrigation_building_tobacco_plantation }
+}
+building_employment_pmg_train_automation_building_tobacco_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } add = employment_pm_steam_rail_transport }
+}
+building_employment_pmg_ownership_land_building_tobacco_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } add = employment_pm_privately_owned_plantation }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } add = employment_pm_publicly_traded_plantation }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } add = employment_pm_government_run_plantation }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } add = employment_pm_worker_cooperative_plantation }
+}
+building_employment_pmg_base_building_sugar_plantation = {
+	if = { limit = { has_active_production_method = default_building_sugar_plantation } add = employment_default_building_sugar_plantation }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_sugar_plantation } add = employment_automatic_irrigation_building_sugar_plantation }
+}
+building_employment_pmg_train_automation_building_sugar_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } add = employment_pm_steam_rail_transport }
+}
+building_employment_pmg_ownership_land_building_sugar_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } add = employment_pm_privately_owned_plantation }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } add = employment_pm_publicly_traded_plantation }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } add = employment_pm_government_run_plantation }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } add = employment_pm_worker_cooperative_plantation }
+}
+building_employment_pmg_base_building_banana_plantation = {
+	if = { limit = { has_active_production_method = default_building_banana_plantation } add = employment_default_building_banana_plantation }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_banana_plantation } add = employment_automatic_irrigation_building_banana_plantation }
+}
+building_employment_pmg_train_automation_building_banana_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } add = employment_pm_steam_rail_transport }
+}
+building_employment_pmg_ownership_land_building_banana_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } add = employment_pm_privately_owned_plantation }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } add = employment_pm_publicly_traded_plantation }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } add = employment_pm_government_run_plantation }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } add = employment_pm_worker_cooperative_plantation }
+}
+building_employment_pmg_base_building_silk_plantation = {
+	if = { limit = { has_active_production_method = default_building_silk_plantation } add = employment_default_building_silk_plantation }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_silk_plantation } add = employment_automatic_irrigation_building_silk_plantation }
+}
+building_employment_pmg_train_automation_building_silk_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } add = employment_pm_steam_rail_transport }
+}
+building_employment_pmg_ownership_land_building_silk_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned_plantation } add = employment_pm_privately_owned_plantation }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_plantation } add = employment_pm_publicly_traded_plantation }
+	else_if = { limit = { has_active_production_method = pm_government_run_plantation } add = employment_pm_government_run_plantation }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } add = employment_pm_worker_cooperative_plantation }
+}
+
+building_employment_pmg_organization = {
+	if = { limit = { has_active_production_method = pm_irregular_infantry } add = employment_pm_irregular_infantry }
+	else_if = { limit = { has_active_production_method = pm_line_infantry } add = employment_pm_line_infantry }
+	else_if = { limit = { has_active_production_method = pm_skirmish_infantry } add = employment_pm_skirmish_infantry }
+	else_if = { limit = { has_active_production_method = pm_trench_infantry } add = employment_pm_trench_infantry }
+	else_if = { limit = { has_active_production_method = pm_squad_infantry } add = employment_pm_squad_infantry }
+	else_if = { limit = { has_active_production_method = pm_mechanized_infantry } add = employment_pm_mechanized_infantry }
+}
+building_employment_pmg_artillery = {
+	if = { limit = { has_active_production_method = pm_no_artillery } add = employment_pm_no_artillery }
+	else_if = { limit = { has_active_production_method = pm_cannon_artillery } add = employment_pm_cannon_artillery }
+	else_if = { limit = { has_active_production_method = pm_mobile_artillery } add = employment_pm_mobile_artillery }
+	else_if = { limit = { has_active_production_method = pm_shrapnel_artillery } add = employment_pm_shrapnel_artillery }
+	else_if = { limit = { has_active_production_method = pm_siege_artillery } add = employment_pm_siege_artillery }
+}
+building_employment_pmg_reconaissance = {
+	if = { limit = { has_active_production_method = pm_cavalry_scouts } add = employment_pm_cavalry_scouts }
+	else_if = { limit = { has_active_production_method = pm_bicycle_messengers } add = employment_pm_bicycle_messengers }
+	else_if = { limit = { has_active_production_method = pm_motorized_recon } add = employment_pm_motorized_recon }
+	else_if = { limit = { has_active_production_method = pm_aerial_recon } add = employment_pm_aerial_recon }
+}
+building_employment_pmg_specialist_companies = {
+	if = { limit = { has_active_production_method = pm_no_specialists } add = employment_pm_no_specialists }
+	else_if = { limit = { has_active_production_method = pm_machine_gunners } add = employment_pm_machine_gunners }
+	else_if = { limit = { has_active_production_method = pm_infiltrators } add = employment_pm_infiltrators }
+	else_if = { limit = { has_active_production_method = pm_flamethrower_company } add = employment_pm_flamethrower_company }
+	else_if = { limit = { has_active_production_method = pm_chemical_weapons_specialists } add = employment_pm_chemical_weapons_specialists }
+}
+building_employment_pmg_organization_conscription = {
+	if = { limit = { has_active_production_method = pm_irregular_infantry_conscription } add = employment_pm_irregular_infantry_conscription }
+	else_if = { limit = { has_active_production_method = pm_line_infantry_conscription } add = employment_pm_line_infantry_conscription }
+	else_if = { limit = { has_active_production_method = pm_skirmish_infantry_conscription } add = employment_pm_skirmish_infantry_conscription }
+	else_if = { limit = { has_active_production_method = pm_trench_infantry_conscription } add = employment_pm_trench_infantry_conscription }
+	else_if = { limit = { has_active_production_method = pm_squad_infantry_conscription } add = employment_pm_squad_infantry_conscription }
+	else_if = { limit = { has_active_production_method = pm_mechanized_infantry_conscription } add = employment_pm_mechanized_infantry_conscription }
+}
+building_employment_pmg_artillery_conscription = {
+	if = { limit = { has_active_production_method = pm_no_artillery_conscription } add = employment_pm_no_artillery_conscription }
+	else_if = { limit = { has_active_production_method = pm_cannon_artillery_conscription } add = employment_pm_cannon_artillery_conscription }
+	else_if = { limit = { has_active_production_method = pm_mobile_artillery_conscription } add = employment_pm_mobile_artillery_conscription }
+	else_if = { limit = { has_active_production_method = pm_shrapnel_artillery_conscription } add = employment_pm_shrapnel_artillery_conscription }
+	else_if = { limit = { has_active_production_method = pm_siege_artillery_conscription } add = employment_pm_siege_artillery_conscription }
+}
+building_employment_pmg_reconaissance_conscription = {
+	if = { limit = { has_active_production_method = pm_cavalry_scouts_conscription } add = employment_pm_cavalry_scouts_conscription }
+	else_if = { limit = { has_active_production_method = pm_bicycle_messengers_conscription } add = employment_pm_bicycle_messengers_conscription }
+	else_if = { limit = { has_active_production_method = pm_motorized_recon_conscription } add = employment_pm_motorized_recon_conscription }
+	else_if = { limit = { has_active_production_method = pm_aerial_recon_conscription } add = employment_pm_aerial_recon_conscription }
+}
+building_employment_pmg_specialist_companies_conscription = {
+	if = { limit = { has_active_production_method = pm_no_specialists_conscription } add = employment_pm_no_specialists_conscription }
+	else_if = { limit = { has_active_production_method = pm_machine_gunners_conscription } add = employment_pm_machine_gunners_conscription }
+	else_if = { limit = { has_active_production_method = pm_infiltrators_conscription } add = employment_pm_infiltrators_conscription }
+	else_if = { limit = { has_active_production_method = pm_flamethrower_company_conscription } add = employment_pm_flamethrower_company_conscription }
+	else_if = { limit = { has_active_production_method = pm_chemical_weapons_specialists_conscription } add = employment_pm_chemical_weapons_specialists_conscription }
+}
+building_employment_pmg_medical_aid = {
+	if = { limit = { has_active_production_method = pm_wound_dressing } add = employment_pm_wound_dressing }
+	else_if = { limit = { has_active_production_method = pm_first_aid } add = employment_pm_first_aid }
+	else_if = { limit = { has_active_production_method = pm_field_hospitals } add = employment_pm_field_hospitals }
+}
+building_employment_pmg_ship_class = {
+	if = { limit = { has_active_production_method = pm_man_o_wars } add = employment_pm_man_o_wars }
+	else_if = { limit = { has_active_production_method = pm_ironclads } add = employment_pm_ironclads }
+	else_if = { limit = { has_active_production_method = pm_monitors } add = employment_pm_monitors }
+	else_if = { limit = { has_active_production_method = pm_dreadnoughts } add = employment_pm_dreadnoughts }
+	else_if = { limit = { has_active_production_method = pm_battleships } add = employment_pm_battleships }
+}
+building_employment_pmg_escorts = {
+	if = { limit = { has_active_production_method = pm_frigates } add = employment_pm_frigates }
+	else_if = { limit = { has_active_production_method = pm_destroyers } add = employment_pm_destroyers }
+	else_if = { limit = { has_active_production_method = pm_carriers } add = employment_pm_carriers }
+}
+building_employment_pmg_raiders = {
+	if = { limit = { has_active_production_method = pm_commerce_raider } add = employment_pm_commerce_raider }
+	else_if = { limit = { has_active_production_method = pm_torpedo_boat } add = employment_pm_torpedo_boat }
+	else_if = { limit = { has_active_production_method = pm_submarine } add = employment_pm_submarine }
+}
+building_employment_pmg_naval_theory = {
+	if = { limit = { has_active_production_method = pm_no_naval_theory } add = employment_pm_no_naval_theory }
+	else_if = { limit = { has_active_production_method = pm_power_of_the_purse } add = employment_pm_power_of_the_purse }
+	else_if = { limit = { has_active_production_method = pm_jeune_ecole } add = employment_pm_jeune_ecole }
+	else_if = { limit = { has_active_production_method = pm_sea_lane_strategies } add = employment_pm_sea_lane_strategies }
+	else_if = { limit = { has_active_production_method = pm_battlefleet_tactics } add = employment_pm_battlefleet_tactics }
+}
+
+building_employment_pmg_amenities = {
+	if = { limit = { has_active_production_method = pm_market_stalls } add = employment_pm_market_stalls }
+	else_if = { limit = { has_active_production_method = pm_market_squares } add = employment_pm_market_squares }
+	else_if = { limit = { has_active_production_method = pm_covered_markets } add = employment_pm_covered_markets }
+	else_if = { limit = { has_active_production_method = pm_arcades } add = employment_pm_arcades }
+}
+building_employment_pmg_street_lighting = {
+	if = { limit = { has_active_production_method = pm_no_street_lighting } add = employment_pm_no_street_lighting }
+	else_if = { limit = { has_active_production_method = pm_gas_streetlights } add = employment_pm_gas_streetlights }
+	else_if = { limit = { has_active_production_method = pm_electric_streetlights } add = employment_pm_electric_streetlights }
+}
+building_employment_pmg_public_transport = {
+	if = { limit = { has_active_production_method = pm_no_public_transport } add = employment_pm_no_public_transport }
+	else_if = { limit = { has_active_production_method = pm_public_trams } add = employment_pm_public_trams }
+	else_if = { limit = { has_active_production_method = pm_public_motor_carriages } add = employment_pm_public_motor_carriages }
+}
+building_employment_pmg_urban_clergy = {
+	if = { limit = { has_active_production_method = pm_state_urban_clergy } add = employment_pm_state_urban_clergy }
+	else_if = { limit = { has_active_production_method = pm_free_urban_clergy } add = employment_pm_free_urban_clergy }
+	else_if = { limit = { has_active_production_method = pm_no_urban_clergy } add = employment_pm_no_urban_clergy }
+}
+building_employment_pmg_base_building_arts_academy = {
+	if = { limit = { has_active_production_method = pm_traditional_art } add = employment_pm_traditional_art }
+	else_if = { limit = { has_active_production_method = pm_realist_art } add = employment_pm_realist_art }
+	else_if = { limit = { has_active_production_method = pm_photographic_art } add = employment_pm_photographic_art }
+	else_if = { limit = { has_active_production_method = pm_film_art } add = employment_pm_film_art }
+}
+building_employment_pmg_ownership_building_arts_academy = {
+	if = { limit = { has_active_production_method = pm_traditional_patronage } add = employment_pm_traditional_patronage }
+	else_if = { limit = { has_active_production_method = pm_bourgeoisie_patronage } add = employment_pm_bourgeoisie_patronage }
+	else_if = { limit = { has_active_production_method = pm_independent_artists } add = employment_pm_independent_artists }
+}
+building_employment_pmg_base_building_power_plant = {
+	if = { limit = { has_active_production_method = pm_hydroelectric_plant } add = employment_pm_hydroelectric_plant }
+	else_if = { limit = { has_active_production_method = pm_coal-fired_plant } add = employment_pm_coal-fired_plant }
+	else_if = { limit = { has_active_production_method = pm_oil-fired_plant } add = employment_pm_oil-fired_plant }
+}
+building_employment_pmg_ownership_capital_building_power_plant = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } add = employment_pm_privately_owned_industry }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_power_plant } add = employment_pm_publicly_traded_building_power_plant }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } add = employment_pm_government_run_industry }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } add = employment_pm_worker_cooperative_industry }
+}
+
+building_employment_pmg_base_building_port = {
+	if = { limit = { has_active_production_method = pm_anchorage } add = employment_pm_anchorage }
+	else_if = { limit = { has_active_production_method = pm_basic_port } add = employment_pm_basic_port }
+	else_if = { limit = { has_active_production_method = pm_industrial_port } add = employment_pm_industrial_port }
+	else_if = { limit = { has_active_production_method = pm_modern_port } add = employment_pm_modern_port }
+}
+building_employment_pmg_base_building_government_administration = {
+	if = { limit = { has_active_production_method = pm_simple_organization } add = employment_pm_simple_organization }
+	else_if = { limit = { has_active_production_method = pm_horizontal_drawer_cabinets } add = employment_pm_horizontal_drawer_cabinets }
+	else_if = { limit = { has_active_production_method = pm_vertical_filing_cabinets } add = employment_pm_vertical_filing_cabinets }
+	else_if = { limit = { has_active_production_method = pm_switch_boards } add = employment_pm_switch_boards }
+}
+building_employment_pmg_government_administration_bureaucrat_professionalism = {
+	if = { limit = { has_active_production_method = pm_hereditary_bureaucrats } add = employment_pm_hereditary_bureaucrats }
+	else_if = { limit = { has_active_production_method = pm_professional_bureaucrats } add = employment_pm_professional_bureaucrats }
+}
+building_employment_pmg_government_administration_religious_administration = {
+	if = { limit = { has_active_production_method = pm_religious_bureaucrats } add = employment_pm_religious_bureaucrats }
+	else_if = { limit = { has_active_production_method = pm_secular_bureaucrats } add = employment_pm_secular_bureaucrats }
+}
+building_employment_pmg_base_building_university = {
+	if = { limit = { has_active_production_method = pm_scholastic_education } add = employment_pm_scholastic_education }
+	else_if = { limit = { has_active_production_method = pm_philosophy_department } add = employment_pm_philosophy_department }
+	else_if = { limit = { has_active_production_method = pm_analytical_philosophy_department } add = employment_pm_analytical_philosophy_department }
+}
+building_employment_pmg_university_academia = {
+	if = { limit = { has_active_production_method = pm_religious_academia } add = employment_pm_religious_academia }
+	else_if = { limit = { has_active_production_method = pm_secular_academia } add = employment_pm_secular_academia }
+}
+building_employment_pmg_base_building_skyscraper = {
+	if = { limit = { has_active_production_method = pm_skyscraper_bureaucratic_nexus } add = employment_pm_skyscraper_bureaucratic_nexus }
+	else_if = { limit = { has_active_production_method = pm_skyscraper_trade_nexus } add = employment_pm_skyscraper_trade_nexus }
+}
+building_employment_pmg_airship_mooring_post = {
+	if = { limit = { has_active_production_method = pm_no_airships } add = employment_pm_no_airships }
+	else_if = { limit = { has_active_production_method = pm_airship_mooring_post } add = employment_pm_airship_mooring_post }
+}
+
+building_employment_pmg_base_building_eiffel_tower = {
+	if = { limit = { has_active_production_method = pm_default_building_eiffel_tower } add = employment_pm_default_building_eiffel_tower }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } add = employment_pm_monument_prestige_only }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } add = employment_pm_monument_no_effects }
+}
+building_employment_pmg_base_building_angkor_wat = {
+	if = { limit = { has_active_production_method = pm_default_building_angkor_wat } add = employment_pm_default_building_angkor_wat }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } add = employment_pm_monument_prestige_only }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } add = employment_pm_monument_no_effects }
+}
+building_employment_pmg_base_building_big_ben = {
+	if = { limit = { has_active_production_method = pm_default_building_big_ben } add = employment_pm_default_building_big_ben }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } add = employment_pm_monument_prestige_only }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } add = employment_pm_monument_no_effects }
+}
+building_employment_pmg_base_building_forbidden_city = {
+	if = { limit = { has_active_production_method = pm_default_building_forbidden_city } add = employment_pm_default_building_forbidden_city }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } add = employment_pm_monument_prestige_only }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } add = employment_pm_monument_no_effects }
+}
+building_employment_pmg_base_building_hagia_sophia = {
+	if = { limit = { has_active_production_method = pm_default_building_hagia_sophia } add = employment_pm_default_building_hagia_sophia }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } add = employment_pm_monument_prestige_only }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } add = employment_pm_monument_no_effects }
+}
+building_employment_pmg_base_building_mosque_of_djenne = {
+	if = { limit = { has_active_production_method = pm_default_building_mosque_of_djenne } add = employment_pm_default_building_mosque_of_djenne }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } add = employment_pm_monument_prestige_only }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } add = employment_pm_monument_no_effects }
+}
+building_employment_pmg_base_building_saint_basils_cathedral = {
+	if = { limit = { has_active_production_method = pm_default_building_saint_basils_cathedral } add = employment_pm_default_building_saint_basils_cathedral }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } add = employment_pm_monument_prestige_only }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } add = employment_pm_monument_no_effects }
+}
+building_employment_pmg_base_building_statue_of_liberty = {
+	if = { limit = { has_active_production_method = pm_default_building_statue_of_liberty } add = employment_pm_default_building_statue_of_liberty }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } add = employment_pm_monument_prestige_only }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } add = employment_pm_monument_no_effects }
+}
+building_employment_pmg_base_building_taj_mahal = {
+	if = { limit = { has_active_production_method = pm_default_building_taj_mahal } add = employment_pm_default_building_taj_mahal }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } add = employment_pm_monument_prestige_only }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } add = employment_pm_monument_no_effects }
+}
+building_employment_pmg_base_building_vatican_city = {
+	if = { limit = { has_active_production_method = pm_default_building_vatican_city } add = employment_pm_default_building_vatican_city }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only_vatican_city } add = employment_pm_monument_prestige_only_vatican_city }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } add = employment_pm_monument_prestige_only }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } add = employment_pm_monument_no_effects }
+}
+building_employment_pmg_base_building_white_house = {
+	if = { limit = { has_active_production_method = pm_default_building_white_house } add = employment_pm_default_building_white_house }
+	else_if = { limit = { has_active_production_method = pm_monument_prestige_only } add = employment_pm_monument_prestige_only }
+	else_if = { limit = { has_active_production_method = pm_monument_no_effects } add = employment_pm_monument_no_effects }
+}
+
+building_employment_pmg_base_building_logging_camp = {
+	if = { limit = { has_active_production_method = pm_simple_forestry } add = employment_pm_simple_forestry }
+	else_if = { limit = { has_active_production_method = pm_saw_mills } add = employment_pm_saw_mills }
+	else_if = { limit = { has_active_production_method = pm_electric_saw_mills } add = employment_pm_electric_saw_mills }
+}
+building_employment_pmg_hardwood = {
+	if = { limit = { has_active_production_method = pm_no_hardwood } add = employment_pm_no_hardwood }
+	else_if = { limit = { has_active_production_method = pm_hardwood } add = employment_pm_hardwood }
+}
+building_employment_pmg_equipment = {
+	if = { limit = { has_active_production_method = pm_no_equipment } add = employment_pm_no_equipment }
+	else_if = { limit = { has_active_production_method = pm_steam_donkey_building_logging_camp } add = employment_pm_steam_donkey_building_logging_camp }
+	else_if = { limit = { has_active_production_method = pm_chainsaws } add = employment_pm_chainsaws }
+}
+building_employment_pmg_transportation_building_logging_camp = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_rail_transport_building_logging_camp } add = employment_pm_rail_transport_building_logging_camp }
+	else_if = { limit = { has_active_production_method = pm_log_carts } add = employment_pm_log_carts }
+}
+building_employment_pmg_ownership_capital_building_logging_camp = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_logging_camp } add = employment_pm_merchant_guilds_building_logging_camp }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_logging_camp } add = employment_pm_privately_owned_building_logging_camp }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_logging_camp } add = employment_pm_publicly_traded_building_logging_camp }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_logging_camp } add = employment_pm_government_run_building_logging_camp }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_logging_camp } add = employment_pm_worker_cooperative_building_logging_camp }
+}
+building_employment_pmg_base_building_rubber_plantation = {
+	if = { limit = { has_active_production_method = default_building_rubber_plantation } add = employment_default_building_rubber_plantation }
+	else_if = { limit = { has_active_production_method = automatic_irrigation_building_rubber_plantation } add = employment_automatic_irrigation_building_rubber_plantation }
+}
+building_employment_pmg_train_automation_building_rubber_plantation = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_steam_rail_transport } add = employment_pm_steam_rail_transport }
+}
+building_employment_pmg_ownership_land_building_rubber_plantation = {
+	if = { limit = { has_active_production_method = pm_privately_owned } add = employment_pm_privately_owned }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded } add = employment_pm_publicly_traded }
+	else_if = { limit = { has_active_production_method = pm_government_run } add = employment_pm_government_run }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_plantation } add = employment_pm_worker_cooperative_plantation }
+}
+building_employment_pmg_base_building_fishing_wharf = {
+	if = { limit = { has_active_production_method = pm_simple_fishing } add = employment_pm_simple_fishing }
+	else_if = { limit = { has_active_production_method = pm_fishing_trawlers } add = employment_pm_fishing_trawlers }
+	else_if = { limit = { has_active_production_method = pm_steam_trawlers } add = employment_pm_steam_trawlers }
+}
+building_employment_pmg_refrigeration_building_fishing_wharf = {
+	if = { limit = { has_active_production_method = pm_unrefrigerated } add = employment_pm_unrefrigerated }
+	else_if = { limit = { has_active_production_method = pm_refrigerated_storage_building_fishing_wharf } add = employment_pm_refrigerated_storage_building_fishing_wharf }
+	else_if = { limit = { has_active_production_method = pm_refrigerated_rail_cars_building_fishing_wharf } add = employment_pm_refrigerated_rail_cars_building_fishing_wharf }
+	else_if = { limit = { has_active_production_method = pm_flash_freezing_building_fishing_wharf } add = employment_pm_flash_freezing_building_fishing_wharf }
+}
+building_employment_pmg_ownership_capital_building_fishing_wharf = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_fishing_wharf } add = employment_pm_merchant_guilds_building_fishing_wharf }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_fishing_wharf } add = employment_pm_privately_owned_building_fishing_wharf }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_fishing_wharf } add = employment_pm_publicly_traded_building_fishing_wharf }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_fishing_wharf } add = employment_pm_government_run_building_fishing_wharf }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_fishing_wharf } add = employment_pm_worker_cooperative_building_fishing_wharf }
+}
+building_employment_pmg_base_building_whaling_station = {
+	if = { limit = { has_active_production_method = pm_simple_whaling } add = employment_pm_simple_whaling }
+	else_if = { limit = { has_active_production_method = pm_wooden_whaling_ships } add = employment_pm_wooden_whaling_ships }
+	else_if = { limit = { has_active_production_method = pm_steam_whaling_ships } add = employment_pm_steam_whaling_ships }
+}
+building_employment_pmg_refrigeration_building_whaling_station = {
+	if = { limit = { has_active_production_method = pm_unrefrigerated } add = employment_pm_unrefrigerated }
+	else_if = { limit = { has_active_production_method = pm_refrigerated_storage_building_whaling_station } add = employment_pm_refrigerated_storage_building_whaling_station }
+	else_if = { limit = { has_active_production_method = pm_refrigerated_rail_cars_building_whaling_station } add = employment_pm_refrigerated_rail_cars_building_whaling_station }
+	else_if = { limit = { has_active_production_method = pm_flash_freezing_building_whaling_station } add = employment_pm_flash_freezing_building_whaling_station }
+}
+building_employment_pmg_ownership_capital_building_whaling_station = {
+	if = { limit = { has_active_production_method = pm_merchant_guilds_building_whaling_station } add = employment_pm_merchant_guilds_building_whaling_station }
+	else_if = { limit = { has_active_production_method = pm_privately_owned_building_whaling_station } add = employment_pm_privately_owned_building_whaling_station }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_whaling_station } add = employment_pm_publicly_traded_building_whaling_station }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_whaling_station } add = employment_pm_government_run_building_whaling_station }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_whaling_station } add = employment_pm_worker_cooperative_building_whaling_station }
+}
+building_employment_pmg_base_building_oil_rig = {
+	if = { limit = { has_active_production_method = pm_steam_derricks } add = employment_pm_steam_derricks }
+	else_if = { limit = { has_active_production_method = pm_combustion_derricks } add = employment_pm_combustion_derricks }
+}
+building_employment_pmg_transportation_building_oil_rig = {
+	if = { limit = { has_active_production_method = pm_road_carts } add = employment_pm_road_carts }
+	else_if = { limit = { has_active_production_method = pm_rail_transport_building_oil_rig } add = employment_pm_rail_transport_building_oil_rig }
+	else_if = { limit = { has_active_production_method = pm_tanker_cars } add = employment_pm_tanker_cars }
+}
+building_employment_pmg_ownership_capital_building_oil_rig = {
+	if = { limit = { has_active_production_method = pm_privately_owned_industry } add = employment_pm_privately_owned_industry }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_oil_rig } add = employment_pm_publicly_traded_building_oil_rig }
+	else_if = { limit = { has_active_production_method = pm_government_run_industry } add = employment_pm_government_run_industry }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_industry } add = employment_pm_worker_cooperative_industry }
+}
+
+building_employment_pmg_canal = {
+	if = { limit = { has_active_production_method = pm_canal } add = employment_pm_canal }
+}
+
+building_employment_pmg_base_building_railway = {
+	if = { limit = { has_active_production_method = pm_steam_trains } add = employment_pm_steam_trains }
+	else_if = { limit = { has_active_production_method = pm_electric_trains } add = employment_pm_electric_trains }
+	else_if = { limit = { has_active_production_method = pm_diesel_trains } add = employment_pm_diesel_trains }
+}
+building_employment_pmg_passenger_trains = {
+	if = { limit = { has_active_production_method = pm_no_passenger_trains } add = employment_pm_no_passenger_trains }
+	else_if = { limit = { has_active_production_method = pm_wooden_passenger_carriages } add = employment_pm_wooden_passenger_carriages }
+	else_if = { limit = { has_active_production_method = pm_steel_passenger_carriages } add = employment_pm_steel_passenger_carriages }
+}
+building_employment_pmg_ownership_capital_building_railway = {
+	if = { limit = { has_active_production_method = pm_privately_owned_building_railway } add = employment_pm_privately_owned_building_railway }
+	else_if = { limit = { has_active_production_method = pm_publicly_traded_building_railway } add = employment_pm_publicly_traded_building_railway }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_railway } add = employment_pm_government_run_building_railway }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_railway } add = employment_pm_worker_cooperative_building_railway }
+}
+building_employment_pmg_base_building_trade_center = {
+	if = { limit = { has_active_production_method = pm_trade_center } add = employment_pm_trade_center }
+}
+building_employment_pmg_ownership_building_trade_center = {
+	if = { limit = { has_active_production_method = pm_trade_center_merchant_guilds } add = employment_pm_trade_center_merchant_guilds }
+	else_if = { limit = { has_active_production_method = pm_trade_center_privately_owned } add = employment_pm_trade_center_privately_owned }
+	else_if = { limit = { has_active_production_method = pm_trade_center_government_run } add = employment_pm_trade_center_government_run }
+}
+
+building_employment_pmg_base_building_subsistence_farms = {
+	if = { limit = { has_active_production_method = default_building_subsistence_farms } add = employment_default_building_subsistence_farms }
+}
+building_employment_pmg_home_workshops_building_subsistence_farms = {
+	if = { limit = { has_active_production_method = pm_home_workshops_no_building_subsistence_farms } add = employment_pm_home_workshops_no_building_subsistence_farms }
+	else_if = { limit = { has_active_production_method = pm_home_workshops_building_subsistence_farms } add = employment_pm_home_workshops_building_subsistence_farms }
+}
+building_employment_pmg_serfdom_building_subsistence_farms = {
+	if = { limit = { has_active_production_method = pm_serfdom_no } add = employment_pm_serfdom_no }
+	else_if = { limit = { has_active_production_method = pm_serfdom } add = employment_pm_serfdom }
+}
+building_employment_pmg_base_building_subsistence_orchards = {
+	if = { limit = { has_active_production_method = default_building_subsistence_orchards } add = employment_default_building_subsistence_orchards }
+}
+building_employment_pmg_home_workshops_building_subsistence_orchards = {
+	if = { limit = { has_active_production_method = pm_home_workshops_no_building_subsistence_orchards } add = employment_pm_home_workshops_no_building_subsistence_orchards }
+	else_if = { limit = { has_active_production_method = pm_home_workshops_building_subsistence_orchards } add = employment_pm_home_workshops_building_subsistence_orchards }
+}
+building_employment_pmg_serfdom_building_subsistence_orchards = {
+	if = { limit = { has_active_production_method = pm_serfdom_no } add = employment_pm_serfdom_no }
+	else_if = { limit = { has_active_production_method = pm_serfdom_building_subsistence_orchards } add = employment_pm_serfdom_building_subsistence_orchards }
+}
+building_employment_pmg_base_building_subsistence_pastures = {
+	if = { limit = { has_active_production_method = default_building_subsistence_pastures } add = employment_default_building_subsistence_pastures }
+}
+building_employment_pmg_home_workshops_building_subsistence_pastures = {
+	if = { limit = { has_active_production_method = pm_home_workshops_no_building_subsistence_pastures } add = employment_pm_home_workshops_no_building_subsistence_pastures }
+	else_if = { limit = { has_active_production_method = pm_home_workshops_building_subsistence_pastures } add = employment_pm_home_workshops_building_subsistence_pastures }
+}
+building_employment_pmg_serfdom_building_subsistence_pastures = {
+	if = { limit = { has_active_production_method = pm_serfdom_no } add = employment_pm_serfdom_no }
+	else_if = { limit = { has_active_production_method = pm_serfdom_building_subsistence_pastures } add = employment_pm_serfdom_building_subsistence_pastures }
+}
+building_employment_pmg_base_building_subsistence_fishing_villages = {
+	if = { limit = { has_active_production_method = default_building_subsistence_fishing_villages } add = employment_default_building_subsistence_fishing_villages }
+}
+building_employment_pmg_home_workshops_building_subsistence_fishing_villages = {
+	if = { limit = { has_active_production_method = pm_home_workshops_no_building_subsistence_fishing_villages } add = employment_pm_home_workshops_no_building_subsistence_fishing_villages }
+	else_if = { limit = { has_active_production_method = pm_home_workshops_building_subsistence_fishing_villages } add = employment_pm_home_workshops_building_subsistence_fishing_villages }
+}
+building_employment_pmg_serfdom_building_subsistence_fishing_villages = {
+	if = { limit = { has_active_production_method = pm_serfdom_no } add = employment_pm_serfdom_no }
+	else_if = { limit = { has_active_production_method = pm_serfdom_building_subsistence_fishing_villages } add = employment_pm_serfdom_building_subsistence_fishing_villages }
+}
+building_employment_pmg_base_building_subsistence_rice_paddies = {
+	if = { limit = { has_active_production_method = default_building_subsistence_rice_paddies } add = employment_default_building_subsistence_rice_paddies }
+}
+building_employment_pmg_home_workshops_building_subsistence_rice_paddies = {
+	if = { limit = { has_active_production_method = pm_home_workshops_no_building_subsistence_rice_paddies } add = employment_pm_home_workshops_no_building_subsistence_rice_paddies }
+	else_if = { limit = { has_active_production_method = pm_home_workshops_building_subsistence_rice_paddies } add = employment_pm_home_workshops_building_subsistence_rice_paddies }
+}
+building_employment_pmg_serfdom_building_subsistence_rice_paddies = {
+	if = { limit = { has_active_production_method = pm_serfdom_no } add = employment_pm_serfdom_no }
+	else_if = { limit = { has_active_production_method = pm_serfdom_building_subsistence_rice_paddies } add = employment_pm_serfdom_building_subsistence_rice_paddies }
+}
+building_employment_pmg_ownership_building_subsistence = {
+	if = { limit = { has_active_production_method = pm_privately_owned_building_subsistence } add = employment_pm_privately_owned_building_subsistence }
+	else_if = { limit = { has_active_production_method = pm_homesteading_building_subsistence } add = employment_pm_homesteading_building_subsistence }
+	else_if = { limit = { has_active_production_method = pm_worker_cooperative_building_subsistence } add = employment_pm_worker_cooperative_building_subsistence }
+	else_if = { limit = { has_active_production_method = pm_government_run_building_subsistence } add = employment_pm_government_run_building_subsistence }
+}
+
+building_employment_pmg_base_building_construction_sector = {
+	if = { limit = { has_active_production_method = pm_wooden_buildings } add = employment_pm_wooden_buildings }
+	else_if = { limit = { has_active_production_method = pm_iron_frame_buildings } add = employment_pm_iron_frame_buildings }
+	else_if = { limit = { has_active_production_method = pm_steel_frame_buildings } add = employment_pm_steel_frame_buildings }
+	else_if = { limit = { has_active_production_method = pm_arc_welded_buildings } add = employment_pm_arc_welded_buildings }
+}

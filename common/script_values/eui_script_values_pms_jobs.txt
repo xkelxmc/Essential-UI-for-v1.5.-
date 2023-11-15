@@ -1,0 +1,1645 @@
+﻿employment_pm_dummy = {
+}
+
+employment_pm_bakery = {
+	add = 4500
+}		
+employment_pm_sweeteners = {
+	add = 4000
+	add = 500
+}
+employment_pm_baking_powder = {
+	add = 3500
+	add = 750
+	add = 250
+}
+employment_pm_disabled_canning = {
+}
+employment_pm_cannery = {
+	add = 500
+}
+employment_pm_vacuum_canning = {
+	add = 500
+	add = 200
+}
+employment_pm_disabled_distillery = {
+}
+employment_pm_pot_stills = {
+	add = 100
+	add = 250
+}
+employment_pm_patent_stills = {
+	add = 200
+	add = 500
+	add = 200
+}
+employment_pm_manual_dough_processing = {
+}
+employment_pm_automated_bakery = {
+	add = -2500
+}
+employment_pm_merchant_guilds_building_food_industry = {
+	add = 500
+}
+employment_pm_privately_owned_building_food_industry = {
+	add = 100
+}
+employment_pm_publicly_traded_building_food_industry = {
+	add = 150
+}
+employment_pm_government_run_building_food_industry = {
+	add = 150
+}
+employment_pm_worker_cooperative_building_food_industry = {
+	add = 250
+}
+employment_pm_handsewn_clothes = {
+	add = 4500
+}
+employment_pm_dye_workshops = {
+	add = 4000
+	add = 500
+}			
+employment_pm_sewing_machines = {
+	add = 3500
+	add = 750
+	add = 250
+}
+employment_pm_electric_sewing_machines = {
+	add = 3000
+	add = 1000
+	add = 500
+}
+employment_pm_no_luxury_clothes = {
+}
+employment_pm_craftsman_sewing = {
+	add = 500
+}
+employment_pm_elastics = {
+	add = 1000
+}
+employment_pm_traditional_looms = {
+}
+employment_pm_mechanized_looms = {
+	add = -1500
+}
+employment_pm_automatic_power_looms = {
+	add = -2500
+}
+employment_pm_merchant_guilds_building_textile_mills = {
+	add = 500
+}
+employment_pm_privately_owned_building_textile_mills = {
+	add = 100
+}
+employment_pm_publicly_traded_building_textile_mills = {
+	add = 150
+}
+employment_pm_government_run_building_textile_mills = {
+	add = 150
+}
+employment_pm_worker_cooperative_building_textile_mills = {
+	add = 250
+}
+employment_pm_handcrafted_furniture = {
+	add = 4500
+}		
+employment_pm_lathe = {
+	add = 3250
+	add = 1000
+	add = 250
+}
+employment_pm_mechanized_workshops = {
+	add = 3000
+	add = 1250
+	add = 750
+}
+employment_pm_no_luxuries = {
+}
+employment_pm_luxury_furniture = {
+	add = 500
+}
+employment_pm_precision_tools = {
+	add = 1000
+}
+employment_pm_automation_disabled = {
+}
+employment_pm_watertube_boiler_building_furniture_manufacturies = {
+	add = -1500
+}
+employment_pm_rotary_valve_engine_building_furniture_manufacturies = {
+	add = -2000
+}
+employment_pm_assembly_lines_building_furniture_manufacturies = {
+	add = -3000
+}
+employment_pm_merchant_guilds_building_furniture_manufacturies = {
+	add = 500
+}
+employment_pm_privately_owned_building_furniture_manufacturies = {
+	add = 100
+}
+employment_pm_publicly_traded_building_furniture_manufacturies = {
+	add = 150
+}
+employment_pm_government_run_building_furniture_manufacturies = {
+	add = 150
+}
+employment_pm_worker_cooperative_building_furniture_manufacturies = {
+	add = 250
+}
+employment_pm_forest_glass = {
+	add = 4500
+}		
+employment_pm_leaded_glass = {
+	add = 4000
+	add = 500
+}
+employment_pm_crystal_glass = {
+	add = 3000
+	add = 1000
+	add = 500
+}
+employment_pm_houseware_plastics = {
+	add = 2500
+	add = 1250
+	add = 750
+}
+employment_pm_disabled_ceramics = {
+}
+employment_pm_ceramics = {
+	add = 500
+}
+employment_pm_bone_china = {
+	add = 1000
+}
+employment_pm_manual_glassblowing = {
+}
+employment_pm_automatic_bottle_blowers = {
+	add = -2500
+}
+employment_pm_merchant_guilds_building_glassworks = {
+	add = 500
+}
+employment_pm_privately_owned_building_glassworks = {
+	add = 100
+}
+employment_pm_publicly_traded_building_glassworks = {
+	add = 150
+}
+employment_pm_government_run_building_glassworks = {
+	add = 150
+}
+employment_pm_worker_cooperative_building_glassworks = {
+	add = 250
+}
+employment_pm_crude_tools = {
+	add = 4500
+}
+employment_pm_pig_iron = {
+	add = 4000
+	add = 500
+}
+employment_pm_steel = {
+	add = 3000
+	add = 1000
+	add = 500
+}
+employment_pm_watertube_boiler_building_tooling_workshops = {
+	add = -1500
+}
+employment_pm_rotary_valve_engine_building_tooling_workshops = {
+	add = -2000
+}
+employment_pm_assembly_lines_building_tooling_workshops = {
+	add = -3000
+}
+employment_pm_merchant_guilds_building_tooling_workshops = {
+	add = 500
+}
+employment_pm_privately_owned_building_tooling_workshops = {
+	add = 100
+}
+employment_pm_publicly_traded_building_tooling_workshops = {
+	add = 150
+}
+employment_pm_government_run_building_tooling_workshops = {
+	add = 150
+}
+employment_pm_worker_cooperative_building_tooling_workshops = {
+	add = 250
+}
+employment_pm_pulp_pressing = {
+	add = 4500
+}
+employment_pm_sulfite_pulping = {
+	add = 4000
+	add = 500
+}
+employment_pm_bleached_paper = {
+	add = 3000
+	add = 1000
+	add = 500
+}
+employment_pm_watertube_boiler_building_paper_mills = {
+	add = -1500
+}
+employment_pm_rotary_valve_engine_building_paper_mills = {
+	add = -2000
+}
+employment_pm_merchant_guilds_building_paper_mills = {
+	add = 500
+}
+employment_pm_privately_owned_building_paper_mills = {
+	add = 100
+}
+employment_pm_publicly_traded_building_paper_mills = {
+	add = 150
+}
+employment_pm_government_run_building_paper_mills = {
+	add = 150
+}
+employment_pm_worker_cooperative_building_paper_mills = {
+	add = 250
+}
+employment_pm_artificial_fertilizers = {
+	add = 3000
+	add = 1000
+	add = 500
+}
+employment_pm_improved_fertilizer = {
+	add = 2000
+	add = 1500
+	add = 1000
+}
+employment_pm_nitrogen_fixation = {
+	add = 1000
+	add = 2000
+	add = 1500
+}
+employment_pm_no_explosives_production = {
+}
+employment_pm_leblanc_process = {
+	add = 250
+}
+employment_pm_ammonia-soda_process = {
+	add = 500
+}
+employment_pm_vacuum_evaporation = {
+	add = 750
+}
+employment_pm_brine_electrolysis = {
+	add = 1000
+}
+employment_pm_privately_owned_industry = {
+	add = 100
+}
+employment_pm_government_run_industry = {
+	add = 150
+}
+employment_pm_worker_cooperative_industry = {
+	add = 250
+}
+employment_pm_dye_production = {
+	add = 1000
+	add = 1500
+	add = 2000
+}
+employment_pm_no_artificial_fibers = {
+}
+employment_pm_rayon = {
+	add = -1000
+	add = 500
+	add = 500
+}
+employment_pm_blister_steel_process = {
+	add = 3500
+	add = 750
+	add = 250
+}
+employment_pm_bessemer_process = {
+	add = 3000
+	add = 1000
+	add = 500
+}
+employment_pm_open_hearth_process = {
+	add = 2500
+	add = 1250
+	add = 750
+}
+employment_pm_electric_arc_process = {
+	add = 2000
+	add = 1500
+	add = 1000
+}
+employment_pm_watertube_boiler_building_steel_mills = {
+	add = -1500
+}
+employment_pm_rotary_valve_engine_building_steel_mills = {
+	add = -2000
+}
+employment_pm_steam_engines = {
+	add = 2500
+	add = 1500
+	add = 500
+}
+employment_pm_electric_engines = {
+	add = 2000
+	add = 1500
+	add = 1000
+}
+employment_pm_diesel_engines = {
+	add = 1500
+	add = 1500
+	add = 1500
+}
+employment_pm_automobiles_disabled = {
+}
+employment_pm_automobile_production = {
+	add = 1000
+	add = 500
+}
+employment_pm_watertube_boiler_building_motor_industry = {
+	add = -500
+	add = -500
+}
+employment_pm_rotary_valve_engine_building_motor_industry = {
+	add = -1000
+	add = -500
+}
+employment_pm_assembly_lines_building_motor_industry = {
+	add = -1500
+	add = -500
+}
+employment_pm_basic_shipbuilding = {
+	add = 3500
+	add = 750
+	add = 250
+}
+employment_pm_complex_shipbuilding = {
+	add = 3000
+	add = 1000
+	add = 500
+}
+employment_pm_metal_shipbuilding = {
+	add = 2000
+	add = 1500
+	add = 1000
+}
+employment_pm_arc_welding_shipbuilding = {
+	add = 1000
+	add = 2000
+	add = 1500
+}
+employment_pm_no_military_shipbuilding = {
+}
+employment_pm_military_shipbuilding_wooden = {
+}
+employment_pm_military_shipbuilding_wooden_2 = {
+}			
+employment_pm_military_shipbuilding_steam = {
+}
+employment_pm_military_shipbuilding_steam_2 = {
+}			
+employment_pm_merchant_guilds_building_shipyards = {
+	add = 500
+}		
+employment_pm_privately_owned_building_shipyards = {
+	add = 100
+}
+employment_pm_publicly_traded_building_shipyards = {
+	add = 150
+}
+employment_pm_government_run_building_shipyards = {
+	add = 150
+}
+employment_pm_worker_cooperative_building_shipyards = {
+	add = 250
+}
+employment_pm_aeroplane_production = {
+	add = 1500
+	add = 2000
+	add = 1000
+}
+employment_pm_no_tank_production = {
+}
+employment_pm_tank_production = {
+	add = 500
+}
+employment_pm_telephones = {
+	add = 1500
+	add = 2000
+	add = 1000
+}
+employment_pm_no_radios = {
+}
+employment_pm_radios = {
+	add = 500
+}
+employment_pm_muskets = {
+	add = 4500
+	add = 500
+}
+employment_pm_rifles = {
+	add = 4000
+	add = 1000
+}
+employment_pm_repeaters = {
+	add = 3500
+	add = 1000
+	add = 500
+}
+employment_pm_bolt_action_rifles = {
+	add = 3000
+	add = 1250
+	add = 750
+}
+employment_pm_no_artillery_production = {
+}
+employment_pm_cannons = {
+	add = 500
+}
+employment_pm_smoothbores = {
+	add = 500
+	add = 250
+}
+employment_pm_breech_loaders = {
+	add = 500
+	add = 500
+}
+employment_pm_rotary_valve_engine_building_arms_industry = {
+	add = -2000
+}
+employment_pm_assembly_lines_building_arms_industry = {
+	add = -3000
+}
+employment_pm_merchant_guilds_building_arms_industry = {
+	add = 500
+}		
+employment_pm_privately_owned_building_arms_industry = {
+	add = 100
+}
+employment_pm_publicly_traded_building_arms_industry = {
+	add = 150
+}
+employment_pm_government_run_building_arms_industry = {
+	add = 150
+}
+employment_pm_worker_cooperative_building_arms_industry = {
+	add = 250
+}
+employment_pm_percussion_caps = {
+	add = 3500
+	add = 1000
+	add = 500
+}
+employment_pm_explosive_shells = {
+	add = 3000
+	add = 1250
+	add = 750
+}
+employment_pm_rotary_valve_engine_building_munition_plants = {
+	add = -2000
+}
+employment_pm_assembly_lines_building_munition_plants = {
+	add = -3000
+}
+employment_pm_publicly_traded_building_chemical_plants = {
+	add = 150
+}
+employment_pm_publicly_traded_building_synthetic_plants = {
+	add = 150
+}
+employment_pm_publicly_traded_building_steel_mills = {
+	add = 150
+}
+employment_pm_publicly_traded_building_motor_industries = {
+	add = 150
+}
+employment_pm_publicly_traded_building_war_machines_induestries = {
+	add = 150
+}
+employment_pm_publicly_traded_building_electrics_industries = {
+	add = 150
+}
+employment_pm_publicly_traded_building_munition_plants = {
+	add = 150
+}
+
+employment_pm_simple_farming = {
+	add = 4000
+	add = 600
+	add = 300
+}
+employment_pm_soil_enriching_farming = {
+	add = 3800
+	add = 800
+	add = 300
+}
+employment_pm_fertilization = {
+	add = 3600
+	add = 1000
+	add = 300
+}
+employment_pm_chemical_fertilizer = {
+	add = 3400
+	add = 1200
+	add = 300
+}			
+employment_pm_no_secondary = {
+}
+employment_pm_potatoes = {
+}
+employment_pm_apple_orchards = {
+}
+employment_pm_tools_disabled = {
+}
+employment_pm_tools = {
+	add = -500
+}
+employment_pm_steam_threshers = {
+	add = -1500
+}
+employment_pm_tractors = {
+	add = -2500
+}
+employment_pm_compression_ignition_tractors = {
+	add = -3000
+}
+employment_pm_privately_owned = {
+	add = 100
+}
+employment_pm_publicly_traded = {
+	add = 100
+	add = 50
+}
+employment_pm_homesteading = {
+	add = 50
+	add = 50
+}
+employment_pm_government_run = {
+	add = 150
+}
+employment_pm_worker_cooperative_farm = {
+	add = 250
+}
+employment_pm_citrus_orchards = {
+}
+employment_pm_vineyards = {
+	add = 200
+}
+employment_pm_simple_farming_building_rice_farm = {
+	add = 4000
+	add = 600
+	add = 300
+}
+employment_pm_soil_enriching_farming_building_rice_farm = {
+	add = 3800
+	add = 800
+	add = 300
+}
+employment_pm_fertilization_building_rice_farm = {
+	add = 3700
+	add = 1000
+	add = 300
+}
+employment_pm_chemical_fertilizer_building_rice_farm = {
+	add = 3500
+	add = 1200
+	add = 300
+}
+employment_pm_fig_orchards = {
+}						
+employment_pm_vineyards_building_maize_farm = {
+	add = 150
+}
+employment_pm_simple_ranch = {
+	add = 4000
+	add = 700
+	add = 200
+}
+employment_pm_intensive_grazing_ranch = {
+	add = 3900
+	add = 900
+	add = 200
+}
+employment_pm_open_air_stockyards = {
+}		
+employment_pm_butchering_tools = {
+}
+employment_pm_slaughterhouses = {
+}
+employment_pm_mechanized_slaughtering = {
+}
+employment_pm_standard_fences = {
+}
+employment_pm_barbed_wire_fences = {
+	add = -1000
+}		
+employment_pm_electric_fencing = {
+	add = -1800
+}
+employment_pm_unrefrigerated = {
+}
+employment_pm_refrigerated_storage_building_livestock_ranch = {
+	add = -1000
+}
+employment_pm_refrigerated_rail_cars_building_livestock_ranch = {
+	add = -1800
+}
+
+employment_pm_picks_and_shovels_building_coal_mine = {
+	add = 4500
+}
+employment_pm_atmospheric_engine_pump_building_coal_mine = {
+	add = 4000
+	add = 500
+}
+employment_pm_condensing_engine_pump_building_coal_mine = {
+	add = 3000
+	add = 1000
+	add = 250
+}
+employment_pm_diesel_pump_building_coal_mine = {
+	add = 2000
+	add = 1500
+	add = 500
+}
+employment_pm_no_explosives = {
+}
+employment_pm_nitroglycerin_building_coal_mine = {
+	add = 250
+}
+employment_pm_dynamite_building_coal_mine = {
+	add = 250
+}	
+employment_pm_no_steam_automation = {
+}
+employment_pm_steam_donkey_building_coal_mine = {
+	add = -1000
+}
+employment_pm_road_carts = {
+}
+employment_pm_merchant_guilds_building_coal_mine = {
+	add = 500
+}
+employment_pm_merchant_guilds_building_iron_mine = {
+	add = 500
+}
+employment_pm_merchant_guilds_building_lead_mine = {
+	add = 500
+}
+employment_pm_merchant_guilds_building_sulfur_mine = {
+	add = 500
+}
+employment_pm_merchant_guilds_building_gold_mine = {
+	add = 500
+}
+employment_pm_privately_owned_building_coal_mine = {
+	add = 100
+}
+employment_pm_privately_owned_building_iron_mine = {
+	add = 100
+}
+employment_pm_privately_owned_building_lead_mine = {
+	add = 100
+}
+employment_pm_privately_owned_building_sulfur_mine = {
+	add = 100
+}
+employment_pm_privately_owned_building_gold_mine = {
+	add = 100
+}
+employment_pm_publicly_traded_building_coal_mine = {
+	add = 150
+}
+employment_pm_publicly_traded_building_iron_mine = {
+	add = 150
+}
+employment_pm_publicly_traded_building_lead_mine = {
+	add = 150
+}
+employment_pm_publicly_traded_building_sulfur_mine = {
+	add = 150
+}
+employment_pm_publicly_traded_building_gold_mine = {
+	add = 150
+}
+employment_pm_government_run_building_coal_mine = {
+	add = 150
+}
+employment_pm_government_run_building_iron_mine = {
+	add = 150
+}
+employment_pm_government_run_building_lead_mine = {
+	add = 150
+}
+employment_pm_government_run_building_sulfur_mine = {
+	add = 150
+}
+employment_pm_government_run_building_gold_mine = {
+	add = 150
+}
+employment_pm_worker_cooperative_building_coal_mine = {
+	add = 250
+}
+employment_pm_worker_cooperative_building_iron_mine = {
+	add = 250
+}
+employment_pm_worker_cooperative_building_lead_mine = {
+	add = 250
+}
+employment_pm_worker_cooperative_building_sulfur_mine = {
+	add = 250
+}
+employment_pm_worker_cooperative_building_gold_mine = {
+	add = 250
+}
+employment_pm_picks_and_shovels_building_iron_mine = {
+	add = 4500
+}
+employment_pm_atmospheric_engine_pump_building_iron_mine = {
+	add = 4000
+	add = 500
+}
+employment_pm_condensing_engine_pump_building_iron_mine = {
+	add = 3000
+	add = 1000
+	add = 250
+}
+employment_pm_diesel_pump_building_iron_mine = {
+	add = 2000
+	add = 1500
+	add = 500
+}
+employment_pm_nitroglycerin_building_iron_mine = {
+	add = 250
+}
+employment_pm_dynamite_building_iron_mine = {
+	add = 250
+}	
+employment_pm_steam_donkey_mine = {
+	add = -1000
+}
+employment_pm_rail_transport_mine = {
+	add = -1000
+}
+employment_pm_picks_and_shovels_building_lead_mine = {
+	add = 4500
+}
+employment_pm_atmospheric_engine_pump_building_lead_mine = {
+	add = 4000
+	add = 500
+}
+employment_pm_condensing_engine_pump_building_lead_mine = {
+	add = 3000
+	add = 1000
+	add = 250
+}
+employment_pm_diesel_pump_building_lead_mine = {
+	add = 2000
+	add = 1500
+	add = 500
+}
+employment_pm_nitroglycerin_building_lead_mine = {
+	add = 250
+}
+employment_pm_dynamite_building_lead_mine = {
+	add = 250
+}	
+employment_pm_picks_and_shovels_building_sulfur_mine = {
+	add = 4500
+}
+employment_pm_atmospheric_engine_pump_building_sulfur_mine = {
+	add = 4000
+	add = 500
+}
+employment_pm_condensing_engine_pump_building_sulfur_mine = {
+	add = 3000
+	add = 1000
+	add = 250
+}
+employment_pm_diesel_pump_building_sulfur_mine = {
+	add = 2000
+	add = 1500
+	add = 500
+}
+employment_pm_nitroglycerin_building_sulfur_mine = {
+	add = 250
+}
+employment_pm_dynamite_building_sulfur_mine = {
+	add = 250
+}
+employment_pm_picks_and_shovels_building_gold_mine = {
+	add = 4500
+}
+employment_pm_atmospheric_engine_pump_building_gold_mine = {
+	add = 4000
+	add = 500
+}
+employment_pm_condensing_engine_pump_building_gold_mine = {
+	add = 3000
+	add = 1000
+	add = 250
+}
+employment_pm_diesel_pump_building_gold_mine = {
+	add = 2000
+	add = 1500
+	add = 500
+}
+employment_pm_nitroglycerin_building_gold_mine = {
+	add = 250
+}
+employment_pm_dynamite_building_gold_mine = {
+	add = 250
+}
+employment_default_building_gold_fields = {
+	add = 500
+	add = 4500
+}
+
+employment_default_building_coffee_plantation = {
+	add = 4000
+	add = 800
+	add = 100
+}
+employment_automatic_irrigation_building_coffee_plantation = {
+	add = 3000
+	add = 1200
+	add = 500
+	add = 100
+}
+employment_pm_steam_rail_transport = {
+	add = -1000
+}
+employment_pm_privately_owned_plantation = {
+	add = 100
+}
+employment_pm_publicly_traded_plantation = {
+	add = 100
+	add = 50
+}
+employment_pm_government_run_plantation = {
+	add = 150
+}
+employment_pm_worker_cooperative_plantation = {
+	add = 250
+}
+employment_default_building_cotton_plantation = {
+	add = 4000
+	add = 800
+	add = 100
+}
+employment_automatic_irrigation_building_cotton_plantation = {
+	add = 3000
+	add = 1200
+	add = 500
+	add = 100
+}
+employment_default_building_dye_plantation = {
+	add = 4000
+	add = 800
+	add = 100
+}
+employment_automatic_irrigation_building_dye_plantation = {
+	add = 3000
+	add = 1200
+	add = 500
+	add = 100
+}
+employment_default_building_opium_plantation = {
+	add = 4000
+	add = 800
+	add = 100
+}
+employment_automatic_irrigation_building_opium_plantation = {
+	add = 3000
+	add = 1200
+	add = 500
+	add = 100
+}
+employment_default_building_tea_plantation = {
+	add = 4000
+	add = 800
+	add = 100
+}
+employment_automatic_irrigation_building_tea_plantation = {
+	add = 3000
+	add = 1200
+	add = 500
+	add = 100
+}
+employment_default_building_tobacco_plantation = {
+	add = 4000
+	add = 800
+	add = 100
+}
+employment_automatic_irrigation_building_tobacco_plantation = {
+	add = 3000
+	add = 1200
+	add = 500
+	add = 100
+}
+employment_default_building_sugar_plantation = {
+	add = 4000
+	add = 800
+	add = 100
+}
+employment_automatic_irrigation_building_sugar_plantation = {
+	add = 3000
+	add = 1200
+	add = 500
+	add = 100
+}
+employment_default_building_banana_plantation = {
+	add = 4000
+	add = 800
+	add = 100
+}
+employment_automatic_irrigation_building_banana_plantation = {
+	add = 3000
+	add = 1200
+	add = 500
+	add = 100
+}
+employment_default_building_silk_plantation = {
+	add = 4000
+	add = 800
+	add = 100
+}
+employment_automatic_irrigation_building_silk_plantation = {
+	add = 3000
+	add = 1200
+	add = 500
+	add = 100
+}
+
+employment_pm_irregular_infantry = {
+	add = 970
+	add = 30
+}
+employment_pm_line_infantry = {
+	add = 950
+	add = 50
+}
+employment_pm_skirmish_infantry = {
+	add = 900
+	add = 100
+}
+employment_pm_trench_infantry = {
+	add = 850
+	add = 150
+}
+employment_pm_squad_infantry = {
+	add = 800
+	add = 200
+}
+employment_pm_mechanized_infantry = {
+	add = 750
+	add = 250
+}
+employment_pm_no_artillery = {
+}
+employment_pm_cannon_artillery = {
+}
+employment_pm_mobile_artillery = {
+}
+employment_pm_shrapnel_artillery = {
+}
+employment_pm_siege_artillery = {
+}
+employment_pm_cavalry_scouts = {
+}
+employment_pm_bicycle_messengers = {
+}
+employment_pm_motorized_recon = {
+}
+employment_pm_aerial_recon = {
+}
+employment_pm_no_specialists = {
+}
+employment_pm_machine_gunners = {
+}
+employment_pm_infiltrators = {
+}
+employment_pm_flamethrower_company = {
+}
+employment_pm_chemical_weapons_specialists = {
+}
+employment_pm_irregular_infantry_conscription = {
+	add = 970
+	add = 30
+}
+employment_pm_line_infantry_conscription = {
+	add = 950
+	add = 50
+}
+employment_pm_skirmish_infantry_conscription = {
+	add = 900
+	add = 100
+}
+employment_pm_trench_infantry_conscription = {
+	add = 850
+	add = 150
+}
+employment_pm_squad_infantry_conscription = {
+	add = 800
+	add = 200
+}
+employment_pm_mechanized_infantry_conscription = {
+	add = 750
+	add = 250
+}
+employment_pm_no_artillery_conscription = {
+}
+employment_pm_cannon_artillery_conscription = {
+}
+employment_pm_mobile_artillery_conscription = {
+}
+employment_pm_shrapnel_artillery_conscription = {
+}
+employment_pm_siege_artillery_conscription = {
+}
+employment_pm_cavalry_scouts_conscription = {
+}
+employment_pm_bicycle_messengers_conscription = {
+}
+employment_pm_motorized_recon_conscription = {
+}
+employment_pm_aerial_recon_conscription = {
+}
+employment_pm_no_specialists_conscription = {
+}
+employment_pm_machine_gunners_conscription = {
+}
+employment_pm_infiltrators_conscription = {
+}
+employment_pm_flamethrower_company_conscription = {
+}
+employment_pm_chemical_weapons_specialists_conscription = {
+}
+employment_pm_wound_dressing = {
+}
+employment_pm_first_aid = {
+}
+employment_pm_field_hospitals = {
+}
+employment_pm_man_o_wars = {
+	add = 900
+	add = 100
+}
+employment_pm_ironclads = {
+	add = 900
+	add = 100
+}
+employment_pm_monitors = {
+	add = 900
+	add = 100
+}
+employment_pm_dreadnoughts = {
+	add = 900
+	add = 100
+}
+employment_pm_battleships = {
+	add = 900
+	add = 100
+}
+employment_pm_commerce_raider = {
+}
+employment_pm_torpedo_boat = {
+}
+employment_pm_submarine = {
+}
+employment_pm_frigates = {
+}
+employment_pm_destroyers = {
+}
+employment_pm_carriers = {
+}
+employment_pm_no_naval_theory = {
+}
+employment_pm_power_of_the_purse = {
+	add = -25
+	add = 25
+}
+employment_pm_jeune_ecole = {
+	add = -50
+	add = 50
+}
+employment_pm_sea_lane_strategies = {
+	add = -75
+	add = 75
+}
+employment_pm_battlefleet_tactics = {
+	add = -100
+	add = 100
+}
+
+employment_pm_market_stalls = {
+	add = 3500
+	add = 900
+	add = 400
+}		
+employment_pm_market_squares = {
+	add = 2500
+	add = 1900
+	add = 400
+}
+employment_pm_covered_markets = {
+	add = 2000
+	add = 2400
+	add = 400
+}
+employment_pm_arcades = {
+	add = 1000
+	add = 3000
+	add = 1000
+}
+employment_pm_no_street_lighting = {
+}	
+employment_pm_gas_streetlights = {
+	add = 400
+	add = 100
+}		
+employment_pm_electric_streetlights = {
+	add = 350
+	add = 150
+}			
+employment_pm_no_public_transport = {
+}
+employment_pm_public_trams = {
+	add = -500
+}
+employment_pm_public_motor_carriages = {
+	add = -1000
+}
+employment_pm_state_urban_clergy = {
+	add = 200
+}	
+employment_pm_free_urban_clergy = {
+	add = 50
+	add = 150
+}
+employment_pm_no_urban_clergy = {
+	add = 150
+	add = 50
+}		
+employment_pm_traditional_art = {
+}
+employment_pm_realist_art = {
+}
+employment_pm_photographic_art = {
+}
+employment_pm_film_art = {
+}	
+employment_pm_traditional_patronage = {
+	add = 150
+	add = 850
+}
+employment_pm_bourgeoisie_patronage = {
+	add = 100
+	add = 50
+	add = 850
+}
+employment_pm_independent_artists = {
+	add = 1000
+}
+employment_pm_hydroelectric_plant = {
+	add = 2500
+	add = 1800
+	add = 1200
+}
+employment_pm_coal-fired_plant = {
+	add = 2000
+	add = 1500
+	add = 1400
+}
+employment_pm_oil-fired_plant = {
+	add = 2000
+	add = 1500
+	add = 1400
+}
+employment_pm_publicly_traded_building_power_plant = {
+	add = 150
+}
+
+employment_pm_anchorage = {
+	add = 500
+	add = 350
+	add = 150
+}			
+employment_pm_basic_port = {
+	add = 3000
+	add = 1500
+	add = 500
+}		
+employment_pm_industrial_port = {
+	add = 2000
+	add = 500
+	add = 1000
+	add = 500
+}
+employment_pm_modern_port = {
+	add = 750
+	add = 250
+	add = 500
+	add = 500
+}				
+employment_pm_simple_organization = {
+	add = 4000
+}		
+employment_pm_horizontal_drawer_cabinets = {
+	add = 4000
+}
+employment_pm_vertical_filing_cabinets = {
+	add = 4000
+}
+employment_pm_switch_boards = {
+	add = 2500
+	add = 2500
+}
+employment_pm_hereditary_bureaucrats = {
+	add = 250
+	add = 250
+}
+employment_pm_professional_bureaucrats = {
+	add = 500
+}	
+employment_pm_secular_bureaucrats = {
+	add = 500
+}
+employment_pm_religious_bureaucrats = {
+	add = 250
+	add = 250
+}					
+employment_pm_scholastic_education = {
+	add = 1500
+	add = 1500
+}
+employment_pm_philosophy_department = {
+	add = 1750
+	add = 1250
+}
+employment_pm_analytical_philosophy_department = {
+	add = 2000
+	add = 1000
+}	
+employment_pm_secular_academia = {
+	add = 2000
+}
+employment_pm_religious_academia = {
+	add = 1000
+	add = 1000
+}			
+employment_pm_skyscraper_bureaucratic_nexus = {
+	add = 1000
+	add = 2500
+	add = 1500
+}
+employment_pm_skyscraper_trade_nexus = {
+	add = 1000
+	add = 2500
+	add = 1500
+}
+employment_pm_no_airships = {
+}
+employment_pm_airship_mooring_post = {
+}
+
+employment_pm_default_building_eiffel_tower = {
+	add = 100
+}
+employment_pm_default_building_angkor_wat = {
+	add = 500
+}
+employment_pm_default_building_big_ben = {
+	add = 100
+}
+employment_pm_default_building_forbidden_city = {
+	add = 800
+	add = 200
+}
+employment_pm_default_building_hagia_sophia = {
+	add = 200
+}
+employment_pm_default_building_mosque_of_djenne = {
+	add = 500
+}
+employment_pm_default_building_saint_basils_cathedral = {
+	add = 200
+}
+employment_pm_default_building_statue_of_liberty = {
+	add = 100
+}
+employment_pm_default_building_taj_mahal = {
+	add = 100
+}
+employment_pm_default_building_vatican_city = {
+	add = 500
+}
+employment_pm_monument_prestige_only_vatican_city = {
+}
+employment_pm_default_building_white_house = {
+	add = 500
+}
+employment_pm_monument_prestige_only = {
+}
+employment_pm_monument_no_effects = {
+}
+
+employment_pm_simple_forestry = {
+	add = 4500
+}
+employment_pm_saw_mills = {
+	add = 4000
+	add = 500
+}	
+employment_pm_electric_saw_mills = {
+	add = 3000
+	add = 1000
+	add = 500
+}
+employment_pm_no_hardwood = {
+}
+employment_pm_hardwood = {
+}
+employment_pm_no_equipment = {
+}
+employment_pm_steam_donkey_building_logging_camp = {
+	add = -1000
+}
+employment_pm_chainsaws = {
+	add = -1500
+	add = 200
+	add = 200
+}
+employment_pm_rail_transport_building_logging_camp = {
+	add = -1000
+}
+employment_pm_log_carts = {
+	add = -1500
+}
+employment_pm_merchant_guilds_building_logging_camp = {
+	add = 500
+}
+employment_pm_privately_owned_building_logging_camp = {
+	add = 100
+}
+employment_pm_publicly_traded_building_logging_camp = {
+	add = 150
+}
+employment_pm_government_run_building_logging_camp = {
+	add = 150
+}
+employment_pm_worker_cooperative_building_logging_camp = {
+	add = 250
+}
+employment_default_building_rubber_plantation = {
+	add = 4000
+	add = 800
+	add = 100
+}
+employment_automatic_irrigation_building_rubber_plantation = {
+	add = 3000
+	add = 1200
+	add = 500
+	add = 100
+}
+employment_pm_simple_fishing = {
+	add = 4500
+}
+employment_pm_fishing_trawlers = {
+	add = 4000
+	add = 500
+}
+employment_pm_steam_trawlers = {
+	add = 3000
+	add = 1000
+	add = 500
+}
+employment_pm_refrigerated_storage_building_fishing_wharf = {
+	add = -1000
+}
+employment_pm_refrigerated_rail_cars_building_fishing_wharf = {
+	add = -2000
+}
+employment_pm_flash_freezing_building_fishing_wharf = {
+	add = -3000
+}
+employment_pm_merchant_guilds_building_fishing_wharf = {
+	add = 500
+}
+employment_pm_privately_owned_building_fishing_wharf = {
+	add = 100
+}
+employment_pm_publicly_traded_building_fishing_wharf = {
+	add = 150
+}
+employment_pm_government_run_building_fishing_wharf = {
+	add = 150
+}
+employment_pm_worker_cooperative_building_fishing_wharf = {
+	add = 250
+}
+employment_pm_simple_whaling = {
+	add = 4500
+}
+employment_pm_wooden_whaling_ships = {
+	add = 4000
+	add = 500
+}
+employment_pm_steam_whaling_ships = {
+	add = 3000
+	add = 1000
+	add = 500
+}
+employment_pm_refrigerated_storage_building_whaling_station = {
+	add = -1000
+}
+employment_pm_refrigerated_rail_cars_building_whaling_station = {
+	add = -2000
+}
+employment_pm_flash_freezing_building_whaling_station = {
+	add = -3000
+}
+employment_pm_merchant_guilds_building_whaling_station = {
+	add = 500
+}		
+employment_pm_privately_owned_building_whaling_station = {
+	add = 100
+}
+employment_pm_publicly_traded_building_whaling_station = {
+	add = 150
+}
+employment_pm_government_run_building_whaling_station = {
+	add = 150
+}
+employment_pm_worker_cooperative_building_whaling_station = {
+	add = 250
+}
+employment_pm_steam_derricks = {
+	add = 3000
+	add = 1000
+	add = 500
+}
+employment_pm_combustion_derricks = {
+	add = 2000
+	add = 2000
+	add = 900
+}
+employment_pm_rail_transport_building_oil_rig = {
+	add = -1000
+}
+employment_pm_tanker_cars = {
+	add = -2000
+}
+employment_pm_publicly_traded_building_oil_rig = {
+	add = 150
+}
+
+employment_pm_canal = {
+	add = 2000
+	add = 2500
+	add = 500
+}
+
+employment_pm_steam_trains = {
+	add = 3000
+	add = 1000
+	add = 750
+}
+employment_pm_electric_trains = {
+	add = 2000
+	add = 2000
+	add = 750
+}
+employment_pm_diesel_trains = {
+	add = 1500
+	add = 2500
+	add = 750
+}
+employment_pm_no_passenger_trains = {
+}
+employment_pm_wooden_passenger_carriages = {
+	add = -250
+	add = -250
+}
+employment_pm_steel_passenger_carriages = {
+	add = -500
+	add = -500
+}
+employment_pm_privately_owned_building_railway = {
+	add = 250
+}
+employment_pm_publicly_traded_building_railway = {
+	add = 350
+}
+employment_pm_government_run_building_railway = {
+	add = 400
+}
+employment_pm_worker_cooperative_building_railway = {
+	add = 250
+}
+employment_pm_trade_center = {
+}
+employment_pm_trade_center_merchant_guilds = {
+	add = 250
+}
+employment_pm_trade_center_privately_owned = {
+	add = 200
+	add = 50
+}
+employment_pm_trade_center_government_run = {
+	add = 125
+	add = 125
+}
+
+employment_default_building_subsistence_farms = {
+	add = 4750
+}
+employment_pm_home_workshops_no_building_subsistence_farms = {
+}		
+employment_pm_home_workshops_building_subsistence_farms = {
+}
+employment_pm_serfdom_no = {
+}
+employment_pm_serfdom = {
+}		
+employment_default_building_subsistence_orchards = {
+	add = 4750
+}
+employment_pm_home_workshops_no_building_subsistence_orchards = {
+}		
+employment_pm_home_workshops_building_subsistence_orchards = {
+}
+employment_pm_serfdom_building_subsistence_orchards = {
+}		
+employment_default_building_subsistence_pastures = {
+	add = 4750
+}
+employment_pm_home_workshops_no_building_subsistence_pastures = {
+}		
+employment_pm_home_workshops_building_subsistence_pastures = {
+}
+employment_pm_serfdom_building_subsistence_pastures = {
+}
+employment_default_building_subsistence_fishing_villages = {
+	add = 4750
+}
+employment_pm_home_workshops_no_building_subsistence_fishing_villages = {
+}		
+employment_pm_home_workshops_building_subsistence_fishing_villages = {
+}
+employment_pm_serfdom_building_subsistence_fishing_villages = {
+}		
+employment_default_building_subsistence_rice_paddies = {
+	add = 9750
+}
+employment_pm_home_workshops_no_building_subsistence_rice_paddies = {
+}		
+employment_pm_home_workshops_building_subsistence_rice_paddies = {
+}
+employment_pm_serfdom_building_subsistence_rice_paddies = {
+}
+employment_pm_privately_owned_building_subsistence = {
+	add = 150
+	add = 100
+}
+employment_pm_homesteading_building_subsistence = {
+	add = 150
+	add = 25
+	add = 75
+}
+employment_pm_worker_cooperative_building_subsistence = {
+	add = 150
+	add = 100
+}
+employment_pm_government_run_building_subsistence = {
+	add = 150
+	add = 100
+}
+
+employment_pm_wooden_buildings = {
+	add = 500
+	add = 500
+	add = 4000
+}
+employment_pm_iron_frame_buildings = {
+	add = 500
+	add = 500
+	add = 250
+	add = 3750
+}
+employment_pm_steel_frame_buildings = {
+	add = 500
+	add = 500
+	add = 750
+	add = 3250
+}
+employment_pm_arc_welded_buildings = {
+	add = 500
+	add = 500
+	add = 250
+	add = 750
+	add = 3000
+}

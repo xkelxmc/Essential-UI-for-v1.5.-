@@ -1,0 +1,5 @@
+﻿not_enough_workers_in_state_group = {}
+high_unemployment_in_state_group = {}
+high_unemployment_in_state_autopms_group = {}
+infra_prog_low_in_state_group = {}
+state_can_be_incorporated_group = {}

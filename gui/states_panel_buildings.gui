@@ -1,0 +1,1278 @@
+# COPY-PASTED FOR NOW
+@panel_width_minus_10 = 530			# used to be 450
+@panel_width = 540  				# used to be 460
+@panel_width_half = 270				# used to be 230
+@panel_width_plus_10 = 550  		# used to be 470
+@panel_width_plus_14 = 554			# used to be 474
+@panel_width_plus_14_half = 277		# used to be 237
+@panel_width_plus_20 = 560			# used to be 480
+@panel_width_plus_30 = 570			# used to be 490
+@panel_width_plus_70 = 610			# used to be 530
+
+types state_panel_types {
+	### WORKFORCE
+	type state_panel_buildings_fixed_bottom = container {
+		minimumsize = { @panel_width -1 }
+		
+		background = {
+			using = entry_bg_simple
+		}
+		flowcontainer = {
+			parentanchor = left|vcenter
+			margin = { 5 2 }
+			spacing = 5
+			flowcontainer = {
+				spacing = 5
+				minimumsize = { 250 -1 }
+				flowcontainer = {
+					direction = vertical
+					textbox = {
+						datacontext = "[State.MakeScope]"
+						raw_text = "@laborers!@hiring_next_o!  [FixedPointToInt(Scope.ScriptValue('state_available_workers_next_hire'))|Dv+]"
+						fontsize = 12
+						autoresize = yes
+						align = left|nobaseline
+						tooltip = "STATE_NEXT_HIRE_DELTA"
+					}
+					textbox = {
+						raw_text = "@laborers!@hiring_o!  [FixedPointToInt(State.MakeScope.ScriptValue('state_next_available_workers_all_hiring'))|Dv+]"
+						fontsize = 12
+						autoresize = yes
+						align = left|nobaseline
+						tooltip = "STATE_HIRE_DELTA"
+					}
+					textbox = {
+						raw_text = "@laborers!@turns_into_o!  [FixedPointToInt(State.MakeScope.ScriptValue('state_available_workers_prog'))|Dv+]"
+						fontsize = 12
+						autoresize = yes
+						align = left|nobaseline
+						tooltip = "STATE_LABOR_PROG"
+					}
+				}
+				flowcontainer = {
+					direction = vertical
+					textbox = {
+						alpha = "[TransparentIfZero_int64(State.GetNumUnemployedWorkingAdults)]"
+						raw_text = "@unemployed_icon! [State.GetNumUnemployedWorkingAdults|D-]"
+						fontsize = 12
+						autoresize = yes
+						align = left|nobaseline
+						tooltip = "STATE_AVAILABLE_LABOR_TOOLTIP"
+					}
+					textbox = {
+						alpha = "[TransparentIfZero_int64(State.GetNumSubsistenceWorkingAdults)]"
+						raw_text = "@peasants! [State.GetNumSubsistenceWorkingAdults|Dv]" #strange value - not all working in subsistence!
+						fontsize = 12
+						autoresize = yes
+						align = left|nobaseline
+						tooltip = "STATE_AVAILABLE_LABOR_TOOLTIP"
+					}
+					textbox = {
+						datacontext = "[State.MakeScope]"
+						raw_text = "@workers_auto! [FixedPointToInt(Scope.ScriptValue('state_available_workers_autopms'))|Dv+]"
+						fontsize = 12
+						autoresize = yes
+						align = left|nobaseline
+						tooltip = "STATE_LABOR_AUTOPMS"
+						icon = {
+							visible = "[NotEqualTo_CFixedPoint(GetGlobalVariable('gui_states_workers_autopms').GetValue,'(CFixedPoint)0')]"
+							size = { 14 13.5 }
+							using = highlighted_circle_selection_small
+							using = Color_Blue_S
+							parentanchor = left
+							position = { -0.5 1 }
+						}
+						button = {
+							size = { 100% 100% }
+							click_modifiers = {
+								onshift = "[GetScriptedGui('toggle_gui_states_workers_autopms').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+							}
+						}
+					}
+				}
+				flowcontainer = {
+					direction = vertical
+					textbox = {
+						raw_text = "@hiring! [FixedPointToInt(State.MakeScope.ScriptValue('state_available_jobs_hiring'))|D+]"
+						fontsize = 12
+						autoresize = yes
+						align = left|nobaseline
+						tooltip = "STATE_JOBS_HIRING"
+					}
+					flowcontainer = {
+						spacing = 3
+						datacontext = "[StatesPanel.AccessSubsistenceBuilding]"
+						tooltipwidget = {
+							FancyTooltip_Building = {}
+						}
+						icon = {
+							alpha = "[TransparentIfFalse(Building.IsActive)]"
+							size = { 15 15 }
+							texture = "[Building.GetTexture]"
+						}
+						textbox = {
+							alpha = "[TransparentIfZero_int64(Subtract_int64(Building.GetEmployeeCap,Building.GetNoOfEmployed))]"
+							text = "[Subtract_int64(Building.GetEmployeeCap,Building.GetNoOfEmployed)|Dv+]"
+							fontsize = 12
+							autoresize = yes
+							align = left|nobaseline
+						}
+					}
+					textbox = {
+						raw_text = "@jobs_auto! [FixedPointToInt(State.MakeScope.ScriptValue('state_available_jobs_autopms'))|Dv+]"
+						fontsize = 12
+						autoresize = yes
+						align = left|nobaseline
+						tooltip = "STATE_JOBS_AUTOPMS"
+					}
+				}			
+				flowcontainer = {
+					direction = vertical
+					textbox = {
+						raw_text = "@hiring_next! [FixedPointToInt(State.MakeScope.ScriptValue('state_next_hire'))|Dv+]"
+						fontsize = 12
+						autoresize = yes
+						align = left|nobaseline
+						tooltip = "STATE_NEXT_HIRE"
+					}
+					textbox = {
+						raw_text = "@construction! [FixedPointToInt(State.MakeScope.ScriptValue('state_jobs_construction'))|Dv+]"
+						fontsize = 12
+						autoresize = yes
+						align = left|nobaseline
+						tooltip = "STATE_JOBS_CONSTRUCTION"
+					}
+					textbox = {
+						raw_text = "@not_hiring! [FixedPointToInt(State.MakeScope.ScriptValue('state_jobs_not_hiring'))|Dv-]"
+						fontsize = 12
+						autoresize = yes
+						align = left|nobaseline
+						tooltip = "STATE_JOBS_NOT_HIRING"
+						icon = {
+							visible = "[NotEqualTo_CFixedPoint(GetGlobalVariable('gui_states_jobs_not_hiring').GetValue,'(CFixedPoint)0')]"
+							size = { 12 13 }
+							using = highlighted_circle_selection_small
+							using = Color_Blue_S
+							parentanchor = left
+							position = { 0 2 }
+						}
+						button = {
+							size = { 100% 100% }
+							click_modifiers = {
+								onshift = "[GetScriptedGui('toggle_gui_states_jobs_not_hiring').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+							}
+						}
+					}
+				}
+				flowcontainer = {
+					parentanchor = vcenter
+					direction = vertical
+					tooltip = "TOOLTIP_STATE_POPULATION"
+					flowcontainer = {
+						parentanchor = hcenter
+						icon = {
+							texture = "gfx/interface/icons/generic_icons/population.dds"
+							size = { 13 13 }
+						}                                                                      
+						textbox = {
+							text = "[GetArrowIcon_int64(State.GetPopTotalChange)]"
+							fontsize = 12
+							autoresize = yes
+							align = left|nobaseline
+						}
+					}
+					textbox = {
+						text = "[State.GetPopTotalChange|Dv+=]"
+						fontsize = 12
+						autoresize = yes
+						align = left|nobaseline
+					}
+				}
+			}
+			flowcontainer = {
+				direction = vertical
+				flowcontainer = {
+					spacing = 5
+					flowcontainer = {
+						textbox = {
+							tooltip = "STATE_INFRASTRUCTURE_DESC"
+							raw_text = "@infra! [State.GetInfrastructureBalance|0+=]"
+							fontsize = 12
+							autoresize = yes
+							align = right|nobaseline
+						}
+						textbox = {
+							tooltip = "STATE_INFRA_PROG"
+							raw_text = "@turns_into![State.MakeScope.ScriptValue('state_infra_prog')|0+=]"
+							fontsize = 12
+							autoresize = yes
+							align = right|nobaseline
+						}
+					}
+					textbox = {
+						datacontext = "[State.AccessOwner]"
+						tooltip = "CONSTRUCTION_QUEUE_TOOLTIP"
+						raw_text = "@construction! [Add_int32(Country.GetNumBuildingsUnderConstructionInState(State.Self), Country.GetNumBuildingsInConstructionQueueInState(State.Self))|-]"
+						fontsize = 12
+						autoresize = yes
+						align = right|nobaseline
+					}
+				}			
+				flowcontainer = {
+					spacing = 2
+					datacontext = "[State.GetBuilding('building_railway')]"
+					tooltipwidget = {
+						FancyTooltip_Building = {}
+					}
+					flowcontainer = {
+						visible = "[Not(Or(Building.IsActive,IsValid(Building.CancelConstruction)))]"
+						icon = {
+							size = { 15 15 }
+							texture = "[Building.GetTexture]"
+						}
+						widget = {
+							size = { 15 15 }
+						}
+					}
+					overlappingitembox = {
+						visible = "[Or(Building.IsActive,IsValid(Building.CancelConstruction))]"
+						datamodel = "[Building.AccessProductionMethodGroups]"
+						size = { 30 15 }
+						item = {
+							infra_pm_item = {}
+						}
+					}
+					textbox = {
+						size = { 30 16 }
+						text = "[Building.GetExpansionLevelDesc]"
+						fontsize = 12
+						parentanchor = vcenter
+						align = left|nobaseline
+					}
+					widget = {
+						size = { 35 16 }
+						button_icon_minus_action = {
+							parentanchor = left|vcenter
+							size = { 16 16 }
+							tooltip = "[Building.GetCancelConstructionTooltip]"
+							visible = "[IsValid( Building.CancelConstruction )]"
+							onclick = "[Execute( Building.CancelConstruction )]"
+							using = tooltip_below
+						}
+						button_icon_plus_action = {
+							parentanchor = right|vcenter
+							visible = "[Or( And( Not( Building.IsValid ), IsValid( Building.QueueConstruction ) ), Not(Building.HasReachedLevelCap) )]"
+							tooltip = "[Building.GetQueueConstructionTooltip]"
+							size = { 16 16 }
+							onclick = "[Execute( Building.QueueConstruction )]"
+							enabled = "[IsValid( Building.QueueConstruction )]"
+						}
+					}
+				}
+				flowcontainer = {
+					spacing = 2
+					datacontext = "[State.GetBuilding('building_port')]"
+					visible = "[State.IsCoastal]"
+					tooltipwidget = {
+						FancyTooltip_Building = {}
+					}
+					icon = {
+						visible = "[Not(Or(Building.IsActive,IsValid(Building.CancelConstruction)))]"
+						size = { 15 15 }
+						texture = "[Building.GetTexture]"
+					}
+					overlappingitembox = {
+						visible = "[Or(Building.IsActive,IsValid(Building.CancelConstruction))]"
+						datamodel = "[Building.AccessProductionMethodGroups]"
+						size = { 15 15 }
+						item = {
+							infra_pm_item = {
+								blockoverride "visible" {
+									visible = "[EqualTo_string(ProductionMethodGroup.GetKey,'pmg_base_building_port')]"
+								}
+							}
+						}
+					}
+					textbox = {
+						size = { 45 16 }
+						text = "[Building.GetExpansionLevelDesc]"
+						fontsize = 12
+						parentanchor = vcenter
+						align = left|nobaseline
+					}
+					widget = {
+						size = { 35 16 }
+						button_icon_minus_action = {
+							parentanchor = left|vcenter
+							size = { 16 16 }
+							tooltip = "[Building.GetCancelConstructionTooltip]"
+							visible = "[IsValid( Building.CancelConstruction )]"
+							onclick = "[Execute( Building.CancelConstruction )]"
+							using = tooltip_below
+						}
+						button_icon_plus_action = {
+							parentanchor = right|vcenter
+							visible = "[Or( And( Not( Building.IsValid ), IsValid( Building.QueueConstruction ) ), Not(Building.HasReachedLevelCap) )]"
+							tooltip = "[Building.GetQueueConstructionTooltip]"
+							size = { 16 16 }
+							onclick = "[Execute( Building.QueueConstruction )]"
+							enabled = "[IsValid( Building.QueueConstruction )]"
+						}
+					}
+				}
+			}
+			flowcontainer = {
+				direction = vertical
+				tooltip = "STATE_BUILDING_INFRA_CHANGE"
+				overlappingitembox = {
+					size = { 48 12 }
+					datamodel = "[State.AccessUrbanBuildings]"
+					item = {
+						constr_queue_item = {}
+					}
+				}
+				overlappingitembox = {
+					size = { 48 12 }
+					datamodel = "[State.AccessCappedRuralBuildings]"
+					item = {
+						constr_queue_item = {}
+					}
+				}
+				overlappingitembox = {
+					size = { 48 12 }
+					datamodel = "[State.AccessUncappedRuralBuildings]"
+					item = {
+						constr_queue_item = {}
+					}
+				}
+				overlappingitembox = {
+					size = { 48 12 }
+					datamodel = "[State.AccessDevelopmentBuildings]"
+					item = {
+						constr_queue_item = {}
+					}
+				}
+			}
+		}
+		flowcontainer = {
+			parentanchor = right|vcenter
+			spacing = 2
+
+			flowcontainer = {
+				parentanchor = left|vcenter
+				spacing = 3
+				flowcontainer = {
+					direction = vertical
+					textbox = {
+						datacontext = "[GetPopType('aristocrats')]"
+						text = "[PopType.GetTextIcon][State.GetPotentialQualifications(PopType.Self)|D+]"
+						fontsize = 12
+						autoresize = yes
+						align = right|nobaseline
+						tooltip = "[State.GetPotentialQualificationsBreakdown(PopType.Self)]"
+					}
+					textbox = {
+						datacontext = "[GetPopType('clergymen')]"
+						text = "[PopType.GetTextIcon][State.GetPotentialQualifications(PopType.Self)|D+]"
+						fontsize = 12
+						autoresize = yes
+						align = right|nobaseline
+						tooltip = "[State.GetPotentialQualificationsBreakdown(PopType.Self)]"
+					}
+					textbox = {
+						datacontext = "[GetPopType('farmers')]"
+						text = "[PopType.GetTextIcon][State.GetPotentialQualifications(PopType.Self)|D+]"
+						fontsize = 12
+						autoresize = yes
+						align = right|nobaseline
+						tooltip = "[State.GetPotentialQualificationsBreakdown(PopType.Self)]"
+					}
+				}
+				flowcontainer = {
+					direction = vertical
+					textbox = {
+						datacontext = "[GetPopType('capitalists')]"
+						text = "[PopType.GetTextIcon][State.GetPotentialQualifications(PopType.Self)|D+]"
+						fontsize = 12
+						autoresize = yes
+						align = right|nobaseline
+						tooltip = "[State.GetPotentialQualificationsBreakdown(PopType.Self)]"
+					}
+					textbox = {
+						datacontext = "[GetPopType('engineers')]"
+						text = "[PopType.GetTextIcon][State.GetPotentialQualifications(PopType.Self)|D+]"
+						fontsize = 12
+						autoresize = yes
+						align = right|nobaseline
+						tooltip = "[State.GetPotentialQualificationsBreakdown(PopType.Self)]"
+					}
+					textbox = {
+						datacontext = "[GetPopType('machinists')]"
+						text = "[PopType.GetTextIcon][State.GetPotentialQualifications(PopType.Self)|D+]"
+						fontsize = 12
+						autoresize = yes
+						align = right|nobaseline
+						tooltip = "[State.GetPotentialQualificationsBreakdown(PopType.Self)]"
+					}
+				}
+			}
+			flowcontainer = {
+				parentanchor = vcenter
+				margin_right = 5
+			
+				textbox = {
+					visible = "[Not(State.HasInsufficientQualificationsForAvailablePositions)]"
+					raw_text = "@green_checkmark!"
+					autoresize = yes
+					align = nobaseline
+					maximumsize = { 130 -1 }
+					tooltip = "[State.GetPotentialQualificationsDesc]"
+				}
+			
+				textbox = {
+					visible = "[State.HasInsufficientQualificationsForAvailablePositions]"
+					raw_text = "@red_cross!"
+					autoresize = yes
+					align = nobaseline
+					maximumsize = { 130 -1 }
+					tooltip = "[State.GetPotentialQualificationsDesc]"
+				}
+			}
+		}
+	}
+
+	type state_panel_buildings_content = flowcontainer {
+		ignoreinvisible = yes
+		direction = vertical
+		using = default_list_position
+
+
+		default_header_2texts = {
+			visible = no
+			blockoverride "text1" {
+				text = "BUILDINGS"
+			}
+		}
+
+		default_header = {
+			blockoverride "text" {
+				text = "URBAN_PART_OF_STATE"
+			}
+			
+			# grid/list toggle
+			button_icon_round_toggle = {
+				size = { 29 29 }
+				parentanchor = right|vcenter
+				position = { -10 0 }
+				
+				blockoverride "on_click" {
+					onclick = "[GetVariableSystem.Toggle('buildings_list')]"
+				}
+				blockoverride "view_1" {
+					visible = "[Not(GetVariableSystem.Exists('buildings_list'))]"
+				}
+				blockoverride "view_2" {
+					visible = "[GetVariableSystem.Exists('buildings_list')]"
+				}
+				blockoverride "icon_1" {
+					texture = "gfx/interface/buttons/button_icons/grid.dds"
+				}
+				blockoverride "icon_2" {
+					texture = "gfx/interface/buttons/button_icons/list.dds"
+				}
+				blockoverride "tooltip_1" {
+					tooltip = "TOOLTIP_VIEW_LIST"
+				}
+				blockoverride "tooltip_2" {
+					tooltip = "TOOLTIP_VIEW_GRID"
+				}
+			}
+		}
+
+		### URBAN BUILDINGS
+		flowcontainer = {
+			parentanchor = hcenter
+			direction = vertical
+			visible = "[Not(GetVariableSystem.Exists('buildings_list'))]"
+			using = default_content_fade
+			spacing = 10
+			margin_top = 10
+			
+			header_building_item = {
+				datacontext = "[StatesPanel.AccessBuilding('building_urban_center')]"
+				tooltipwidget = {
+					FancyTooltip_Building = {}
+				}
+				blockoverride "text" {
+					text = "TOTAL_URBAN_CENTERS"
+				}					
+			}
+			
+			### URBAN BUILDINGS
+			container = {
+				datamodel = "[State.AccessCappedRuralBuildings]"
+
+				dynamicgridbox = {
+					name = "urban_building_list"
+					datamodel = "[State.AccessUrbanBuildings]"
+					datamodel_wrap = 4
+					flipdirection = yes
+
+					item = {
+						building_item = {
+						}
+					}
+				}
+
+				widget = {
+					size = { 135 180 }
+					visible = "[State.GetCountry.IsLocalPlayer]"
+					enabled = "[GreaterThan_int32( StatesPanel.AccessState.GetNumConstructableUrbanBuildings,'(int32)0')]"
+					position = "[StatesPanel.CalcBuildUrbanBuildingsButtonPosition]"
+					
+					button_icon_plus_square = {
+						enabled = "[Not(IsDataModelEmpty(StatesPanel.AccessState.AccessPotentialUrbanBuildings))]"
+						size = { 135 170 }
+						tooltip = "BUILD_URBAN_BUILDING"
+						onclick = "[StatesPanel.ToggleBuildUrbanBuildingsMenu(PdxGuiWidget.AccessSelf)]"
+
+						
+						blockoverride "icon_size" {
+							size = { 80 80 }
+						}
+					}
+
+					textbox = {
+						using = fontsize_mega
+						raw_text = "#BOLD [StatesPanel.AccessState.GetNumConstructableUrbanBuildings|+]#!"
+						parentanchor = right
+						align = hcenter|nobaseline
+						autoresize = yes
+						position = { -12 4 }
+
+						background = {
+							using = blurry_dark_background
+						}
+					}
+				}
+			}
+		}
+		
+		### URBAN BUILDINGS LIST VERSION
+		flowcontainer = {
+			margin_top = 5
+			parentanchor = hcenter
+			direction = vertical
+			visible = "[GetVariableSystem.Exists('buildings_list')]"
+			using = default_content_fade
+
+			buildings_list_item = {
+				datacontext = "[StatesPanel.AccessBuilding('building_urban_center')]"
+			}
+
+			buildings_list = {
+				blockoverride "datamodel" {
+					datamodel = "[State.AccessUrbanBuildings]"
+				}
+			}
+
+			button_icon_plus_square = {
+				visible = "[State.GetCountry.IsLocalPlayer]"
+				enabled = "[GreaterThan_int32( StatesPanel.AccessState.GetNumConstructableUrbanBuildings,'(int32)0')]"
+				size = { @panel_width 45 }
+				tooltip = "BUILD_URBAN_BUILDING"
+				onclick = "[StatesPanel.ToggleBuildUrbanBuildingsMenu(PdxGuiWidget.AccessSelf)]"
+				blockoverride "icon_size" {
+					size = { 45 100% }
+				}
+
+				textbox = {
+					using = fontsize_large
+					raw_text = "#BOLD [StatesPanel.AccessState.GetNumConstructableUrbanBuildings|+]#!"
+					parentanchor = right
+					align = hcenter|nobaseline
+					autoresize = yes
+					position = { -10 2 }
+
+					background = {
+						using = blurry_dark_background
+					}
+				}
+			}
+		}
+
+		### RESOURCE BUILDINGS
+		default_header = {
+			visible = "[Not(IsDataModelEmpty( State.AccessCappedRuralBuildings ))]"
+			blockoverride "text" {
+				text = "RESOURCE"
+			}
+		}
+		
+		flowcontainer = {
+			parentanchor = hcenter
+			minimumsize = { @panel_width -1 }
+			margin_top = 10
+			direction = vertical
+			visible = "[Not(GetVariableSystem.Exists('buildings_list'))]"
+			using = default_content_fade
+
+			fixedgridbox = {
+				datamodel = "[State.AccessCappedRuralBuildings]"
+				addcolumn = 135
+				addrow = 180
+				datamodel_wrap = 4
+				flipdirection = yes
+
+				item = {
+					building_item = {
+					}
+				}
+			}
+		}
+		
+		### RESOURCE LIST VERSION
+		flowcontainer = {
+			visible = "[And( GetVariableSystem.Exists('buildings_list'), Not(IsDataModelEmpty(State.AccessCappedRuralBuildings)))]"
+			using = default_content_fade
+			margin_top = 5
+			parentanchor = hcenter
+			direction = vertical
+			
+			buildings_list = {
+				blockoverride "datamodel" {
+					datamodel = "[State.AccessCappedRuralBuildings]"
+				}
+			}
+		}
+
+		### AGRICULTURE
+		default_header = {
+			blockoverride "text" {
+				text = "AGRICULTURE"
+			}
+		}
+
+		flowcontainer = {
+			visible = "[Not(GetVariableSystem.Exists('buildings_list'))]"
+			using = default_content_fade
+			minimumsize = { @panel_width -1 }
+			using = default_list_position
+			margin_top = 10 
+			direction = vertical
+			spacing = 10
+			
+			### UNUSED ARABLE LAND
+			header_building_item = {
+				tooltipwidget = {
+					FancyTooltip_Building = {}
+				}
+				#tooltip = "LAND_TEXT_TOOLTIP"
+				datacontext = "[StatesPanel.AccessSubsistenceBuilding]"
+				blockoverride "text" {
+					text = "UNUSED_ARABLE"
+				}					
+			}
+
+			fixedgridbox = {
+				datamodel = "[State.AccessUncappedRuralBuildings]"
+				addcolumn = 135
+				addrow = 180
+				datamodel_wrap = 4
+				flipdirection = yes
+
+				item = {
+					building_item = {
+					}
+				}
+			}
+		}
+
+		### AGRICULTURE LIST VERSION
+		flowcontainer = {
+			margin_top = 5
+			margin_bottom = 10
+			direction = vertical
+			using = default_list_position
+			visible = "[GetVariableSystem.Exists('buildings_list')]"
+			using = default_content_fade
+			
+			buildings_list = {
+				blockoverride "datamodel" {
+					datamodel = "[State.AccessUncappedRuralBuildings]"
+				}
+			}
+
+			buildings_list_item = {
+				datacontext = "[StatesPanel.AccessSubsistenceBuilding]"
+			}
+		}
+		
+		### DEVELOPMENT
+		default_header = {
+			blockoverride "text" {
+				text = "INFRA_PART_OF_STATE"
+			}
+		}
+
+		state_panel_button_unclickable = {
+			using = default_list_position
+			visible = "[Not(GetVariableSystem.Exists('buildings_list'))]"
+			using = default_content_fade
+			container = {
+				minimumsize = { @panel_width -1 }
+				resizeparent = yes
+
+				flowcontainer = {
+					margin_top = 10
+
+					fixedgridbox = {
+						datamodel = "[State.AccessDevelopmentBuildings]"
+						addcolumn = 135
+						addrow = 180
+						datamodel_wrap = 4
+						flipdirection = yes
+
+						item = {
+							building_item = {
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		### DEVELOPMENT LIST VERSION
+		flowcontainer = {
+			visible = "[GetVariableSystem.Exists('buildings_list')]"
+			using = default_content_fade
+			margin_top = 5
+			margin_bottom = 10
+			direction = vertical
+			parentanchor = hcenter
+			
+			buildings_list = {
+				blockoverride "datamodel" {
+					datamodel = "[State.AccessDevelopmentBuildings]"
+				}
+			}
+		}
+	}
+}
+
+types state_buildings 
+{
+	type buildings_list = flowcontainer {
+		parentanchor = hcenter
+		minimumsize = { @panel_width -1 }
+		direction = vertical
+
+		dynamicgridbox = {
+			block "datamodel" {}
+
+			item = {
+				buildings_list_item = {}
+			}
+		}
+	}
+
+	type buildings_list_item = flowcontainer {
+		minimumsize = { @panel_width 40 }
+		background = {
+			using = light_bg
+		}
+		background = {
+			visible = "[Building.HasConstructionQueued]"
+			texture = "gfx/interface/buttons/button_disabled_stripes.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 2 2 }
+			framesize  = { 238 63 }
+			frame = 2
+			blend_mode = overlay
+			alpha = 1
+		}
+
+		button = {
+			using = default_button
+			icon = {
+				visible = "[And(Building.IsActive,And(And(Not(Building.IsGovernmentFunded),Not(Building.IsSubsidized)),LessThanOrEqualTo_CFixedPoint(Building.GetBalance, '(CFixedPoint)0')))]"
+				size = { 100% 100% }
+				texture = "gfx/interface/buttons/default_button_frame_map_interaction.dds"
+				using = Color_Red
+			}
+			onclick = "[InformationPanelBar.OpenBuildingDetailsPanel(Building.AccessSelf)]"
+			onrightclick = "[RightClickMenuManager.ShowForBuilding(Building.AccessSelf)]"
+			onmousehierarchyenter = "[AccessHighlightManager.HighlightBuilding(Building.Self)]"
+			onmousehierarchyleave = "[AccessHighlightManager.RemoveHighlight]"
+			parentanchor = vcenter
+			size = { 100 40 }
+
+			tooltipwidget = {
+				FancyTooltip_Building = {}
+			}
+
+			hbox = {
+				margin_left = 3
+				margin_right = 3
+				icon = {
+					alpha = "[TransparentIfFalse(Building.IsActive)]"
+					size = { 35 35 }
+					texture = "[Building.GetTexture]"
+
+					default_progressbar_horizontal = {
+						visible = "[Building.HasConstructionQueued]"
+						size = { 25 5 }
+						parentanchor = bottom|hcenter
+						position = { 0 -5 }
+						blockoverride "values" {
+							value = "[Building.GetConstructionProgressPercentage]"
+							min = 0
+							max = 1
+						}
+						textbox = {
+							parentanchor = center
+							size = { 100% 100% }
+							#autoresize = yes
+							align = hcenter|nobaseline
+							elide = right
+							fontsize_min = 6
+							raw_text = "[Building.GetConstructionRemainingWeeksDesc|v]"
+						}
+						tooltip = "BUILDING_PROGRESS_TOOLTIP"
+					}
+				}
+
+				spacing = 0
+
+				hbox = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+
+					margin_left = 0
+					margin_right = 5
+					spacing = 1
+
+					### INPUT WARNING
+					icon = {
+						visible = "[Building.HasAnyInputShortage]"
+						size = { 25 25 }
+						texture = "gfx/interface/icons/generic_icons/goods_shortage.dds"
+						tooltip = "GOODS_OUTPUT_PENALTY_TOOLTIP"
+					}
+
+					### EMPLOYMENT WARNING
+					vbox = {
+						size = { 20 40 }
+						visible = "[And(And(LessThan_CFixedPoint(Building.GetEmploymentPercentage, GetDefine('NGUI', 'BUILDING_CONSIDERED_FULLY_EMPLOYED')), Building.IsActive), Not(Building.IsSubsistenceBuilding))]"
+						spacing = 1
+						### EMPLOYMENT WARNING
+						hbox= {
+							visible = "[Not(Building.ShouldShowAsHiring)]"
+							spacing = 2
+							icon = {
+								size = { 15 15 }
+								texture = "gfx/interface/icons/generic_icons/employment_not_full.dds"
+								tooltip = "NOT_FULLY_EMPLOYED"
+							}
+							textbox = {
+								size = { 5 15 }
+								align = center|nobaseline
+								visible = "[And(And(Not(Building.IsGovernmentFunded),Not(Building.IsSubsidized)),LessThanOrEqualTo_CFixedPoint(Building.GetBalance, '(CFixedPoint)0'))]"
+								fontsize = 10
+								raw_text = "@money!"
+								tooltip = "[Building.GetBalanceDesc]"
+							}
+							textbox = {
+								size = { 5 15 }
+								align = center|nobaseline
+								visible = "[Or(Or(Building.IsGovernmentFunded,Building.IsSubsidized),GreaterThan_CFixedPoint(Building.GetBalance, '(CFixedPoint)0'))]"
+								fontsize = 12
+								text = "[AddTextIf(Not(State.HasInsufficientQualificationsForAvailablePositions),'@green_checkmark!')][AddTextIf(State.HasInsufficientQualificationsForAvailablePositions,'@red_cross!')]"
+								tooltip = "[State.GetPotentialQualificationsDesc]"
+							}
+						}
+						icon = {
+							visible = "[Building.ShouldShowAsHiring]"
+							size = { 15 15 }
+							texture = "gfx/interface/icons/generic_icons/employment_not_full_hiring.dds"
+							tooltip = "TOOLTIP_BUILDING_HIRING"
+						}
+						widget = {
+							size = { 100% 5 }
+	
+							default_progressbar_horizontal = {
+								size = { 100% 100% }
+								alpha = "[TransparentIfFalse(Building.IsActive)]"
+								tooltip = "TOOLTIP_BUILDING_EMPLOYMENT"
+	
+								blockoverride "values" {
+									min = 0
+									max = 1
+									value = "[FixedPointToFloat(Building.GetEmploymentPercentage)]"
+								}
+							}
+						}
+						textbox = {
+							size = { 100% 15 }
+							fontsize = 10
+							text = "[Subtract_int64(Building.GetNoOfEmployed,Building.GetEmployeeCap)|Dv]"
+							align = center|nobaseline
+							tooltip = "TOOLTIP_BUILDING_EMPLOYMENT"
+						}
+					}
+				}
+			}
+		}
+
+		flowcontainer = {
+			minimumsize = { 205 40 }
+			datamodel = "[Building.AccessProductionMethodGroups]"
+			spacing = 1
+
+			item = {
+				widget = {
+					size = { 40 40 }
+					visible = "[Or(Or(Building.IsActive,EqualTo_string(Building.GetNameNoFormatting,'Conscription Center')),IsValid(Building.CancelConstruction))]"
+					datacontext = "[Building.AccessProductionMethod(ProductionMethodGroup.Self)]"
+					datacontext = "[ProductionMethod]"
+					datacontext = "[Building]"
+					datacontext = "[ProductionMethodGroup]"
+					using = tooltip_above
+
+					tooltip = "CHANGE_FROM_CURRENT_PRODUCTION_METHOD_TOOLTIP"
+
+					button = {
+						visible = "[NotEqualTo_int32( GetDataModelSize( ProductionMethodGroup.AccessBuildingProductionMethods( Building.Self ) ), '(int32)1' )]"
+						using = expand_button_bg_dropdown
+						size = { 40 40 }
+						enabled = "[Building.IsOwner( GetPlayer.Self )]"
+						onclick = "[RightClickMenuManager.ToggleSwitchProductionMethodMenu(Building.AccessSelf, ProductionMethodGroup.AccessSelf, PdxGuiWidget.AccessSelf)]"
+					}
+
+					icon = {
+						size = { 35 35 }
+						parentanchor = center
+						texture = "[ProductionMethod.GetTexture]"
+					}
+					#icon = {
+					#	visible = "[ObjectsEqual(ProductionMethod.Self,DataModelFirst(ProductionMethodGroup.Self,'(int32)1'))]"
+					#	size = { 100% 100% }
+					#	texture = "gfx/interface/buttons/default_button_frame_map_interaction.dds"
+					#}
+				}
+			}
+		}
+
+		widget = {
+			size = { 235 40 }
+
+			hbox = {
+				margin = { 1 0 }
+				spacing = 1
+
+				widget = {
+					size = { 130 40 }
+
+					hbox = {
+						spacing = 1
+
+						textbox = {
+							layoutpolicy_horizontal = expanding
+							visible = "[Building.IsActive]"
+							text = "[Building.GetExpansionLevelDesc]"
+							using = tooltip_above
+							fontsize_min = 10
+							elide = right
+							align = left|nobaseline
+						}
+
+						textbox = {
+							layoutpolicy_horizontal = expanding
+							visible = "[Not(Building.IsActive)]"
+							alpha = 0.5
+							text = "[Building.GetExpansionLevelDesc]"
+							using = tooltip_above
+							fontsize_min = 10
+							elide = right
+							align = left|nobaseline
+						}
+
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							visible = "[And(And(And(Not(Building.IsGovernmentFunded), Building.IsActive), Not(Building.IsSubsidized)), Not(Building.IsSubsistenceBuilding))]"
+							textbox = {
+								#size = { 100% 50% }
+								layoutpolicy_vertical = expanding
+								alpha = "[TransparentIfFalse(Building.IsActive)]"
+								fontsize = 14
+								raw_text = "@money![Building.GetAverageAnnualEarningsPerEmployeeFormatted|v1+]"
+								tooltip = "TOOLTIP_BUILDING_PRODUCTIVITY"
+								tooltipwidget = {
+									GraphTooltip_Productivity = {}
+								}
+								using = tooltip_above
+								align = left|nobaseline
+							}
+							textbox = {
+								layoutpolicy_vertical = expanding
+								alpha = "[TransparentIfFalse(Building.IsActive)]"
+								fontsize = 14
+								raw_text = " @wage![Building.GetAverageAnnualWage|v1]"
+								tooltip = TOOLTIP_BUILDING_AVERAGE_WAGE
+								align = left|nobaseline
+							}
+						}
+
+						widget = {
+							size = { 50 23 }
+							visible = "[And(Building.IsGovernmentFunded, Building.IsActive)]"
+
+							icon = {
+								visible = "[And(Building.IsGovernmentFunded, Building.IsActive)]"
+								texture = "gfx/interface/icons/generic_icons/government_building_icon.dds"
+								size = { 23 23 }
+								tooltip = "TOOLTIP_BUILDINGS_BUDGET"
+								using = tooltip_above
+							}
+						}
+
+						widget = {
+							size = { 20 20 }
+						}
+					}
+
+					### subsidize
+					widget = {
+						parentanchor = right|vcenter
+						size = { 80 30 }
+						
+						textbox = {
+							datacontext = "[Building]"
+							fontsize = 14
+							raw_text = "#N @money!#bold -[Building.GetSubsidies|D]#!"
+							tooltip = "[Building.GetSubsidiesDesc]"
+							autoresize = yes
+							position = { 0 0 }
+							align = left|nobaseline
+							parentanchor = right|vcenter
+							visible = "[And(Building.GetBuildingType.CanBeSubsidized,Building.IsSubsidized)]"
+							alpha = 0
+							
+							state = {
+								name = _show
+								position_x = -34
+								alpha = 1
+								duration = 0.2
+								using = Animation_Curve_Default
+							}
+							state = {
+								name = _hide
+								alpha = 0
+								duration = 0.4
+								position_x = 0
+								using = Animation_Curve_Default
+							}
+						}
+						
+						widget = {
+							size = { 30 30 }
+							parentanchor = right
+							
+							icon = {
+								using = rotate_glow_blue
+								size = { 130% 130% }
+								visible = "[And(Building.GetBuildingType.CanBeSubsidized,Building.IsSubsidized)]"
+								alwaystransparent = yes
+								parentanchor = center
+								using = default_fade_in_out
+							}
+							button_icon_round_action = {
+								size = { 100% 100% }
+								visible = "[And(Building.GetBuildingType.CanBeSubsidized,Building.IsSubsidized)]"
+								enabled = "[IsValid( Building.ToggleSubsidies )]"
+								onclick = "[Execute( Building.ToggleSubsidies )]" 
+								tooltip = SUBSIDIZED_YES
+								
+								blockoverride "icon" {
+									texture = "gfx/interface/production_methods/subsidized.dds"
+								}
+								blockoverride "icon_size" {
+									size = { 80% 80% }
+								}
+							}
+							
+							button_icon_round_action = {
+								size = { 100% 100% }							
+								visible = "[And(Building.GetBuildingType.CanBeSubsidized,Not(Building.IsSubsidized))]"
+								enabled = "[IsValid( Building.ToggleSubsidies )]"
+								onclick = "[Execute( Building.ToggleSubsidies )]" 
+								tooltip = SUBSIDIZED_NO
+								
+								blockoverride "icon" {
+									texture = "gfx/interface/production_methods/subsidized_not.dds"
+								}
+								blockoverride "icon_size" {
+									size = { 80% 80% }
+								}
+							}
+						}
+					}
+				}
+
+				hbox = {
+					layoutpolicy_horizontal = expanding
+					layoutpolicy_vertical = expanding
+					vbox = {
+					widget = {
+						size = { 40 10 }
+						alpha = "[TransparentIfFalse(Building.IsActive)]"
+						visible = "[And(GreaterThan_CFixedPoint(Building.GetMaxCashReserves, '(CFixedPoint)0'), Building.IsActive)]"
+						using = cash_reserves_tooltip_with_graph
+
+						gold_progressbar_horizontal = {
+							size = { 100% 100% }
+							alpha = "[TransparentIfFalse(Building.IsActive)]"
+							visible = "[And(GreaterThan_CFixedPoint(Building.GetMaxCashReserves, '(CFixedPoint)0'), Building.IsActive)]"
+
+							blockoverride "glow_size" {
+								size = { 40 100% }
+							}
+
+							blockoverride "values" {
+								min = 0
+								max = "[FixedPointToFloat(Building.GetMaxCashReserves)]"
+								value = "[FixedPointToFloat(Building.GetCurrentCashReserves)]"
+							}
+						}
+
+						changed_value_decreased_progressbar_horizontal = {
+							size = { 100% 100% }
+							visible = "[GreaterThan_CFixedPoint(GetPrevTrendValue(Building.GetCashReservesTrend), GetTrendValue(Building.GetCashReservesTrend))]"
+
+							blockoverride "second_progressbar" {}
+
+							blockoverride "values" {
+								min = 0
+								max = "[FixedPointToFloat(Building.GetMaxCashReserves)]"
+								value = "[FixedPointToFloat(Building.GetCurrentCashReserves)]"
+							}
+							blockoverride "glow_size" {
+								size = { 40 100% }
+							}
+							blockoverride "arrow_texture_density" {
+								texture_density = 13 #use to match height of progressbar
+							}
+						}
+
+						changed_value_increased_progressbar_horizontal = {
+							size = { 100% 100% }
+							visible = "[GreaterThan_CFixedPoint(GetTrendValue(Building.GetCashReservesTrend), GetPrevTrendValue(Building.GetCashReservesTrend))]"
+
+							blockoverride "second_progressbar" {}
+
+							blockoverride "values" {
+								min = 0
+								max = "[FixedPointToFloat(Building.GetMaxCashReserves)]"
+								value = "[FixedPointToFloat(Building.GetCurrentCashReserves)]"
+							}
+							blockoverride "glow_size" {
+								size = { 40 100% }
+							}
+							blockoverride "arrow_texture_density" {
+								texture_density = 13 #use to match height of progressbar
+							}
+						}
+
+						progressbar_highlight = {
+							visible = "[GreaterThanOrEqualTo_CFixedPoint(Building.GetCurrentCashReserves, Building.GetMaxCashReserves)]"
+						}
+					}
+					}
+
+					widget = {
+						visible = "[Not(And(GreaterThan_CFixedPoint(Building.GetMaxCashReserves, '(CFixedPoint)0'), Building.IsActive))]"
+						size = { 40 10 }
+					}
+				}
+
+				widget = {
+					size = { 60 40 }
+
+					### CANCEL CONSTRUCTION
+					button_icon_minus_action = {
+						parentanchor = left|vcenter
+						size = { 29 29 }
+						tooltip = "[Building.GetCancelConstructionTooltip]"
+						visible = "[IsValid( Building.CancelConstruction )]"
+						onclick = "[Execute( Building.CancelConstruction )]"
+						using = tooltip_below
+					}
+
+					### EXPAND BUTTON
+					button_icon_plus_action = {
+						parentanchor = right|vcenter
+						visible = "[Or( And( Not( Building.IsValid ), IsValid( Building.QueueConstruction ) ), Not(Building.HasReachedLevelCap) )]"
+						tooltip = "[Building.GetQueueConstructionTooltip]"
+						size = { 29 29 }
+						onclick = "[Execute( Building.QueueConstruction )]"
+						enabled = "[IsValid( Building.QueueConstruction )]"
+					}
+				}
+			}
+		}
+	}
+	type constr_queue_item = widget {
+		size = { 12 12 }
+		#visible = "[And(Building.HasConstructionQueued,GreaterThan_CFixedPoint(Building.MakeScope.ScriptValue('building_infra_usage_per_level'),'(CFixedPoint)0'))]"
+		visible = "[Building.HasConstructionQueued]"
+		tooltipwidget = {
+			FancyTooltip_Building = {}
+		}
+		icon = {
+			size = { 100% 100% }
+			alpha = 0.5
+			texture = "[Building.GetTexture]"
+		}
+		textbox = {
+			visible = "[Not(Or(Building.IsBuildingType('building_railway'),Building.IsBuildingType('building_port')))]"
+			size = { 95% 95% }
+			elide = right
+			fontsize = 13
+			fontsize_min = 7
+			align = center|nobaseline
+			text = "[Multiply_CFixedPoint(Building.MakeScope.ScriptValue('building_infra_usage_per_level'),IntToFixedPoint(Building.GetExpansionLevelsInQueue))|R0]"
+		}
+		textbox = {
+			visible = "[Or(Building.IsBuildingType('building_railway'),Building.IsBuildingType('building_port'))]"
+			size = { 95% 95% }
+			elide = right
+			fontsize = 13
+			fontsize_min = 7
+			align = center|nobaseline
+			text = "[Multiply_CFixedPoint(Multiply_CFixedPoint(Building.MakeScope.ScriptValue('building_infra_prod_per_level'),Add_CFixedPoint('(CFixedPoint)1',State.GetModifier.GetValueFor('state_infrastructure_mult'))),IntToFixedPoint(Building.GetExpansionLevelsInQueue))|G0]"
+		}
+	}
+	type infra_pm_item = widget {
+		datacontext = "[Building.AccessProductionMethod(ProductionMethodGroup.Self)]"
+		block "visible" {
+			visible = "[Or(EqualTo_string(ProductionMethodGroup.GetKey,'pmg_base_building_railway'),EqualTo_string(ProductionMethodGroup.GetKey,'pmg_passenger_trains'))]"
+		}
+		block "size" {
+			size = { 15 15 }
+		}
+		using = tooltip_above
+		tooltip = "CHANGE_FROM_CURRENT_PRODUCTION_METHOD_TOOLTIP"
+		button = {
+			visible = "[NotEqualTo_int32( GetDataModelSize( ProductionMethodGroup.AccessBuildingProductionMethods( Building.Self ) ), '(int32)1' )]"
+			using = expand_button_bg_dropdown
+			size = { 100% 100% }
+			enabled = "[Building.IsOwner( GetPlayer.Self )]"
+			onclick = "[RightClickMenuManager.ToggleSwitchProductionMethodMenu(Building.AccessSelf, ProductionMethodGroup.AccessSelf, PdxGuiWidget.AccessSelf)]"
+		}
+		icon = {
+			size = { 100% 100% }
+			parentanchor = center
+			texture = "[ProductionMethod.GetTexture]"
+		}
+	}
+}

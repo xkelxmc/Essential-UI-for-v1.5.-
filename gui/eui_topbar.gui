@@ -1,0 +1,699 @@
+@secondary_icon_size = 26
+
+types topbar_components
+{
+	### SECONDARY ICONS
+	type topbar_secondary_icons = container {
+		position = { 130 0 }
+
+		container = {
+			visible = "[GetMetaPlayer.GetPlayedOrObservedCountry.IsValid]"
+			block "animation" {
+				position = { 0 0 }
+				alpha = 0
+
+				state = {
+					name = show_topbar_secondary_stats
+					alpha = 1
+					position_y = 44
+					duration = 0.15
+					using = Animation_Curve_Default
+				}
+				state = {
+					name = hide_topbar_secondary_stats
+					alpha = 0
+					position_y = 0
+					duration = 0.15
+					using = Animation_Curve_Default
+				}
+			}
+
+			background = {
+				using = dark_area_rounded
+				margin = { 0 -5 }
+				margin_left = 5
+			}
+
+			flowcontainer = {
+				visible = "[Not(GetVariableSystem.Exists('topbar_eiu_settings'))]"
+				flowcontainer = {
+					name = "tutorial_highlight_gdp"
+					minimumsize = { 75 30 }
+					maximumsize = { 75 30 }
+					spacing = 2
+					using = GDP_tooltip_with_graph
+					using = tooltip_below
+
+					onmousehierarchyenter = "[SelectMapModeByKey('mm_gdp')]"
+					onmousehierarchyleave = "[UnforceMapMode]"
+					alwaystransparent = no
+
+					icon = {
+						texture = "gfx/interface/icons/generic_icons/gdp.dds"
+						size = { @secondary_icon_size @secondary_icon_size }
+						parentanchor = vcenter
+					}
+					textbox = {
+						parentanchor = vcenter
+						raw_text = "#variable [Country.GetGDP|D]#!"
+						autoresize = yes
+						align = left|nobaseline
+						fontsize = 14
+					}
+				}
+
+				flowcontainer = { #2-3 fps
+					minimumsize = { 75 30 }
+					maximumsize = { 75 30 }
+					spacing = 2
+					using = literacy_tooltip_with_graph
+					using = tooltip_below
+					onmousehierarchyenter = "[SelectMapModeByKey('mm_literacy')]"
+					onmousehierarchyleave = "[UnforceMapMode]"
+					alwaystransparent = no
+
+					icon = {
+						texture = "gfx/interface/icons/generic_icons/literacy.dds"
+						size = { @secondary_icon_size @secondary_icon_size }
+						parentanchor = vcenter
+					}
+					textbox = {
+						parentanchor = vcenter
+						raw_text = "#variable [Country.GetIncorporatedLiteracyRate|%1]#!"
+						autoresize = yes
+						align = left|nobaseline
+						fontsize = 14
+					}
+				}
+				flowcontainer = {
+					minimumsize = { 70 30 }
+					maximumsize = { 70 30 }
+					spacing = 2
+					using = average_standard_of_living_tooltip_with_graph
+					using = tooltip_below
+					onmousehierarchyenter = "[SelectMapModeByKey('mm_standard_of_living')]"
+					onmousehierarchyleave = "[UnforceMapMode]"
+					alwaystransparent = no
+
+					textbox = {
+						parentanchor = vcenter
+						text = "[LabelingHelper.GetIconForStandardOfLivingCFixedPoint(Country.GetAverageSoLByPopulation)|v]"
+						autoresize = yes
+						align = left|nobaseline
+						fontsize = 21 #hack to get the same size on the text icon as the rest in the top bar
+					}
+
+					textbox = {
+						parentanchor = vcenter
+						text = "[Country.GetFormattedStandardOfLivingAll|v]"
+						autoresize = yes
+						align = left|nobaseline
+						margin_left = 3
+						fontsize = 14
+					}
+				}
+				flowcontainer = {
+					minimumsize = { 120 30 }
+					maximumsize = { 120 30 }
+					spacing = 2
+					using = population_tooltip_with_graph
+					using = tooltip_below
+					onmousehierarchyenter = "[SelectMapModeByKey('mm_population')]"
+					onmousehierarchyleave = "[UnforceMapMode]"
+					alwaystransparent = no
+
+					icon = {
+						texture = "gfx/interface/icons/generic_icons/population.dds"
+						size = { @secondary_icon_size @secondary_icon_size }
+						parentanchor = vcenter
+					}
+					textbox = {
+						parentanchor = vcenter
+						raw_text = "#variable [Country.GetTotalPopulation|D]#!"
+						autoresize = yes
+						align = left|nobaseline
+						fontsize = 14
+					}
+					flowcontainer = {
+						direction = vertical
+						parentanchor = vcenter
+						button = {
+							size = { 50 13 }
+							onmousehierarchyenter = "[PdxGuiInterruptThenTriggerAllAnimations('hide_unemployed_alert_toggle','show_unemployed_alert_toggle')]"
+							onmousehierarchyleave = "[PdxGuiInterruptThenTriggerAllAnimations('show_unemployed_alert_toggle','hide_unemployed_alert_toggle')]"
+							tooltip = "TOPBAR_UNEMPLOYMENT_ALERT_TOGGLE"
+							using = tooltip_ws
+							checkbutton = {
+								alpha = 0
+								state = {
+									name = show_unemployed_alert_toggle
+									delay = 0.15
+									alpha = 1
+									duration = 0.15
+									using = Animation_Curve_Default
+								}
+								state = {
+									name = hide_unemployed_alert_toggle
+									alpha = 0
+									duration = 0
+									using = Animation_Curve_Default
+								}
+								using = check_button
+								size = { 13 13 }
+								onclick = "[GetScriptedGui('country_unemployed_alert_toggle').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+								checked = "[EqualTo_CFixedPoint(AccessPlayer.MakeScope.Var('show_unemployed_alert').GetValueWithDefault('(CFixedPoint)1'),'(CFixedPoint)1')]"
+							}
+							icon = {
+								state = {
+									name = show_unemployed_alert_toggle
+									delay = 0.15
+									alpha = 0
+									duration = 0.15
+									using = Animation_Curve_Default
+								}
+								state = {
+									name = hide_unemployed_alert_toggle
+									alpha = 1
+									duration = 0
+									using = Animation_Curve_Default
+								}
+								size = { 13 13 }
+								texture = "gfx/interface/icons/pops_icons/unemployed.dds"
+							}
+							textbox = {
+								position = { 15 0 }
+								maximumsize = { 35 13 }
+								layoutpolicy_horizontal = expanding
+								fontsize = 12
+								autoresize = yes
+								elide = right
+								fontsize_min = 9
+								align = nobaseline
+								raw_text = "[Country.GetUnemployedWorkingAdults|D-]"
+							}
+						}
+						textbox = {
+							maximumsize = { 50 13 }
+							fontsize = 12
+							autoresize = yes
+							elide = right
+							fontsize_min = 9
+							align = nobaseline
+							raw_text = "@peasants! [Country.GetSubsistingWorkingAdults|Dv]"
+						}
+					}
+				}
+				flowcontainer = {
+					#minimumsize = { 60 26 }
+					#maximumsize = { 60 26 }
+					minimumsize = { 55 26 }
+					maximumsize = { 55 26 }
+					parentanchor = vcenter
+					direction = vertical
+					flowcontainer = {
+						spacing = 2
+						using = radicals_tooltip_with_graph
+						#using = tooltip_below
+						onmousehierarchyenter = "[SelectMapModeByKey('mm_radicals')]"
+						onmousehierarchyleave = "[UnforceMapMode]"
+						alpha = "[TransparentIfZero_int64(Country.GetNumRadicals)]"
+						alwaystransparent = no
+						icon = {
+							texture = "gfx/interface/icons/generic_icons/population_radical.dds"
+							size = { 13 13 }
+						}
+						textbox = {
+							maximumsize = { 50 13 }
+							fontsize = 12
+							autoresize = yes
+							elide = right
+							fontsize_min = 9
+							align = nobaseline
+							raw_text = "[Country.GetNumRadicals|DR]"
+						}
+					}
+					flowcontainer = {
+						spacing = 2
+						using = loyalists_tooltip_with_graph
+						using = tooltip_below
+						onmousehierarchyenter = "[SelectMapModeByKey('mm_loyalists')]"
+						onmousehierarchyleave = "[UnforceMapMode]"
+						alpha = "[TransparentIfZero_int64(Country.GetNumLoyalists)]"
+						alwaystransparent = no
+						icon = {
+							texture = "gfx/interface/icons/generic_icons/population_loyalist.dds"
+							size = { 13 13 }
+						}
+						textbox = {
+							maximumsize = { 50 13 }
+							fontsize = 12
+							autoresize = yes
+							elide = right
+							fontsize_min = 9
+							align = nobaseline
+							raw_text = "[Country.GetNumLoyalists|DG]"
+						}
+					}
+				}
+
+				button = { #1-2 fps
+					#size = { 65 30 }
+					size = { 52 30 }
+					flowcontainer = {
+						parentanchor = vcenter
+						spacing = 2
+						datacontext = "[Country.GetGovernmentLegitimacyLevel]"
+						using = tooltip_below
+						tooltip = "LEGITIMACY_LEVEL_ACTIVE_TOOLTIP"
+						icon = {
+							parentanchor = vcenter
+							texture = "gfx/interface/icons/generic_icons/legitimacy.dds"
+							size = { @secondary_icon_size @secondary_icon_size }
+							alwaystransparent = yes
+						}
+						textbox = {
+							parentanchor = vcenter
+							text = "[Country.GetGovernmentLegitimacy|Dv]"
+							autoresize = yes
+							align = left|nobaseline
+							fontsize = 14
+							alwaystransparent = yes
+						}
+					}
+				}
+				flowcontainer = {
+					#minimumsize = { 70 30 }
+					#maximumsize = { 70 30 }
+					minimumsize = { 55 30 }
+					maximumsize = { 55 30 }
+					spacing = 2
+					using = tooltip_below
+					onmousehierarchyenter = "[SelectMapModeByKey('mm_infamy')]"
+					onmousehierarchyleave = "[UnforceMapMode]"
+					alwaystransparent = no
+					tooltip = "[Country.GetInfamyDesc]"		
+
+					icon = {
+						texture = "[Country.GetInfamyIconTexture]"
+						size = { @secondary_icon_size @secondary_icon_size }
+						parentanchor = vcenter
+					}
+					textbox = {
+						parentanchor = vcenter
+						text = "[Country.GetInfamy|Dv-]"
+						#raw_text = "[GetString_CVector4f(Country.GetInfamyColor)]"
+						autoresize = yes
+						align = left|nobaseline
+						fontsize = 14
+						#fontcolor = { 1 1 0 0 } #doesn't work?
+						#fontcolor = { 1 1 1 0 }
+						#default_format = "#color:{0,1,0}"
+						#fontcolor = "[Country.GetInfamyColor]" #doesn't work?
+						#fontcolor = "[GetString_CVector4f(Country.GetInfamyColor)]" #doesn't work?
+					}
+				}
+			}
+			flowcontainer = {
+				visible = "[GetVariableSystem.Exists('topbar_eiu_settings')]"
+				spacing = 8
+				flowcontainer = {
+					dropdown_menu_standard = {
+						blockoverride "dropdown_size" {
+							size = { 69 30 }
+						}
+						blockoverride "dropdown_properties" {
+							datamodel = "[GetLegitimacyLevels]"
+							onselectionchanged = "[PdxGuiTriggerAllAnimations('save_legitimacy_level')]"
+						}
+						blockoverride "dropdown_list_maxsize" {
+							maximumsize = { 230 -1 }
+						}
+						active_item = {
+							flowcontainer = {
+								state = {
+									name = save_legitimacy_level
+									on_finish = "[GetScriptedGui('country_save_legitimacy_level_alert').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('legitimacy_level',MakeScopeValue(IntToFixedPoint(LegitimacyLevel.GetLowerBound))).End)]"
+								}
+								icon = {
+									parentanchor = vcenter
+									size = { @secondary_icon_size @secondary_icon_size }
+									texture = "gfx/interface/icons/generic_icons/legitimacy.dds"
+									alwaystransparent = yes
+									icon = {
+										size = { 28 28 }
+										parentanchor = center|vcenter
+										texture = "gfx/interface/current_situations/current_situation_button_frame.dds"
+									}
+								}
+								textbox = {
+									size = { 30 30 }
+									parentanchor = vcenter
+									margin_left = 7
+									text = "[FixedPointToInt(AccessPlayer.MakeScope.Var('legitimacy_level_alert').GetValue)]"
+									elide = right
+									align = nobaseline
+								}
+								icon = {
+									parentanchor = vcenter
+									size = { 13 16 }
+									texture = "gfx/interface/buttons/expand_arrow_expanded.dds"
+								}
+								alwaystransparent = no
+								tooltip = "TOPBAR_LEGITIMACY_ALERT"
+							}
+						}
+						blockoverride "dropdown_item_properties" {
+							size = { 230 30 }
+				                	widget = {
+								size = { 100% 100% }
+								icon = {
+									visible = "[EqualTo_int32(FixedPointToInt(AccessPlayer.MakeScope.Var('legitimacy_level_alert').GetValue),LegitimacyLevel.GetLowerBound)]"
+									using = highlighted_square_selection
+								}
+								textbox = {
+									size = { 100% 100% }
+									parentanchor = vcenter
+									margin_left = 7
+									text = "[LegitimacyLevel.GetName]"
+									elide = right
+									align = nobaseline
+								}
+							}
+						}
+					}
+				}
+				flowcontainer = {
+					parentanchor = vcenter
+					icon = {
+						size = { @secondary_icon_size @secondary_icon_size }
+						texture = "gfx/interface/icons/pops_icons/unemployed.dds"
+						icon = {
+							size = { 28 28 }
+							parentanchor = center|vcenter
+							texture = "gfx/interface/current_situations/current_situation_button_frame.dds"
+						}
+					}
+					checkbutton = {
+						parentanchor = vcenter
+						size = { 18 18 }
+						using = check_button
+						onclick = "[GetScriptedGui('country_unemployed_alert_toggle').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+						checked = "[EqualTo_CFixedPoint(AccessPlayer.MakeScope.Var('show_unemployed_alert').GetValueWithDefault('(CFixedPoint)1'),'(CFixedPoint)1')]"
+					}
+					tooltip = "TOPBAR_UNEMPLOYMENT_ALERT_TOGGLE"
+				}
+				flowcontainer = {
+					spacing = 3
+					icon = {
+						parentanchor = vcenter
+						size = { @secondary_icon_size @secondary_icon_size }
+						texture = "gfx/interface/icons/state_status_icons/has_construction_paused.dds"
+					}
+					eui_dropdown = {
+						size = { 38 30 }
+						datamodel = "[GetGlobalList('gui_poll_delays_list')]"
+						onselectionchanged = "[PdxGuiTriggerAllAnimations('save_construction_paused_poll_delay')]"
+						blockoverride "dropdown_list_maxsize" { maximumsize = { 39 -1 }	}
+						blockoverride "dropdown_item_highlight" { visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_construction_paused_poll_delay').GetValue,Scope.GetValue)]" }
+						blockoverride "dropdown_item_size" { size = { 39 30 } }
+						blockoverride "dropdown_save_state" {
+							name = save_construction_paused_poll_delay
+							on_finish = "[GetScriptedGui('gui_save_construction_paused_poll_delay').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('poll_delay',MakeScopeValue(Scope.GetValue)).End)]"
+						}
+						blockoverride "dropdown_active_item_context" { datacontext = "[GetGlobalVariable('gui_construction_paused_poll_delay')]" }
+						blockoverride "dropdown_item" { textbox = {
+							text = "[Select_CFixedPoint(EqualTo_CFixedPoint(Scope.GetValue,'(CFixedPoint)0'),'(CFixedPoint)0.5',Scope.GetValue)]"
+							autoresize = yes
+							elide = right
+							align = nobaseline
+						} }
+						blockoverride "dropdown_tooltip" { tooltip = "TOPBAR_CONSTRUCTION_PAUSED_POLL_DELAY" }
+					}
+				}
+				flowcontainer = {
+					spacing = 3
+					icon = {
+						parentanchor = vcenter
+						size = { @secondary_icon_size @secondary_icon_size }
+						texture = "gfx/interface/icons/state_status_icons/has_construction.dds"
+					}
+					eui_dropdown = {
+						size = { 38 30 }
+						datamodel = "[GetGlobalList('gui_poll_delays_list')]"
+						onselectionchanged = "[PdxGuiTriggerAllAnimations('save_construction_poll_delay')]"
+						blockoverride "dropdown_list_maxsize" { maximumsize = { 39 -1 }	}
+						blockoverride "dropdown_item_highlight" { visible = "[EqualTo_CFixedPoint(GetGlobalVariable('gui_construction_poll_delay').GetValue,Scope.GetValue)]" }
+						blockoverride "dropdown_item_size" { size = { 39 30 } }
+						blockoverride "dropdown_save_state" {
+							name = save_construction_poll_delay
+							on_finish = "[GetScriptedGui('gui_save_construction_poll_delay').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('poll_delay',MakeScopeValue(Scope.GetValue)).End)]"
+						}
+						blockoverride "dropdown_active_item_context" { datacontext = "[GetGlobalVariable('gui_construction_poll_delay')]" }
+						blockoverride "dropdown_item" { textbox = {
+							text = "[Select_CFixedPoint(EqualTo_CFixedPoint(Scope.GetValue,'(CFixedPoint)0'),'(CFixedPoint)0.5',Scope.GetValue)]"
+							autoresize = yes
+							elide = right
+							align = nobaseline
+						} }
+						blockoverride "dropdown_tooltip" { tooltip = "TOPBAR_CONSTRUCTION_POLL_DELAY" }
+					}
+				}
+			}
+			button_icon_round_toggle = {
+				position = { 498 0 }
+				size = { 24 24 }
+				parentanchor = vcenter
+				alpha = 0
+				state = {
+					name = show_topbar_secondary_stats
+					delay = 0.15
+					alpha = 1
+					duration = 0.15
+					using = Animation_Curve_Default
+				}
+				state = {
+					name = hide_topbar_secondary_stats
+					alpha = 0
+					duration = 0
+					using = Animation_Curve_Default
+				}
+				blockoverride "on_click" {
+					onclick = "[GetVariableSystem.Toggle('topbar_eiu_settings')]"
+				}
+				blockoverride "view_1" {
+					visible = "[Not(GetVariableSystem.Exists('topbar_eiu_settings'))]"
+				}
+				blockoverride "view_2" {
+					visible = "[GetVariableSystem.Exists('topbar_eiu_settings')]"
+				}
+				blockoverride "icon_1" {
+					texture = "gfx/frontend/interface/icons/flat_icons/settings.dds"
+					scale = 0.60
+					using = Master_Button_Modify_Texture
+				}
+				blockoverride "icon_2" {
+					texture = "gfx/interface/buttons/button_icons/back.dds"
+				}
+				blockoverride "tooltip_1" {
+					tooltip = "TOPBAR_SECONDARY_VIEW_SETTINGS"
+				}
+				blockoverride "tooltip_2" {
+					tooltip = "TOPBAR_SECONDARY_VIEW_BACK"
+				}
+			}
+			overlappingitembox = {
+				state = {
+					trigger_on_create = yes
+					next = show
+					on_start = "[PdxGuiWidget.Hide]"
+					on_finish = "[GetScriptedGui('create_poll_delays_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+				}
+				state = {
+					name = show
+					on_start = "[PdxGuiWidget.Show]"
+					on_finish = "[PdxGuiTriggerAllAnimations('levelq')]"
+					#next = hide
+					on_finish = "[PdxGuiWidget.TriggerAnimation(SelectLocalization(IsGamePaused,'hide[GetGlobalVariable(\\'gui_construction_paused_poll_delay\\').GetValue]','hide[GetGlobalVariable(\\'gui_construction_poll_delay\\').GetValue]'))]"
+				}
+				state = {
+					name = hide
+					duration = 0.5
+					on_start = "[PdxGuiWidget.Hide]"
+					next = show
+				}
+				state = {
+					name = hide0
+					duration = 0.5
+					on_start = "[PdxGuiWidget.Hide]"
+					next = show
+				}
+				state = {
+					name = hide1
+					duration = 1
+					on_start = "[PdxGuiWidget.Hide]"
+					next = show
+				}
+				state = {
+					name = hide2
+					duration = 2
+					on_start = "[PdxGuiWidget.Hide]"
+					next = show
+				}
+				state = {
+					name = hide3
+					duration = 3
+					on_start = "[PdxGuiWidget.Hide]"
+					next = show
+				}
+				state = {
+					name = hide5
+					duration = 5
+					on_start = "[PdxGuiWidget.Hide]"
+					next = show
+				}
+				size = { 0 30 }
+				datamodel = "[AccessPlayer.AccessStates]"
+				item = {
+					widget = {
+						constr_queue_tamer_block = {
+							blockoverride "datamodel" {
+								datamodel = "[State.AccessUrbanBuildings]"
+							}
+						}
+						constr_queue_tamer_block = {
+							blockoverride "datamodel" {
+								datamodel = "[State.AccessCappedRuralBuildings]"
+							}
+						}
+						constr_queue_tamer_block = {
+							blockoverride "datamodel" {
+								datamodel = "[State.AccessUncappedRuralBuildings]"
+							}
+						}
+						constr_queue_tamer_block = {
+							blockoverride "datamodel" {
+								datamodel = "[State.AccessDevelopmentBuildings]"
+							}
+						}
+					}
+				}
+			}
+			overlappingitembox = {
+				size = { 0 30 }
+				state = {
+					trigger_on_create = yes
+					on_finish = "[GetScriptedGui('create_state_regions_list').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+				}
+				datamodel = "[GetGlobalList('state_regions')]"
+				item = {
+					widget = {
+						size = { 100% 100% }
+						datacontext = "[Scope.GetStateRegion]"
+						state = {
+							name = colonizable
+							trigger_on_create = yes
+							delay = 1
+							on_finish = "[GetScriptedGui('state_region_save_colonizable').Execute(GuiScope.SetRoot(StateRegion.MakeScope).AddScope('colonizable',MakeScopeBool(IsValid(StateRegion.Colonize))).End)]"
+							next = colonizable
+						}
+					}
+				}
+			}
+			overlappingitembox = {
+				size = { 0 30 }
+				state = {
+					name = save_religions
+					trigger_on_create = yes
+					delay = 5
+					on_finish = "[GetScriptedGui('country_clear_religions').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).End)]"
+					on_finish = "[PdxGuiTriggerAllAnimations('save_religion')]"
+					next = save_religions
+				}
+				datamodel = "[AccessPlayer.GetPopReligions]"
+				item = {
+					widget = {
+						size = { 100% 100% }
+						state = {
+							name = save_religion
+							on_finish = "[GetScriptedGui('country_save_religion').Execute(GuiScope.SetRoot(AccessPlayer.MakeScope).AddScope('religion',Religion.MakeScope).AddScope('is_discriminated',MakeScopeBool(Religion.IsDiscriminatedIn(GetPlayer.Self))).End)]"
+						}
+					}
+				}
+			}
+		}
+	}
+	type constr_queue_tamer_block = overlappingitembox {
+		size = { 100% 100% }
+		block "datamodel" {
+			datamodel = "[State.AccessDevelopmentBuildings]"
+		}
+		item = {
+			constr_queue_tamer_item = {}
+		}
+	}
+	type constr_queue_tamer_item = widget {
+		#visible = "[Building.HasConstructionQueued]"
+		visible = "[Or(Building.HasConstructionQueued,Building.IsCappedBuilding)]"
+		state = {
+			name = _hide #useful to immedietely update data, otherwise when constructing again old value will show up for a split second
+			next = levelq
+		}
+		state = {
+			name = levelq
+			on_finish = "[GetScriptedGui('state_save_building_levelq').Execute(GuiScope.SetRoot(State.MakeScope).AddScope('qbuilding',Building.MakeScope).AddScope('levelq',MakeScopeValue(IntToFixedPoint(Building.GetExpansionLevelsInQueue))).End)]"
+			on_finish = "[GetScriptedGui('state_save_btype_reachedcap').Execute(GuiScope.SetRoot(State.MakeScope).AddScope('btype',Building.GetBuildingType.MakeScope).AddScope('reachedcap',MakeScopeBool(Building.HasReachedLevelCap)).End)]"
+
+		}
+	}
+
+	type eui_dropdown = dropDown {
+		active_item = {
+			flowcontainer = {
+				parentanchor = vcenter
+				spacing = 2
+				state = { block "dropdown_save_state" {} }
+				flowcontainer = {
+					block "dropdown_active_item_context" {}
+					block "dropdown_item" {}
+				}
+				icon = {
+					parentanchor = vcenter
+					block "dropdown_arrow_size" { size = { 13 16 } }
+					texture = "gfx/interface/buttons/expand_arrow_expanded.dds"
+				}
+				block "dropdown_tooltip" {}
+				alwaystransparent = no
+			}
+		}
+		item = { button_dropdown = {
+			block "dropdown_item_size" { size = { 202 50 } }
+			flowcontainer = {
+				parentanchor = vcenter
+				margin = { 7 0 }
+				block "dropdown_item" {}
+			}
+			icon = {
+				block "dropdown_item_highlight" { visible = no }
+				using = highlighted_square_selection
+			}
+			button_trigger = none
+		} }
+		list = { scrollarea = {
+			position = { -7 32 }
+			block "dropdown_list_maxsize" {
+				minimumsize = { 202 -1 }
+				maximumsize = { 202 250 }
+			}
+			block "dropdown_list_properties" {}
+			autoresizescrollarea = yes
+			scrollbarpolicy_horizontal = always_off
+			using = dropdown_background_settings
+			scrollwidget = { dynamicgridbox = {
+				alwaystransparent = no
+			} }
+			scrollbar_vertical = {
+				using = Scrollbar_Vertical
+			}
+		} }
+	}
+}

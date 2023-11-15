@@ -1,0 +1,414 @@
+﻿building_employment_building_food_industry = {
+	add = building_employment_pmg_base_building_food_industry
+	add = building_employment_pmg_canning
+	add = building_employment_pmg_distillery
+	add = building_employment_pmg_automation_building_food_industry
+	add = building_employment_pmg_ownership_capital_building_food_industry
+}
+building_employment_building_textile_mills = {
+	add = building_employment_pmg_base_building_textile_mills
+	add = building_employment_pmg_luxury_building_textile_mills
+	add = building_employment_pmg_automation_building_textile_mills
+	add = building_employment_pmg_ownership_capital_building_textile_mills
+}
+building_employment_building_furniture_manufacturies = {
+	add = building_employment_pmg_base_building_furniture_manufacturies
+	add = building_employment_pmg_luxury_building_furniture_manufacturies
+	add = building_employment_pmg_automation_building_furniture_manufacturies
+	add = building_employment_pmg_ownership_capital_building_furniture_manufacturies
+}
+building_employment_building_glassworks = {
+	add = building_employment_pmg_base_building_glassworks
+	add = building_employment_pmg_luxury_building_glassworks
+	add = building_employment_pmg_glassblowing
+	add = building_employment_pmg_ownership_capital_building_glassworks
+}
+building_employment_building_tooling_workshops = {
+	add = building_employment_pmg_base_building_tooling_workshops
+	add = building_employment_pmg_automation_building_tooling_workshops
+	add = building_employment_pmg_ownership_capital_building_tooling_workshops
+}
+building_employment_building_paper_mills = {
+	add = building_employment_pmg_base_building_paper_mills
+	add = building_employment_pmg_automation_building_paper_mills
+	add = building_employment_pmg_ownership_capital_building_paper_mills
+}
+building_employment_building_chemical_plants = {
+	add = building_employment_pmg_fertilizer_production
+	add = building_employment_pmg_explosives_building_chemical_plants
+	add = building_employment_pmg_ownership_capital_building_chemical_plants
+}
+building_employment_building_synthetics_plants = {
+	add = building_employment_pmg_synthetic_dyes
+	add = building_employment_pmg_synthetic_silk
+	add = building_employment_pmg_ownership_capital_building_synthetics_plants
+}
+building_employment_building_steel_mills = {
+	add = building_employment_pmg_steelmaking_process
+	add = building_employment_pmg_automation_building_steel_mills
+	add = building_employment_pmg_ownership_capital_building_steel_mills
+}
+building_employment_building_motor_industry = {
+	add = building_employment_pmg_base_building_motor_industry
+	add = building_employment_pmg_automobile_production
+	add = building_employment_pmg_automation_building_motor_industry
+	add = building_employment_pmg_ownership_capital_building_motor_industry
+}
+building_employment_building_shipyards = {
+	add = building_employment_pmg_base_building_shipyards
+	add = building_employment_pmg_military_base
+	add = building_employment_pmg_ownership_capital_building_shipyards
+}
+building_employment_building_war_machine_industry = {
+	add = building_employment_pmg_aeroplanes
+	add = building_employment_pmg_tanks
+	add = building_employment_pmg_ownership_capital_building_war_machine_industry
+}
+building_employment_building_electrics_industry = {
+	add = building_employment_pmg_telephones_category
+	add = building_employment_pmg_radios_category
+	add = building_employment_pmg_ownership_capital_building_electrics_industry
+}
+building_employment_building_arms_industry = {
+	add = building_employment_pmg_firearms_manufacturing
+	add = building_employment_pmg_foundries
+	add = building_employment_pmg_automation_building_arms_industry
+	add = building_employment_pmg_ownership_capital_building_arms_industry
+}
+building_employment_building_munition_plants = {
+	add = building_employment_pmg_base_building_munition_plants
+	add = building_employment_pmg_automation_building_munition_plants
+	add = building_employment_pmg_ownership_capital_building_munition_plants
+}
+
+building_employment_building_rye_farm = {
+	add = building_employment_pmg_base_building_rye_farm
+	add = building_employment_pmg_secondary_building_rye_farm
+	add = building_employment_pmg_harvesting_process_building_rye_farm
+	add = building_employment_pmg_ownership_land_building_rye_farm
+}
+building_employment_building_wheat_farm = {
+	add = building_employment_pmg_base_building_wheat_farm
+	add = building_employment_pmg_secondary_building_wheat_farm
+	add = building_employment_pmg_harvesting_process_building_wheat_farm
+	add = building_employment_pmg_ownership_land_building_wheat_farm
+}
+building_employment_building_rice_farm = {
+	add = building_employment_pmg_base_building_rice_farm
+	add = building_employment_pmg_secondary_building_rice_farm
+	add = building_employment_pmg_harvesting_process_building_rice_farm
+	add = building_employment_pmg_ownership_land_building_rice_farm
+}
+building_employment_building_maize_farm = {
+	add = building_employment_pmg_base_building_maize_farm
+	add = building_employment_pmg_secondary_building_maize_farm
+	add = building_employment_pmg_harvesting_process_building_maize_farm
+	add = building_employment_pmg_ownership_land_building_maize_farm
+}
+building_employment_building_millet_farm = {
+	add = building_employment_pmg_base_building_millet_farm
+	add = building_employment_pmg_secondary_building_millet_farm
+	add = building_employment_pmg_harvesting_process_building_millet_farm
+	add = building_employment_pmg_ownership_land_building_millet_farm
+}
+building_employment_building_livestock_ranch = {
+	add = building_employment_pmg_base_building_livestock_ranch
+	add = building_employment_pmg_slaughtering
+	add = building_employment_pmg_fencing
+	add = building_employment_pmg_refrigeration_building_livestock_ranch
+	add = building_employment_pmg_ownership_land_building_livestock_ranch
+}
+
+building_employment_building_coal_mine = {
+	add = building_employment_pmg_mining_equipment_building_coal_mine
+	add = building_employment_pmg_explosives_building_coal_mine
+	add = building_employment_pmg_steam_automation_building_coal_mine
+	add = building_employment_pmg_train_automation_building_coal_mine
+	add = building_employment_pmg_ownership_capital_building_coal_mine
+}
+building_employment_building_iron_mine = {
+	add = building_employment_pmg_mining_equipment_building_iron_mine
+	add = building_employment_pmg_explosives_building_iron_mine
+	add = building_employment_pmg_steam_automation_building_iron_mine
+	add = building_employment_pmg_train_automation_building_iron_mine
+	add = building_employment_pmg_ownership_capital_building_iron_mine
+}
+building_employment_building_lead_mine = {
+	add = building_employment_pmg_mining_equipment_building_lead_mine
+	add = building_employment_pmg_explosives_building_lead_mine
+	add = building_employment_pmg_steam_automation_building_lead_mine
+	add = building_employment_pmg_train_automation_building_lead_mine
+	add = building_employment_pmg_ownership_capital_building_lead_mine
+}
+building_employment_building_sulfur_mine = {
+	add = building_employment_pmg_mining_equipment_building_sulfur_mine
+	add = building_employment_pmg_explosives_building_sulfur_mine
+	add = building_employment_pmg_steam_automation_building_sulfur_mine
+	add = building_employment_pmg_train_automation_building_sulfur_mine
+	add = building_employment_pmg_ownership_capital_building_sulfur_mine
+}
+building_employment_building_gold_mine = {
+	add = building_employment_pmg_mining_equipment_building_gold_mine
+	add = building_employment_pmg_explosives_building_gold_mine
+	add = building_employment_pmg_steam_automation_building_gold_mine
+	add = building_employment_pmg_train_automation_building_gold_mine
+	add = building_employment_pmg_ownership_capital_building_gold_mine
+}
+building_employment_building_gold_fields = {
+	add = building_employment_pmg_base_building_gold_fields
+}
+
+building_employment_building_coffee_plantation = {
+	add = building_employment_pmg_base_building_coffee_plantation
+	add = building_employment_pmg_train_automation_building_coffee_plantation
+	add = building_employment_pmg_ownership_land_building_coffee_plantation
+}
+building_employment_building_cotton_plantation = {
+	add = building_employment_pmg_base_building_cotton_plantation
+	add = building_employment_pmg_train_automation_building_cotton_plantation
+	add = building_employment_pmg_ownership_land_building_cotton_plantation
+}
+building_employment_building_dye_plantation = {
+	add = building_employment_pmg_base_building_dye_plantation
+	add = building_employment_pmg_train_automation_building_dye_plantation
+	add = building_employment_pmg_ownership_land_building_dye_plantation
+}
+building_employment_building_opium_plantation = {
+	add = building_employment_pmg_base_building_opium_plantation
+	add = building_employment_pmg_train_automation_building_opium_plantation
+	add = building_employment_pmg_ownership_land_building_opium_plantation
+}
+building_employment_building_tea_plantation = {
+	add = building_employment_pmg_base_building_tea_plantation
+	add = building_employment_pmg_train_automation_building_tea_plantation
+	add = building_employment_pmg_ownership_land_building_tea_plantation
+}
+building_employment_building_tobacco_plantation = {
+	add = building_employment_pmg_base_building_tobacco_plantation
+	add = building_employment_pmg_train_automation_building_tobacco_plantation
+	add = building_employment_pmg_ownership_land_building_tobacco_plantation
+}
+building_employment_building_sugar_plantation = {
+	add = building_employment_pmg_base_building_sugar_plantation
+	add = building_employment_pmg_train_automation_building_sugar_plantation
+	add = building_employment_pmg_ownership_land_building_sugar_plantation
+}
+building_employment_building_banana_plantation = {
+	add = building_employment_pmg_base_building_banana_plantation
+	add = building_employment_pmg_train_automation_building_banana_plantation
+	add = building_employment_pmg_ownership_land_building_banana_plantation
+}
+building_employment_building_silk_plantation = {
+	add = building_employment_pmg_base_building_silk_plantation
+	add = building_employment_pmg_train_automation_building_silk_plantation
+	add = building_employment_pmg_ownership_land_building_silk_plantation
+}
+
+building_employment_building_barracks = {
+	add = building_employment_pmg_organization
+	add = building_employment_pmg_artillery
+	add = building_employment_pmg_reconaissance
+	add = building_employment_pmg_specialist_companies
+	add = building_employment_pmg_medical_aid
+}
+building_employment_building_conscription_center = {
+	add = building_employment_pmg_organization_conscription
+	add = building_employment_pmg_artillery_conscription
+	add = building_employment_pmg_reconaissance_conscription
+	add = building_employment_pmg_specialist_companies_conscription
+	add = building_employment_pmg_medical_aid
+}
+building_employment_building_naval_base = {
+	add = building_employment_pmg_ship_class
+	add = building_employment_pmg_escorts
+	add = building_employment_pmg_raiders
+	add = building_employment_pmg_naval_theory
+}
+
+building_employment_building_urban_center = {
+	add = building_employment_pmg_amenities
+	add = building_employment_pmg_street_lighting
+	add = building_employment_pmg_public_transport
+	add = building_employment_pmg_urban_clergy
+}
+building_employment_building_arts_academy = {
+	add = building_employment_pmg_base_building_arts_academy
+	add = building_employment_pmg_ownership_building_arts_academy
+}
+building_employment_building_power_plant = {
+	add = building_employment_pmg_base_building_power_plant
+	add = building_employment_pmg_ownership_capital_building_power_plant
+}
+
+building_employment_building_port = {
+	add = building_employment_pmg_base_building_port
+}
+building_employment_building_government_administration = {
+	add = building_employment_pmg_base_building_government_administration
+	add = building_employment_pmg_government_administration_bureaucrat_professionalism
+	add = building_employment_pmg_government_administration_religious_administration
+}
+building_employment_building_university = {
+	add = building_employment_pmg_base_building_university
+	add = building_employment_pmg_university_academia
+}
+building_employment_building_skyscraper = {
+	add = building_employment_pmg_base_building_skyscraper
+	add = building_employment_pmg_airship_mooring_post
+}
+
+building_employment_building_eiffel_tower = {
+	add = building_employment_pmg_base_building_eiffel_tower
+}
+building_employment_building_angkor_wat = {
+	add = building_employment_pmg_base_building_angkor_wat
+}
+building_employment_building_big_ben = {
+	add = building_employment_pmg_base_building_big_ben
+}
+building_employment_building_forbidden_city = {
+	add = building_employment_pmg_base_building_forbidden_city
+}
+building_employment_building_hagia_sophia = {
+	add = building_employment_pmg_base_building_hagia_sophia
+}
+building_employment_building_mosque_of_djenne = {
+	add = building_employment_pmg_base_building_mosque_of_djenne
+}
+building_employment_building_saint_basils_cathedral = {
+	add = building_employment_pmg_base_building_saint_basils_cathedral
+}
+building_employment_building_statue_of_liberty = {
+	add = building_employment_pmg_base_building_statue_of_liberty
+}
+building_employment_building_taj_mahal = {
+	add = building_employment_pmg_base_building_taj_mahal
+}
+building_employment_building_vatican_city = {
+	add = building_employment_pmg_base_building_vatican_city
+}
+building_employment_building_white_house = {
+	add = building_employment_pmg_base_building_white_house
+}
+building_employment_building_machu_picchu = {
+	add = building_employment_pmg_dummy
+}
+building_employment_building_argebam = {
+	add = building_employment_pmg_dummy
+}
+building_employment_building_chichen_itza = {
+	add = building_employment_pmg_dummy
+}
+building_employment_building_easter_island_heads = {
+	add = building_employment_pmg_dummy
+}
+building_employment_building_eye_of_sahara = {
+	add = building_employment_pmg_dummy
+}
+building_employment_building_giza_necropolis = {
+	add = building_employment_pmg_dummy
+}
+building_employment_building_khaju_bridge = {
+	add = building_employment_pmg_dummy
+}
+building_employment_building_petra = {
+	add = building_employment_pmg_dummy
+}
+building_employment_building_capitol_hill = {
+	add = building_employment_pmg_dummy
+}
+building_employment_building_central_park = {
+	add = building_employment_pmg_dummy
+}
+building_employment_building_martandsuntemple = {
+	add = building_employment_pmg_dummy
+}
+building_employment_building_observatorygreenwich = {
+	add = building_employment_pmg_dummy
+}
+building_employment_building_temple_of_poseidon = {
+	add = building_employment_pmg_dummy
+}
+building_employment_building_wat_arun = {
+	add = building_employment_pmg_dummy
+}
+
+building_employment_building_logging_camp = {
+	add = building_employment_pmg_base_building_logging_camp
+	add = building_employment_pmg_hardwood
+	add = building_employment_pmg_equipment
+	add = building_employment_pmg_transportation_building_logging_camp
+	add = building_employment_pmg_ownership_capital_building_logging_camp
+}
+building_employment_building_rubber_plantation = {
+	add = building_employment_pmg_base_building_rubber_plantation
+	add = building_employment_pmg_train_automation_building_rubber_plantation
+	add = building_employment_pmg_ownership_land_building_rubber_plantation
+}
+building_employment_building_fishing_wharf = {
+	add = building_employment_pmg_base_building_fishing_wharf
+	add = building_employment_pmg_refrigeration_building_fishing_wharf
+	add = building_employment_pmg_ownership_capital_building_fishing_wharf
+}
+building_employment_building_whaling_station = {
+	add = building_employment_pmg_base_building_whaling_station
+	add = building_employment_pmg_refrigeration_building_whaling_station
+	add = building_employment_pmg_ownership_capital_building_whaling_station
+}
+building_employment_building_oil_rig = {
+	add = building_employment_pmg_base_building_oil_rig
+	add = building_employment_pmg_transportation_building_oil_rig
+	add = building_employment_pmg_ownership_capital_building_oil_rig
+}
+
+building_employment_building_suez_canal = {
+	add = building_employment_pmg_canal
+}
+building_employment_building_panama_canal = {
+	add = building_employment_pmg_canal
+}
+
+building_employment_building_railway = {
+	add = building_employment_pmg_base_building_railway
+	add = building_employment_pmg_passenger_trains
+	add = building_employment_pmg_ownership_capital_building_railway
+}
+building_employment_building_trade_center = {
+	add = building_employment_pmg_base_building_trade_center
+	add = building_employment_pmg_ownership_building_trade_center
+}
+
+building_employment_building_subsistence_farms = {
+	add = building_employment_pmg_base_building_subsistence_farms
+	add = building_employment_pmg_home_workshops_building_subsistence_farms
+	add = building_employment_pmg_serfdom_building_subsistence_farms
+	add = building_employment_pmg_ownership_building_subsistence
+}
+building_employment_building_subsistence_orchards = {
+	add = building_employment_pmg_base_building_subsistence_orchards
+	add = building_employment_pmg_home_workshops_building_subsistence_orchards
+	add = building_employment_pmg_serfdom_building_subsistence_orchards
+	add = building_employment_pmg_ownership_building_subsistence
+}
+building_employment_building_subsistence_pastures = {
+	add = building_employment_pmg_base_building_subsistence_pastures
+	add = building_employment_pmg_home_workshops_building_subsistence_pastures
+	add = building_employment_pmg_serfdom_building_subsistence_pastures
+	add = building_employment_pmg_ownership_building_subsistence
+}
+building_employment_building_subsistence_fishing_villages = {
+	add = building_employment_pmg_base_building_subsistence_fishing_villages
+	add = building_employment_pmg_home_workshops_building_subsistence_fishing_villages
+	add = building_employment_pmg_serfdom_building_subsistence_fishing_villages
+	add = building_employment_pmg_ownership_building_subsistence
+}
+building_employment_building_subsistence_rice_paddies = {
+	add = building_employment_pmg_base_building_subsistence_rice_paddies
+	add = building_employment_pmg_home_workshops_building_subsistence_rice_paddies
+	add = building_employment_pmg_serfdom_building_subsistence_rice_paddies
+	add = building_employment_pmg_ownership_building_subsistence
+}
+
+building_employment_building_construction_sector = {
+	add = building_employment_pmg_base_building_construction_sector
+}
