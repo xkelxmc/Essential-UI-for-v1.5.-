@@ -1,4 +1,5 @@
 ﻿market_goods_is_staple_v = { #11
+	debug_log = market_goods_is_staple_v
 	OR = {
 		goods = g:clothes
 		goods = g:electricity
@@ -15,6 +16,7 @@
 }
 
 market_goods_is_industrial_v = { #17
+	debug_log = market_goods_is_industrial_v
 	OR = {
 		goods = g:clippers
 		goods = g:coal
@@ -37,6 +39,7 @@ market_goods_is_industrial_v = { #17
 }
 
 market_goods_is_luxury_v = { #17
+	debug_log = market_goods_is_luxury_v
 	OR = {
 		goods = g:automobiles
 		goods = g:coffee
@@ -59,6 +62,7 @@ market_goods_is_luxury_v = { #17
 }
 
 market_goods_is_military_v = { #7
+	debug_log = market_goods_is_military_v
 	OR = {
 		goods = g:aeroplanes
 		goods = g:ammunition
@@ -71,6 +75,7 @@ market_goods_is_military_v = { #7
 }
 
 market_goods_is_staple = {
+	debug_log = market_goods_is_staple
 	OR = {
 		goods = g:clothes
 		goods = g:electricity
@@ -91,6 +96,7 @@ market_goods_is_staple = {
 }
 
 market_goods_is_industrial = {
+	debug_log = market_goods_is_industrial
 	OR = {
 		goods = g:clippers
 		goods = g:coal
@@ -121,6 +127,7 @@ market_goods_is_industrial = {
 }
 
 market_goods_is_luxury = {
+	debug_log = market_goods_is_luxury
 	OR = {
 		goods = g:automobiles
 		goods = g:coffee
@@ -138,6 +145,7 @@ market_goods_is_luxury = {
 }
 
 market_goods_is_military_a = {
+	debug_log = market_goods_is_military_a
 	OR = {
 		goods = g:aeroplanes
 		goods = g:automobiles
@@ -159,6 +167,7 @@ market_goods_is_military_a = {
 }
 
 market_goods_is_construction = {
+	debug_log = market_goods_is_construction
 	trigger_if = { limit = { goods = g:ammunition } market = { has_variable = ammunition_is_construction } }
 	trigger_else_if = { limit = { goods = g:small_arms } market = { has_variable = small_arms_is_construction } }
 	trigger_else_if = { limit = { goods = g:artillery } market = { has_variable = artillery_is_construction } }
@@ -215,6 +224,7 @@ market_goods_is_construction = {
 }
 
 market_goods_is_government = {
+	debug_log = market_goods_is_government
 	trigger_if = { limit = { goods = g:ammunition } market = { has_variable = ammunition_is_government } }
 	trigger_else_if = { limit = { goods = g:small_arms } market = { has_variable = small_arms_is_government } }
 	trigger_else_if = { limit = { goods = g:artillery } market = { has_variable = artillery_is_government } }
@@ -271,6 +281,7 @@ market_goods_is_government = {
 }
 
 market_goods_is_military = {
+	debug_log = market_goods_is_military
 	trigger_if = { limit = { goods = g:ammunition } market = { has_variable = ammunition_is_military } }
 	trigger_else_if = { limit = { goods = g:small_arms } market = { has_variable = small_arms_is_military } }
 	trigger_else_if = { limit = { goods = g:artillery } market = { has_variable = artillery_is_military } }

@@ -106,6 +106,23 @@ types map_list_panel_types {
 										raw_text = "[SelectLocalization(GreaterThan_int32(FixedPointToInt(Goods.GetMarketBuyAndSellOrdersBalance), '(int32)0'),'#gold',SelectLocalization(LessThan_int32(FixedPointToInt(Goods.GetMarketBuyAndSellOrdersBalance), '(int32)0'),'#blue','#v'))]  [FixedPointToInt(Goods.GetMarketBuyAndSellOrdersBalance)|Db=]#!"
 										tooltip = "MARKET_GOODS_BALANCE_TOOLTIP"
 									}
+									#textbox = {
+									#	datacontext = "[Market.MakeScope]"
+									#	alpha = "[Scope.Var(Concatenate(Goods.GetKey,'_price_change_type')).GetValue]"
+									#	align = left|nobaseline
+									#	fontsize = 14
+									#	fontsize_min = 8
+									#	elide = right
+									#	maximumsize = { 41 16 }
+									#	minimumsize = { -1 16 }
+									#	autoresize = yes
+									#	#raw_text = "[Scope.Var('mg:iron.market_goods_delta').GetValue]"
+									#	#raw_text = "[Scope.Var('var:iron_construction').GetValue]"
+									#	#raw_text = "[Scope.Var('iron_balance_prog').GetValue]"
+									#	raw_text = "[Scope.Var('prog_add_not_hiring').GetValue]"
+									#	#raw_text = "[FixedPointToInt(Scope.Var(Concatenate(Goods.GetKey,'_balance_prog')).GetValue)|Db=]"
+									#	tooltip = "MARKET_GOODS_BALANCE_PROG_DESC"
+									#}
 									textbox = {
 										datacontext = "[Market.MakeScope]"
 										alpha = "[Scope.Var(Concatenate(Goods.GetKey,'_price_change_type')).GetValue]"
@@ -1925,7 +1942,7 @@ types map_list_panel_types {
 
 						onrightclick = "[RightClickMenuManager.ShowForBuilding(Building.AccessSelf)]"
 						onclick = "[InformationPanelBar.OpenStatePanelTab(State.AccessSelf,'buildings')]"
-						
+
 						tooltipwidget = {
 							FancyTooltip_Building = {}
 						}
@@ -2353,7 +2370,7 @@ types map_list_panel_types {
 									texture = "gfx/interface/icons/generic_icons/population.dds"
 									size = { 13 13 }
 									tooltip = "STATE_POP_CHANGE_DESC"
-								}                                                                      
+								}
 								#textbox = {
 								#	margin_top = -5
 								#	size = { 13 13 }

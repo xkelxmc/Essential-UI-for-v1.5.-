@@ -1,4 +1,5 @@
 ﻿jobs_autopms_2000 = {
+	debug_log = jobs_autopms_2000
 	OR = {
 		$ACTION$ = pm_rotary_valve_engine_building_furniture_manufacturies
 		$ACTION$ = pm_rotary_valve_engine_building_tooling_workshops
@@ -14,6 +15,7 @@
 }
 
 sjobs_autopms_2000 = {
+	debug_log = sjobs_autopms_2000
 	OR = {
 		state = {
 			is_production_method_active = {
@@ -25,6 +27,7 @@ sjobs_autopms_2000 = {
 }
 
 has_or_can_pm = {
+	debug_log = has_or_can_pm
 	OR = {
 		can_activate_production_method = {
 			building_type = $BTYPE$
@@ -38,6 +41,7 @@ has_or_can_pm = {
 }
 
 any_state_region_player_colonizable = {
+	debug_log = any_state_region_player_colonizable
 	any_state_region = {
 		trigger_if = { limit = { exists = var:player_colonizable }
 			var:player_colonizable = yes
@@ -46,10 +50,12 @@ any_state_region_player_colonizable = {
 }
 
 building_not_reached_cap = {
+	debug_log = building_not_reached_cap
 	scope:check_state = { var:$BTYPE$_reachedcap = no }
 }
 
 state_btype_not_cap = {
+	debug_log = state_btype_not_cap
 	trigger_if = { limit = { NOT = { any_scope_building = { type = global_var:gui_states_build_list_btype } } }
 		trigger_if = { limit = { owner = { any_in_list = { variable = buildings_capped type = global_var:gui_states_build_list_btype } } }
 			#always = yes
@@ -71,6 +77,7 @@ state_btype_not_cap = {
 }
 
 building_gui_map_list_filter_btype_not_reached_cap = {
+	debug_log = building_gui_map_list_filter_btype_not_reached_cap
 	trigger_if = {
 		limit = {
 			exists = global_var:gui_states_build_list_filter_btype_$BTYPE$ #in filter
@@ -81,6 +88,7 @@ building_gui_map_list_filter_btype_not_reached_cap = {
 }
 
 state_any_gui_map_list_filter_btype_not_reached_cap = {
+	debug_log = state_any_gui_map_list_filter_btype_not_reached_cap
 	save_temporary_scope_as = check_state
 	owner = { any_in_list = {
 		variable = buildings_capped
@@ -89,6 +97,7 @@ state_any_gui_map_list_filter_btype_not_reached_cap = {
 }
 
 state_btype_scale_cap = {
+	debug_log = state_btype_scale_cap
 	any_scope_building = {
 		type = global_var:gui_states_build_list_btype
 		NOR = { is_building_group = bg_infrastructure is_building_group = bg_military is_subsistence_building = yes }
@@ -97,20 +106,23 @@ state_btype_scale_cap = {
 }
 
 state_any_building_manufacturing = {
+	debug_log = state_any_building_manufacturing
 	any_scope_building = {
 		is_building_group = bg_manufacturing
 	}
 }
 
 building_any_not_gui_map_list_filter_btype = {
+	debug_log = building_any_not_gui_map_list_filter_btype
 	NOT = { exists = global_var:gui_states_build_list_filter_btype_$BTYPE$ } #not in filter
 }
 
 #Not in exceptions: bg_arts, bg_technology
 state_any_not_gui_map_list_filter_btype = {
+	debug_log = state_any_not_gui_map_list_filter_btype
 	any_scope_building = {
 		#exceptions
 		NOR = { is_building_group = bg_service is_building_group = bg_trade is_building_group = bg_bureaucracy is_building_group = bg_skyscraper is_building_group = bg_monuments is_building_group = bg_infrastructure is_building_group = bg_monuments_hidden is_building_group = bg_military is_subsistence_building = yes }
 		building_trigger_building_type = { TRIGGER = building_any_not_gui_map_list_filter_btype }
-	} 
+	}
 }

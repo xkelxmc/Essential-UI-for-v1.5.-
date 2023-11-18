@@ -291,7 +291,7 @@ types topbar_components
 					onmousehierarchyenter = "[SelectMapModeByKey('mm_infamy')]"
 					onmousehierarchyleave = "[UnforceMapMode]"
 					alwaystransparent = no
-					tooltip = "[Country.GetInfamyDesc]"		
+					tooltip = "[Country.GetInfamyDesc]"
 
 					icon = {
 						texture = "[Country.GetInfamyIconTexture]"

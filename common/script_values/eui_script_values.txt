@@ -1,8 +1,9 @@
 ﻿state_available_jobs = {
+	# debug_log = state_available_jobs
 	add = available_jobs
 	if = {
 		limit = {
-			has_building = building_conscription_center 
+			has_building = building_conscription_center
 			NOT = { has_active_building = building_conscription_center }
 		}
 		b:building_conscription_center  = {
@@ -13,11 +14,13 @@
 }
 
 state_unemployed = {
+	# debug_log = state_unemployed
 	add = state_population
 	multiply = state_unemployment_rate
 }
 
 state_subsistence_jobs = {
+	# debug_log = state_subsistence_jobs
 	every_scope_building = {
 		limit = {
 			is_subsistence_building = yes
@@ -36,6 +39,7 @@ state_subsistence_jobs = {
 }
 
 state_subsistence_workers = {
+	# debug_log = state_subsistence_workers
 	every_scope_building = {
 		limit = {
 			is_subsistence_building = yes
@@ -54,11 +58,13 @@ state_subsistence_workers = {
 }
 
 state_available_workers = {
+	# debug_log = state_available_workers
 	value = state_subsistence_workers
 	add = state_unemployed
 }
 
 building_total_jobs = {
+	# debug_log = building_total_jobs
 	add = modifier:building_employment_aristocrats_add
 	add = modifier:building_employment_capitalists_add
 	add = modifier:building_employment_officers_add
@@ -75,6 +81,7 @@ building_total_jobs = {
 }
 
 building_total_jobs_weighted = {
+	# debug_log = building_total_jobs_weighted
 	add = { value = modifier:building_employment_aristocrats_add multiply = 6 }
 	add = { value = modifier:building_employment_capitalists_add multiply = 6 }
 	add = { value = modifier:building_employment_officers_add multiply = 5 }
@@ -91,6 +98,7 @@ building_total_jobs_weighted = {
 }
 
 building_total_jobs_weighted_from_pms = {
+	# debug_log = building_total_jobs_weighted_from_pms
 	add = { value = local_var:curr_building_employment_aristocrats_add multiply = 6 }
 	add = { value = local_var:curr_building_employment_capitalists_add multiply = 6 }
 	add = { value = local_var:curr_building_employment_officers_add multiply = 5 }
@@ -107,6 +115,7 @@ building_total_jobs_weighted_from_pms = {
 }
 
 state_available_jobs_autopms = {
+	# debug_log = state_available_jobs_autopms
 	every_scope_building = {
 		add = {
 			value = 0
@@ -115,11 +124,11 @@ state_available_jobs_autopms = {
 					OR = {
 						has_active_production_method = pm_assembly_lines_building_furniture_manufacturies
 						has_active_production_method = pm_assembly_lines_building_tooling_workshops
-						has_active_production_method = pm_assembly_lines_building_arms_industry
 						has_active_production_method = pm_assembly_lines_building_munition_plants
 						has_active_production_method = pm_compression_ignition_tractors
 						has_active_production_method = pm_flash_freezing_building_fishing_wharf
 						has_active_production_method = pm_flash_freezing_building_whaling_station
+						has_active_production_method = pm_steam_threshers_building_rice_farm
 					}
 				}
 				add = 3000
@@ -127,7 +136,8 @@ state_available_jobs_autopms = {
 			if = {
 				limit = {
 					OR = {
-						has_active_production_method = pm_automated_bakery 
+						has_active_production_method = pm_assembly_lines_building_arms_industry
+						has_active_production_method = pm_automated_bakery
 						has_active_production_method = pm_automatic_power_looms
 						has_active_production_method = pm_automatic_bottle_blowers
 						has_active_production_method = pm_tractors
@@ -159,7 +169,7 @@ state_available_jobs_autopms = {
 						has_active_production_method = pm_refrigerated_rail_cars_building_livestock_ranch
 					}
 				}
-				add = 1800
+				add = 1400
 			}
 			if = {
 				limit = {
@@ -188,7 +198,6 @@ state_available_jobs_autopms = {
 				limit = {
 					OR = {
 						has_active_production_method = pm_watertube_boiler_building_motor_industry
-						has_active_production_method = pm_barbed_wire_fences
 						has_active_production_method = pm_steam_donkey_building_coal_mine
 						has_active_production_method = pm_steam_donkey_mine
 						has_active_production_method = pm_public_motor_carriages
@@ -196,15 +205,24 @@ state_available_jobs_autopms = {
 						has_active_production_method = pm_refrigerated_storage_building_fishing_wharf
 						has_active_production_method = pm_refrigerated_storage_building_whaling_station
 						has_active_production_method = pm_rail_transport_building_oil_rig
-						has_active_production_method = pm_steel_passenger_carriages
+						has_active_production_method = pm_tools_building_rice_farm
 					}
 				}
 				add = 1000
 			}
+
 			if = {
 				limit = {
 					OR = {
 						has_active_production_method = pm_refrigerated_storage_building_livestock_ranch
+						has_active_production_method = pm_barbed_wire_fences
+					}
+				}
+				add = 800
+			}
+			if = {
+				limit = {
+					OR = {
 						has_active_production_method = pm_steam_rail_transport
 						has_active_production_method = pm_rail_transport_mine
 						has_active_production_method = pm_rail_transport_building_logging_camp
@@ -216,11 +234,17 @@ state_available_jobs_autopms = {
 				limit = {
 					OR = {
 						has_active_production_method = pm_tools
-						has_active_production_method = pm_public_trams
-						has_active_production_method = pm_wooden_passenger_carriages
 					}
 				}
 				add = 500
+			}
+			if = {
+				limit = {
+					OR = {
+						has_active_production_method = pm_public_trams
+					}
+				}
+				add = 200
 			}
 			multiply = level
 		}
@@ -228,15 +252,17 @@ state_available_jobs_autopms = {
 }
 
 state_available_jobs_with_autopms = {
+	# debug_log = state_available_jobs_with_autopms
 	value = state_available_jobs
 	add = state_available_jobs_autopms
 }
 
 state_available_workers_autopms = {
+	# debug_log = state_available_workers_autopms
 	if = { limit = { has_building = building_food_industry } add = {
 		if = {
 			limit = { has_or_can_pm = { BTYPE = building_food_industry PM = pm_automated_bakery } }
-			add = 3000
+			add = 2500
 		}
 		multiply = b:building_food_industry.level
 	} }
@@ -317,12 +343,22 @@ state_available_workers_autopms = {
 	if = { limit = { has_building = building_arms_industry } add = {
 		if = {
 			limit = { has_or_can_pm = { BTYPE = building_arms_industry PM = pm_assembly_lines_building_arms_industry } }
-			add = 3000
+			add = 2500
 		}
 		else_if = { limit = { has_or_can_pm = { BTYPE = building_arms_industry PM = pm_rotary_valve_engine_building_arms_industry } }
 			add = 2000
 		}
 		multiply = b:building_arms_industry.level
+	} }
+	if = { limit = { has_building = building_artillery_foundries } add = {
+		if = {
+			limit = { has_or_can_pm = { BTYPE = building_artillery_foundries PM = pm_assembly_lines_building_arms_industry } }
+			add = 2500
+		}
+		else_if = { limit = { has_or_can_pm = { BTYPE = building_artillery_foundries PM = pm_rotary_valve_engine_building_arms_industry } }
+			add = 2000
+		}
+		multiply = b:building_artillery_foundries.level
 	} }
 	if = { limit = { has_building = building_munition_plants } add = {
 		if = {
@@ -367,11 +403,11 @@ state_available_workers_autopms = {
 		multiply = b:building_wheat_farm.level
 	} }
 	if = { limit = { has_building = building_rice_farm } add = {
-		if = { limit = { has_or_can_pm = { BTYPE = building_rice_farm PM = pm_steam_threshers } }
-			add = 1500
+		if = { limit = { has_or_can_pm = { BTYPE = building_rice_farm PM = pm_steam_threshers_building_rice_farm } }
+			add = 3000
 		}
-		else_if = { limit = { has_or_can_pm = {	BTYPE = building_rice_farm PM = pm_tools } }
-			add = 500
+		else_if = { limit = { has_or_can_pm = {	BTYPE = building_rice_farm PM = pm_tools_building_rice_farm } }
+			add = 1000
 		}
 		multiply = b:building_rice_farm.level
 	} }
@@ -410,17 +446,17 @@ state_available_workers_autopms = {
 	if = { limit = { has_building = building_livestock_ranch } add = {
 		if = {
 			limit = { has_or_can_pm = { BTYPE = building_livestock_ranch PM = pm_electric_fencing } }
-			add = 1800
+			add = 1400
 		}
 		else_if = { limit = { has_or_can_pm = { BTYPE = building_livestock_ranch PM = pm_barbed_wire_fences } }
-			add = 1000
+			add = 800
 		}
 		if = {
 			limit = { has_or_can_pm = { BTYPE = building_livestock_ranch PM = pm_refrigerated_rail_cars_building_livestock_ranch } }
-			add = 1800
+			add = 1400
 		}
 		else_if = { limit = { has_or_can_pm = { BTYPE = building_livestock_ranch PM = pm_refrigerated_storage_building_livestock_ranch } }
-			add = 1000
+			add = 800
 		}
 		multiply = b:building_livestock_ranch.level
 	} }
@@ -548,7 +584,7 @@ state_available_workers_autopms = {
 			add = 1000
 		}
 		else_if = { limit = { has_or_can_pm = { BTYPE = building_urban_center PM = pm_public_trams } }
-			add = 500
+			add = 200
 		}
 		multiply = b:building_urban_center.level
 	} }
@@ -615,77 +651,68 @@ state_available_workers_autopms = {
 		}
 		multiply = b:building_oil_rig.level
 	} }
-	if = { limit = { has_building = building_railway } add = {
-		if = {
-			limit = { has_or_can_pm = { BTYPE = building_railway PM = pm_steel_passenger_carriages } }
-			add = 1000
-		}
-		else_if = {
-			limit = { has_or_can_pm = { BTYPE = building_railway PM = pm_wooden_passenger_carriages } }
-			add = 500
-		}
-		multiply = b:building_railway.level
-	} }
 
 	subtract = state_available_jobs_autopms
 }
 
 market_goods_prod_building = {
-	if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:ammunition } add = modifier:building_output_ammunition_add subtract = modifier:building_input_ammunition_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:small_arms } add = modifier:building_output_small_arms_add subtract = modifier:building_input_small_arms_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:artillery } add = modifier:building_output_artillery_add subtract = modifier:building_input_artillery_add}
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:tanks } add = modifier:building_output_tanks_add subtract = modifier:building_input_tanks_add}
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:aeroplanes } add = modifier:building_output_aeroplanes_add subtract = modifier:building_input_aeroplanes_add}
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:manowars } add = modifier:building_output_manowars_add subtract = modifier:building_input_manowars_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:ironclads } add = modifier:building_output_ironclads_add subtract = modifier:building_input_ironclads_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:grain } add = modifier:building_output_grain_add subtract = modifier:building_input_grain_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:fish } add = modifier:building_output_fish_add subtract = modifier:building_input_fish_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:fabric } add = modifier:building_output_fabric_add subtract = modifier:building_input_fabric_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:wood } add = modifier:building_output_wood_add subtract = modifier:building_input_wood_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:groceries } add = modifier:building_output_groceries_add subtract = modifier:building_input_groceries_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:clothes } add = modifier:building_output_clothes_add subtract = modifier:building_input_clothes_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:furniture } add = modifier:building_output_furniture_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:paper } add = modifier:building_output_paper_add subtract = modifier:building_input_paper_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:services } add = modifier:building_output_services_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:transportation } add = modifier:building_output_transportation_add subtract = modifier:building_input_transportation_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:electricity } add = modifier:building_output_electricity_add subtract = modifier:building_input_electricity_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:clippers } add = modifier:building_output_clippers_add subtract = modifier:building_input_clippers_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:steamers } add = modifier:building_output_steamers_add subtract = modifier:building_input_steamers_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:silk } add = modifier:building_output_silk_add subtract = modifier:building_input_silk_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:dye } add = modifier:building_output_dye_add subtract = modifier:building_input_dye_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:sulfur } add = modifier:building_output_sulfur_add subtract = modifier:building_input_sulfur_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:coal } add = modifier:building_output_coal_add subtract = modifier:building_input_coal_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:iron } add = modifier:building_output_iron_add subtract = modifier:building_input_iron_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:lead } add = modifier:building_output_lead_add subtract = modifier:building_input_lead_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:hardwood } add = modifier:building_output_hardwood_add subtract = modifier:building_input_hardwood_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:rubber } add = modifier:building_output_rubber_add subtract = modifier:building_input_rubber_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:oil } add = modifier:building_output_oil_add subtract = modifier:building_input_oil_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:engines } add = modifier:building_output_engines_add subtract = modifier:building_input_engines_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:steel } add = modifier:building_output_steel_add subtract = modifier:building_input_steel_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:glass } add = modifier:building_output_glass_add subtract = modifier:building_input_glass_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:fertilizer } add = modifier:building_output_fertilizer_add subtract = modifier:building_input_fertilizer_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:tools } add = modifier:building_output_tools_add subtract = modifier:building_input_tools_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:explosives } add = modifier:building_output_explosives_add subtract = modifier:building_input_explosives_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:porcelain } add = modifier:building_output_porcelain_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:meat } add = modifier:building_output_meat_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:fruit } add = modifier:building_output_fruit_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:liquor } add = modifier:building_output_liquor_add subtract = modifier:building_input_liquor_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:wine } add = modifier:building_output_wine_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:tea } add = modifier:building_output_tea_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:coffee } add = modifier:building_output_coffee_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:sugar } add = modifier:building_output_sugar_add subtract = modifier:building_input_sugar_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:tobacco } add = modifier:building_output_tobacco_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:opium } add = modifier:building_output_opium_add subtract = modifier:building_input_opium_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:automobiles } add = modifier:building_output_automobiles_add subtract = modifier:building_input_automobiles_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:telephones } add = modifier:building_output_telephones_add subtract = modifier:building_input_telephones_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:radios } add = modifier:building_output_radios_add subtract = modifier:building_input_radios_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:luxury_clothes } add = modifier:building_output_luxury_clothes_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:luxury_furniture } add = modifier:building_output_luxury_furniture_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:gold } add = modifier:building_output_gold_add }
-	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:fine_art } add = modifier:building_output_fine_art_add }
+	# debug_log = market_goods_prod_building
+	if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:ammunition } add = modifier:goods_output_ammunition_add subtract = modifier:goods_input_ammunition_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:small_arms } add = modifier:goods_output_small_arms_add subtract = modifier:goods_input_small_arms_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:artillery } add = modifier:goods_output_artillery_add subtract = modifier:goods_input_artillery_add}
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:tanks } add = modifier:goods_output_tanks_add subtract = modifier:goods_input_tanks_add}
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:aeroplanes } add = modifier:goods_output_aeroplanes_add subtract = modifier:goods_input_aeroplanes_add}
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:manowars } add = modifier:goods_output_manowars_add subtract = modifier:goods_input_manowars_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:ironclads } add = modifier:goods_output_ironclads_add subtract = modifier:goods_input_ironclads_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:grain } add = modifier:goods_output_grain_add subtract = modifier:goods_input_grain_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:fish } add = modifier:goods_output_fish_add subtract = modifier:goods_input_fish_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:fabric } add = modifier:goods_output_fabric_add subtract = modifier:goods_input_fabric_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:wood } add = modifier:goods_output_wood_add subtract = modifier:goods_input_wood_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:groceries } add = modifier:goods_output_groceries_add subtract = modifier:goods_input_groceries_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:clothes } add = modifier:goods_output_clothes_add subtract = modifier:goods_input_clothes_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:furniture } add = modifier:goods_output_furniture_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:paper } add = modifier:goods_output_paper_add subtract = modifier:goods_input_paper_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:services } add = modifier:goods_output_services_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:transportation } add = modifier:goods_output_transportation_add subtract = modifier:goods_input_transportation_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:electricity } add = modifier:goods_output_electricity_add subtract = modifier:goods_input_electricity_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:clippers } add = modifier:goods_output_clippers_add subtract = modifier:goods_input_clippers_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:steamers } add = modifier:goods_output_steamers_add subtract = modifier:goods_input_steamers_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:silk } add = modifier:goods_output_silk_add subtract = modifier:goods_input_silk_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:dye } add = modifier:goods_output_dye_add subtract = modifier:goods_input_dye_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:sulfur } add = modifier:goods_output_sulfur_add subtract = modifier:goods_input_sulfur_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:coal } add = modifier:goods_output_coal_add subtract = modifier:goods_input_coal_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:iron } add = modifier:goods_output_iron_add subtract = modifier:goods_input_iron_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:lead } add = modifier:goods_output_lead_add subtract = modifier:goods_input_lead_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:hardwood } add = modifier:goods_output_hardwood_add subtract = modifier:goods_input_hardwood_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:rubber } add = modifier:goods_output_rubber_add subtract = modifier:goods_input_rubber_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:oil } add = modifier:goods_output_oil_add subtract = modifier:goods_input_oil_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:engines } add = modifier:goods_output_engines_add subtract = modifier:goods_input_engines_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:steel } add = modifier:goods_output_steel_add subtract = modifier:goods_input_steel_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:glass } add = modifier:goods_output_glass_add subtract = modifier:goods_input_glass_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:fertilizer } add = modifier:goods_output_fertilizer_add subtract = modifier:goods_input_fertilizer_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:tools } add = modifier:goods_output_tools_add subtract = modifier:goods_input_tools_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:explosives } add = modifier:goods_output_explosives_add subtract = modifier:goods_input_explosives_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:porcelain } add = modifier:goods_output_porcelain_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:meat } add = modifier:goods_output_meat_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:fruit } add = modifier:goods_output_fruit_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:liquor } add = modifier:goods_output_liquor_add subtract = modifier:goods_input_liquor_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:wine } add = modifier:goods_output_wine_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:tea } add = modifier:goods_output_tea_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:coffee } add = modifier:goods_output_coffee_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:sugar } add = modifier:goods_output_sugar_add subtract = modifier:goods_input_sugar_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:tobacco } add = modifier:goods_output_tobacco_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:opium } add = modifier:goods_output_opium_add subtract = modifier:goods_input_opium_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:automobiles } add = modifier:goods_output_automobiles_add subtract = modifier:goods_input_automobiles_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:telephones } add = modifier:goods_output_telephones_add subtract = modifier:goods_input_telephones_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:radios } add = modifier:goods_output_radios_add subtract = modifier:goods_input_radios_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:luxury_clothes } add = modifier:goods_output_luxury_clothes_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:luxury_furniture } add = modifier:goods_output_luxury_furniture_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:gold } add = modifier:goods_output_gold_add }
+	else_if = { limit = { scope:ROOT_GOODS = scope:ROOT_GOODS.market.mg:fine_art } add = modifier:goods_output_fine_art_add }
 }
 
 market_goods_occupancy_prod_not_hiring = {
+	# debug_log = market_goods_occupancy_prod_not_hiring
 	save_temporary_scope_as = ROOT_GOODS
 	market.owner = {
 		every_scope_building = {
@@ -695,71 +722,70 @@ market_goods_occupancy_prod_not_hiring = {
 				NOT = { is_building_type = building_conscription_center }
 				is_government_funded = no
 				is_subsidized = no
+				occupancy > 0
 			}
 			add = {
 				value = market_goods_prod_building
-				if = {
-					limit = { occupancy > 0 }
-					divide = occupancy
-					multiply = { add = 1 subtract = occupancy }
-				}
+				divide = occupancy
+				multiply = { add = 1 subtract = occupancy }
 			}
 		}
 	}
 }
 
 market_goods_occupancy_prod_hiring = {
+	# debug_log = market_goods_occupancy_prod_hiring
 	save_temporary_scope_as = ROOT_GOODS
 	market.owner = {
 		every_scope_building = {
 			limit = {
 				is_subsistence_building = no
 				NOT = { is_building_type = building_conscription_center }
+				occupancy > 0
 			}
 			add = {
 				value = market_goods_prod_building
-				if = {
-					limit = { occupancy > 0 }
-					divide = occupancy
-					multiply = { add = 1 subtract = occupancy }
-				}
+				divide = occupancy
+				multiply = { add = 1 subtract = occupancy }
 			}
 		}
 	}
-	subtract = market_goods_occupancy_prod_not_hiring 
+	subtract = market_goods_occupancy_prod_not_hiring
 }
 
 market_goods_mobilization = {
+	# debug_log = market_goods_mobilization
 	save_temporary_scope_as = ROOT_GOODS
 	market.owner = {
-		every_scope_building = {
-			limit = {
-				OR = { is_building_type = building_barracks is_building_type = building_conscription_center }
-				#any_combat_units = { commander ?= { is_mobilized = yes } }
-			}
-			subtract = {
-				every_combat_units = {
-					limit = { commander ?= { is_mobilized = yes } }
-					add = 1
-				}
-				#if = { limit = { value <> 0 } save_temp_value
-				divide = level
-				multiply = market_goods_prod_building
-				multiply = modifier:building_mobilization_cost_mult #this modifier is applied only after building_input_*_add
-				#value = 1
-				#value = level
-				#value = market_goods_prod_building
-				#multiply = { value = 1 subtract = { value = 1 divide = { value = 1 add = modifier:building_mobilization_cost_mult } } } #(1+k)x=y x+kx=y kx=y-x=y-y/(1+k)=y*(1-1/(1+k))
-				#multiply = 0.28571 for 40% mult
-			}#}
-			if = { limit = { is_building_type = building_conscription_center }
-				subtract = market_goods_prod_building
-			}
-		}
+		#every_scope_building = {
+		#	limit = {
+		#		OR = { is_building_type = building_barracks is_building_type = building_conscription_center }
+		#		#any_combat_units = { commander ?= { is_mobilized = yes } }
+		#	}
+		#	subtract = {
+		#		every_combat_unit = {
+		#			limit = { commander ?= { is_mobilized = yes } }
+		#			add = 1
+		#		}
+		#		#if = { limit = { value <> 0 } save_temp_value
+		#		divide = level
+		#		multiply = market_goods_prod_building
+		#		multiply = modifier:building_mobilization_cost_mult #this modifier is applied only after goods_input_*_add
+		#		#value = 1
+		#		#value = level
+		#		#value = market_goods_prod_building
+		#		#multiply = { value = 1 subtract = { value = 1 divide = { value = 1 add = modifier:building_mobilization_cost_mult } } } #(1+k)x=y x+kx=y kx=y-x=y-y/(1+k)=y*(1-1/(1+k))
+		#		#multiply = 0.28571 for 40% mult
+		#	}#}
+		#	if = { limit = { is_building_type = building_conscription_center }
+		#		subtract = market_goods_prod_building
+		#	}
+		#}
 	}
 }
 
 player_goods_occupancy_prod = {
+	# debug_log = player_goods_occupancy_prod
 	#debug_log_scopes = yes
 	#add = { value = 100 desc = "[SCOPE.GetRootScope.GetGoods.GetName]" }
 	#player = {
@@ -769,73 +795,132 @@ player_goods_occupancy_prod = {
 		#if = { limit = { ROOT = { key = ammunition } } add = 1000000 }
 		every_scope_building = {
 			limit = {
+				occupancy = 0
+				is_subsistence_building = no
+			}
+			add = {
+				if = { limit = { ROOT = g:ammunition } add = modifier:goods_output_ammunition_add subtract = modifier:goods_input_ammunition_add }
+				else_if = { limit = { ROOT = g:small_arms } add = modifier:goods_output_small_arms_add subtract = modifier:goods_input_small_arms_add }
+				else_if = { limit = { ROOT = g:artillery } add = modifier:goods_output_artillery_add subtract = modifier:goods_input_artillery_add}
+				else_if = { limit = { ROOT = g:tanks } add = modifier:goods_output_tanks_add subtract = modifier:goods_input_tanks_add}
+				else_if = { limit = { ROOT = g:aeroplanes } add = modifier:goods_output_aeroplanes_add subtract = modifier:goods_input_aeroplanes_add}
+				else_if = { limit = { ROOT = g:manowars } add = modifier:goods_output_manowars_add subtract = modifier:goods_input_manowars_add }
+				else_if = { limit = { ROOT = g:ironclads } add = modifier:goods_output_ironclads_add subtract = modifier:goods_input_ironclads_add }
+				else_if = { limit = { ROOT = g:grain } add = modifier:goods_output_grain_add subtract = modifier:goods_input_grain_add }
+				else_if = { limit = { ROOT = g:fish } add = modifier:goods_output_fish_add subtract = modifier:goods_input_fish_add }
+				else_if = { limit = { ROOT = g:fabric } add = modifier:goods_output_fabric_add subtract = modifier:goods_input_fabric_add }
+				else_if = { limit = { ROOT = g:wood } add = modifier:goods_output_wood_add subtract = modifier:goods_input_wood_add }
+				else_if = { limit = { ROOT = g:groceries } add = modifier:goods_output_groceries_add subtract = modifier:goods_input_groceries_add }
+				else_if = { limit = { ROOT = g:clothes } add = modifier:goods_output_clothes_add subtract = modifier:goods_input_clothes_add }
+				else_if = { limit = { ROOT = g:furniture } add = modifier:goods_output_furniture_add }
+				else_if = { limit = { ROOT = g:paper } add = modifier:goods_output_paper_add subtract = modifier:goods_input_paper_add }
+				else_if = { limit = { ROOT = g:services } add = modifier:goods_output_services_add }
+				else_if = { limit = { ROOT = g:transportation } add = modifier:goods_output_transportation_add subtract = modifier:goods_input_transportation_add }
+				else_if = { limit = { ROOT = g:electricity } add = modifier:goods_output_electricity_add subtract = modifier:goods_input_electricity_add }
+				else_if = { limit = { ROOT = g:clippers } add = modifier:goods_output_clippers_add subtract = modifier:goods_input_clippers_add }
+				else_if = { limit = { ROOT = g:steamers } add = modifier:goods_output_steamers_add subtract = modifier:goods_input_steamers_add }
+				else_if = { limit = { ROOT = g:silk } add = modifier:goods_output_silk_add subtract = modifier:goods_input_silk_add }
+				else_if = { limit = { ROOT = g:dye } add = modifier:goods_output_dye_add subtract = modifier:goods_input_dye_add }
+				else_if = { limit = { ROOT = g:sulfur } add = modifier:goods_output_sulfur_add subtract = modifier:goods_input_sulfur_add }
+				else_if = { limit = { ROOT = g:coal } add = modifier:goods_output_coal_add subtract = modifier:goods_input_coal_add }
+				else_if = { limit = { ROOT = g:iron } add = modifier:goods_output_iron_add subtract = modifier:goods_input_iron_add }
+				else_if = { limit = { ROOT = g:lead } add = modifier:goods_output_lead_add subtract = modifier:goods_input_lead_add }
+				else_if = { limit = { ROOT = g:hardwood } add = modifier:goods_output_hardwood_add subtract = modifier:goods_input_hardwood_add }
+				else_if = { limit = { ROOT = g:rubber } add = modifier:goods_output_rubber_add subtract = modifier:goods_input_rubber_add }
+				else_if = { limit = { ROOT = g:oil } add = modifier:goods_output_oil_add subtract = modifier:goods_input_oil_add }
+				else_if = { limit = { ROOT = g:engines } add = modifier:goods_output_engines_add subtract = modifier:goods_input_engines_add }
+				else_if = { limit = { ROOT = g:steel } add = modifier:goods_output_steel_add subtract = modifier:goods_input_steel_add }
+				else_if = { limit = { ROOT = g:glass } add = modifier:goods_output_glass_add subtract = modifier:goods_input_glass_add }
+				else_if = { limit = { ROOT = g:fertilizer } add = modifier:goods_output_fertilizer_add subtract = modifier:goods_input_fertilizer_add }
+				else_if = { limit = { ROOT = g:tools } add = modifier:goods_output_tools_add subtract = modifier:goods_input_tools_add }
+				else_if = { limit = { ROOT = g:explosives } add = modifier:goods_output_explosives_add subtract = modifier:goods_input_explosives_add }
+				else_if = { limit = { ROOT = g:porcelain } add = modifier:goods_output_porcelain_add }
+				else_if = { limit = { ROOT = g:meat } add = modifier:goods_output_meat_add }
+				else_if = { limit = { ROOT = g:fruit } add = modifier:goods_output_fruit_add }
+				else_if = { limit = { ROOT = g:liquor } add = modifier:goods_output_liquor_add subtract = modifier:goods_input_liquor_add }
+				else_if = { limit = { ROOT = g:wine } add = modifier:goods_output_wine_add }
+				else_if = { limit = { ROOT = g:tea } add = modifier:goods_output_tea_add }
+				else_if = { limit = { ROOT = g:coffee } add = modifier:goods_output_coffee_add }
+				else_if = { limit = { ROOT = g:sugar } add = modifier:goods_output_sugar_add subtract = modifier:goods_input_sugar_add }
+				else_if = { limit = { ROOT = g:tobacco } add = modifier:goods_output_tobacco_add }
+				else_if = { limit = { ROOT = g:opium } add = modifier:goods_output_opium_add subtract = modifier:goods_input_opium_add }
+				else_if = { limit = { ROOT = g:automobiles } add = modifier:goods_output_automobiles_add subtract = modifier:goods_input_automobiles_add }
+				else_if = { limit = { ROOT = g:telephones } add = modifier:goods_output_telephones_add subtract = modifier:goods_input_telephones_add }
+				else_if = { limit = { ROOT = g:radios } add = modifier:goods_output_radios_add subtract = modifier:goods_input_radios_add }
+				else_if = { limit = { ROOT = g:luxury_clothes } add = modifier:goods_output_luxury_clothes_add }
+				else_if = { limit = { ROOT = g:luxury_furniture } add = modifier:goods_output_luxury_furniture_add }
+				else_if = { limit = { ROOT = g:gold } add = modifier:goods_output_gold_add }
+				else_if = { limit = { ROOT = g:fine_art } add = modifier:goods_output_fine_art_add }
+			}
+		}
+		every_scope_building = {
+			limit = {
+				occupancy > 0
 				occupancy < 0.99 #for performance
 				is_subsistence_building = no
 			}
 			add = {
-				if = { limit = { ROOT = g:ammunition } add = modifier:building_output_ammunition_add subtract = modifier:building_input_ammunition_add }
-				else_if = { limit = { ROOT = g:small_arms } add = modifier:building_output_small_arms_add subtract = modifier:building_input_small_arms_add }
-				else_if = { limit = { ROOT = g:artillery } add = modifier:building_output_artillery_add subtract = modifier:building_input_artillery_add}
-				else_if = { limit = { ROOT = g:tanks } add = modifier:building_output_tanks_add subtract = modifier:building_input_tanks_add}
-				else_if = { limit = { ROOT = g:aeroplanes } add = modifier:building_output_aeroplanes_add subtract = modifier:building_input_aeroplanes_add}
-				else_if = { limit = { ROOT = g:manowars } add = modifier:building_output_manowars_add subtract = modifier:building_input_manowars_add }
-				else_if = { limit = { ROOT = g:ironclads } add = modifier:building_output_ironclads_add subtract = modifier:building_input_ironclads_add }
-				else_if = { limit = { ROOT = g:grain } add = modifier:building_output_grain_add subtract = modifier:building_input_grain_add }
-				else_if = { limit = { ROOT = g:fish } add = modifier:building_output_fish_add subtract = modifier:building_input_fish_add }
-				else_if = { limit = { ROOT = g:fabric } add = modifier:building_output_fabric_add subtract = modifier:building_input_fabric_add }
-				else_if = { limit = { ROOT = g:wood } add = modifier:building_output_wood_add subtract = modifier:building_input_wood_add }
-				else_if = { limit = { ROOT = g:groceries } add = modifier:building_output_groceries_add subtract = modifier:building_input_groceries_add }
-				else_if = { limit = { ROOT = g:clothes } add = modifier:building_output_clothes_add subtract = modifier:building_input_clothes_add }
-				else_if = { limit = { ROOT = g:furniture } add = modifier:building_output_furniture_add }
-				else_if = { limit = { ROOT = g:paper } add = modifier:building_output_paper_add subtract = modifier:building_input_paper_add }
-				else_if = { limit = { ROOT = g:services } add = modifier:building_output_services_add }
-				else_if = { limit = { ROOT = g:transportation } add = modifier:building_output_transportation_add subtract = modifier:building_input_transportation_add }
-				else_if = { limit = { ROOT = g:electricity } add = modifier:building_output_electricity_add subtract = modifier:building_input_electricity_add }
-				else_if = { limit = { ROOT = g:clippers } add = modifier:building_output_clippers_add subtract = modifier:building_input_clippers_add }
-				else_if = { limit = { ROOT = g:steamers } add = modifier:building_output_steamers_add subtract = modifier:building_input_steamers_add }
-				else_if = { limit = { ROOT = g:silk } add = modifier:building_output_silk_add subtract = modifier:building_input_silk_add }
-				else_if = { limit = { ROOT = g:dye } add = modifier:building_output_dye_add subtract = modifier:building_input_dye_add }
-				else_if = { limit = { ROOT = g:sulfur } add = modifier:building_output_sulfur_add subtract = modifier:building_input_sulfur_add }
-				else_if = { limit = { ROOT = g:coal } add = modifier:building_output_coal_add subtract = modifier:building_input_coal_add }
-				else_if = { limit = { ROOT = g:iron } add = modifier:building_output_iron_add subtract = modifier:building_input_iron_add }
-				else_if = { limit = { ROOT = g:lead } add = modifier:building_output_lead_add subtract = modifier:building_input_lead_add }
-				else_if = { limit = { ROOT = g:hardwood } add = modifier:building_output_hardwood_add subtract = modifier:building_input_hardwood_add }
-				else_if = { limit = { ROOT = g:rubber } add = modifier:building_output_rubber_add subtract = modifier:building_input_rubber_add }
-				else_if = { limit = { ROOT = g:oil } add = modifier:building_output_oil_add subtract = modifier:building_input_oil_add }
-				else_if = { limit = { ROOT = g:engines } add = modifier:building_output_engines_add subtract = modifier:building_input_engines_add }
-				else_if = { limit = { ROOT = g:steel } add = modifier:building_output_steel_add subtract = modifier:building_input_steel_add }
-				else_if = { limit = { ROOT = g:glass } add = modifier:building_output_glass_add subtract = modifier:building_input_glass_add }
-				else_if = { limit = { ROOT = g:fertilizer } add = modifier:building_output_fertilizer_add subtract = modifier:building_input_fertilizer_add }
-				else_if = { limit = { ROOT = g:tools } add = modifier:building_output_tools_add subtract = modifier:building_input_tools_add }
-				else_if = { limit = { ROOT = g:explosives } add = modifier:building_output_explosives_add subtract = modifier:building_input_explosives_add }
-				else_if = { limit = { ROOT = g:porcelain } add = modifier:building_output_porcelain_add }
-				else_if = { limit = { ROOT = g:meat } add = modifier:building_output_meat_add }
-				else_if = { limit = { ROOT = g:fruit } add = modifier:building_output_fruit_add }
-				else_if = { limit = { ROOT = g:liquor } add = modifier:building_output_liquor_add subtract = modifier:building_input_liquor_add }
-				else_if = { limit = { ROOT = g:wine } add = modifier:building_output_wine_add }
-				else_if = { limit = { ROOT = g:tea } add = modifier:building_output_tea_add }
-				else_if = { limit = { ROOT = g:coffee } add = modifier:building_output_coffee_add }
-				else_if = { limit = { ROOT = g:sugar } add = modifier:building_output_sugar_add subtract = modifier:building_input_sugar_add }
-				else_if = { limit = { ROOT = g:tobacco } add = modifier:building_output_tobacco_add }
-				else_if = { limit = { ROOT = g:opium } add = modifier:building_output_opium_add subtract = modifier:building_input_opium_add }
-				else_if = { limit = { ROOT = g:automobiles } add = modifier:building_output_automobiles_add subtract = modifier:building_input_automobiles_add }
-				else_if = { limit = { ROOT = g:telephones } add = modifier:building_output_telephones_add subtract = modifier:building_input_telephones_add }
-				else_if = { limit = { ROOT = g:radios } add = modifier:building_output_radios_add subtract = modifier:building_input_radios_add }
-				else_if = { limit = { ROOT = g:luxury_clothes } add = modifier:building_output_luxury_clothes_add }
-				else_if = { limit = { ROOT = g:luxury_furniture } add = modifier:building_output_luxury_furniture_add }
-				else_if = { limit = { ROOT = g:gold } add = modifier:building_output_gold_add }
-				else_if = { limit = { ROOT = g:fine_art } add = modifier:building_output_fine_art_add }
-				if = {
-					limit = { occupancy > 0 }
-					divide = occupancy
-					multiply = { add = 1 subtract = occupancy }
-				}
+				if = { limit = { ROOT = g:ammunition } add = modifier:goods_output_ammunition_add subtract = modifier:goods_input_ammunition_add }
+				else_if = { limit = { ROOT = g:small_arms } add = modifier:goods_output_small_arms_add subtract = modifier:goods_input_small_arms_add }
+				else_if = { limit = { ROOT = g:artillery } add = modifier:goods_output_artillery_add subtract = modifier:goods_input_artillery_add}
+				else_if = { limit = { ROOT = g:tanks } add = modifier:goods_output_tanks_add subtract = modifier:goods_input_tanks_add}
+				else_if = { limit = { ROOT = g:aeroplanes } add = modifier:goods_output_aeroplanes_add subtract = modifier:goods_input_aeroplanes_add}
+				else_if = { limit = { ROOT = g:manowars } add = modifier:goods_output_manowars_add subtract = modifier:goods_input_manowars_add }
+				else_if = { limit = { ROOT = g:ironclads } add = modifier:goods_output_ironclads_add subtract = modifier:goods_input_ironclads_add }
+				else_if = { limit = { ROOT = g:grain } add = modifier:goods_output_grain_add subtract = modifier:goods_input_grain_add }
+				else_if = { limit = { ROOT = g:fish } add = modifier:goods_output_fish_add subtract = modifier:goods_input_fish_add }
+				else_if = { limit = { ROOT = g:fabric } add = modifier:goods_output_fabric_add subtract = modifier:goods_input_fabric_add }
+				else_if = { limit = { ROOT = g:wood } add = modifier:goods_output_wood_add subtract = modifier:goods_input_wood_add }
+				else_if = { limit = { ROOT = g:groceries } add = modifier:goods_output_groceries_add subtract = modifier:goods_input_groceries_add }
+				else_if = { limit = { ROOT = g:clothes } add = modifier:goods_output_clothes_add subtract = modifier:goods_input_clothes_add }
+				else_if = { limit = { ROOT = g:furniture } add = modifier:goods_output_furniture_add }
+				else_if = { limit = { ROOT = g:paper } add = modifier:goods_output_paper_add subtract = modifier:goods_input_paper_add }
+				else_if = { limit = { ROOT = g:services } add = modifier:goods_output_services_add }
+				else_if = { limit = { ROOT = g:transportation } add = modifier:goods_output_transportation_add subtract = modifier:goods_input_transportation_add }
+				else_if = { limit = { ROOT = g:electricity } add = modifier:goods_output_electricity_add subtract = modifier:goods_input_electricity_add }
+				else_if = { limit = { ROOT = g:clippers } add = modifier:goods_output_clippers_add subtract = modifier:goods_input_clippers_add }
+				else_if = { limit = { ROOT = g:steamers } add = modifier:goods_output_steamers_add subtract = modifier:goods_input_steamers_add }
+				else_if = { limit = { ROOT = g:silk } add = modifier:goods_output_silk_add subtract = modifier:goods_input_silk_add }
+				else_if = { limit = { ROOT = g:dye } add = modifier:goods_output_dye_add subtract = modifier:goods_input_dye_add }
+				else_if = { limit = { ROOT = g:sulfur } add = modifier:goods_output_sulfur_add subtract = modifier:goods_input_sulfur_add }
+				else_if = { limit = { ROOT = g:coal } add = modifier:goods_output_coal_add subtract = modifier:goods_input_coal_add }
+				else_if = { limit = { ROOT = g:iron } add = modifier:goods_output_iron_add subtract = modifier:goods_input_iron_add }
+				else_if = { limit = { ROOT = g:lead } add = modifier:goods_output_lead_add subtract = modifier:goods_input_lead_add }
+				else_if = { limit = { ROOT = g:hardwood } add = modifier:goods_output_hardwood_add subtract = modifier:goods_input_hardwood_add }
+				else_if = { limit = { ROOT = g:rubber } add = modifier:goods_output_rubber_add subtract = modifier:goods_input_rubber_add }
+				else_if = { limit = { ROOT = g:oil } add = modifier:goods_output_oil_add subtract = modifier:goods_input_oil_add }
+				else_if = { limit = { ROOT = g:engines } add = modifier:goods_output_engines_add subtract = modifier:goods_input_engines_add }
+				else_if = { limit = { ROOT = g:steel } add = modifier:goods_output_steel_add subtract = modifier:goods_input_steel_add }
+				else_if = { limit = { ROOT = g:glass } add = modifier:goods_output_glass_add subtract = modifier:goods_input_glass_add }
+				else_if = { limit = { ROOT = g:fertilizer } add = modifier:goods_output_fertilizer_add subtract = modifier:goods_input_fertilizer_add }
+				else_if = { limit = { ROOT = g:tools } add = modifier:goods_output_tools_add subtract = modifier:goods_input_tools_add }
+				else_if = { limit = { ROOT = g:explosives } add = modifier:goods_output_explosives_add subtract = modifier:goods_input_explosives_add }
+				else_if = { limit = { ROOT = g:porcelain } add = modifier:goods_output_porcelain_add }
+				else_if = { limit = { ROOT = g:meat } add = modifier:goods_output_meat_add }
+				else_if = { limit = { ROOT = g:fruit } add = modifier:goods_output_fruit_add }
+				else_if = { limit = { ROOT = g:liquor } add = modifier:goods_output_liquor_add subtract = modifier:goods_input_liquor_add }
+				else_if = { limit = { ROOT = g:wine } add = modifier:goods_output_wine_add }
+				else_if = { limit = { ROOT = g:tea } add = modifier:goods_output_tea_add }
+				else_if = { limit = { ROOT = g:coffee } add = modifier:goods_output_coffee_add }
+				else_if = { limit = { ROOT = g:sugar } add = modifier:goods_output_sugar_add subtract = modifier:goods_input_sugar_add }
+				else_if = { limit = { ROOT = g:tobacco } add = modifier:goods_output_tobacco_add }
+				else_if = { limit = { ROOT = g:opium } add = modifier:goods_output_opium_add subtract = modifier:goods_input_opium_add }
+				else_if = { limit = { ROOT = g:automobiles } add = modifier:goods_output_automobiles_add subtract = modifier:goods_input_automobiles_add }
+				else_if = { limit = { ROOT = g:telephones } add = modifier:goods_output_telephones_add subtract = modifier:goods_input_telephones_add }
+				else_if = { limit = { ROOT = g:radios } add = modifier:goods_output_radios_add subtract = modifier:goods_input_radios_add }
+				else_if = { limit = { ROOT = g:luxury_clothes } add = modifier:goods_output_luxury_clothes_add }
+				else_if = { limit = { ROOT = g:luxury_furniture } add = modifier:goods_output_luxury_furniture_add }
+				else_if = { limit = { ROOT = g:gold } add = modifier:goods_output_gold_add }
+				else_if = { limit = { ROOT = g:fine_art } add = modifier:goods_output_fine_art_add }
+				divide = occupancy
+				multiply = { add = 1 subtract = occupancy }
 			}
 		}
 	}
 }
 
 state_jobs_not_hiring = {
+	# debug_log = state_jobs_not_hiring
 	every_scope_building = {
 		limit = {
 			OR = {
@@ -849,22 +934,25 @@ state_jobs_not_hiring = {
 		}
 		add = {
 			add = building_total_jobs
-			multiply = { add = 1 subtract = occupancy } 
+			multiply = { add = 1 subtract = occupancy }
 		}
 	}
 }
 
 state_available_jobs_hiring = {
+	# debug_log = state_available_jobs_hiring
 	add = state_available_jobs
 	subtract = state_jobs_not_hiring
 }
 
 state_unemployed_not_hiring = {
+	# debug_log = state_unemployed_not_hiring
 	add = state_unemployed
 	subtract = state_available_jobs_hiring
 }
 
 state_next_hire = {
+	# debug_log = state_next_hire
 	every_scope_building = {
 		limit = {
 			OR = {
@@ -898,23 +986,26 @@ state_next_hire = {
 }
 
 state_available_workers_next_hire = {
+	# debug_log = state_available_workers_next_hire
 	value = state_available_workers
 	subtract = state_next_hire
 }
 
 state_next_available_workers_all_hiring = {
+	# debug_log = state_next_available_workers_all_hiring
 	value = state_available_workers
 	subtract = state_available_jobs_hiring
 }
 
 port_infra_prod_per_level = {
+	# debug_log = port_infra_prod_per_level
 	if = { limit = { has_active_production_method = pm_basic_port } add = 5 }
 	else_if = { limit = { has_active_production_method = pm_industrial_port } add = 7.5 }
 	else_if = { limit = { has_active_production_method = pm_modern_port } add = 10 }
 }
 
-
 railway_infra_prod_per_level = {
+	# debug_log = railway_infra_prod_per_level
 	if = { limit = { has_active_production_method = pm_steam_trains } add = 20 }
 	else_if = { limit = { has_active_production_method = pm_electric_trains } add = 30 }
 	else_if = { limit = { has_active_production_method = pm_diesel_trains } add = 40 }
@@ -923,11 +1014,13 @@ railway_infra_prod_per_level = {
 }
 
 building_infra_prod_per_level = {
-	add = port_infra_prod_per_level 
-	add = railway_infra_prod_per_level 
+	# debug_log = building_infra_prod_per_level
+	add = port_infra_prod_per_level
+	add = railway_infra_prod_per_level
 }
 
 state_port_infra_prod_per_level = {
+	# debug_log = state_port_infra_prod_per_level
 	if = {
 		limit = {
 			exists = b:building_port
@@ -939,6 +1032,7 @@ state_port_infra_prod_per_level = {
 }
 
 state_railway_infra_prod_per_level = {
+	# debug_log = state_railway_infra_prod_per_level
 	if = {
 		limit = {
 			exists = b:building_railway
@@ -950,6 +1044,7 @@ state_railway_infra_prod_per_level = {
 }
 
 building_infra_usage_per_level = {
+	# debug_log = building_infra_usage_per_level
 	if = { limit = { OR = {
 		is_building_group = bg_trade
 	} } value = 0.1 }
@@ -983,6 +1078,7 @@ building_infra_usage_per_level = {
 }
 
 building_levelq = {
+	# debug_log = building_levelq
 	if = { limit = { is_under_construction = no } value = 0 }
 	else_if = { limit = { is_building_type = building_food_industry } state = { if = { limit = { exists = var:building_food_industry_levelq } value ?= var:building_food_industry_levelq } } }
 	else_if = { limit = { is_building_type = building_textile_mills } state = { if = { limit = { exists = var:building_textile_mills_levelq } value ?= var:building_textile_mills_levelq } } }
@@ -991,13 +1087,16 @@ building_levelq = {
 	else_if = { limit = { is_building_type = building_tooling_workshops } state = { if = { limit = { exists = var:building_tooling_workshops_levelq } value ?= var:building_tooling_workshops_levelq } } }
 	else_if = { limit = { is_building_type = building_paper_mills } state = { if = { limit = { exists = var:building_paper_mills_levelq } value ?= var:building_paper_mills_levelq } } }
 	else_if = { limit = { is_building_type = building_chemical_plants } state = { if = { limit = { exists = var:building_chemical_plants_levelq } value ?= var:building_chemical_plants_levelq } } }
+	else_if = { limit = { is_building_type = building_explosives_factory } state = { if = { limit = { exists = var:building_explosives_factory_levelq } value ?= var:building_explosives_factory_levelq } } }
 	else_if = { limit = { is_building_type = building_synthetics_plants } state = { if = { limit = { exists = var:building_synthetics_plants_levelq } value ?= var:building_synthetics_plants_levelq } } }
 	else_if = { limit = { is_building_type = building_steel_mills } state = { if = { limit = { exists = var:building_steel_mills_levelq } value ?= var:building_steel_mills_levelq } } }
 	else_if = { limit = { is_building_type = building_motor_industry } state = { if = { limit = { exists = var:building_motor_industry_levelq } value ?= var:building_motor_industry_levelq } } }
 	else_if = { limit = { is_building_type = building_shipyards } state = { if = { limit = { exists = var:building_shipyards_levelq } value ?= var:building_shipyards_levelq } } }
+	else_if = { limit = { is_building_type = building_military_shipyards } state = { if = { limit = { exists = var:building_military_shipyards_levelq } value ?= var:building_military_shipyards_levelq } } }
 	else_if = { limit = { is_building_type = building_war_machine_industry } state = { if = { limit = { exists = var:building_war_machine_industry_levelq } value ?= var:building_war_machine_industry_levelq } } }
 	else_if = { limit = { is_building_type = building_electrics_industry } state = { if = { limit = { exists = var:building_electrics_industry_levelq } value ?= var:building_electrics_industry_levelq } } }
 	else_if = { limit = { is_building_type = building_arms_industry } state = { if = { limit = { exists = var:building_arms_industry_levelq } value ?= var:building_arms_industry_levelq } } }
+	else_if = { limit = { is_building_type = building_artillery_foundries } state = { if = { limit = { exists = var:building_artillery_foundries_levelq } value ?= var:building_artillery_foundries_levelq } } }
 	else_if = { limit = { is_building_type = building_munition_plants } state = { if = { limit = { exists = var:building_munition_plants_levelq } value ?= var:building_munition_plants_levelq } } }
 	else_if = { limit = { is_building_type = building_rye_farm } state = { if = { limit = { exists = var:building_rye_farm_levelq } value ?= var:building_rye_farm_levelq } } }
 	else_if = { limit = { is_building_type = building_wheat_farm } state = { if = { limit = { exists = var:building_wheat_farm_levelq } value ?= var:building_wheat_farm_levelq } } }
@@ -1005,6 +1104,7 @@ building_levelq = {
 	else_if = { limit = { is_building_type = building_maize_farm } state = { if = { limit = { exists = var:building_maize_farm_levelq } value ?= var:building_maize_farm_levelq } } }
 	else_if = { limit = { is_building_type = building_millet_farm } state = { if = { limit = { exists = var:building_millet_farm_levelq } value ?= var:building_millet_farm_levelq } } }
 	else_if = { limit = { is_building_type = building_livestock_ranch } state = { if = { limit = { exists = var:building_livestock_ranch_levelq } value ?= var:building_livestock_ranch_levelq } } }
+	else_if = { limit = { is_building_type = building_vineyard_plantation } state = { if = { limit = { exists = var:building_vineyard_plantation_levelq } value ?= var:building_vineyard_plantation_levelq } } }
 	else_if = { limit = { is_building_type = building_coal_mine } state = { if = { limit = { exists = var:building_coal_mine_levelq } value ?= var:building_coal_mine_levelq } } }
 	else_if = { limit = { is_building_type = building_iron_mine } state = { if = { limit = { exists = var:building_iron_mine_levelq } value ?= var:building_iron_mine_levelq } } }
 	else_if = { limit = { is_building_type = building_lead_mine } state = { if = { limit = { exists = var:building_lead_mine_levelq } value ?= var:building_lead_mine_levelq } } }
@@ -1065,6 +1165,7 @@ building_levelq = {
 	else_if = { limit = { is_building_type = building_martandsuntemple } state = { if = { limit = { exists = var:building_martandsuntemple_levelq } value ?= var:building_martandsuntemple_levelq } } }
 	else_if = { limit = { is_building_type = building_observatorygreenwich } state = { if = { limit = { exists = var:building_observatorygreenwich_levelq } value ?= var:building_observatorygreenwich_levelq } } }
 	else_if = { limit = { is_building_type = building_temple_of_poseidon } state = { if = { limit = { exists = var:building_temple_of_poseidon_levelq } value ?= var:building_temple_of_poseidon_levelq } } }
+	else_if = { limit = { is_building_type = building_cristo_redentor } state = { if = { limit = { exists = var:building_cristo_redentor_levelq } value ?= var:building_cristo_redentor_levelq } } }
 	else_if = { limit = { is_building_type = building_wat_arun } state = { if = { limit = { exists = var:building_wat_arun_levelq } value ?= var:building_wat_arun_levelq } } }
 	else_if = { limit = { is_building_type = building_subsistence_farms } state = { if = { limit = { exists = var:building_subsistence_farms_levelq } value ?= var:building_subsistence_farms_levelq } } }
 	else_if = { limit = { is_building_type = building_subsistence_orchards } state = { if = { limit = { exists = var:building_subsistence_orchards_levelq } value ?= var:building_subsistence_orchards_levelq } } }
@@ -1074,6 +1175,7 @@ building_levelq = {
 }
 
 state_infra_usage_queued = {
+	# debug_log = state_infra_usage_queued
 	every_scope_building = {
 		limit = {
 			is_under_construction = yes
@@ -1086,6 +1188,7 @@ state_infra_usage_queued = {
 }
 
 state_infra_prog = {
+	# debug_log = state_infra_prog
 	value = infrastructure
 	subtract = infrastructure_usage
 	subtract = state_infra_usage_queued
@@ -1094,14 +1197,14 @@ state_infra_prog = {
 			b:building_port ?= {
 				add = {
 					value = port_infra_prod_per_level
-					multiply = { 
+					multiply = {
 						value = building_levelq
 						add = {
 							value = level
 							multiply = { value = 1 subtract = occupancy }
 						}
 					}
-					multiply = { value = 1 add = modifier:building_port_throughput_mult }
+					multiply = { value = 1 add = modifier:building_port_throughput_add }
 				}
 			}
 		}
@@ -1109,14 +1212,14 @@ state_infra_prog = {
 			b:building_railway ?= {
 				add = {
 					value = railway_infra_prod_per_level
-					multiply = { 
+					multiply = {
 						value = building_levelq
 						add = {
 							value = level
 							multiply = { value = 1 subtract = occupancy }
 						}
 					}
-					multiply = { value = 1 add = modifier:building_railway_throughput_mult }
+					multiply = { value = 1 add = modifier:building_railway_throughput_add }
 				}
 			}
 		}
@@ -1127,110 +1230,118 @@ state_infra_prog = {
 	}
 }
 
-building_group_throughput_mult = {
-	if = { limit = { is_building_group = bg_agriculture } value = modifier:building_group_bg_agriculture_throughput_mult }
-	else_if = { limit = { is_building_group = bg_ranching } value = modifier:building_group_bg_ranching_throughput_mult }
-	else_if = { limit = { is_building_group = bg_mining } value = modifier:building_group_bg_mining_throughput_mult }
-	else_if = { limit = { is_building_group = bg_plantations } value = modifier:building_group_bg_plantations_throughput_mult }
-	else_if = { limit = { is_building_group = bg_manufacturing } value = modifier:building_group_bg_manufacturing_throughput_mult }
-	else_if = { limit = { is_building_group = bg_service } value = modifier:building_group_bg_service_throughput_mult }
-	else_if = { limit = { is_building_group = bg_oil_extraction } value = modifier:building_group_bg_oil_extraction_throughput_mult }
-	else_if = { limit = { is_building_group = bg_logging } value = modifier:building_group_bg_logging_throughput_mult }
-	else_if = { limit = { is_building_group = bg_fishing } value = modifier:building_group_bg_fishing_throughput_mult }
-	else_if = { limit = { is_building_group = bg_whaling } value = modifier:building_group_bg_whaling_throughput_mult }
+building_group_throughput_add = {
+	# debug_log = building_group_throughput_add
+	if = { limit = { is_building_group = bg_agriculture } value = modifier:building_group_bg_agriculture_throughput_add }
+	else_if = { limit = { is_building_group = bg_ranching } value = modifier:building_group_bg_ranching_throughput_add }
+	else_if = { limit = { is_building_group = bg_mining } value = modifier:building_group_bg_mining_throughput_add }
+	else_if = { limit = { is_building_group = bg_plantations } value = modifier:building_group_bg_plantations_throughput_add }
+	else_if = { limit = { is_building_group = bg_manufacturing } value = modifier:building_group_bg_manufacturing_throughput_add }
+	else_if = { limit = { is_building_group = bg_service } value = modifier:building_group_bg_service_throughput_add }
+	else_if = { limit = { is_building_group = bg_oil_extraction } value = modifier:building_group_bg_oil_extraction_throughput_add }
+	else_if = { limit = { is_building_group = bg_logging } value = modifier:building_group_bg_logging_throughput_add }
+	else_if = { limit = { is_building_group = bg_fishing } value = modifier:building_group_bg_fishing_throughput_add }
+	else_if = { limit = { is_building_group = bg_whaling } value = modifier:building_group_bg_whaling_throughput_add }
 }
 
-building_type_throughput_mult = {
-	if = { limit = { is_building_type = building_food_industry } value = modifier:building_food_industry_throughput_mult }
-	else_if = { limit = { is_building_type = building_textile_mills } value = modifier:building_textile_mills_throughput_mult }
-	else_if = { limit = { is_building_type = building_furniture_manufacturies } value = modifier:building_furniture_manufacturies_throughput_mult }
-	else_if = { limit = { is_building_type = building_glassworks } value = modifier:building_glassworks_throughput_mult }
-	else_if = { limit = { is_building_type = building_tooling_workshops } value = modifier:building_tooling_workshops_throughput_mult }
-	else_if = { limit = { is_building_type = building_paper_mills } value = modifier:building_paper_mills_throughput_mult }
-	else_if = { limit = { is_building_type = building_chemical_plants } value = modifier:building_chemical_plants_throughput_mult }
-	else_if = { limit = { is_building_type = building_synthetics_plants } value = modifier:building_synthetics_plants_throughput_mult }
-	else_if = { limit = { is_building_type = building_steel_mills } value = modifier:building_steel_mills_throughput_mult }
-	else_if = { limit = { is_building_type = building_motor_industry } value = modifier:building_motor_industry_throughput_mult }
-	else_if = { limit = { is_building_type = building_shipyards } value = modifier:building_shipyards_throughput_mult }
-	else_if = { limit = { is_building_type = building_war_machine_industry } value = modifier:building_war_machine_industry_throughput_mult }
-	else_if = { limit = { is_building_type = building_electrics_industry } value = modifier:building_electrics_industry_throughput_mult }
-	else_if = { limit = { is_building_type = building_arms_industry } value = modifier:building_arms_industry_throughput_mult }
-	else_if = { limit = { is_building_type = building_munition_plants } value = modifier:building_munition_plants_throughput_mult }
-	else_if = { limit = { is_building_type = building_rye_farm } value = modifier:building_rye_farm_throughput_mult }
-	else_if = { limit = { is_building_type = building_wheat_farm } value = modifier:building_wheat_farm_throughput_mult }
-	else_if = { limit = { is_building_type = building_rice_farm } value = modifier:building_rice_farm_throughput_mult }
-	else_if = { limit = { is_building_type = building_maize_farm } value = modifier:building_maize_farm_throughput_mult }
-	else_if = { limit = { is_building_type = building_millet_farm } value = modifier:building_millet_farm_throughput_mult }
-	else_if = { limit = { is_building_type = building_livestock_ranch } value = modifier:building_livestock_ranch_throughput_mult }
-	else_if = { limit = { is_building_type = building_coal_mine } value = modifier:building_coal_mine_throughput_mult }
-	else_if = { limit = { is_building_type = building_iron_mine } value = modifier:building_iron_mine_throughput_mult }
-	else_if = { limit = { is_building_type = building_lead_mine } value = modifier:building_lead_mine_throughput_mult }
-	else_if = { limit = { is_building_type = building_sulfur_mine } value = modifier:building_sulfur_mine_throughput_mult }
-	else_if = { limit = { is_building_type = building_gold_mine } value = modifier:building_gold_mine_throughput_mult }
-	else_if = { limit = { is_building_type = building_gold_fields } value = modifier:building_gold_fields_throughput_mult }
-	else_if = { limit = { is_building_type = building_coffee_plantation } value = modifier:building_coffee_plantation_throughput_mult }
-	else_if = { limit = { is_building_type = building_cotton_plantation } value = modifier:building_cotton_plantation_throughput_mult }
-	else_if = { limit = { is_building_type = building_dye_plantation } value = modifier:building_dye_plantation_throughput_mult }
-	else_if = { limit = { is_building_type = building_opium_plantation } value = modifier:building_opium_plantation_throughput_mult }
-	else_if = { limit = { is_building_type = building_tea_plantation } value = modifier:building_tea_plantation_throughput_mult }
-	else_if = { limit = { is_building_type = building_tobacco_plantation } value = modifier:building_tobacco_plantation_throughput_mult }
-	else_if = { limit = { is_building_type = building_sugar_plantation } value = modifier:building_sugar_plantation_throughput_mult }
-	else_if = { limit = { is_building_type = building_banana_plantation } value = modifier:building_banana_plantation_throughput_mult }
-	else_if = { limit = { is_building_type = building_silk_plantation } value = modifier:building_silk_plantation_throughput_mult }
-	else_if = { limit = { is_building_type = building_barracks } value = modifier:building_barracks_throughput_mult }
-	else_if = { limit = { is_building_type = building_conscription_center } value = modifier:building_conscription_center_throughput_mult }
-	else_if = { limit = { is_building_type = building_naval_base } value = modifier:building_naval_base_throughput_mult }
-	else_if = { limit = { is_building_type = building_urban_center } value = modifier:building_urban_center_throughput_mult }
-	else_if = { limit = { is_building_type = building_arts_academy } value = modifier:building_arts_academy_throughput_mult }
-	else_if = { limit = { is_building_type = building_power_plant } value = modifier:building_power_plant_throughput_mult }
-	else_if = { limit = { is_building_type = building_port } value = modifier:building_port_throughput_mult }
-	else_if = { limit = { is_building_type = building_government_administration } value = modifier:building_government_administration_throughput_mult }
-	else_if = { limit = { is_building_type = building_university } value = modifier:building_university_throughput_mult }
-	else_if = { limit = { is_building_type = building_skyscraper } value = modifier:building_skyscraper_throughput_mult }
-	else_if = { limit = { is_building_type = building_logging_camp } value = modifier:building_logging_camp_throughput_mult }
-	else_if = { limit = { is_building_type = building_rubber_plantation } value = modifier:building_rubber_plantation_throughput_mult }
-	else_if = { limit = { is_building_type = building_fishing_wharf } value = modifier:building_fishing_wharf_throughput_mult }
-	else_if = { limit = { is_building_type = building_whaling_station } value = modifier:building_whaling_station_throughput_mult }
-	else_if = { limit = { is_building_type = building_oil_rig } value = modifier:building_oil_rig_throughput_mult }
-	else_if = { limit = { is_building_type = building_suez_canal } value = modifier:building_suez_canal_throughput_mult }
-	else_if = { limit = { is_building_type = building_panama_canal } value = modifier:building_panama_canal_throughput_mult }
-	else_if = { limit = { is_building_type = building_railway } value = modifier:building_railway_throughput_mult }
-	else_if = { limit = { is_building_type = building_trade_center } value = modifier:building_trade_center_throughput_mult }
-	else_if = { limit = { is_building_type = building_construction_sector } value = modifier:building_construction_sector_throughput_mult }
-	else_if = { limit = { is_building_type = building_construction_sector } value = modifier:building_construction_sector_throughput_mult }
-	else_if = { limit = { is_building_type = building_eiffel_tower } value = modifier:building_eiffel_tower_throughput_mult }
-	else_if = { limit = { is_building_type = building_angkor_wat } value = modifier:building_angkor_wat_throughput_mult }
-	else_if = { limit = { is_building_type = building_big_ben } value = modifier:building_big_ben_throughput_mult }
-	else_if = { limit = { is_building_type = building_forbidden_city } value = modifier:building_forbidden_city_throughput_mult }
-	else_if = { limit = { is_building_type = building_hagia_sophia } value = modifier:building_hagia_sophia_throughput_mult }
-	else_if = { limit = { is_building_type = building_mosque_of_djenne } value = modifier:building_mosque_of_djenne_throughput_mult }
-	else_if = { limit = { is_building_type = building_saint_basils_cathedral } value = modifier:building_saint_basils_cathedral_throughput_mult }
-	else_if = { limit = { is_building_type = building_statue_of_liberty } value = modifier:building_statue_of_liberty_throughput_mult }
-	else_if = { limit = { is_building_type = building_taj_mahal } value = modifier:building_taj_mahal_throughput_mult }
-	else_if = { limit = { is_building_type = building_vatican_city } value = modifier:building_vatican_city_throughput_mult }
-	else_if = { limit = { is_building_type = building_white_house } value = modifier:building_white_house_throughput_mult }
-	else_if = { limit = { is_building_type = building_machu_picchu } value = modifier:building_machu_picchu_throughput_mult }
-	else_if = { limit = { is_building_type = building_argebam } value = modifier:building_argebam_throughput_mult }
-	else_if = { limit = { is_building_type = building_chichen_itza } value = modifier:building_chichen_itza_throughput_mult }
-	else_if = { limit = { is_building_type = building_easter_island_heads } value = modifier:building_easter_island_heads_throughput_mult }
-	else_if = { limit = { is_building_type = building_eye_of_sahara } value = modifier:building_eye_of_sahara_throughput_mult }
-	else_if = { limit = { is_building_type = building_giza_necropolis } value = modifier:building_giza_necropolis_throughput_mult }
-	else_if = { limit = { is_building_type = building_khaju_bridge } value = modifier:building_khaju_bridge_throughput_mult }
-	else_if = { limit = { is_building_type = building_petra } value = modifier:building_petra_throughput_mult }
-	else_if = { limit = { is_building_type = building_capitol_hill } value = modifier:building_capitol_hill_throughput_mult }
-	else_if = { limit = { is_building_type = building_central_park } value = modifier:building_central_park_throughput_mult }
-	else_if = { limit = { is_building_type = building_martandsuntemple } value = modifier:building_martandsuntemple_throughput_mult }
-	else_if = { limit = { is_building_type = building_observatorygreenwich } value = modifier:building_observatorygreenwich_throughput_mult }
-	else_if = { limit = { is_building_type = building_temple_of_poseidon } value = modifier:building_temple_of_poseidon_throughput_mult }
-	else_if = { limit = { is_building_type = building_wat_arun } value = modifier:building_wat_arun_throughput_mult }
-	else_if = { limit = { is_building_type = building_subsistence_farms } value = modifier:building_subsistence_farms_throughput_mult }
-	else_if = { limit = { is_building_type = building_subsistence_orchards } value = modifier:building_subsistence_orchards_throughput_mult }
-	else_if = { limit = { is_building_type = building_subsistence_pastures } value = modifier:building_subsistence_pastures_throughput_mult }
-	else_if = { limit = { is_building_type = building_subsistence_fishing_villages } value = modifier:building_subsistence_fishing_villages_throughput_mult }
-	else_if = { limit = { is_building_type = building_subsistence_rice_paddies } value = modifier:building_subsistence_rice_paddies_throughput_mult }
+building_type_throughput_add = {
+	# debug_log = building_type_throughput_add
+	if = { limit = { is_building_type = building_food_industry } value = modifier:building_food_industry_throughput_add }
+	else_if = { limit = { is_building_type = building_textile_mills } value = modifier:building_textile_mills_throughput_add }
+	else_if = { limit = { is_building_type = building_furniture_manufacturies } value = modifier:building_furniture_manufacturies_throughput_add }
+	else_if = { limit = { is_building_type = building_glassworks } value = modifier:building_glassworks_throughput_add }
+	else_if = { limit = { is_building_type = building_tooling_workshops } value = modifier:building_tooling_workshops_throughput_add }
+	else_if = { limit = { is_building_type = building_paper_mills } value = modifier:building_paper_mills_throughput_add }
+	else_if = { limit = { is_building_type = building_chemical_plants } value = modifier:building_chemical_plants_throughput_add }
+	else_if = { limit = { is_building_type = building_explosives_factory } value = modifier:building_explosives_factory_throughput_add }
+	else_if = { limit = { is_building_type = building_synthetics_plants } value = modifier:building_synthetics_plants_throughput_add }
+	else_if = { limit = { is_building_type = building_steel_mills } value = modifier:building_steel_mills_throughput_add }
+	else_if = { limit = { is_building_type = building_motor_industry } value = modifier:building_motor_industry_throughput_add }
+	else_if = { limit = { is_building_type = building_shipyards } value = modifier:building_shipyards_throughput_add }
+	else_if = { limit = { is_building_type = building_military_shipyards } value = modifier:building_military_shipyards_throughput_add }
+	else_if = { limit = { is_building_type = building_war_machine_industry } value = modifier:building_war_machine_industry_throughput_add }
+	else_if = { limit = { is_building_type = building_electrics_industry } value = modifier:building_electrics_industry_throughput_add }
+	else_if = { limit = { is_building_type = building_arms_industry } value = modifier:building_arms_industry_throughput_add }
+	else_if = { limit = { is_building_type = building_artillery_foundries } value = modifier:building_artillery_foundries_throughput_add }
+	else_if = { limit = { is_building_type = building_munition_plants } value = modifier:building_munition_plants_throughput_add }
+	else_if = { limit = { is_building_type = building_rye_farm } value = modifier:building_rye_farm_throughput_add }
+	else_if = { limit = { is_building_type = building_wheat_farm } value = modifier:building_wheat_farm_throughput_add }
+	else_if = { limit = { is_building_type = building_rice_farm } value = modifier:building_rice_farm_throughput_add }
+	else_if = { limit = { is_building_type = building_maize_farm } value = modifier:building_maize_farm_throughput_add }
+	else_if = { limit = { is_building_type = building_millet_farm } value = modifier:building_millet_farm_throughput_add }
+	else_if = { limit = { is_building_type = building_livestock_ranch } value = modifier:building_livestock_ranch_throughput_add }
+	else_if = { limit = { is_building_type = building_vineyard_plantation } value = modifier:building_vineyard_plantation_throughput_add }
+	else_if = { limit = { is_building_type = building_coal_mine } value = modifier:building_coal_mine_throughput_add }
+	else_if = { limit = { is_building_type = building_iron_mine } value = modifier:building_iron_mine_throughput_add }
+	else_if = { limit = { is_building_type = building_lead_mine } value = modifier:building_lead_mine_throughput_add }
+	else_if = { limit = { is_building_type = building_sulfur_mine } value = modifier:building_sulfur_mine_throughput_add }
+	else_if = { limit = { is_building_type = building_gold_mine } value = modifier:building_gold_mine_throughput_add }
+	else_if = { limit = { is_building_type = building_gold_fields } value = modifier:building_gold_fields_throughput_add }
+	else_if = { limit = { is_building_type = building_coffee_plantation } value = modifier:building_coffee_plantation_throughput_add }
+	else_if = { limit = { is_building_type = building_cotton_plantation } value = modifier:building_cotton_plantation_throughput_add }
+	else_if = { limit = { is_building_type = building_dye_plantation } value = modifier:building_dye_plantation_throughput_add }
+	else_if = { limit = { is_building_type = building_opium_plantation } value = modifier:building_opium_plantation_throughput_add }
+	else_if = { limit = { is_building_type = building_tea_plantation } value = modifier:building_tea_plantation_throughput_add }
+	else_if = { limit = { is_building_type = building_tobacco_plantation } value = modifier:building_tobacco_plantation_throughput_add }
+	else_if = { limit = { is_building_type = building_sugar_plantation } value = modifier:building_sugar_plantation_throughput_add }
+	else_if = { limit = { is_building_type = building_banana_plantation } value = modifier:building_banana_plantation_throughput_add }
+	else_if = { limit = { is_building_type = building_silk_plantation } value = modifier:building_silk_plantation_throughput_add }
+	else_if = { limit = { is_building_type = building_barracks } value = modifier:building_barracks_throughput_add }
+	else_if = { limit = { is_building_type = building_conscription_center } value = modifier:building_conscription_center_throughput_add }
+	else_if = { limit = { is_building_type = building_naval_base } value = modifier:building_naval_base_throughput_add }
+	else_if = { limit = { is_building_type = building_urban_center } value = modifier:building_urban_center_throughput_add }
+	else_if = { limit = { is_building_type = building_arts_academy } value = modifier:building_arts_academy_throughput_add }
+	else_if = { limit = { is_building_type = building_power_plant } value = modifier:building_power_plant_throughput_add }
+	else_if = { limit = { is_building_type = building_port } value = modifier:building_port_throughput_add }
+	else_if = { limit = { is_building_type = building_government_administration } value = modifier:building_government_administration_throughput_add }
+	else_if = { limit = { is_building_type = building_university } value = modifier:building_university_throughput_add }
+	else_if = { limit = { is_building_type = building_skyscraper } value = modifier:building_skyscraper_throughput_add }
+	else_if = { limit = { is_building_type = building_logging_camp } value = modifier:building_logging_camp_throughput_add }
+	else_if = { limit = { is_building_type = building_rubber_plantation } value = modifier:building_rubber_plantation_throughput_add }
+	else_if = { limit = { is_building_type = building_fishing_wharf } value = modifier:building_fishing_wharf_throughput_add }
+	else_if = { limit = { is_building_type = building_whaling_station } value = modifier:building_whaling_station_throughput_add }
+	else_if = { limit = { is_building_type = building_oil_rig } value = modifier:building_oil_rig_throughput_add }
+	else_if = { limit = { is_building_type = building_suez_canal } value = modifier:building_suez_canal_throughput_add }
+	else_if = { limit = { is_building_type = building_panama_canal } value = modifier:building_panama_canal_throughput_add }
+	else_if = { limit = { is_building_type = building_railway } value = modifier:building_railway_throughput_add }
+	else_if = { limit = { is_building_type = building_trade_center } value = modifier:building_trade_center_throughput_add }
+	else_if = { limit = { is_building_type = building_construction_sector } value = modifier:building_construction_sector_throughput_add }
+	else_if = { limit = { is_building_type = building_construction_sector } value = modifier:building_construction_sector_throughput_add }
+	else_if = { limit = { is_building_type = building_eiffel_tower } value = modifier:building_eiffel_tower_throughput_add }
+	else_if = { limit = { is_building_type = building_angkor_wat } value = modifier:building_angkor_wat_throughput_add }
+	else_if = { limit = { is_building_type = building_big_ben } value = modifier:building_big_ben_throughput_add }
+	else_if = { limit = { is_building_type = building_forbidden_city } value = modifier:building_forbidden_city_throughput_add }
+	else_if = { limit = { is_building_type = building_hagia_sophia } value = modifier:building_hagia_sophia_throughput_add }
+	else_if = { limit = { is_building_type = building_mosque_of_djenne } value = modifier:building_mosque_of_djenne_throughput_add }
+	else_if = { limit = { is_building_type = building_saint_basils_cathedral } value = modifier:building_saint_basils_cathedral_throughput_add }
+	else_if = { limit = { is_building_type = building_statue_of_liberty } value = modifier:building_statue_of_liberty_throughput_add }
+	else_if = { limit = { is_building_type = building_taj_mahal } value = modifier:building_taj_mahal_throughput_add }
+	else_if = { limit = { is_building_type = building_vatican_city } value = modifier:building_vatican_city_throughput_add }
+	else_if = { limit = { is_building_type = building_white_house } value = modifier:building_white_house_throughput_add }
+	else_if = { limit = { is_building_type = building_machu_picchu } value = modifier:building_machu_picchu_throughput_add }
+	else_if = { limit = { is_building_type = building_argebam } value = modifier:building_argebam_throughput_add }
+	else_if = { limit = { is_building_type = building_chichen_itza } value = modifier:building_chichen_itza_throughput_add }
+	else_if = { limit = { is_building_type = building_easter_island_heads } value = modifier:building_easter_island_heads_throughput_add }
+	else_if = { limit = { is_building_type = building_eye_of_sahara } value = modifier:building_eye_of_sahara_throughput_add }
+	else_if = { limit = { is_building_type = building_giza_necropolis } value = modifier:building_giza_necropolis_throughput_add }
+	else_if = { limit = { is_building_type = building_khaju_bridge } value = modifier:building_khaju_bridge_throughput_add }
+	else_if = { limit = { is_building_type = building_petra } value = modifier:building_petra_throughput_add }
+	else_if = { limit = { is_building_type = building_capitol_hill } value = modifier:building_capitol_hill_throughput_add }
+	else_if = { limit = { is_building_type = building_central_park } value = modifier:building_central_park_throughput_add }
+	else_if = { limit = { is_building_type = building_martandsuntemple } value = modifier:building_martandsuntemple_throughput_add }
+	else_if = { limit = { is_building_type = building_observatorygreenwich } value = modifier:building_observatorygreenwich_throughput_add }
+	else_if = { limit = { is_building_type = building_temple_of_poseidon } value = modifier:building_temple_of_poseidon_throughput_add }
+	else_if = { limit = { is_building_type = building_cristo_redentor } value = modifier:building_cristo_redentor_throughput_add }
+	else_if = { limit = { is_building_type = building_wat_arun } value = modifier:building_wat_arun_throughput_add }
+	else_if = { limit = { is_building_type = building_subsistence_farms } value = modifier:building_subsistence_farms_throughput_add }
+	else_if = { limit = { is_building_type = building_subsistence_orchards } value = modifier:building_subsistence_orchards_throughput_add }
+	else_if = { limit = { is_building_type = building_subsistence_pastures } value = modifier:building_subsistence_pastures_throughput_add }
+	else_if = { limit = { is_building_type = building_subsistence_fishing_villages } value = modifier:building_subsistence_fishing_villages_throughput_add }
+	else_if = { limit = { is_building_type = building_subsistence_rice_paddies } value = modifier:building_subsistence_rice_paddies_throughput_add }
 }
 
-buidling_scale_throughput_mult = {
+buidling_scale_throughput_add = {
+	# debug_log = buidling_scale_throughput_add
 	if = { limit = { OR = { is_building_group = bg_infrastructure is_building_group = bg_military is_subsistence_building = yes } }
 		value = 0
 	}
@@ -1243,7 +1354,8 @@ buidling_scale_throughput_mult = {
 	}
 }
 
-buidling_scale_throughput_mult_prog = {
+buidling_scale_throughput_add_prog = {
+	# debug_log = buidling_scale_throughput_add_prog
 	if = { limit = { OR = { is_building_group = bg_infrastructure is_building_group = bg_military is_subsistence_building = yes } }
 		value = 0
 	}
@@ -1257,30 +1369,34 @@ buidling_scale_throughput_mult_prog = {
 	}
 }
 
-building_throughput_mult = {
+building_throughput_add = {
+	# debug_log = building_throughput_add
 	state = {
-		if = { limit = {  is_incorporated = no } 
+		if = { limit = {  is_incorporated = no }
 			add = modifier:building_unincorporated_throughput_add
 		}
 	}
-	add = building_group_throughput_mult
-	add = modifier:building_throughput_mult
-	add = building_type_throughput_mult
+	add = building_group_throughput_add
+	add = modifier:building_throughput_add
+	add = building_type_throughput_add
 	#add = modifier:building_throughput_oil_mult
 
 }
 
-building_noscale_throughput_mult = {
-	value = building_throughput_mult
-	subtract = buidling_scale_throughput_mult
+building_noscale_throughput_add = {
+	# debug_log = building_noscale_throughput_add
+	value = building_throughput_add
+	subtract = buidling_scale_throughput_add
 }
 
-building_throughput_mult_prog = {
-	value = building_noscale_throughput_mult
-	add = buidling_scale_throughput_mult_prog
+building_throughput_add_prog = {
+	# debug_log = building_throughput_add_prog
+	value = building_noscale_throughput_add
+	add = buidling_scale_throughput_add_prog
 }
 
 building_group_employee_mult = {
+	# debug_log = building_group_employee_mult
 	if = { limit = { is_building_group = bg_service } value = modifier:building_group_bg_service_employee_mult }
 	else_if = { limit = { is_building_group = bg_agriculture } value = modifier:building_group_bg_agriculture_employee_mult }
 	else_if = { limit = { is_building_group = bg_plantations } value = modifier:building_group_bg_plantations_employee_mult }
@@ -1301,6 +1417,7 @@ building_group_employee_mult = {
 }
 
 state_jobs_construction = {
+	# debug_log = state_jobs_construction
 	every_scope_building = {
 		limit = {
 			is_subsistence_building = no
@@ -1315,6 +1432,7 @@ state_jobs_construction = {
 }
 
 state_available_workers_prog = {
+	# debug_log = state_available_workers_prog
 	value = state_next_available_workers_all_hiring
 	subtract = state_jobs_construction
 	if = { limit = { exists = global_var:gui_states_jobs_not_hiring } subtract = state_jobs_not_hiring }
@@ -1322,6 +1440,7 @@ state_available_workers_prog = {
 }
 
 state_available_workers_prog_wcache = {
+	# debug_log = state_available_workers_prog_wcache
 	value = state_next_available_workers_all_hiring
 	subtract = state_jobs_construction
 	if = { limit = { exists = global_var:gui_states_jobs_not_hiring } subtract = state_jobs_not_hiring }
@@ -1329,6 +1448,7 @@ state_available_workers_prog_wcache = {
 }
 
 building_avg_wage = {
+	# debug_log = building_avg_wage
 	#if earnings are 0 they may actually be negative and calculation will be incorrect
 	if = { limit = { building_total_jobs > 0 occupancy > 0 earnings > 0 }
 		value = earnings
@@ -1361,21 +1481,25 @@ building_avg_wage = {
 #}
 
 country_colonial_growth_per_colony = {
+	# debug_log = country_colonial_growth_per_colony
 	value = colonial_growth_per_colony
 }
 
 country_colonial_growth_per_colony_extra = {
+	# debug_log = country_colonial_growth_per_colony_extra
 	value = colonial_growth_per_colony
 	subtract = define:NPops|MAX_COLONIAL_GROWTH
 	multiply = num_colony_projects
 }
 
 country_colonial_growth_per_colony_extra_ratio = {
+	# debug_log = country_colonial_growth_per_colony_extra_ratio
 	value = country_colonial_growth_per_colony_extra
 	divide = define:NPops|MAX_COLONIAL_GROWTH
 }
 
 state_region_player_colonizable_count = {
+	# debug_log = state_region_player_colonizable_count
 	every_state_region = {
 		if = { limit = { exists = var:player_colonizable }
 			if = { limit = { var:player_colonizable = yes }
@@ -1385,12 +1509,13 @@ state_region_player_colonizable_count = {
 }
 
 market_goods_price = {
+	# debug_log = market_goods_price
 	if = { limit = { market_goods_delta < 0 }
 		#Shortage, balance is negative. Price modifier = (Balance / Sell Orders) * -75%
 		if = { limit = { market_goods_sell_orders = 0 }
 			value = 0.75
 		}
-		else = { 
+		else = {
 			value = market_goods_delta
 			divide = market_goods_sell_orders
 			multiply = -0.75
@@ -1401,7 +1526,7 @@ market_goods_price = {
 			if = { limit = { goods = g:gold } value = 0 }
 			else = { value = -0.75 }
 		}
-		else = { 
+		else = {
 			value = market_goods_delta
 			divide = market_goods_buy_orders
 			multiply = -0.75
@@ -1414,6 +1539,7 @@ market_goods_price = {
 gui_states_build_list_page_size = 25
 
 state_btype_level = {
+	# debug_log = state_btype_level
 	every_scope_building = {
 		limit = { type = global_var:gui_states_build_list_btype }
 		value = level
@@ -1421,6 +1547,7 @@ state_btype_level = {
 }
 
 state_btype_earnings = {
+	# debug_log = state_btype_earnings
 	every_scope_building = {
 		limit = { type = global_var:gui_states_build_list_btype }
 		value = earnings
@@ -1428,6 +1555,7 @@ state_btype_earnings = {
 }
 
 state_btype_avg_wage = {
+	# debug_log = state_btype_avg_wage
 	every_scope_building = {
 		limit = { type = global_var:gui_states_build_list_btype }
 		value = building_avg_wage
@@ -1435,6 +1563,7 @@ state_btype_avg_wage = {
 }
 
 state_btype_productivity_prog = {
+	# debug_log = state_btype_productivity_prog
 	every_scope_building = {
 		limit = { type = global_var:gui_states_build_list_btype }
 		value = building_productivity_prog
@@ -1442,11 +1571,13 @@ state_btype_productivity_prog = {
 }
 
 building_level_prog = {
+	# debug_log = building_level_prog
 	value = level
 	add = building_levelq
 }
 
 state_btype_level_prog = {
+	# debug_log = state_btype_level_prog
 	every_scope_building = {
 		limit = { type = global_var:gui_states_build_list_btype }
 		value = building_level_prog
@@ -1454,12 +1585,14 @@ state_btype_level_prog = {
 }
 
 state_gui_map_list_index = {
+	# debug_log = state_gui_map_list_index
 	if = { limit = { exists = var:gui_map_list_vo_index } value = var:gui_map_list_vo_index }
 	else_if = { limit = { exists = var:gui_map_list_io_index } value = var:gui_map_list_io_index }
 	else_if = { limit = { exists = var:gui_map_list_fo_index } value = var:gui_map_list_fo_index }
 }
 
 state_num_construction = {
+	# debug_log = state_num_construction
 	every_scope_building = {
 		limit = { is_under_construction = yes }
 		add = 1
@@ -1467,6 +1600,7 @@ state_num_construction = {
 }
 
 state_port_level = {
+	# debug_log = state_port_level
 	if = { limit = { exists = b:building_port }
 		b:building_port ?= {
 			value = level
@@ -1475,6 +1609,7 @@ state_port_level = {
 }
 
 state_railway_level = {
+	# debug_log = state_railway_level
 	if = { limit = { exists = b:building_railway }
 		b:building_railway ?= {
 			value = level
@@ -1483,24 +1618,27 @@ state_railway_level = {
 }
 
 state_port_level_prog = {
+	# debug_log = state_port_level_prog
 	value = state_port_level
 	if = { limit = { exists = b:building_port }
 		b:building_port ?= {
 			add = building_levelq
 		}
-	}	
+	}
 }
 
 state_railway_level_prog = {
+	# debug_log = state_railway_level_prog
 	value = state_railway_level
 	if = { limit = { exists = b:building_railway }
 		b:building_railway ?= {
 			add = building_levelq
 		}
-	}	
+	}
 }
 
 state_order_btype_level = {
+	# debug_log = state_order_btype_level
 	if = { limit = { exists = global_var:gui_states_build_list_order_btype }
 		every_scope_building = {
 			limit = { type = global_var:gui_states_build_list_order_btype }
@@ -1510,6 +1648,7 @@ state_order_btype_level = {
 }
 
 state_order_btype_level_prog = {
+	# debug_log = state_order_btype_level_prog
 	if = { limit = { exists = global_var:gui_states_build_list_order_btype }
 		every_scope_building = {
 			limit = { type = global_var:gui_states_build_list_order_btype }
@@ -1520,6 +1659,7 @@ state_order_btype_level_prog = {
 }
 
 state_discrimination_culture = {
+	# debug_log = state_discrimination_culture
 	every_scope_culture = {
 		limit = { culture_is_discriminated_in = PREV.owner }
 		if = { limit = { PREV = { culture_percent_state = { target = PREV value >= 0.95 } } } add = 0.95 }
@@ -1545,6 +1685,7 @@ state_discrimination_culture = {
 }
 
 state_discrimination_religion = {
+	# debug_log = state_discrimination_religion
 	save_temporary_scope_as = state
 	owner = { every_in_list = {
 		variable = discriminated_religions
@@ -1571,11 +1712,13 @@ state_discrimination_religion = {
 }
 
 state_discrimination = {
+	# debug_log = state_discrimination
 	value = state_discrimination_culture
 	min = state_discrimination_religion
 }
 
 state_btype_labor_need = {
+	# debug_log = state_btype_labor_need
 	if = { limit = { any_scope_building = { type = global_var:gui_states_build_list_btype } }
 		every_scope_building = {
 			limit = { type = global_var:gui_states_build_list_btype }
@@ -1589,6 +1732,7 @@ state_btype_labor_need = {
 }
 
 state_btype_max_wage = {
+	# debug_log = state_btype_max_wage
 	every_scope_building = {
 		limit = { type = global_var:gui_states_build_list_btype }
 		value = building_max_wage
@@ -1596,6 +1740,7 @@ state_btype_max_wage = {
 }
 
 state_btype_max_wage_prog = {
+	# debug_log = state_btype_max_wage_prog
 	every_scope_building = {
 		limit = { type = global_var:gui_states_build_list_btype }
 		value = building_max_wage_prog
@@ -1603,6 +1748,7 @@ state_btype_max_wage_prog = {
 }
 
 state_btype_base_wage = {
+	# debug_log = state_btype_base_wage
 	every_scope_building = {
 		limit = { type = global_var:gui_states_build_list_btype }
 		value = building_base_wage
@@ -1610,5 +1756,6 @@ state_btype_base_wage = {
 }
 
 test_poll_rate = {
+	# debug_log = test_poll_rate
 	value = { value = 3 desc = "abc" }
 }

@@ -35,8 +35,11 @@ building_employment_building_paper_mills = {
 }
 building_employment_building_chemical_plants = {
 	add = building_employment_pmg_fertilizer_production
-	add = building_employment_pmg_explosives_building_chemical_plants
 	add = building_employment_pmg_ownership_capital_building_chemical_plants
+}
+building_employment_building_explosives_factory = {
+	add = building_employment_pmg_explosives_building_chemical_plants
+	add = building_employment_pmg_ownership_capital_building_explosives_factory
 }
 building_employment_building_synthetics_plants = {
 	add = building_employment_pmg_synthetic_dyes
@@ -56,8 +59,11 @@ building_employment_building_motor_industry = {
 }
 building_employment_building_shipyards = {
 	add = building_employment_pmg_base_building_shipyards
-	add = building_employment_pmg_military_base
 	add = building_employment_pmg_ownership_capital_building_shipyards
+}
+building_employment_building_military_shipyards = {
+	add = building_employment_pmg_military_base
+	add = building_employment_pmg_ownership_capital_building_military_shipyards
 }
 building_employment_building_war_machine_industry = {
 	add = building_employment_pmg_aeroplanes
@@ -71,9 +77,13 @@ building_employment_building_electrics_industry = {
 }
 building_employment_building_arms_industry = {
 	add = building_employment_pmg_firearms_manufacturing
-	add = building_employment_pmg_foundries
 	add = building_employment_pmg_automation_building_arms_industry
 	add = building_employment_pmg_ownership_capital_building_arms_industry
+}
+building_employment_building_artillery_foundries = {
+	add = building_employment_pmg_foundries
+	add = building_employment_pmg_automation_building_arms_industry
+	add = building_employment_pmg_ownership_capital_building_artillery_foundries
 }
 building_employment_building_munition_plants = {
 	add = building_employment_pmg_base_building_munition_plants
@@ -113,10 +123,15 @@ building_employment_building_millet_farm = {
 }
 building_employment_building_livestock_ranch = {
 	add = building_employment_pmg_base_building_livestock_ranch
-	add = building_employment_pmg_slaughtering
+	add = building_employment_pmg_sheep_ranch
 	add = building_employment_pmg_fencing
 	add = building_employment_pmg_refrigeration_building_livestock_ranch
 	add = building_employment_pmg_ownership_land_building_livestock_ranch
+}
+building_employment_building_vineyard_plantation = {
+	add = building_employment_pmg_base_building_vineyard_plantation
+	add = building_employment_pmg_train_automation_building_vineyard_plantation
+	add = building_employment_pmg_ownership_land_building_vineyard_plantation
 }
 
 building_employment_building_coal_mine = {
@@ -205,23 +220,12 @@ building_employment_building_silk_plantation = {
 }
 
 building_employment_building_barracks = {
-	add = building_employment_pmg_organization
-	add = building_employment_pmg_artillery
-	add = building_employment_pmg_reconaissance
-	add = building_employment_pmg_specialist_companies
-	add = building_employment_pmg_medical_aid
+	add = building_employment_pmg_training
 }
 building_employment_building_conscription_center = {
-	add = building_employment_pmg_organization_conscription
-	add = building_employment_pmg_artillery_conscription
-	add = building_employment_pmg_reconaissance_conscription
-	add = building_employment_pmg_specialist_companies_conscription
-	add = building_employment_pmg_medical_aid
+	add = building_employment_pmg_training_conscription
 }
 building_employment_building_naval_base = {
-	add = building_employment_pmg_ship_class
-	add = building_employment_pmg_escorts
-	add = building_employment_pmg_raiders
 	add = building_employment_pmg_naval_theory
 }
 
@@ -331,6 +335,9 @@ building_employment_building_temple_of_poseidon = {
 }
 building_employment_building_wat_arun = {
 	add = building_employment_pmg_dummy
+}
+building_employment_building_cristo_redentor = {
+	add = building_employment_pmg_base_building_cristo_redentor
 }
 
 building_employment_building_logging_camp = {

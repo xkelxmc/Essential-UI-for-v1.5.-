@@ -35,8 +35,11 @@ building_add_goods_building_paper_mills = {
 }
 building_add_goods_building_chemical_plants = {
 	building_add_goods_pmg_fertilizer_production = yes
-	building_add_goods_pmg_explosives_building_chemical_plants = yes
 	building_add_goods_pmg_ownership_capital_building_chemical_plants = yes
+}
+building_add_goods_building_explosives_factory = {
+	building_add_goods_pmg_explosives_building_chemical_plants = yes
+	building_add_goods_pmg_ownership_capital_building_explosives_factory = yes
 }
 building_add_goods_building_synthetics_plants = {
 	building_add_goods_pmg_synthetic_dyes = yes
@@ -56,8 +59,11 @@ building_add_goods_building_motor_industry = {
 }
 building_add_goods_building_shipyards = {
 	building_add_goods_pmg_base_building_shipyards = yes
-	building_add_goods_pmg_military_base = yes
 	building_add_goods_pmg_ownership_capital_building_shipyards = yes
+}
+building_add_goods_building_military_shipyards = {
+	building_add_goods_pmg_military_base = yes
+	building_add_goods_pmg_ownership_capital_building_military_shipyards = yes
 }
 building_add_goods_building_war_machine_industry = {
 	building_add_goods_pmg_aeroplanes = yes
@@ -71,9 +77,13 @@ building_add_goods_building_electrics_industry = {
 }
 building_add_goods_building_arms_industry = {
 	building_add_goods_pmg_firearms_manufacturing = yes
-	building_add_goods_pmg_foundries = yes
 	building_add_goods_pmg_automation_building_arms_industry = yes
 	building_add_goods_pmg_ownership_capital_building_arms_industry = yes
+}
+building_add_goods_building_artillery_foundries = {
+	building_add_goods_pmg_foundries = yes
+	building_add_goods_pmg_automation_building_arms_industry = yes
+	building_add_goods_pmg_ownership_capital_building_artillery_foundries = yes
 }
 building_add_goods_building_munition_plants = {
 	building_add_goods_pmg_base_building_munition_plants = yes
@@ -113,10 +123,15 @@ building_add_goods_building_millet_farm = {
 }
 building_add_goods_building_livestock_ranch = {
 	building_add_goods_pmg_base_building_livestock_ranch = yes
-	building_add_goods_pmg_slaughtering = yes
+	building_add_goods_pmg_sheep_ranch = yes
 	building_add_goods_pmg_fencing = yes
 	building_add_goods_pmg_refrigeration_building_livestock_ranch = yes
 	building_add_goods_pmg_ownership_land_building_livestock_ranch = yes
+}
+building_add_goods_building_vineyard_plantation = {
+	building_add_goods_pmg_base_building_vineyard_plantation = yes
+	building_add_goods_pmg_train_automation_building_vineyard_plantation = yes
+	building_add_goods_pmg_ownership_land_building_vineyard_plantation = yes
 }
 
 building_add_goods_building_coal_mine = {
@@ -205,23 +220,12 @@ building_add_goods_building_silk_plantation = {
 }
 
 building_add_goods_building_barracks = {
-	building_add_goods_pmg_organization = yes
-	building_add_goods_pmg_artillery = yes
-	building_add_goods_pmg_reconaissance = yes
-	building_add_goods_pmg_specialist_companies = yes
-	building_add_goods_pmg_medical_aid = yes
+	building_add_goods_pmg_training = yes
 }
 building_add_goods_building_conscription_center = {
-	building_add_goods_pmg_organization_conscription = yes
-	building_add_goods_pmg_artillery_conscription = yes
-	building_add_goods_pmg_reconaissance_conscription = yes
-	building_add_goods_pmg_specialist_companies_conscription = yes
-	building_add_goods_pmg_medical_aid = yes
+	building_add_goods_pmg_training_conscription = yes
 }
 building_add_goods_building_naval_base = {
-	building_add_goods_pmg_ship_class = yes
-	building_add_goods_pmg_escorts = yes
-	building_add_goods_pmg_raiders = yes
 	building_add_goods_pmg_naval_theory = yes
 }
 
@@ -331,6 +335,9 @@ building_add_goods_building_temple_of_poseidon = {
 }
 building_add_goods_building_wat_arun = {
 	building_add_goods_pmg_dummy = yes
+}
+building_add_goods_building_cristo_redentor = {
+	building_add_goods_pmg_base_building_cristo_redentor = yes
 }
 
 building_add_goods_building_logging_camp = {

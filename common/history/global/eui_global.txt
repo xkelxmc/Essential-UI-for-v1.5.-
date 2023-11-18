@@ -3,7 +3,15 @@ fix_variable_error = {
 	if = { limit = { has_variable = cache_available_workers_autopms } }
 	else_if = { limit = { has_variable = cache_available_jobs_autopms } }
 	#else_if = { limit = { exists = var:state_regions } remove_global_variable = state_regions }
-	else_if = { limit = { has_global_variable_list = state_regions target } }
+	else_if = {
+		limit = {
+			has_global_variable_list = state_regions
+			is_target_in_global_variable_list = {
+				name = state_regions
+				target = THIS
+			}
+		}
+	}
 
 	if = { limit = { has_variable = ammunition_hiring } }
 	else_if = { limit = { has_variable = ammunition_not_hiring } }
@@ -484,13 +492,16 @@ fix_variable_error = {
 	else_if = { limit = { has_variable = building_tooling_workshops_productivity_prog } }
 	else_if = { limit = { has_variable = building_paper_mills_productivity_prog } }
 	else_if = { limit = { has_variable = building_chemical_plants_productivity_prog } }
+	else_if = { limit = { has_variable = building_explosives_factory_productivity_prog } }
 	else_if = { limit = { has_variable = building_synthetics_plants_productivity_prog } }
 	else_if = { limit = { has_variable = building_steel_mills_productivity_prog } }
 	else_if = { limit = { has_variable = building_motor_industry_productivity_prog } }
 	else_if = { limit = { has_variable = building_shipyards_productivity_prog } }
+	else_if = { limit = { has_variable = building_military_shipyards_productivity_prog } }
 	else_if = { limit = { has_variable = building_war_machine_industry_productivity_prog } }
 	else_if = { limit = { has_variable = building_electrics_industry_productivity_prog } }
 	else_if = { limit = { has_variable = building_arms_industry_productivity_prog } }
+	else_if = { limit = { has_variable = building_artillery_foundries_productivity_prog } }
 	else_if = { limit = { has_variable = building_munition_plants_productivity_prog } }
 	else_if = { limit = { has_variable = building_rye_farm_productivity_prog } }
 	else_if = { limit = { has_variable = building_wheat_farm_productivity_prog } }
@@ -498,6 +509,7 @@ fix_variable_error = {
 	else_if = { limit = { has_variable = building_maize_farm_productivity_prog } }
 	else_if = { limit = { has_variable = building_millet_farm_productivity_prog } }
 	else_if = { limit = { has_variable = building_livestock_ranch_productivity_prog } }
+	else_if = { limit = { has_variable = building_vineyard_plantation_productivity_prog } }
 	else_if = { limit = { has_variable = building_coal_mine_productivity_prog } }
 	else_if = { limit = { has_variable = building_iron_mine_productivity_prog } }
 	else_if = { limit = { has_variable = building_lead_mine_productivity_prog } }
@@ -547,6 +559,7 @@ fix_variable_error = {
 	else_if = { limit = { has_variable = building_martandsuntemple_productivity_prog } }
 	else_if = { limit = { has_variable = building_observatorygreenwich_productivity_prog } }
 	else_if = { limit = { has_variable = building_temple_of_poseidon_productivity_prog } }
+	else_if = { limit = { has_variable = building_cristo_redentor_productivity_prog } }
 	else_if = { limit = { has_variable = building_wat_arun_productivity_prog } }
 	else_if = { limit = { has_variable = building_logging_camp_productivity_prog } }
 	else_if = { limit = { has_variable = building_rubber_plantation_productivity_prog } }
@@ -571,13 +584,16 @@ fix_variable_error = {
 	else_if = { limit = { has_variable = building_tooling_workshops_max_wage_prog } }
 	else_if = { limit = { has_variable = building_paper_mills_max_wage_prog } }
 	else_if = { limit = { has_variable = building_chemical_plants_max_wage_prog } }
+	else_if = { limit = { has_variable = building_explosives_factory_max_wage_prog } }
 	else_if = { limit = { has_variable = building_synthetics_plants_max_wage_prog } }
 	else_if = { limit = { has_variable = building_steel_mills_max_wage_prog } }
 	else_if = { limit = { has_variable = building_motor_industry_max_wage_prog } }
 	else_if = { limit = { has_variable = building_shipyards_max_wage_prog } }
+	else_if = { limit = { has_variable = building_military_shipyards_max_wage_prog } }
 	else_if = { limit = { has_variable = building_war_machine_industry_max_wage_prog } }
 	else_if = { limit = { has_variable = building_electrics_industry_max_wage_prog } }
 	else_if = { limit = { has_variable = building_arms_industry_max_wage_prog } }
+	else_if = { limit = { has_variable = building_artillery_foundries_max_wage_prog } }
 	else_if = { limit = { has_variable = building_munition_plants_max_wage_prog } }
 	else_if = { limit = { has_variable = building_rye_farm_max_wage_prog } }
 	else_if = { limit = { has_variable = building_wheat_farm_max_wage_prog } }
@@ -585,6 +601,7 @@ fix_variable_error = {
 	else_if = { limit = { has_variable = building_maize_farm_max_wage_prog } }
 	else_if = { limit = { has_variable = building_millet_farm_max_wage_prog } }
 	else_if = { limit = { has_variable = building_livestock_ranch_max_wage_prog } }
+	else_if = { limit = { has_variable = building_vineyard_plantation_max_wage_prog } }
 	else_if = { limit = { has_variable = building_coal_mine_max_wage_prog } }
 	else_if = { limit = { has_variable = building_iron_mine_max_wage_prog } }
 	else_if = { limit = { has_variable = building_lead_mine_max_wage_prog } }
@@ -634,6 +651,7 @@ fix_variable_error = {
 	else_if = { limit = { has_variable = building_martandsuntemple_max_wage_prog } }
 	else_if = { limit = { has_variable = building_observatorygreenwich_max_wage_prog } }
 	else_if = { limit = { has_variable = building_temple_of_poseidon_max_wage_prog } }
+	else_if = { limit = { has_variable = building_cristo_redentor_max_wage_prog } }
 	else_if = { limit = { has_variable = building_wat_arun_max_wage_prog } }
 	else_if = { limit = { has_variable = building_logging_camp_max_wage_prog } }
 	else_if = { limit = { has_variable = building_rubber_plantation_max_wage_prog } }
@@ -658,13 +676,16 @@ fix_variable_error = {
 	else_if = { limit = { has_variable = building_tooling_workshops_max_wage } }
 	else_if = { limit = { has_variable = building_paper_mills_max_wage } }
 	else_if = { limit = { has_variable = building_chemical_plants_max_wage } }
+	else_if = { limit = { has_variable = building_explosives_factory_max_wage } }
 	else_if = { limit = { has_variable = building_synthetics_plants_max_wage } }
 	else_if = { limit = { has_variable = building_steel_mills_max_wage } }
 	else_if = { limit = { has_variable = building_motor_industry_max_wage } }
 	else_if = { limit = { has_variable = building_shipyards_max_wage } }
+	else_if = { limit = { has_variable = building_military_shipyards_max_wage } }
 	else_if = { limit = { has_variable = building_war_machine_industry_max_wage } }
 	else_if = { limit = { has_variable = building_electrics_industry_max_wage } }
 	else_if = { limit = { has_variable = building_arms_industry_max_wage } }
+	else_if = { limit = { has_variable = building_artillery_foundries_max_wage } }
 	else_if = { limit = { has_variable = building_munition_plants_max_wage } }
 	else_if = { limit = { has_variable = building_rye_farm_max_wage } }
 	else_if = { limit = { has_variable = building_wheat_farm_max_wage } }
@@ -672,6 +693,7 @@ fix_variable_error = {
 	else_if = { limit = { has_variable = building_maize_farm_max_wage } }
 	else_if = { limit = { has_variable = building_millet_farm_max_wage } }
 	else_if = { limit = { has_variable = building_livestock_ranch_max_wage } }
+	else_if = { limit = { has_variable = building_vineyard_plantation_max_wage } }
 	else_if = { limit = { has_variable = building_coal_mine_max_wage } }
 	else_if = { limit = { has_variable = building_iron_mine_max_wage } }
 	else_if = { limit = { has_variable = building_lead_mine_max_wage } }
@@ -721,6 +743,7 @@ fix_variable_error = {
 	else_if = { limit = { has_variable = building_martandsuntemple_max_wage } }
 	else_if = { limit = { has_variable = building_observatorygreenwich_max_wage } }
 	else_if = { limit = { has_variable = building_temple_of_poseidon_max_wage } }
+	else_if = { limit = { has_variable = building_cristo_redentor_max_wage } }
 	else_if = { limit = { has_variable = building_wat_arun_max_wage } }
 	else_if = { limit = { has_variable = building_logging_camp_max_wage } }
 	else_if = { limit = { has_variable = building_rubber_plantation_max_wage } }
@@ -745,13 +768,16 @@ fix_variable_error = {
 	else_if = { limit = { has_variable = building_tooling_workshops_base_wage } }
 	else_if = { limit = { has_variable = building_paper_mills_base_wage } }
 	else_if = { limit = { has_variable = building_chemical_plants_base_wage } }
+	else_if = { limit = { has_variable = building_explosives_factory_base_wage } }
 	else_if = { limit = { has_variable = building_synthetics_plants_base_wage } }
 	else_if = { limit = { has_variable = building_steel_mills_base_wage } }
 	else_if = { limit = { has_variable = building_motor_industry_base_wage } }
 	else_if = { limit = { has_variable = building_shipyards_base_wage } }
+	else_if = { limit = { has_variable = building_military_shipyards_base_wage } }
 	else_if = { limit = { has_variable = building_war_machine_industry_base_wage } }
 	else_if = { limit = { has_variable = building_electrics_industry_base_wage } }
 	else_if = { limit = { has_variable = building_arms_industry_base_wage } }
+	else_if = { limit = { has_variable = building_artillery_foundries_base_wage } }
 	else_if = { limit = { has_variable = building_munition_plants_base_wage } }
 	else_if = { limit = { has_variable = building_rye_farm_base_wage } }
 	else_if = { limit = { has_variable = building_wheat_farm_base_wage } }
@@ -759,6 +785,7 @@ fix_variable_error = {
 	else_if = { limit = { has_variable = building_maize_farm_base_wage } }
 	else_if = { limit = { has_variable = building_millet_farm_base_wage } }
 	else_if = { limit = { has_variable = building_livestock_ranch_base_wage } }
+	else_if = { limit = { has_variable = building_vineyard_plantation_base_wage } }
 	else_if = { limit = { has_variable = building_coal_mine_base_wage } }
 	else_if = { limit = { has_variable = building_iron_mine_base_wage } }
 	else_if = { limit = { has_variable = building_lead_mine_base_wage } }
@@ -808,6 +835,7 @@ fix_variable_error = {
 	else_if = { limit = { has_variable = building_martandsuntemple_base_wage } }
 	else_if = { limit = { has_variable = building_observatorygreenwich_base_wage } }
 	else_if = { limit = { has_variable = building_temple_of_poseidon_base_wage } }
+	else_if = { limit = { has_variable = building_cristo_redentor_base_wage } }
 	else_if = { limit = { has_variable = building_wat_arun_base_wage } }
 	else_if = { limit = { has_variable = building_logging_camp_base_wage } }
 	else_if = { limit = { has_variable = building_rubber_plantation_base_wage } }

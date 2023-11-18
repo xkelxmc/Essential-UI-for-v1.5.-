@@ -1,4 +1,5 @@
 ﻿building_trigger_building_type = {
+	debug_log = building_trigger_building_type
 	trigger_if = { limit = { is_building_type = building_food_industry } $TRIGGER$ = { BTYPE = building_food_industry } }
 	trigger_else_if = { limit = { is_building_type = building_textile_mills } $TRIGGER$ = { BTYPE = building_textile_mills } }
 	trigger_else_if = { limit = { is_building_type = building_furniture_manufacturies } $TRIGGER$ = { BTYPE = building_furniture_manufacturies } }
@@ -6,13 +7,16 @@
 	trigger_else_if = { limit = { is_building_type = building_tooling_workshops } $TRIGGER$ = { BTYPE = building_tooling_workshops } }
 	trigger_else_if = { limit = { is_building_type = building_paper_mills } $TRIGGER$ = { BTYPE = building_paper_mills } }
 	trigger_else_if = { limit = { is_building_type = building_chemical_plants } $TRIGGER$ = { BTYPE = building_chemical_plants } }
+	trigger_else_if = { limit = { is_building_type = building_explosives_factory } $TRIGGER$ = { BTYPE = building_explosives_factory } }
 	trigger_else_if = { limit = { is_building_type = building_synthetics_plants } $TRIGGER$ = { BTYPE = building_synthetics_plants } }
 	trigger_else_if = { limit = { is_building_type = building_steel_mills } $TRIGGER$ = { BTYPE = building_steel_mills } }
 	trigger_else_if = { limit = { is_building_type = building_motor_industry } $TRIGGER$ = { BTYPE = building_motor_industry } }
 	trigger_else_if = { limit = { is_building_type = building_shipyards } $TRIGGER$ = { BTYPE = building_shipyards } }
+	trigger_else_if = { limit = { is_building_type = building_military_shipyards } $TRIGGER$ = { BTYPE = building_military_shipyards } }
 	trigger_else_if = { limit = { is_building_type = building_war_machine_industry } $TRIGGER$ = { BTYPE = building_war_machine_industry } }
 	trigger_else_if = { limit = { is_building_type = building_electrics_industry } $TRIGGER$ = { BTYPE = building_electrics_industry } }
 	trigger_else_if = { limit = { is_building_type = building_arms_industry } $TRIGGER$ = { BTYPE = building_arms_industry } }
+	trigger_else_if = { limit = { is_building_type = building_artillery_foundries } $TRIGGER$ = { BTYPE = building_artillery_foundries } }
 	trigger_else_if = { limit = { is_building_type = building_munition_plants } $TRIGGER$ = { BTYPE = building_munition_plants } }
 	trigger_else_if = { limit = { is_building_type = building_rye_farm } $TRIGGER$ = { BTYPE = building_rye_farm } }
 	trigger_else_if = { limit = { is_building_type = building_wheat_farm } $TRIGGER$ = { BTYPE = building_wheat_farm } }
@@ -20,6 +24,7 @@
 	trigger_else_if = { limit = { is_building_type = building_maize_farm } $TRIGGER$ = { BTYPE = building_maize_farm } }
 	trigger_else_if = { limit = { is_building_type = building_millet_farm } $TRIGGER$ = { BTYPE = building_millet_farm } }
 	trigger_else_if = { limit = { is_building_type = building_livestock_ranch } $TRIGGER$ = { BTYPE = building_livestock_ranch } }
+	trigger_else_if = { limit = { is_building_type = building_vineyard_plantation } $TRIGGER$ = { BTYPE = building_vineyard_plantation } }
 	trigger_else_if = { limit = { is_building_type = building_coal_mine } $TRIGGER$ = { BTYPE = building_coal_mine } }
 	trigger_else_if = { limit = { is_building_type = building_iron_mine } $TRIGGER$ = { BTYPE = building_iron_mine } }
 	trigger_else_if = { limit = { is_building_type = building_lead_mine } $TRIGGER$ = { BTYPE = building_lead_mine } }
@@ -69,6 +74,7 @@
 	trigger_else_if = { limit = { is_building_type = building_martandsuntemple } $TRIGGER$ = { BTYPE = building_martandsuntemple } }
 	trigger_else_if = { limit = { is_building_type = building_observatorygreenwich } $TRIGGER$ = { BTYPE = building_observatorygreenwich } }
 	trigger_else_if = { limit = { is_building_type = building_temple_of_poseidon } $TRIGGER$ = { BTYPE = building_temple_of_poseidon } }
+	trigger_else_if = { limit = { is_building_type = building_cristo_redentor } $TRIGGER$ = { BTYPE = building_cristo_redentor } }
 	trigger_else_if = { limit = { is_building_type = building_wat_arun } $TRIGGER$ = { BTYPE = building_wat_arun } }
 	trigger_else_if = { limit = { is_building_type = building_logging_camp } $TRIGGER$ = { BTYPE = building_logging_camp } }
 	trigger_else_if = { limit = { is_building_type = building_rubber_plantation } $TRIGGER$ = { BTYPE = building_rubber_plantation } }

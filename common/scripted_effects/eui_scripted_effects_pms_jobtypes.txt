@@ -3,7 +3,7 @@
 
 add_employment_pm_bakery = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 4500 }
-}		
+}
 add_employment_pm_sweeteners = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 4000 }
 	change_local_variable = { name = curr_building_employment_machinists_add add = 500 }
@@ -59,7 +59,7 @@ add_employment_pm_handsewn_clothes = {
 add_employment_pm_dye_workshops = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 4000 }
 	change_local_variable = { name = curr_building_employment_machinists_add add = 500 }
-}			
+}
 add_employment_pm_sewing_machines = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 3500 }
 	change_local_variable = { name = curr_building_employment_machinists_add add = 750 }
@@ -103,7 +103,7 @@ add_employment_pm_worker_cooperative_building_textile_mills = {
 }
 add_employment_pm_handcrafted_furniture = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 4500 }
-}		
+}
 add_employment_pm_lathe = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 3250 }
 	change_local_variable = { name = curr_building_employment_machinists_add add = 1000 }
@@ -150,7 +150,7 @@ add_employment_pm_worker_cooperative_building_furniture_manufacturies = {
 }
 add_employment_pm_forest_glass = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 4500 }
-}		
+}
 add_employment_pm_leaded_glass = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 4000 }
 	change_local_variable = { name = curr_building_employment_machinists_add add = 500 }
@@ -201,6 +201,11 @@ add_employment_pm_pig_iron = {
 	change_local_variable = { name = curr_building_employment_machinists_add add = 500 }
 }
 add_employment_pm_steel = {
+	change_local_variable = { name = curr_building_employment_laborers_add add = 3500 }
+	change_local_variable = { name = curr_building_employment_machinists_add add = 500 }
+	change_local_variable = { name = curr_building_employment_engineers_add add = 500 }
+}
+add_employment_pm_rubber_grips = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 3000 }
 	change_local_variable = { name = curr_building_employment_machinists_add add = 1000 }
 	change_local_variable = { name = curr_building_employment_engineers_add add = 500 }
@@ -277,10 +282,10 @@ add_employment_pm_nitrogen_fixation = {
 	change_local_variable = { name = curr_building_employment_machinists_add add = 2000 }
 	change_local_variable = { name = curr_building_employment_engineers_add add = 1500 }
 }
-add_employment_pm_no_explosives_production = {
-}
 add_employment_pm_leblanc_process = {
-	change_local_variable = { name = curr_building_employment_engineers_add add = 250 }
+	change_local_variable = { name = curr_building_employment_laborers_add add = 3500 }
+	change_local_variable = { name = curr_building_employment_machinists_add add = 1000 }
+	change_local_variable = { name = curr_building_employment_engineers_add add = 500 }
 }
 add_employment_pm_ammonia-soda_process = {
 	change_local_variable = { name = curr_building_employment_engineers_add add = 500 }
@@ -391,19 +396,17 @@ add_employment_pm_arc_welding_shipbuilding = {
 	change_local_variable = { name = curr_building_employment_machinists_add add = 2000 }
 	change_local_variable = { name = curr_building_employment_engineers_add add = 1500 }
 }
-add_employment_pm_no_military_shipbuilding = {
-}
 add_employment_pm_military_shipbuilding_wooden = {
 }
 add_employment_pm_military_shipbuilding_wooden_2 = {
-}			
+}
 add_employment_pm_military_shipbuilding_steam = {
 }
 add_employment_pm_military_shipbuilding_steam_2 = {
-}			
+}
 add_employment_pm_merchant_guilds_building_shipyards = {
 	change_local_variable = { name = curr_building_employment_shopkeepers_add add = 500 }
-}		
+}
 add_employment_pm_privately_owned_building_shipyards = {
 	change_local_variable = { name = curr_building_employment_capitalists_add add = 100 }
 }
@@ -414,6 +417,21 @@ add_employment_pm_government_run_building_shipyards = {
 	change_local_variable = { name = curr_building_employment_bureaucrats_add add = 150 }
 }
 add_employment_pm_worker_cooperative_building_shipyards = {
+	change_local_variable = { name = curr_building_employment_shopkeepers_add add = 250 }
+}
+add_employment_pm_merchant_guilds_building_military_shipyards = {
+	change_local_variable = { name = curr_building_employment_shopkeepers_add add = 500 }
+}
+add_employment_pm_privately_owned_building_military_shipyards = {
+	change_local_variable = { name = curr_building_employment_capitalists_add add = 100 }
+}
+add_employment_pm_publicly_traded_building_military_shipyards = {
+	change_local_variable = { name = curr_building_employment_capitalists_add add = 150 }
+}
+add_employment_pm_government_run_building_military_shipyards = {
+	change_local_variable = { name = curr_building_employment_bureaucrats_add add = 150 }
+}
+add_employment_pm_worker_cooperative_building_military_shipyards = {
 	change_local_variable = { name = curr_building_employment_shopkeepers_add add = 250 }
 }
 add_employment_pm_aeroplane_production = {
@@ -457,15 +475,23 @@ add_employment_pm_bolt_action_rifles = {
 add_employment_pm_no_artillery_production = {
 }
 add_employment_pm_cannons = {
-	change_local_variable = { name = curr_building_employment_machinists_add add = 500 }
+	change_local_variable = { name = curr_building_employment_laborers_add add = 4000 }
+	change_local_variable = { name = curr_building_employment_machinists_add add = 1000 }
 }
 add_employment_pm_smoothbores = {
-	change_local_variable = { name = curr_building_employment_machinists_add add = 500 }
+	change_local_variable = { name = curr_building_employment_laborers_add add = 3750 }
+	change_local_variable = { name = curr_building_employment_machinists_add add = 1000 }
 	change_local_variable = { name = curr_building_employment_engineers_add add = 250 }
 }
 add_employment_pm_breech_loaders = {
-	change_local_variable = { name = curr_building_employment_machinists_add add = 500 }
+	change_local_variable = { name = curr_building_employment_laborers_add add = 3000 }
+	change_local_variable = { name = curr_building_employment_machinists_add add = 1500 }
 	change_local_variable = { name = curr_building_employment_engineers_add add = 500 }
+}
+add_employment_pm_recoiled_barrels = {
+	change_local_variable = { name = curr_building_employment_laborers_add add = 2500 }
+	change_local_variable = { name = curr_building_employment_machinists_add add = 1500 }
+	change_local_variable = { name = curr_building_employment_engineers_add add = 1000 }
 }
 add_employment_pm_rotary_valve_engine_building_arms_industry = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = -2000 }
@@ -475,7 +501,7 @@ add_employment_pm_assembly_lines_building_arms_industry = {
 }
 add_employment_pm_merchant_guilds_building_arms_industry = {
 	change_local_variable = { name = curr_building_employment_shopkeepers_add add = 500 }
-}		
+}
 add_employment_pm_privately_owned_building_arms_industry = {
 	change_local_variable = { name = curr_building_employment_capitalists_add add = 100 }
 }
@@ -486,6 +512,18 @@ add_employment_pm_government_run_building_arms_industry = {
 	change_local_variable = { name = curr_building_employment_bureaucrats_add add = 150 }
 }
 add_employment_pm_worker_cooperative_building_arms_industry = {
+	change_local_variable = { name = curr_building_employment_shopkeepers_add add = 250 }
+}
+add_employment_pm_merchant_guilds_building_artillery_foundries = {
+	change_local_variable = { name = curr_building_employment_shopkeepers_add add = 500 }
+}
+add_employment_pm_privately_owned_building_artillery_foundries = {
+	change_local_variable = { name = curr_building_employment_capitalists_add add = 100 }
+}
+add_employment_pm_publicly_traded_building_artillery_foundries = {
+	change_local_variable = { name = curr_building_employment_capitalists_add add = 150 }
+}
+add_employment_pm_worker_cooperative_building_artillery_foundries = {
 	change_local_variable = { name = curr_building_employment_shopkeepers_add add = 250 }
 }
 add_employment_pm_percussion_caps = {
@@ -505,6 +543,9 @@ add_employment_pm_assembly_lines_building_munition_plants = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = -3000 }
 }
 add_employment_pm_publicly_traded_building_chemical_plants = {
+	change_local_variable = { name = curr_building_employment_capitalists_add add = 150 }
+}
+add_employment_pm_publicly_traded_building_explosives_factory = {
 	change_local_variable = { name = curr_building_employment_capitalists_add add = 150 }
 }
 add_employment_pm_publicly_traded_building_synthetic_plants = {
@@ -545,7 +586,7 @@ add_employment_pm_chemical_fertilizer = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 3400 }
 	change_local_variable = { name = curr_building_employment_farmers_add add = 1200 }
 	change_local_variable = { name = curr_building_employment_clergymen_add add = 300 }
-}			
+}
 add_employment_pm_no_secondary = {
 }
 add_employment_pm_potatoes = {
@@ -553,6 +594,12 @@ add_employment_pm_potatoes = {
 add_employment_pm_apple_orchards = {
 }
 add_employment_pm_tools_disabled = {
+}
+add_employment_pm_tools_building_rice_farm = {
+	change_local_variable = { name = curr_building_employment_laborers_add add = -1000 }
+}
+add_employment_pm_steam_threshers_building_rice_farm = {
+	change_local_variable = { name = curr_building_employment_laborers_add add = -3000 }
 }
 add_employment_pm_tools = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = -500 }
@@ -609,7 +656,9 @@ add_employment_pm_chemical_fertilizer_building_rice_farm = {
 	change_local_variable = { name = curr_building_employment_clergymen_add add = 300 }
 }
 add_employment_pm_fig_orchards = {
-}						
+}
+add_employment_pm_fig_orchards_building_rice_farm = {
+}
 add_employment_pm_vineyards_building_maize_farm = {
 	change_local_variable = { name = curr_building_employment_shopkeepers_add add = 150 }
 }
@@ -618,13 +667,15 @@ add_employment_pm_simple_ranch = {
 	change_local_variable = { name = curr_building_employment_farmers_add add = 700 }
 	change_local_variable = { name = curr_building_employment_clergymen_add add = 200 }
 }
+add_employment_pm_sheep_farms = {
+}
 add_employment_pm_intensive_grazing_ranch = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 3900 }
 	change_local_variable = { name = curr_building_employment_farmers_add add = 900 }
 	change_local_variable = { name = curr_building_employment_clergymen_add add = 200 }
 }
 add_employment_pm_open_air_stockyards = {
-}		
+}
 add_employment_pm_butchering_tools = {
 }
 add_employment_pm_slaughterhouses = {
@@ -635,17 +686,28 @@ add_employment_pm_standard_fences = {
 }
 add_employment_pm_barbed_wire_fences = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = -1000 }
-}		
+}
 add_employment_pm_electric_fencing = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = -1800 }
 }
 add_employment_pm_unrefrigerated = {
 }
+add_employment_default_building_vineyard_plantation = {
+	change_local_variable = { name = curr_building_employment_laborers_add add = 4000 }
+	change_local_variable = { name = curr_building_employment_farmers_add add = 800 }
+	change_local_variable = { name = curr_building_employment_clergymen_add add = 100 }
+}
+add_employment_automatic_irrigation_building_vineyard_plantation = {
+	change_local_variable = { name = curr_building_employment_laborers_add add = 3000 }
+	change_local_variable = { name = curr_building_employment_farmers_add add = 1200 }
+	change_local_variable = { name = curr_building_employment_machinists_add add = 500 }
+	change_local_variable = { name = curr_building_employment_clergymen_add add = 100 }
+}
 add_employment_pm_refrigerated_storage_building_livestock_ranch = {
-	change_local_variable = { name = curr_building_employment_laborers_add add = -1000 }
+	change_local_variable = { name = curr_building_employment_laborers_add add = -800 }
 }
 add_employment_pm_refrigerated_rail_cars_building_livestock_ranch = {
-	change_local_variable = { name = curr_building_employment_laborers_add add = -1800 }
+	change_local_variable = { name = curr_building_employment_laborers_add add = -1400 }
 }
 
 add_employment_pm_picks_and_shovels_building_coal_mine = {
@@ -672,13 +734,14 @@ add_employment_pm_nitroglycerin_building_coal_mine = {
 }
 add_employment_pm_dynamite_building_coal_mine = {
 	change_local_variable = { name = curr_building_employment_engineers_add add = 250 }
-}	
+}
 add_employment_pm_no_steam_automation = {
 }
 add_employment_pm_steam_donkey_building_coal_mine = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = -1000 }
 }
 add_employment_pm_road_carts = {
+	change_local_variable = { name = curr_building_employment_shopkeepers_add add = 500 }
 }
 add_employment_pm_merchant_guilds_building_coal_mine = {
 	change_local_variable = { name = curr_building_employment_shopkeepers_add add = 500 }
@@ -777,7 +840,7 @@ add_employment_pm_nitroglycerin_building_iron_mine = {
 }
 add_employment_pm_dynamite_building_iron_mine = {
 	change_local_variable = { name = curr_building_employment_engineers_add add = 250 }
-}	
+}
 add_employment_pm_steam_donkey_mine = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = -1000 }
 }
@@ -806,7 +869,7 @@ add_employment_pm_nitroglycerin_building_lead_mine = {
 }
 add_employment_pm_dynamite_building_lead_mine = {
 	change_local_variable = { name = curr_building_employment_engineers_add add = 250 }
-}	
+}
 add_employment_pm_picks_and_shovels_building_sulfur_mine = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 4500 }
 }
@@ -974,147 +1037,77 @@ add_employment_automatic_irrigation_building_silk_plantation = {
 	change_local_variable = { name = curr_building_employment_clergymen_add add = 100 }
 }
 
-add_employment_pm_irregular_infantry = {
+add_employment_pm_no_organization = {
 	change_local_variable = { name = curr_building_employment_soldiers_add add = 970 }
 	change_local_variable = { name = curr_building_employment_officers_add add = 30 }
 }
-add_employment_pm_line_infantry = {
+add_employment_pm_general_training = {
 	change_local_variable = { name = curr_building_employment_soldiers_add add = 950 }
 	change_local_variable = { name = curr_building_employment_officers_add add = 50 }
 }
-add_employment_pm_skirmish_infantry = {
+add_employment_pm_advanced_tactics_training = {
 	change_local_variable = { name = curr_building_employment_soldiers_add add = 900 }
 	change_local_variable = { name = curr_building_employment_officers_add add = 100 }
 }
-add_employment_pm_trench_infantry = {
+add_employment_pm_training_streamlining = {
 	change_local_variable = { name = curr_building_employment_soldiers_add add = 850 }
 	change_local_variable = { name = curr_building_employment_officers_add add = 150 }
 }
-add_employment_pm_squad_infantry = {
+add_employment_pm_nco_incorporation = {
 	change_local_variable = { name = curr_building_employment_soldiers_add add = 800 }
 	change_local_variable = { name = curr_building_employment_officers_add add = 200 }
 }
-add_employment_pm_mechanized_infantry = {
+add_employment_pm_mobile_warfare_tactics = {
 	change_local_variable = { name = curr_building_employment_soldiers_add add = 750 }
 	change_local_variable = { name = curr_building_employment_officers_add add = 250 }
 }
-add_employment_pm_no_artillery = {
+add_employment_pm_no_organization_conscription = {
 }
-add_employment_pm_cannon_artillery = {
+add_employment_pm_general_training_conscription = {
 }
-add_employment_pm_mobile_artillery = {
+add_employment_pm_advanced_tactics_training_conscription = {
 }
-add_employment_pm_shrapnel_artillery = {
+add_employment_pm_training_streamlining_conscription = {
 }
-add_employment_pm_siege_artillery = {
+add_employment_pm_nco_incorporation_conscription = {
 }
-add_employment_pm_cavalry_scouts = {
-}
-add_employment_pm_bicycle_messengers = {
-}
-add_employment_pm_motorized_recon = {
-}
-add_employment_pm_aerial_recon = {
-}
-add_employment_pm_no_specialists = {
-}
-add_employment_pm_machine_gunners = {
-}
-add_employment_pm_infiltrators = {
-}
-add_employment_pm_flamethrower_company = {
-}
-add_employment_pm_chemical_weapons_specialists = {
-}
-add_employment_pm_irregular_infantry_conscription = {
+add_employment_pm_no_organization_conscription = {
 	change_local_variable = { name = curr_building_employment_soldiers_add add = 970 }
 	change_local_variable = { name = curr_building_employment_officers_add add = 30 }
 }
-add_employment_pm_line_infantry_conscription = {
+add_employment_pm_general_training_conscription = {
 	change_local_variable = { name = curr_building_employment_soldiers_add add = 950 }
 	change_local_variable = { name = curr_building_employment_officers_add add = 50 }
 }
-add_employment_pm_skirmish_infantry_conscription = {
+add_employment_pm_advanced_tactics_training_conscription = {
 	change_local_variable = { name = curr_building_employment_soldiers_add add = 900 }
 	change_local_variable = { name = curr_building_employment_officers_add add = 100 }
 }
-add_employment_pm_trench_infantry_conscription = {
+add_employment_pm_training_streamlining_conscription = {
 	change_local_variable = { name = curr_building_employment_soldiers_add add = 850 }
 	change_local_variable = { name = curr_building_employment_officers_add add = 150 }
 }
-add_employment_pm_squad_infantry_conscription = {
+add_employment_pm_nco_incorporation_conscription = {
 	change_local_variable = { name = curr_building_employment_soldiers_add add = 800 }
 	change_local_variable = { name = curr_building_employment_officers_add add = 200 }
 }
-add_employment_pm_mechanized_infantry_conscription = {
+add_employment_pm_mobile_warfare_tactics_conscription = {
 	change_local_variable = { name = curr_building_employment_soldiers_add add = 750 }
 	change_local_variable = { name = curr_building_employment_officers_add add = 250 }
 }
-add_employment_pm_no_artillery_conscription = {
+add_employment_pm_no_organization_conscription = {
 }
-add_employment_pm_cannon_artillery_conscription = {
+add_employment_pm_general_training_conscription = {
 }
-add_employment_pm_mobile_artillery_conscription = {
+add_employment_pm_advanced_tactics_training_conscription = {
 }
-add_employment_pm_shrapnel_artillery_conscription = {
+add_employment_pm_training_streamlining_conscription = {
 }
-add_employment_pm_siege_artillery_conscription = {
-}
-add_employment_pm_cavalry_scouts_conscription = {
-}
-add_employment_pm_bicycle_messengers_conscription = {
-}
-add_employment_pm_motorized_recon_conscription = {
-}
-add_employment_pm_aerial_recon_conscription = {
-}
-add_employment_pm_no_specialists_conscription = {
-}
-add_employment_pm_machine_gunners_conscription = {
-}
-add_employment_pm_infiltrators_conscription = {
-}
-add_employment_pm_flamethrower_company_conscription = {
-}
-add_employment_pm_chemical_weapons_specialists_conscription = {
-}
-add_employment_pm_wound_dressing = {
-}
-add_employment_pm_first_aid = {
-}
-add_employment_pm_field_hospitals = {
-}
-add_employment_pm_man_o_wars = {
-	change_local_variable = { name = curr_building_employment_soldiers_add add = 900 }
-	change_local_variable = { name = curr_building_employment_officers_add add = 100 }
-}
-add_employment_pm_ironclads = {
-	change_local_variable = { name = curr_building_employment_soldiers_add add = 900 }
-	change_local_variable = { name = curr_building_employment_officers_add add = 100 }
-}
-add_employment_pm_monitors = {
-	change_local_variable = { name = curr_building_employment_soldiers_add add = 900 }
-	change_local_variable = { name = curr_building_employment_officers_add add = 100 }
-}
-add_employment_pm_dreadnoughts = {
-	change_local_variable = { name = curr_building_employment_soldiers_add add = 900 }
-	change_local_variable = { name = curr_building_employment_officers_add add = 100 }
-}
-add_employment_pm_battleships = {
-	change_local_variable = { name = curr_building_employment_soldiers_add add = 900 }
-	change_local_variable = { name = curr_building_employment_officers_add add = 100 }
-}
-add_employment_pm_commerce_raider = {
+add_employment_pm_nco_incorporation_conscription = {
 }
 add_employment_pm_torpedo_boat = {
 }
 add_employment_pm_submarine = {
-}
-add_employment_pm_frigates = {
-}
-add_employment_pm_destroyers = {
-}
-add_employment_pm_carriers = {
 }
 add_employment_pm_no_naval_theory = {
 }
@@ -1126,10 +1119,7 @@ add_employment_pm_jeune_ecole = {
 	change_local_variable = { name = curr_building_employment_soldiers_add add = -50 }
 	change_local_variable = { name = curr_building_employment_officers_add add = 50 }
 }
-add_employment_pm_sea_lane_strategies = {
-	change_local_variable = { name = curr_building_employment_soldiers_add add = -75 }
-	change_local_variable = { name = curr_building_employment_officers_add add = 75 }
-}
+add_employment_pm_sea_lane_strategies = {}
 add_employment_pm_battlefleet_tactics = {
 	change_local_variable = { name = curr_building_employment_soldiers_add add = -100 }
 	change_local_variable = { name = curr_building_employment_officers_add add = 100 }
@@ -1139,7 +1129,7 @@ add_employment_pm_market_stalls = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 3500 }
 	change_local_variable = { name = curr_building_employment_clerks_add add = 900 }
 	change_local_variable = { name = curr_building_employment_shopkeepers_add add = 400 }
-}		
+}
 add_employment_pm_market_squares = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 2500 }
 	change_local_variable = { name = curr_building_employment_clerks_add add = 1900 }
@@ -1156,15 +1146,15 @@ add_employment_pm_arcades = {
 	change_local_variable = { name = curr_building_employment_shopkeepers_add add = 1000 }
 }
 add_employment_pm_no_street_lighting = {
-}	
+}
 add_employment_pm_gas_streetlights = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 400 }
 	change_local_variable = { name = curr_building_employment_engineers_add add = 100 }
-}		
+}
 add_employment_pm_electric_streetlights = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 350 }
 	change_local_variable = { name = curr_building_employment_engineers_add add = 150 }
-}			
+}
 add_employment_pm_no_public_transport = {
 }
 add_employment_pm_public_trams = {
@@ -1175,7 +1165,7 @@ add_employment_pm_public_motor_carriages = {
 }
 add_employment_pm_state_urban_clergy = {
 	change_local_variable = { name = curr_building_employment_clergymen_add add = 200 }
-}	
+}
 add_employment_pm_free_urban_clergy = {
 	change_local_variable = { name = curr_building_employment_clerks_add add = 50 }
 	change_local_variable = { name = curr_building_employment_clergymen_add add = 150 }
@@ -1183,7 +1173,7 @@ add_employment_pm_free_urban_clergy = {
 add_employment_pm_no_urban_clergy = {
 	change_local_variable = { name = curr_building_employment_clerks_add add = 150 }
 	change_local_variable = { name = curr_building_employment_bureaucrats_add add = 50 }
-}		
+}
 add_employment_pm_traditional_art = {
 }
 add_employment_pm_realist_art = {
@@ -1191,7 +1181,7 @@ add_employment_pm_realist_art = {
 add_employment_pm_photographic_art = {
 }
 add_employment_pm_film_art = {
-}	
+}
 add_employment_pm_traditional_patronage = {
 	change_local_variable = { name = curr_building_employment_aristocrats_add add = 150 }
 	change_local_variable = { name = curr_building_employment_academics_add add = 850 }
@@ -1227,12 +1217,12 @@ add_employment_pm_anchorage = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 500 }
 	change_local_variable = { name = curr_building_employment_clerks_add add = 350 }
 	change_local_variable = { name = curr_building_employment_bureaucrats_add add = 150 }
-}			
+}
 add_employment_pm_basic_port = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 3000 }
 	change_local_variable = { name = curr_building_employment_clerks_add add = 1500 }
 	change_local_variable = { name = curr_building_employment_bureaucrats_add add = 500 }
-}		
+}
 add_employment_pm_industrial_port = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 2000 }
 	change_local_variable = { name = curr_building_employment_machinists_add add = 500 }
@@ -1244,10 +1234,10 @@ add_employment_pm_modern_port = {
 	change_local_variable = { name = curr_building_employment_machinists_add add = 250 }
 	change_local_variable = { name = curr_building_employment_clerks_add add = 500 }
 	change_local_variable = { name = curr_building_employment_bureaucrats_add add = 500 }
-}				
+}
 add_employment_pm_simple_organization = {
 	change_local_variable = { name = curr_building_employment_clerks_add add = 4000 }
-}		
+}
 add_employment_pm_horizontal_drawer_cabinets = {
 	change_local_variable = { name = curr_building_employment_clerks_add add = 4000 }
 }
@@ -1264,14 +1254,14 @@ add_employment_pm_hereditary_bureaucrats = {
 }
 add_employment_pm_professional_bureaucrats = {
 	change_local_variable = { name = curr_building_employment_bureaucrats_add add = 500 }
-}	
+}
 add_employment_pm_secular_bureaucrats = {
 	change_local_variable = { name = curr_building_employment_bureaucrats_add add = 500 }
 }
 add_employment_pm_religious_bureaucrats = {
 	change_local_variable = { name = curr_building_employment_clergymen_add add = 250 }
 	change_local_variable = { name = curr_building_employment_bureaucrats_add add = 250 }
-}					
+}
 add_employment_pm_scholastic_education = {
 	change_local_variable = { name = curr_building_employment_clerks_add add = 1500 }
 	change_local_variable = { name = curr_building_employment_laborers_add add = 1500 }
@@ -1283,14 +1273,14 @@ add_employment_pm_philosophy_department = {
 add_employment_pm_analytical_philosophy_department = {
 	change_local_variable = { name = curr_building_employment_clerks_add add = 2000 }
 	change_local_variable = { name = curr_building_employment_laborers_add add = 1000 }
-}	
+}
 add_employment_pm_secular_academia = {
 	change_local_variable = { name = curr_building_employment_academics_add add = 2000 }
 }
 add_employment_pm_religious_academia = {
 	change_local_variable = { name = curr_building_employment_clergymen_add add = 1000 }
 	change_local_variable = { name = curr_building_employment_academics_add add = 1000 }
-}			
+}
 add_employment_pm_skyscraper_bureaucratic_nexus = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 1000 }
 	change_local_variable = { name = curr_building_employment_clerks_add add = 2500 }
@@ -1353,11 +1343,18 @@ add_employment_pm_simple_forestry = {
 add_employment_pm_saw_mills = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 4000 }
 	change_local_variable = { name = curr_building_employment_machinists_add add = 500 }
-}	
+}
 add_employment_pm_electric_saw_mills = {
 	change_local_variable = { name = curr_building_employment_laborers_add add = 3000 }
 	change_local_variable = { name = curr_building_employment_machinists_add add = 1000 }
 	change_local_variable = { name = curr_building_employment_engineers_add add = 500 }
+}
+add_employment_pm_default_building_cristo_redentor = {
+	change_local_variable = { name = curr_building_employment_clergymen_add add = 100 }
+}
+add_employment_pm_monument_prestige_only = {
+}
+add_employment_pm_monument_no_effects = {
 }
 add_employment_pm_no_hardwood = {
 }
@@ -1464,7 +1461,7 @@ add_employment_pm_flash_freezing_building_whaling_station = {
 }
 add_employment_pm_merchant_guilds_building_whaling_station = {
 	change_local_variable = { name = curr_building_employment_shopkeepers_add add = 500 }
-}		
+}
 add_employment_pm_privately_owned_building_whaling_station = {
 	change_local_variable = { name = curr_building_employment_capitalists_add add = 100 }
 }
@@ -1558,27 +1555,27 @@ add_employment_default_building_subsistence_farms = {
 	change_local_variable = { name = curr_building_employment_peasants_add add = 4750 }
 }
 add_employment_pm_home_workshops_no_building_subsistence_farms = {
-}		
+}
 add_employment_pm_home_workshops_building_subsistence_farms = {
 }
 add_employment_pm_serfdom_no = {
 }
 add_employment_pm_serfdom = {
-}		
+}
 add_employment_default_building_subsistence_orchards = {
 	change_local_variable = { name = curr_building_employment_peasants_add add = 4750 }
 }
 add_employment_pm_home_workshops_no_building_subsistence_orchards = {
-}		
+}
 add_employment_pm_home_workshops_building_subsistence_orchards = {
 }
 add_employment_pm_serfdom_building_subsistence_orchards = {
-}		
+}
 add_employment_default_building_subsistence_pastures = {
 	change_local_variable = { name = curr_building_employment_peasants_add add = 4750 }
 }
 add_employment_pm_home_workshops_no_building_subsistence_pastures = {
-}		
+}
 add_employment_pm_home_workshops_building_subsistence_pastures = {
 }
 add_employment_pm_serfdom_building_subsistence_pastures = {
@@ -1587,16 +1584,16 @@ add_employment_default_building_subsistence_fishing_villages = {
 	change_local_variable = { name = curr_building_employment_peasants_add add = 4750 }
 }
 add_employment_pm_home_workshops_no_building_subsistence_fishing_villages = {
-}		
+}
 add_employment_pm_home_workshops_building_subsistence_fishing_villages = {
 }
 add_employment_pm_serfdom_building_subsistence_fishing_villages = {
-}		
+}
 add_employment_default_building_subsistence_rice_paddies = {
 	change_local_variable = { name = curr_building_employment_peasants_add add = 9750 }
 }
 add_employment_pm_home_workshops_no_building_subsistence_rice_paddies = {
-}		
+}
 add_employment_pm_home_workshops_building_subsistence_rice_paddies = {
 }
 add_employment_pm_serfdom_building_subsistence_rice_paddies = {

@@ -13,7 +13,7 @@ types market_panel
 {
 	type market_panel = default_block_window {
 		name = "market_panel"
-		
+
 		blockoverride "animation_state_block" {
 			state = {
 				name = _show
@@ -40,14 +40,14 @@ types market_panel
 				on_finish = "[GetScriptedGui('market_gui_market_goods_list').Execute(GuiScope.SetRoot(MarketPanel.AccessMarket.MakeScope).End)]"
 			}
 		}
-		
+
 		datacontext = "[MarketPanel.AccessMarket]"
-		
+
 		blockoverride "window_header_name"
 		{
 			raw_text = "#BOLD [Market.GetOwner.GetFlagTextIcon] [Market.GetName]#!"
 		}
-		
+
 		blockoverride "fixed_top"
 		{
 			tab_buttons = {
@@ -55,7 +55,7 @@ types market_panel
 					text = "MARKET_PANEL_DETAILS_TAB_LABEL"
 				}
 				blockoverride "first_button_tooltip" {
-					tooltip = "MARKET_PANEL_DETAILS_TAB_LABEL" 
+					tooltip = "MARKET_PANEL_DETAILS_TAB_LABEL"
 				}
 				blockoverride "first_button_click" {
 					onclick = "[InformationPanel.SelectTab('default')]"
@@ -77,7 +77,7 @@ types market_panel
 					text = "TRADE_ROUTES"
 				}
 				blockoverride "second_button_tooltip" {
-					tooltip = "TRADE_ROUTES" 
+					tooltip = "TRADE_ROUTES"
 				}
 				blockoverride "second_button_click" {
 					onclick = "[InformationPanel.SelectTab('trade_routes')]"
@@ -99,7 +99,7 @@ types market_panel
 					text = "MARKET_PANEL_TRADE_SUGGESTIONS_TAB_LABEL"
 				}
 				blockoverride "third_button_tooltip" {
-					tooltip = "MARKET_PANEL_STATES_TAB_LABEL" 
+					tooltip = "MARKET_PANEL_STATES_TAB_LABEL"
 				}
 				blockoverride "third_button_click" {
 					onclick = "[InformationPanel.SelectTab('trade_suggestions')]"
@@ -130,12 +130,12 @@ types market_panel
 					text = "MARKET_PANEL_STATES_TAB_LABEL_BOLD"
 				}
 			}
-			
+
 			flowcontainer = {
 				visible = "[InformationPanel.IsTabSelected('default')]"
 				direction = vertical
 
-				section_header_button = {					
+				section_header_button = {
 					blockoverride "left_text" {
 						text = "FILTERS"
 						fontsize_min = 12
@@ -151,7 +151,7 @@ types market_panel
 					blockoverride "onclick" {
 						onclick = "[GetVariableSystem.Toggle( 'market_filters' )]"
 					}
-					
+
 					blockoverride "onclick_showmore" {
 						visible = "[Not(GetVariableSystem.Exists( 'market_filters' ))]"
 					}
@@ -322,12 +322,12 @@ types market_panel
 					}
 				}
 			}
-			
+
 			flowcontainer = {
 				direction = vertical
 				visible = "[InformationPanel.IsTabSelected('trade_routes')]"
 
-				section_header_button = {					
+				section_header_button = {
 					blockoverride "left_text" {
 						text = "FILTERS"
 						fontsize_min = 12
@@ -343,7 +343,7 @@ types market_panel
 					blockoverride "onclick" {
 						onclick = "[GetVariableSystem.Toggle( 'trade_route_filters' )]"
 					}
-					
+
 					blockoverride "onclick_showmore" {
 						visible = "[Not(GetVariableSystem.Exists( 'trade_route_filters' ))]"
 					}
@@ -397,7 +397,7 @@ types market_panel
 
 					flowcontainer = {
 						direction = vertical
-						margin_top = 10 
+						margin_top = 10
 						spacing = 20
 						margin_left = 10
 
@@ -413,11 +413,11 @@ types market_panel
 							blockoverride "industrial_icon" {}
 							blockoverride "industrial_onclick" {}
 							blockoverride "industrial_icon_selected" {}
-							
+
 							blockoverride "luxury_icon" {}
 							blockoverride "luxury_onclick" {}
 							blockoverride "luxury_icon_selected" {}
-							
+
 							blockoverride "military_icon" {}
 							blockoverride "military_onclick" {}
 							blockoverride "military_icon_selected" {}
@@ -554,7 +554,7 @@ types market_panel
 						size = { 260 70 }
 						onclick = "[GetLensToolbar.OpenTab('import_routes')]"
 						using = shimmer
-						
+
 						icon = {
 							texture = "gfx/interface/icons/lens_toolbar_icons/trade_route_import_lens_option.dds"
 							size = { 40 40 }
@@ -576,7 +576,7 @@ types market_panel
 						size = { 260 70 }
 						onclick = "[GetLensToolbar.OpenTab('export_routes')]"
 						using = shimmer
-						
+
 						icon = {
 							texture = "gfx/interface/icons/lens_toolbar_icons/trade_route_export_lens_option.dds"
 							size = { 40 40 }
@@ -596,12 +596,12 @@ types market_panel
 				}
 			}
 		}
-		
+
 		blockoverride "scrollarea_content"
 		{
 			container = {
 				parentanchor = hcenter
-				
+
 				market_panel_details_content = {
 					visible = "[InformationPanel.IsTabSelected('default')]"
 					using = default_fade_in_out
@@ -668,7 +668,7 @@ types market_panel
 				### LIST
 				flowcontainer = {
 					direction = vertical
-					
+
 					flowcontainer = {
 						using = default_list_position
 						margin = { 0 1 }
@@ -954,7 +954,7 @@ types market_panel
 								using = Color_Blue_S
 							}
 						}
-						
+
 						sort_button = {
 							align = hcenter|nobaseline
 							text = "MARKET_PRICE"
@@ -980,7 +980,7 @@ types market_panel
 								using = Color_Blue_S
 							}
 						}
-						
+
 						widget = {
 							size = { 30 30 }
 							button_icon_round_toggle3 = {
@@ -1054,19 +1054,19 @@ types market_panel
 				using = default_list_position
 				direction = vertical
 				spacing = 20
-				
+
 				flowcontainer = {
 					name = "tutorial_highlight_market_details_panel_all_goods"
 					direction = vertical
 					#datamodel = "[Market.AccessAllGoods( MarketPanel.GetFilters )]"
 					datamodel = "[GetGlobalList('gui_market_goods_list')]"
 					spacing = 1
-					
+
 					item = {
 						goods_entry_button = {}
 					}
 				}
-				
+
 				textbox = {
 					parentanchor = hcenter
 					minimumsize = { 450 -1 }
@@ -1076,7 +1076,7 @@ types market_panel
 					align = center|nobaseline
 					visible = "[And(InDebugMode, Not(StringIsEmpty(Market.GetModifierDesc)))]"
 					text = "[Market.GetModifierDesc]"
-					
+
 					background = {
 						using = entry_bg
 					}
@@ -1087,7 +1087,7 @@ types market_panel
 			visible = "[EqualTo_CFixedPoint(Market.GetBalance, '(CFixedPoint)0')]"
 		}
 	}
-	
+
 	type goods_entry_button = button {
 		datacontext = "[Scope.AccessMarketGoods.GetGoods]"
 		size = { @panel_width 42 }
@@ -1102,9 +1102,9 @@ types market_panel
 		flowcontainer = {
 			parentanchor = left|vcenter
 			widgetanchor = left|vcenter
-			
+
 			using = goods_list_item
-			
+
 			textbox = {
 				align = right|nobaseline
 				visible = "[GreaterThan_CFixedPoint(Goods.GetMarketSellOrders, '(CFixedPoint)0')]"
@@ -1127,7 +1127,7 @@ types market_panel
 			}
 
 			vertical_divider = {}
-			
+
 			textbox = {
 				align = right|nobaseline
 				visible = "[GreaterThan_CFixedPoint(Goods.GetMarketBuyOrders, '(CFixedPoint)0')]"
@@ -1150,7 +1150,7 @@ types market_panel
 			}
 
 			vertical_divider = {}
-			
+
 			flowcontainer = {
 				direction = horizontal
 				minimumsize = { 222 44 }
@@ -1403,7 +1403,7 @@ types market_panel
 			}
 
 			vertical_divider = {}
-			
+
 			widget = {
 				using = market_price_tooltip_with_graph
 				size = { 73 44 }
@@ -1455,7 +1455,7 @@ types market_panel
 							min = 0
 							max = 0.75
 						}
-						
+
 						blockoverride "value_left" {
 							value = "[FixedPointToFloat(Goods.GetPercentageDeltaAgainstBasePrice(Goods.GetMarketPrice))]"
 						}
@@ -1469,15 +1469,15 @@ types market_panel
 						tooltip = "MARKET_GOODS_BALANCE_TOOLTIP"
 
 						blockoverride "negative_min_max_values" {
-							min = "[Negate_float(FixedPointToFloat(MarketPanel.GetMaxImbalanceScaledByBasePrice))]"
+							min = "[Negate_float(FixedPointToFloat(Market.GetMaxImbalanceScaledByBasePrice))]"
 							max = 0
 						}
 
 						blockoverride "positive_min_max_values" {
 							min = 0
-							max = "[FixedPointToFloat(MarketPanel.GetMaxImbalanceScaledByBasePrice)]"
+							max = "[FixedPointToFloat(Market.GetMaxImbalanceScaledByBasePrice)]"
 						}
-					
+
 						blockoverride "value_left" {
 							value = "[FixedPointToInt(Multiply_CFixedPoint(Goods.GetMarketBuyAndSellOrdersBalance, Goods.GetBasePrice))]"
 						}
@@ -1500,7 +1500,7 @@ types market_panel
 					set_level_bar_item = {
 						size = { 36 38 }
 						tooltip = "[SelectLocalization(Goods.GetMarket.IsSame(GetPlayer.GetCapital.GetMarket), GetPlayer.GetGoodsTariffDescImportPriority(Goods.Self), 'NOT_PLAYER_MARKET_PRIORITY')]"
-			
+
 						blockoverride "button_texture" {
 							texture = "gfx/interface/icons/trade_icons/import_focused.dds"
 						}
@@ -1515,7 +1515,7 @@ types market_panel
 							visible = "[IsValid( GetPlayer.SetGoodsTariffImportPriority(Goods.Self) )]"
 						}
 					}
-		
+
 					### no prio
 					set_level_bar_item = {
 						size = { 36 38 }
@@ -1535,12 +1535,12 @@ types market_panel
 							visible = "[IsValid( GetPlayer.SetGoodsTariffNoPriority(Goods.Self) )]"
 						}
 					}
-		
+
 					### prio export
 					set_level_bar_item = {
 						size = { 36 38 }
 						tooltip = "[SelectLocalization(Goods.GetMarket.IsSame(GetPlayer.GetCapital.GetMarket), GetPlayer.GetGoodsTariffDescExportPriority(Goods.Self), 'NOT_PLAYER_MARKET_PRIORITY')]"
-			
+
 						blockoverride "button_texture" {
 							texture = "gfx/interface/icons/trade_icons/export_focused.dds"
 						}
@@ -1570,7 +1570,7 @@ types market_panel
 			block "tooltip_1" {}
 			block "on_click_1" {}
 		}
-		
+
 		button_icon_round = {
 			blockoverride "icon" {
 				block "icon_2" {}
@@ -1600,7 +1600,7 @@ template goods_list_item {
 		tooltipwidget = {
 			FancyTooltip_Goods = {}
 		}
-		
+
 		icon = {
 			texture = "gfx/interface/market_view/trade_good_list_bg.dds"
 			position = { 20 0 }
@@ -1613,7 +1613,7 @@ template goods_list_item {
 			texture = "gfx/interface/market_view/trade_good_icon_bg.dds"
 			size = { 42 42 }
 			color = "[Goods.GetCategoryColor]"
-			
+
 			icon = {
 				texture = "[Goods.GetTexture]"
 				size = { 40 40 }
@@ -1659,7 +1659,7 @@ types market_building_icons_types
 			fontsize_min = 8
 			block "item_text" {
 				text = "[BuildingType.GetUnderConstructionCountInCountry(GetPlayer.Self)|+=]"
-				#text = "[BuildingType.GetBuildingModifier.GetValueFor(Concatenate(Concatenate('building_output_',Goods.GetNameNoFormatting),'_add'))]" #returns only for first PM and zero secondary PM
+				#text = "[BuildingType.GetBuildingModifier.GetValueFor(Concatenate(Concatenate('goods_output_',Goods.GetNameNoFormatting),'_add'))]" #returns only for first PM and zero secondary PM
 			}
 			align = center|nobaseline
 		}
